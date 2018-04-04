@@ -5,14 +5,14 @@
 <head>
     <title></title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="../Css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="../Css/bootstrap-responsive.css" />
-    <link rel="stylesheet" type="text/css" href="../Css/style.css" />
-    <script type="text/javascript" src="../Js/jquery.js"></script>
-    <script type="text/javascript" src="../Js/jquery.sorted.js"></script>
-    <script type="text/javascript" src="../Js/bootstrap.js"></script>
-    <script type="text/javascript" src="../Js/ckform.js"></script>
-    <script type="text/javascript" src="../Js/common.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn-1251943624.file.myqcloud.com/storeManage/Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn-1251943624.file.myqcloud.com/storeManage/Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn-1251943624.file.myqcloud.com/storeManage/Css/style.css" />
+    <script type="text/javascript" src="https://cdn-1251943624.file.myqcloud.com/storeManage/Js/jquery.js"></script>
+    <script type="text/javascript" src="https://cdn-1251943624.file.myqcloud.com/storeManage/Js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="https://cdn-1251943624.file.myqcloud.com/storeManage/Js/bootstrap.js"></script>
+    <script type="text/javascript" src="https://cdn-1251943624.file.myqcloud.com/storeManage/Js/ckform.js"></script>
+    <script type="text/javascript" src="https://cdn-1251943624.file.myqcloud.com/storeManage/Js/common.js"></script>
 
     <style type="text/css">
         body {
@@ -56,7 +56,7 @@
             <td><a href="edit.html">编辑</a></td>
         </tr>
         <tr>
-                <td>机构管理</td>
+                <td>商品管理</td>
                 <td>Admin</td>
                 <td>Merchant</td>
                 <td>index</td>
