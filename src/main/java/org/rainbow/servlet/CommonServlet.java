@@ -1,4 +1,4 @@
-package org.rainbow;
+package org.rainbow.servlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
