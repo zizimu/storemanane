@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          id="WebApp_ID" version="2.5">
-  <display-name>buy-manager-web</display-name>
+  <display-name>store-manage</display-name>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
@@ -32,7 +32,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
   </filter-mapping>
   <!-- springmvc的前端控制器 -->
   <servlet>
-    <servlet-name>buy-manager</servlet-name>
+    <servlet-name>store-manage</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
     <!-- contextConfigLocation不是必须的， 如果不配置
 	contextConfigLocation， springmvc的配置文件默认在：WEB-INF/servlet的
@@ -44,7 +44,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
     <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
-    <servlet-name>buy-manager</servlet-name>
+    <servlet-name>store-manage</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
 </web-app>
