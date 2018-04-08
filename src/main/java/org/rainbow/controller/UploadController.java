@@ -1,5 +1,6 @@
 package org.rainbow.controller;
 
+import com.google.gson.Gson;
 import org.rainbow.service.Upload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,7 +25,7 @@ import java.util.UUID;
  */
 @Controller
 public class UploadController {
-	@Value("https://1213-1251943624.cos.ap-shanghai.myqcloud.com/store-manage/")
+	@Value("https://1213-1251943624.cos.ap-shanghai.myqcloud.com/")
 	private String imageUrl;
 
 	@Autowired
@@ -44,14 +45,17 @@ public class UploadController {
 			newFileName = uuid.toString();
 		}
 		String dateStr = new SimpleDateFormat("yyyyMMdd").format(new Date());
-		String filename = "/store-manage"+dateStr+"/"+newFileName;
+		String filename = "store-manage"+dateStr+"/"+newFileName;
 		try {
 			upload.uploadPic2Tencent(file.getInputStream(),filename,file.getSize());
+			result.put("error",0);
+			result.put("url", imageUrl+filename);
 		} catch (IOException e) {
 			e.printStackTrace();
-			result.put("error",0);
+			result.put("error",1);
+			result.put("message","上传失败！请重试！");
 		}
-		return "";
+		return new Gson().toJson(result);
 	}
 
 }

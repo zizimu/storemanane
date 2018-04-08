@@ -3,7 +3,6 @@ package org.rainbow.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * Created with IntelliJ IDEA.
@@ -13,15 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @date 2018-04-08
  */
 @Controller
-public class CommonController {
-	@RequestMapping("/")
-	public String showIndex(){
-		return "index";
-	}
+@RequestMapping("/Node")
+public class CommodityController {
 
-	@RequestMapping("/{page}")
-	public String page2jsp(@PathVariable String page){
-		return page;
+	@RequestMapping("/index")
+	public String index(){
+		return "Node/index";
 	}
-	
 }
