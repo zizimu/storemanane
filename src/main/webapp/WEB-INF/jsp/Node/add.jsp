@@ -37,12 +37,40 @@
 <table class="table table-bordered table-hover definewidth m10">
     <tr>
         <td width="10%" class="tableleft">商品编号</td>
-        <td><input type="text" name="grouptitle"/></td>
+        <td><input type="text" name="gid"/></td>
     </tr>
     <tr>
         <td class="tableleft">商品名称</td>
-        <td><input type="text" name="moduletitle"/></td>
+        <td><input type="text" name="gname"/></td>
     </tr>   
+     <tr>
+        <td class="tableleft">价格</td>
+        <td><input type="text" name="gprice"/></td>
+    </tr> 
+     <tr>
+        <td class="tableleft">类型</td>
+        <td><input type="text" name="gtype"/></td>
+    </tr> 
+     <tr>
+        <td class="tableleft">品牌</td>
+        <td><input type="text" name="gbrand"/></td>
+    </tr> 
+     <tr>
+        <td class="tableleft">规格</td>
+        <td><input type="text" name="gspc"/></td>
+    </tr> 
+     <tr>
+        <td class="tableleft">生产日期</td>
+        <td><input type="text" name="gcreatedate"/></td>
+    </tr> 
+     <tr>
+        <td class="tableleft">保质期</td>
+        <td><input type="text" name="gshelflife"/></td>
+    </tr> 
+    <tr>
+        <td class="tableleft">备注</td>
+        <td><input type="text" name="mark"/></td>
+    </tr> 
     <tr>
         <td class="tableleft">状态</td>
         <td>
