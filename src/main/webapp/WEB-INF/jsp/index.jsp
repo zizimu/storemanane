@@ -46,12 +46,7 @@
             <br>个人信息
             </a>
         </div>
-        <div class="img-item">
-            <a href="#">
-            <img class="img-head" src="https://cdn-1251943624.file.myqcloud.com/storeManage/Images/actionIcons_015.png" >
-            <br>帮&nbsp;助
-            </a>
-        </div>
+
         <div class="img-item">
             <a href="#">
             <img class="img-head" src="https://cdn-1251943624.file.myqcloud.com/storeManage/Images/actionIcons_016.png" >
@@ -60,7 +55,6 @@
         </div>
     </div>
 </div>
-
 
 <div class="content">
     <div class="dl-main-nav">

@@ -36,11 +36,11 @@
 <form action="index.html" method="post">
 <table class="table table-bordered table-hover definewidth m10">
     <tr>
-        <td width="10%" class="tableleft">机构号</td>
+        <td width="10%" class="tableleft">商品编号</td>
         <td><input type="text" name="grouptitle"/></td>
     </tr>
     <tr>
-        <td class="tableleft">机构名称</td>
+        <td class="tableleft">商品名称</td>
         <td><input type="text" name="moduletitle"/></td>
     </tr>   
     <tr>
