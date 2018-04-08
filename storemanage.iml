@@ -11,6 +11,10 @@
           <dependency>web spring_mybatis servlet context</dependency>
           <file>file://$MODULE_DIR$/src/main/resources/spring/springmvc.xml</file>
         </fileset>
+        <fileset id="fileset3" name="AppcationConext Service" removed="false">
+          <dependency>web spring_mybatis servlet context</dependency>
+          <file>file://$MODULE_DIR$/src/main/resources/spring/appcationConext-service.xml</file>
+        </fileset>
       </configuration>
     </facet>
     <facet type="web" name="Web">
@@ -28,7 +32,7 @@
       </configuration>
     </facet>
   </component>
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_5">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
@@ -70,5 +74,9 @@
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:3.8.1" level="project" />
     <orderEntry type="library" name="Maven: com.alibaba:druid:1.1.9" level="project" />
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:8.0.9-rc" level="project" />
+    <orderEntry type="library" name="Maven: com.qcloud:cos_api:5.2.4" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient:4.5.3" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore:4.4.6" level="project" />
+    <orderEntry type="library" name="Maven: joda-time:joda-time:2.9.6" level="project" />
   </component>
 </module>
