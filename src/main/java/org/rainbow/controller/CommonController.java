@@ -22,4 +22,5 @@ public class CommonController {
 	public String page2jsp(@PathVariable("page") String page){
 		return page;
 	}
+	
 }
