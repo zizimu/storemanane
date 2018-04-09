@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -31,29 +33,31 @@ public class UploadController {
 	@Autowired
 	private Upload upload;
 
-	@RequestMapping(value = "/upload/pic",produces = "text/plain;charset=utf-8")
+	@RequestMapping(value = "/upload",method = RequestMethod.POST)
 	@ResponseBody
-	public String uploadFile(MultipartFile file){
+	public String uploadFile(@RequestParam(value = "pic", required = false)MultipartFile file){
 		Map<String,Object> result = new HashMap<>();
-		String partFileName = file.getOriginalFilename();
-		UUID uuid = UUID.randomUUID();
-		String newFileName;
-		int idx = partFileName.lastIndexOf(".");
-		if (idx != -1) {
-			newFileName = uuid.toString() + partFileName.substring(idx);
-		} else {
-			newFileName = uuid.toString();
-		}
-		String dateStr = new SimpleDateFormat("yyyyMMdd").format(new Date());
-		String filename = "store-manage"+dateStr+"/"+newFileName;
-		try {
-			upload.uploadPic2Tencent(file.getInputStream(),filename,file.getSize());
-			result.put("error",0);
-			result.put("url", imageUrl+filename);
-		} catch (IOException e) {
-			e.printStackTrace();
-			result.put("error",1);
-			result.put("message","上传失败！请重试！");
+		if(file.getSize()>0) {
+			String partFileName = file.getOriginalFilename();
+			UUID uuid = UUID.randomUUID();
+			String newFileName;
+			int idx = partFileName.lastIndexOf(".");
+			if (idx != -1) {
+				newFileName = uuid.toString() + partFileName.substring(idx);
+			} else {
+				newFileName = uuid.toString();
+			}
+			String dateStr = new SimpleDateFormat("yyyyMMdd").format(new Date());
+			String filename = "store-manage" + dateStr + "/" + newFileName;
+			try {
+				upload.uploadPic2Tencent(file.getInputStream(), filename, file.getSize());
+				result.put("error", 0);
+				result.put("url", imageUrl + filename);
+			} catch (IOException e) {
+				e.printStackTrace();
+				result.put("error", 1);
+				result.put("message", "上传失败！请重试！");
+			}
 		}
 		return new Gson().toJson(result);
 	}

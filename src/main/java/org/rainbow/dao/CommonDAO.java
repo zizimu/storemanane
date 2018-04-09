@@ -7,5 +7,5 @@ package org.rainbow.dao;
  * @author ross
  * @date 2018-04-08
  */
-public class dao {
+public class CommonDAO {
 }

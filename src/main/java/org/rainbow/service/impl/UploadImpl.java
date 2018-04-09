@@ -11,6 +11,7 @@ import com.qcloud.cos.region.Region;
 import org.rainbow.service.Upload;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.Part;
 import java.io.InputStream;
 
 /**
@@ -43,4 +44,5 @@ public class UploadImpl implements Upload {
 		cosClient.shutdown();
 		return putObjectResult.getContentMd5();
 	}
+
 }
