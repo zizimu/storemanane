@@ -36,7 +36,7 @@ public class CommodityController {
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST,consumes = "application/json")
 	@ResponseBody
-	public String add(@RequestBody TbGoods goods) {
+	public Map add(@RequestBody TbGoods goods) {
 		Map<String, Object> result = new HashMap<>();
 		if (goods == null) {
 			result.put("message", "缺少信息!");
@@ -47,8 +47,7 @@ public class CommodityController {
 				result.put("message","添加失败，请重试！");
 			}
 		}
-		System.out.println(new Gson().toJson(result));
-		return new Gson().toJson(result);
+		return result;
 	}
 
 }

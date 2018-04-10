@@ -35,7 +35,7 @@ public class UploadController {
 
 	@RequestMapping(value = "/upload",method = RequestMethod.POST)
 	@ResponseBody
-	public String uploadFile(MultipartFile file){
+	public Map uploadFile(MultipartFile file){
 		Map<String,Object> result = new HashMap<>();
 		if(file.getSize()>0) {
 			String partFileName = file.getOriginalFilename();
@@ -59,7 +59,7 @@ public class UploadController {
 				result.put("message", "上传失败！请重试！");
 			}
 		}
-		return new Gson().toJson(result);
+		return result;
 	}
 
 }
