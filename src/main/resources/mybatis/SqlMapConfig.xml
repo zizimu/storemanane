@@ -5,9 +5,10 @@
 <configuration>
 	<plugins>
 		<!-- 配置分页插件 -->
-		<plugin interceptor="com.github.pagehelper.PageHelper">
+		<plugin interceptor="com.github.pagehelper.PageInterceptor">
 			<!-- 设置数据库方言 -->
-			<property name="dialect" value="mysql"/>
+			<!--<property name="dialect" value="mysql"/>-->
+			<!--pageHelper5.0之后不需要设置数据库版本-->
 		</plugin>
 	</plugins>
 </configuration>

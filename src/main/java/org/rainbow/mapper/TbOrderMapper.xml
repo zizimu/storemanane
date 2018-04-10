@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.rainbow.mapper.TbOrderMapper" >
+
+    <resultMap id="BaseResultMap" type="org.rainbow.pojo.TbOrder" >
+        <id column="oid" property="oid" jdbcType="INTEGER" />
+        <result column="gid" property="gid" jdbcType="INTEGER" />
+        <result column="gname" property="gname" jdbcType="VARCHAR" />
+        <result column="gnum" property="gnum" jdbcType="INTEGER" />
+        <result column="pid" property="pid" jdbcType="INTEGER" />
+        <result column="total" property="total" jdbcType="DECIMAL" />
+        <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+        <result column="mark" property="mark" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        oid, gid, gname, gnum, pid, total, createTime, mark
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from tb_order
+        where oid = #{oid,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from tb_order
+        where oid = #{oid,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="org.rainbow.pojo.TbOrder" >
+        insert into tb_order (oid, gid, gname, 
+            gnum, pid, total, 
+            createTime, mark)
+        values (#{oid,jdbcType=INTEGER}, #{gid,jdbcType=INTEGER}, #{gname,jdbcType=VARCHAR}, 
+            #{gnum,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{total,jdbcType=DECIMAL}, 
+            #{createtime,jdbcType=TIMESTAMP}, #{mark,jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertSelective" parameterType="org.rainbow.pojo.TbOrder" >
+        insert into tb_order
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="oid != null" >
+                oid,
+            </if>
+            <if test="gid != null" >
+                gid,
+            </if>
+            <if test="gname != null" >
+                gname,
+            </if>
+            <if test="gnum != null" >
+                gnum,
+            </if>
+            <if test="pid != null" >
+                pid,
+            </if>
+            <if test="total != null" >
+                total,
+            </if>
+            <if test="createtime != null" >
+                createTime,
+            </if>
+            <if test="mark != null" >
+                mark,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="oid != null" >
+                #{oid,jdbcType=INTEGER},
+            </if>
+            <if test="gid != null" >
+                #{gid,jdbcType=INTEGER},
+            </if>
+            <if test="gname != null" >
+                #{gname,jdbcType=VARCHAR},
+            </if>
+            <if test="gnum != null" >
+                #{gnum,jdbcType=INTEGER},
+            </if>
+            <if test="pid != null" >
+                #{pid,jdbcType=INTEGER},
+            </if>
+            <if test="total != null" >
+                #{total,jdbcType=DECIMAL},
+            </if>
+            <if test="createtime != null" >
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="mark != null" >
+                #{mark,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="org.rainbow.pojo.TbOrder" >
+        update tb_order
+        <set >
+            <if test="gid != null" >
+                gid = #{gid,jdbcType=INTEGER},
+            </if>
+            <if test="gname != null" >
+                gname = #{gname,jdbcType=VARCHAR},
+            </if>
+            <if test="gnum != null" >
+                gnum = #{gnum,jdbcType=INTEGER},
+            </if>
+            <if test="pid != null" >
+                pid = #{pid,jdbcType=INTEGER},
+            </if>
+            <if test="total != null" >
+                total = #{total,jdbcType=DECIMAL},
+            </if>
+            <if test="createtime != null" >
+                createTime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="mark != null" >
+                mark = #{mark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where oid = #{oid,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="org.rainbow.pojo.TbOrder" >
+        update tb_order
+        set gid = #{gid,jdbcType=INTEGER},
+            gname = #{gname,jdbcType=VARCHAR},
+            gnum = #{gnum,jdbcType=INTEGER},
+            pid = #{pid,jdbcType=INTEGER},
+            total = #{total,jdbcType=DECIMAL},
+            createTime = #{createtime,jdbcType=TIMESTAMP},
+            mark = #{mark,jdbcType=VARCHAR}
+        where oid = #{oid,jdbcType=INTEGER}
+    </update>
+</mapper>

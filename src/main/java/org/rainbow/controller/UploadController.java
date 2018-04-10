@@ -35,7 +35,7 @@ public class UploadController {
 
 	@RequestMapping(value = "/upload",method = RequestMethod.POST)
 	@ResponseBody
-	public String uploadFile(@RequestParam(value = "pic", required = false)MultipartFile file){
+	public String uploadFile(MultipartFile file){
 		Map<String,Object> result = new HashMap<>();
 		if(file.getSize()>0) {
 			String partFileName = file.getOriginalFilename();
@@ -48,10 +48,10 @@ public class UploadController {
 				newFileName = uuid.toString();
 			}
 			String dateStr = new SimpleDateFormat("yyyyMMdd").format(new Date());
-			String filename = "store-manage" + dateStr + "/" + newFileName;
+			String filename = "store-manage/" + dateStr + "/" + newFileName;
 			try {
 				upload.uploadPic2Tencent(file.getInputStream(), filename, file.getSize());
-				result.put("error", 0);
+				result.put("success", 0);
 				result.put("url", imageUrl + filename);
 			} catch (IOException e) {
 				e.printStackTrace();
