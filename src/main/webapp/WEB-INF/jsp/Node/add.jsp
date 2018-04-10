@@ -13,11 +13,13 @@
 	      href="https://cdn-1251943624.file.myqcloud.com/storeManage/Css/bootstrap-responsive.css"/>
 	<link rel="stylesheet" type="text/css" href="https://cdn-1251943624.file.myqcloud.com/storeManage/Css/style.css"/>
 	<script type="text/javascript" src="https://cdn-1251943624.file.myqcloud.com/storeManage/Js/jquery.js"></script>
-	<script type="text/javascript" src="https://cdn-1251943624.file.myqcloud.com/storeManage/Js/jquery.sorted.js"></script>
+	<script type="text/javascript"
+	        src="https://cdn-1251943624.file.myqcloud.com/storeManage/Js/jquery.sorted.js"></script>
 	<script type="text/javascript" src="https://cdn-1251943624.file.myqcloud.com/storeManage/Js/bootstrap.js"></script>
 	<script type="text/javascript" src="https://cdn-1251943624.file.myqcloud.com/storeManage/Js/ckform.js"></script>
 	<script type="text/javascript" src="https://cdn-1251943624.file.myqcloud.com/storeManage/Js/common.js"></script>
-	<script type="text/javascript" src="https://cdn-1251943624.file.myqcloud.com/storeManage/Js/jquery.form.min.js"></script>
+	<script type="text/javascript"
+	        src="https://cdn-1251943624.file.myqcloud.com/storeManage/Js/jquery.form.min.js"></script>
 	<style type="text/css">
 		body {
 			padding-bottom: 40px;
@@ -41,20 +43,24 @@
             $("#pic").change(function () {
                 //获取文件对象，files是文件选取控件的属性，存储的是文件选取控件选取的文件对象，类型是一个数组
                 var formData = new FormData();
-                formData.append("file", $("#pic")[0]);
-                $("#pic").ajaxSubmit({
+                formData.append('file', $('#pic')[0].files[0]);
+                $.ajax({
                     url: "${pageContext.request.contextPath}/upload",
                     type: 'POST',
                     dataType: "json",
+                    cache: false,
+                    data: formData,
+                    processData: false,
+                    contentType: false,
                     beforeSend: function () {
                         console.log("正在进行，请稍候");
                     },
                     success: function (responseStr) {
-                        if (responseStr == 0) {
-                            console.log("失败");
+                        if (responseStr['error'] == 1) {
+                            console.log(responseStr.message);
                         } else {
-                            $("#img").attr("src", responseStr);
-                            $("#cover").val(responseStr);
+                            $("#picUrl").val(responseStr["url"]);
+                            $("#picurl").attr("src",responseStr["url"]);
                         }
                     },
                     error: function (responseStr) {
@@ -88,16 +94,15 @@
 			<td><input type="text" name="gbrand"/></td>
 		</tr>
 		<tr>
-			<form id="uploadPic" enctype="multipart/form-data">
-				<td class="tableleft">图片</td>
-				<td><input type="file" id="pic" name="pic"/></td>
-			</form>
+			<td class="tableleft">图片</td>
+			<td><input type="file" id="pic" name="pic" multiple="multiple"/></td>
 		</tr>
 		<tr>
 			<td class="tableleft">预览</td>
 			<td>
-				<img src="https://1213-1251943624.cos.ap-shanghai.myqcloud.com/default/no_pic.jpg"
+				<img id="picurl" src="https://1213-1251943624.cos.ap-shanghai.myqcloud.com/default/no_pic.jpg"
 				     style="margin-left: 10px;width: 150px;height: 150px;"/>
+				<input type="hidden" id="picUrl"/>
 			</td>
 		</tr>
 		<tr>
