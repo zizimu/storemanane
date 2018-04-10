@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.rainbow.mapper.TbStaffMapper" >
+
+    <resultMap id="BaseResultMap" type="org.rainbow.pojo.TbStaff" >
+        <id column="uid" property="uid" jdbcType="INTEGER" />
+        <result column="uname" property="uname" jdbcType="VARCHAR" />
+        <result column="sid" property="sid" jdbcType="VARCHAR" />
+        <result column="mark" property="mark" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        uid, uname, sid, mark
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from tb_staff
+        where uid = #{uid,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from tb_staff
+        where uid = #{uid,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="org.rainbow.pojo.TbStaff" >
+        insert into tb_staff (uid, uname, sid, 
+            mark)
+        values (#{uid,jdbcType=INTEGER}, #{uname,jdbcType=VARCHAR}, #{sid,jdbcType=VARCHAR}, 
+            #{mark,jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertSelective" parameterType="org.rainbow.pojo.TbStaff" >
+        insert into tb_staff
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="uid != null" >
+                uid,
+            </if>
+            <if test="uname != null" >
+                uname,
+            </if>
+            <if test="sid != null" >
+                sid,
+            </if>
+            <if test="mark != null" >
+                mark,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="uid != null" >
+                #{uid,jdbcType=INTEGER},
+            </if>
+            <if test="uname != null" >
+                #{uname,jdbcType=VARCHAR},
+            </if>
+            <if test="sid != null" >
+                #{sid,jdbcType=VARCHAR},
+            </if>
+            <if test="mark != null" >
+                #{mark,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="org.rainbow.pojo.TbStaff" >
+        update tb_staff
+        <set >
+            <if test="uname != null" >
+                uname = #{uname,jdbcType=VARCHAR},
+            </if>
+            <if test="sid != null" >
+                sid = #{sid,jdbcType=VARCHAR},
+            </if>
+            <if test="mark != null" >
+                mark = #{mark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where uid = #{uid,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="org.rainbow.pojo.TbStaff" >
+        update tb_staff
+        set uname = #{uname,jdbcType=VARCHAR},
+            sid = #{sid,jdbcType=VARCHAR},
+            mark = #{mark,jdbcType=VARCHAR}
+        where uid = #{uid,jdbcType=INTEGER}
+    </update>
+</mapper>

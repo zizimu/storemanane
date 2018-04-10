@@ -43,12 +43,11 @@
             $("#pic").change(function () {
                 //获取文件对象，files是文件选取控件的属性，存储的是文件选取控件选取的文件对象，类型是一个数组
                 var formData = new FormData();
-                formData.append('file', $('#pic')[0].files[0]);
+                formData.append("file", $("#pic")[0].files[0]);
                 $.ajax({
                     url: "${pageContext.request.contextPath}/upload",
                     type: 'POST',
                     dataType: "json",
-                    cache: false,
                     data: formData,
                     processData: false,
                     contentType: false,
@@ -57,10 +56,10 @@
                     },
                     success: function (responseStr) {
                         if (responseStr['error'] == 1) {
-                            console.log(responseStr.message);
+                            console.log(responseStr['message']);
                         } else {
-                            $("#picUrl").val(responseStr["url"]);
-                            $("#picurl").attr("src",responseStr["url"]);
+                            $("#picUrl").attr("src", responseStr["url"]);
+                            $("#picurl").val(responseStr["url"]);
                         }
                     },
                     error: function (responseStr) {
@@ -68,79 +67,99 @@
                     }
                 });
             });
+            $("#submit").click(function () {
+                var data = {
+                    "gname" : $("#gname").val(),
+                    "gprice": $("#gprice").val(),
+                    "gtype": $("#gtype").val(),
+                    "gbrand": $("#gbrand").val(),
+                    "gspc": $("#gspc").val(),
+                    "gcreateTime": $("#gcreateTime").val(),
+                    "gshelfilfe": $("#gshelfilfe").val(),
+                    "mark": $("#mark").val()
+                };
+                $.ajax({
+                    url: "${pageContext.request.contextPath}/Node/add",
+                    type: 'POST',
+                    dataType: "json",
+                    data: JSON.stringify(data),
+                    contentType: 'application/json;charset=UTF-8',
+                    beforeSend: function () {
+                        console.log("正在进行，请稍候");
+                    },
+                    success: function (responseStr) {
+                        alert(responseStr["message"]);
+                    },
+                    error: function () {
+                        console.log("error!");
+                    }
+                })
+            })
         })
 	</script>
 </head>
-<form action="index.html" method="post">
-	<table class="table table-bordered table-hover definewidth m10">
-		<tr>
-			<td width="10%" class="tableleft">商品编号</td>
-			<td><input type="text" name="gid"/></td>
-		</tr>
-		<tr>
-			<td class="tableleft">商品名称</td>
-			<td><input type="text" name="gname"/></td>
-		</tr>
-		<tr>
-			<td class="tableleft">价格</td>
-			<td><input type="text" name="gprice"/></td>
-		</tr>
-		<tr>
-			<td class="tableleft">类型</td>
-			<td><input type="text" name="gtype"/></td>
-		</tr>
-		<tr>
-			<td class="tableleft">品牌</td>
-			<td><input type="text" name="gbrand"/></td>
-		</tr>
-		<tr>
-			<td class="tableleft">图片</td>
-			<td><input type="file" id="pic" name="pic" multiple="multiple"/></td>
-		</tr>
-		<tr>
-			<td class="tableleft">预览</td>
-			<td>
-				<img id="picurl" src="https://1213-1251943624.cos.ap-shanghai.myqcloud.com/default/no_pic.jpg"
-				     style="margin-left: 10px;width: 150px;height: 150px;"/>
-				<input type="hidden" id="picUrl"/>
-			</td>
-		</tr>
-		<tr>
-			<td class="tableleft">规格</td>
-			<td><input type="text" name="gspc"/></td>
-		</tr>
-		<tr>
-			<td class="tableleft">生产日期</td>
-			<td><input type="text" name="gcreatedate"/></td>
-		</tr>
-		<tr>
-			<td class="tableleft">保质期</td>
-			<td><input type="text" name="gshelflife"/></td>
-		</tr>
-		<tr>
-			<td class="tableleft">备注</td>
-			<td><input type="text" name="mark"/></td>
-		</tr>
-		<tr>
-			<td class="tableleft">状态</td>
-			<td>
-				<input type="radio" name="status" value="1" checked/> 启用
-				<input type="radio" name="status" value="0"/> 禁用
-			</td>
-		</tr>
-		<tr>
-			<td class="tableleft"></td>
-			<td>
-				<button type="submit" class="btn btn-primary" type="button">保存</button>&nbsp;&nbsp;<button type="button"
-				                                                                                           class="btn btn-success"
-				                                                                                           name="backid"
-				                                                                                           id="backid">
+<table class="table table-bordered table-hover definewidth m10">
+	<tr>
+		<td width="10%" class="tableleft">商品名称</td>
+		<td><input type="text" id="gname" name="gname"/></td>
+	</tr>
+	<tr>
+		<td class="tableleft">价格</td>
+		<td><input type="text" id="gprice" name="gprice"/></td>
+	</tr>
+	<tr>
+		<td class="tableleft">类型</td>
+		<td><input type="text" id="gtype" name="gtype"/></td>
+	</tr>
+	<tr>
+		<td class="tableleft">品牌</td>
+		<td><input type="text" id="gbrand" name="gbrand"/></td>
+	</tr>
+	<tr>
+		<td class="tableleft">图片</td>
+		<td><input type="file" id="pic" name="pic" multiple="multiple"/></td>
+	</tr>
+	<tr>
+		<td class="tableleft">预览</td>
+		<td>
+			<img id="picUrl" src="https://1213-1251943624.cos.ap-shanghai.myqcloud.com/default/no_pic.jpg"
+			     style="margin-left: 10px;width: 150px;height: 150px;"/>
+			<input type="hidden" id="picurl">
+		</td>
+	</tr>
+	<tr>
+		<td class="tableleft">规格</td>
+		<td><input type="text" id="gspc" name="gspc"/></td>
+	</tr>
+	<tr>
+		<td class="tableleft">生产日期</td>
+		<td><input type="text" id="gcreateTime" name="gcreatedate"/></td>
+	</tr>
+	<tr>
+		<td class="tableleft">保质期</td>
+		<td><input type="text" id="gshelfilfe" name="gshelflife"/></td>
+	</tr>
+	<tr>
+		<td class="tableleft">备注</td>
+		<td><input type="text" id="mark" name="mark"/></td>
+	</tr>
+	<tr>
+		<td class="tableleft">状态</td>
+		<td>
+			<input type="radio" name="status" value="1" checked/> 启用
+			<input type="radio" name="status" value="0"/> 禁用
+		</td>
+	</tr>
+	<tr>
+		<td class="tableleft"></td>
+		<td>
+			<button id="submit" class="btn btn-primary" type="button">保存</button>&nbsp;&nbsp;
+			<button type="button" class="btn btn-success" name="backid" id="backid">
 				返回列表
 			</button>
-			</td>
-		</tr>
-	</table>
-</form>
+		</td>
+	</tr>
+</table>
 </body>
 </html>
 <script>
@@ -148,6 +167,5 @@
         $('#backid').click(function () {
             window.location.href = "index.html";
         });
-
     });
 </script>

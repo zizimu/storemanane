@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.rainbow.mapper.TbBrandMapper" >
+
+    <resultMap id="BaseResultMap" type="org.rainbow.pojo.TbBrand" >
+        <id column="brandID" property="brandid" jdbcType="BIGINT" />
+        <result column="brandName" property="brandname" jdbcType="VARCHAR" />
+        <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+        <result column="mark" property="mark" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        brandID, brandName, createTime, mark
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select 
+        <include refid="Base_Column_List" />
+        from tb_brand
+        where brandID = #{brandid,jdbcType=BIGINT}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+        delete from tb_brand
+        where brandID = #{brandid,jdbcType=BIGINT}
+    </delete>
+
+    <insert id="insert" parameterType="org.rainbow.pojo.TbBrand" >
+        insert into tb_brand (brandID, brandName, createTime, 
+            mark)
+        values (#{brandid,jdbcType=BIGINT}, #{brandname,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+            #{mark,jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertSelective" parameterType="org.rainbow.pojo.TbBrand" >
+        insert into tb_brand
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="brandid != null" >
+                brandID,
+            </if>
+            <if test="brandname != null" >
+                brandName,
+            </if>
+            <if test="createtime != null" >
+                createTime,
+            </if>
+            <if test="mark != null" >
+                mark,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="brandid != null" >
+                #{brandid,jdbcType=BIGINT},
+            </if>
+            <if test="brandname != null" >
+                #{brandname,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null" >
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="mark != null" >
+                #{mark,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="org.rainbow.pojo.TbBrand" >
+        update tb_brand
+        <set >
+            <if test="brandname != null" >
+                brandName = #{brandname,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null" >
+                createTime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="mark != null" >
+                mark = #{mark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where brandID = #{brandid,jdbcType=BIGINT}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="org.rainbow.pojo.TbBrand" >
+        update tb_brand
+        set brandName = #{brandname,jdbcType=VARCHAR},
+            createTime = #{createtime,jdbcType=TIMESTAMP},
+            mark = #{mark,jdbcType=VARCHAR}
+        where brandID = #{brandid,jdbcType=BIGINT}
+    </update>
+</mapper>

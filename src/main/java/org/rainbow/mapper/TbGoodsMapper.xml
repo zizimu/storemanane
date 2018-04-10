@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.rainbow.mapper.TbGoodsMapper" >
+
+    <resultMap id="BaseResultMap" type="org.rainbow.pojo.TbGoods" >
+        <id column="gid" property="gid" jdbcType="BIGINT" />
+        <result column="gname" property="gname" jdbcType="VARCHAR" />
+        <result column="gprice" property="gprice" jdbcType="DECIMAL" />
+        <result column="gtype" property="gtype" jdbcType="BIGINT" />
+        <result column="gbrand" property="gbrand" jdbcType="BIGINT" />
+        <result column="gspc" property="gspc" jdbcType="INTEGER" />
+        <result column="gpic" property="gpic" jdbcType="VARCHAR" />
+        <result column="gcreatedate" property="gcreatedate" jdbcType="TIMESTAMP" />
+        <result column="gshelflife" property="gshelflife" jdbcType="INTEGER" />
+        <result column="mark" property="mark" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        gid, gname, gprice, gtype, gbrand, gspc, gpic, gcreatedate, gshelflife, mark
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select 
+        <include refid="Base_Column_List" />
+        from tb_goods
+        where gid = #{gid,jdbcType=BIGINT}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+        delete from tb_goods
+        where gid = #{gid,jdbcType=BIGINT}
+    </delete>
+
+    <insert id="insert" parameterType="org.rainbow.pojo.TbGoods" >
+        insert into tb_goods (gid, gname, gprice,
+            gtype, gbrand, gspc, 
+            gpic, gcreatedate, gshelflife, 
+            mark)
+        values (#{gid,jdbcType=BIGINT}, #{gname,jdbcType=VARCHAR}, #{gprice,jdbcType=DECIMAL},
+            #{gtype,jdbcType=BIGINT}, #{gbrand,jdbcType=BIGINT}, #{gspc,jdbcType=INTEGER}, 
+            #{gpic,jdbcType=VARCHAR}, #{gcreatedate,jdbcType=TIMESTAMP}, #{gshelflife,jdbcType=INTEGER}, 
+            #{mark,jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertSelective" parameterType="org.rainbow.pojo.TbGoods" >
+        insert into tb_goods
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="gid != null" >
+                gid,
+            </if>
+            <if test="gname != null" >
+                gname,
+            </if>
+            <if test="gprice != null" >
+                gprice,
+            </if>
+            <if test="gtype != null" >
+                gtype,
+            </if>
+            <if test="gbrand != null" >
+                gbrand,
+            </if>
+            <if test="gspc != null" >
+                gspc,
+            </if>
+            <if test="gpic != null" >
+                gpic,
+            </if>
+            <if test="gcreatedate != null" >
+                gcreatedate,
+            </if>
+            <if test="gshelflife != null" >
+                gshelflife,
+            </if>
+            <if test="mark != null" >
+                mark,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="gid != null" >
+                #{gid,jdbcType=BIGINT},
+            </if>
+            <if test="gname != null" >
+                #{gname,jdbcType=VARCHAR},
+            </if>
+            <if test="gprice != null" >
+                #{gprice,jdbcType=DECIMAL},
+            </if>
+            <if test="gtype != null" >
+                #{gtype,jdbcType=BIGINT},
+            </if>
+            <if test="gbrand != null" >
+                #{gbrand,jdbcType=BIGINT},
+            </if>
+            <if test="gspc != null" >
+                #{gspc,jdbcType=INTEGER},
+            </if>
+            <if test="gpic != null" >
+                #{gpic,jdbcType=VARCHAR},
+            </if>
+            <if test="gcreatedate != null" >
+                #{gcreatedate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gshelflife != null" >
+                #{gshelflife,jdbcType=INTEGER},
+            </if>
+            <if test="mark != null" >
+                #{mark,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="org.rainbow.pojo.TbGoods" >
+        update tb_goods
+        <set >
+            <if test="gname != null" >
+                gname = #{gname,jdbcType=VARCHAR},
+            </if>
+            <if test="gprice != null" >
+                gprice = #{gprice,jdbcType=DECIMAL},
+            </if>
+            <if test="gtype != null" >
+                gtype = #{gtype,jdbcType=BIGINT},
+            </if>
+            <if test="gbrand != null" >
+                gbrand = #{gbrand,jdbcType=BIGINT},
+            </if>
+            <if test="gspc != null" >
+                gspc = #{gspc,jdbcType=INTEGER},
+            </if>
+            <if test="gpic != null" >
+                gpic = #{gpic,jdbcType=VARCHAR},
+            </if>
+            <if test="gcreatedate != null" >
+                gcreatedate = #{gcreatedate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gshelflife != null" >
+                gshelflife = #{gshelflife,jdbcType=INTEGER},
+            </if>
+            <if test="mark != null" >
+                mark = #{mark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where gid = #{gid,jdbcType=BIGINT}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="org.rainbow.pojo.TbGoods" >
+        update tb_goods
+        set gname = #{gname,jdbcType=VARCHAR},
+            gprice = #{gprice,jdbcType=DECIMAL},
+            gtype = #{gtype,jdbcType=BIGINT},
+            gbrand = #{gbrand,jdbcType=BIGINT},
+            gspc = #{gspc,jdbcType=INTEGER},
+            gpic = #{gpic,jdbcType=VARCHAR},
+            gcreatedate = #{gcreatedate,jdbcType=TIMESTAMP},
+            gshelflife = #{gshelflife,jdbcType=INTEGER},
+            mark = #{mark,jdbcType=VARCHAR}
+        where gid = #{gid,jdbcType=BIGINT}
+    </update>
+</mapper>

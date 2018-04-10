@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.rainbow.mapper.TbStoreMapper" >
+
+    <resultMap id="BaseResultMap" type="org.rainbow.pojo.TbStore" >
+        <id column="sid" property="sid" jdbcType="INTEGER" />
+        <result column="sname" property="sname" jdbcType="VARCHAR" />
+        <result column="sarea" property="sarea" jdbcType="VARCHAR" />
+        <result column="saddress" property="saddress" jdbcType="VARCHAR" />
+        <result column="smanager" property="smanager" jdbcType="VARCHAR" />
+        <result column="mTel" property="mtel" jdbcType="VARCHAR" />
+        <result column="sdate" property="sdate" jdbcType="DATE" />
+        <result column="mark" property="mark" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        sid, sname, sarea, saddress, smanager, mTel, sdate, mark
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from tb_store
+        where sid = #{sid,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from tb_store
+        where sid = #{sid,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="org.rainbow.pojo.TbStore" >
+        insert into tb_store (sid, sname, sarea, 
+            saddress, smanager, mTel, 
+            sdate, mark)
+        values (#{sid,jdbcType=INTEGER}, #{sname,jdbcType=VARCHAR}, #{sarea,jdbcType=VARCHAR}, 
+            #{saddress,jdbcType=VARCHAR}, #{smanager,jdbcType=VARCHAR}, #{mtel,jdbcType=VARCHAR}, 
+            #{sdate,jdbcType=DATE}, #{mark,jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertSelective" parameterType="org.rainbow.pojo.TbStore" >
+        insert into tb_store
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="sid != null" >
+                sid,
+            </if>
+            <if test="sname != null" >
+                sname,
+            </if>
+            <if test="sarea != null" >
+                sarea,
+            </if>
+            <if test="saddress != null" >
+                saddress,
+            </if>
+            <if test="smanager != null" >
+                smanager,
+            </if>
+            <if test="mtel != null" >
+                mTel,
+            </if>
+            <if test="sdate != null" >
+                sdate,
+            </if>
+            <if test="mark != null" >
+                mark,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="sid != null" >
+                #{sid,jdbcType=INTEGER},
+            </if>
+            <if test="sname != null" >
+                #{sname,jdbcType=VARCHAR},
+            </if>
+            <if test="sarea != null" >
+                #{sarea,jdbcType=VARCHAR},
+            </if>
+            <if test="saddress != null" >
+                #{saddress,jdbcType=VARCHAR},
+            </if>
+            <if test="smanager != null" >
+                #{smanager,jdbcType=VARCHAR},
+            </if>
+            <if test="mtel != null" >
+                #{mtel,jdbcType=VARCHAR},
+            </if>
+            <if test="sdate != null" >
+                #{sdate,jdbcType=DATE},
+            </if>
+            <if test="mark != null" >
+                #{mark,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="org.rainbow.pojo.TbStore" >
+        update tb_store
+        <set >
+            <if test="sname != null" >
+                sname = #{sname,jdbcType=VARCHAR},
+            </if>
+            <if test="sarea != null" >
+                sarea = #{sarea,jdbcType=VARCHAR},
+            </if>
+            <if test="saddress != null" >
+                saddress = #{saddress,jdbcType=VARCHAR},
+            </if>
+            <if test="smanager != null" >
+                smanager = #{smanager,jdbcType=VARCHAR},
+            </if>
+            <if test="mtel != null" >
+                mTel = #{mtel,jdbcType=VARCHAR},
+            </if>
+            <if test="sdate != null" >
+                sdate = #{sdate,jdbcType=DATE},
+            </if>
+            <if test="mark != null" >
+                mark = #{mark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where sid = #{sid,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="org.rainbow.pojo.TbStore" >
+        update tb_store
+        set sname = #{sname,jdbcType=VARCHAR},
+            sarea = #{sarea,jdbcType=VARCHAR},
+            saddress = #{saddress,jdbcType=VARCHAR},
+            smanager = #{smanager,jdbcType=VARCHAR},
+            mTel = #{mtel,jdbcType=VARCHAR},
+            sdate = #{sdate,jdbcType=DATE},
+            mark = #{mark,jdbcType=VARCHAR}
+        where sid = #{sid,jdbcType=INTEGER}
+    </update>
+</mapper>

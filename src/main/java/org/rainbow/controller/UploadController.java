@@ -51,7 +51,7 @@ public class UploadController {
 			String filename = "store-manage/" + dateStr + "/" + newFileName;
 			try {
 				upload.uploadPic2Tencent(file.getInputStream(), filename, file.getSize());
-				result.put("error", 0);
+				result.put("success", 0);
 				result.put("url", imageUrl + filename);
 			} catch (IOException e) {
 				e.printStackTrace();

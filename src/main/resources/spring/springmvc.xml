@@ -7,11 +7,10 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
 http://www.springframework.org/schema/mvc
-http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+http://www.springframework.org/schema/mvc/spring-mvc.xsd
 http://www.springframework.org/schema/context
-http://www.springframework.org/schema/context/spring-context-4.3.xsd" default-autowire="byType">
-	<context:component-scan base-package="org.rainbow.controller,org.rainbow.service"/>
-	<mvc:annotation-driven/>
+http://www.springframework.org/schema/context/spring-context.xsd" default-autowire="byType">
+	<context:component-scan base-package="org.rainbow.controller"/>
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/"/>
 		<property name="suffix" value=".jsp"/>
@@ -24,6 +23,39 @@ http://www.springframework.org/schema/context/spring-context-4.3.xsd" default-au
 		<!-- 设定文件上传的最大值5MB， 5*1024*1024 -->
 		<property name="maxUploadSize" value="5242880"/>
 	</bean>
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<ref bean="jsonHttpMessageConverter" />
+				<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>text/html;charset=UTF-8</value>
+							<!--<value>text/plain;charset=UTF-8</value>
+							<value>application/json;charset=UTF-8</value>-->
+						</list>
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<!--<bean class = "org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<array>
+				<bean class = "org.springframework.http.converter.StringHttpMessageConverter">
+					<property name="supportedMediaTypes" value = "text/plain;charset=UTF-8" />
+				</bean>
+			</array>
+		</property>
+	</bean>-->
+	<bean id="jsonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<list>
+				<value>application/json;charset=UTF-8</value>
+			</list>
+		</property>
+	</bean>
+	<mvc:annotation-driven/>
 	<!-- 配置资源映射 -->
 	<mvc:resources location="/css/" mapping="/css/**"/>
 	<mvc:resources location="/js/" mapping="/js/**"/>
