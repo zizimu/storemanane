@@ -75,7 +75,13 @@
 <script type="text/javascript" src="https://cdn-1251943624.file.myqcloud.com/storeManage/assets/js/config-min.js"></script>
 <script>
     BUI.use('common/main',function(){
-        var config = [{id:'1',menu:[{text:'系统管理',items:[{id:'12',text:'商品管理',href:'Goods/index'},{id:'3',text:'库存管理',href:'Stock/index'},{id:'4',text:'员工管理',href:'Staff/index'},{id:'6',text:'销售管理',href:'Order/index'}]}]},{id:'7',homePage : '9',menu:[{text:'业务管理',items:[{id:'9',text:'查询业务',href:'Node/index'}]}]}];
+        var config = [{id:'1',menu:[{text:'系统管理',items:[{id:'12',text:'商品管理',href:'Goods/index'},
+        	{id:'3',text:'库存管理',href:'Stock/index'},
+        	{id:'4',text:'品牌管理',href:'Brand/index'},
+        	{id:'5',text:'员工管理',href:'Staff/index'},
+        	
+        	{id:'6',text:'销售管理',href:'Order/index'}]}]},
+        	{id:'7',homePage : '9',menu:[{text:'业务管理',items:[{id:'9',text:'查询业务',href:'Node/index'}]}]}];
         new PageUtil.MainPage({
             modulesConfig : config
         });

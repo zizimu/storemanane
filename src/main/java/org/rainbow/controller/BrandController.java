@@ -5,17 +5,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/Order")
-public class OrderController {
-
+@RequestMapping("/Brand")
+public class BrandController {
 	@RequestMapping("/index")
 	public String index() {
-		return "Order/index";
+		return "Brand/index";
+		
 	}
-	
 	@RequestMapping("/{page}.html")
-	public String page(@PathVariable("page") String page) {	
-		return "Order/"+page;
-	}	
+	public String page(@PathVariable("page") String page) {
+		return "Brand/"+page;
+		
+	}
 }
 
