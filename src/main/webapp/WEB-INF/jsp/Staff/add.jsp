@@ -14,6 +14,8 @@
     <script type="text/javascript" src="https://cdn-1251943624.file.myqcloud.com/storeManage/Js/ckform.js"></script>
     <script type="text/javascript" src="https://cdn-1251943624.file.myqcloud.com/storeManage/Js/common.js"></script>
 
+ 
+
     <style type="text/css">
         body {
             padding-bottom: 40px;
@@ -35,58 +37,46 @@
     </style>
 </head>
 <body>
-<form class="form-inline definewidth m20" action="index.html" method="get">  
-    角色名称：
-    <input type="text" name="rolename" id="rolename"class="abc input-default" placeholder="" value="">&nbsp;&nbsp;  
-    <button type="submit" class="btn btn-primary">查询</button>&nbsp;&nbsp; <button type="button" class="btn btn-success" id="addnew">新增角色</button>
-</form>
-<table class="table table-bordered table-hover definewidth m10" >
-    <thead>
+<form action="index.html" method="post" class="definewidth m20">
+<table class="table table-bordered table-hover definewidth m10">
     <tr>
-        <th>角色id</th>
-        <th>角色名称</th>
-        <th>状态</th>
-        <th>操作</th>
+        <td width="10%" class="tableleft">登录名</td>
+        <td><input type="text" name="username"/></td>
     </tr>
-    </thead>
-	     <tr>
-            <td>5</td>
-            <td>管理员</td>
-            <td>1</td>
-            <td>
-                  <a href="edit.html">编辑</a>
-                  
-            </td>
-        </tr></table>
-		</body>
-		</html>
-
+    <tr>
+        <td class="tableleft">密码</td>
+        <td><input type="password" name="password"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">确认密码</td>
+        <td><input type="password" name="password"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">联系电话</td>
+        <td><input type="text" name="uphone"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">状态</td>
+        <td>
+            <input type="radio" name="status" value="1" checked/> 启用
+           <input type="radio" name="status" value="0"/> 禁用
+        </td>
+    </tr>
+    <tr>
+        <td class="tableleft"></td>
+        <td>
+            <button type="submit" class="btn btn-primary" type="button">保存</button> &nbsp;&nbsp;<button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
+        </td>
+    </tr>
+</table>
+</form>
+</body>
+</html>
 <script>
-    $(function () {
-        
-		$('#addnew').click(function(){
-
-				window.location.href="add.html";
+    $(function () {       
+		$('#backid').click(function(){
+				window.location.href="index.html";
 		 });
 
-
     });
-
-	function del(id)
-	{
-		
-		
-		if(confirm("确定要删除吗？"))
-		{
-		
-			var url = "index.html";
-			
-			window.location.href=url;		
-		
-		}
-	
-	
-	
-	
-	}
 </script>

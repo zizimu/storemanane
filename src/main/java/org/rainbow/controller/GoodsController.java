@@ -18,20 +18,20 @@ import java.util.Map;
  * @date 2018-04-08
  */
 @Controller
-@RequestMapping("/Node")
-public class CommodityController {
+@RequestMapping("/Goods")
+public class GoodsController {
 
 	@Autowired
 	private GoodsService goodsService;
 
 	@RequestMapping("/index")
 	public String index() {
-		return "Node/index";
+		return "Goods/index";
 	}
 
 	@RequestMapping(value = "/{page}.html", method = RequestMethod.GET)
 	public String page(@PathVariable("page") String page) {
-		return "Node/" + page;
+		return "Goods/" + page;
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST,consumes = "application/json")
