@@ -1,13 +1,17 @@
 package org.rainbow.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.google.gson.Gson;
 import org.rainbow.pojo.TbGoods;
 import org.rainbow.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,7 +29,12 @@ public class GoodsController {
 	private GoodsService goodsService;
 
 	@RequestMapping("/index")
-	public String index() {
+	public String index(@RequestParam(value="page",defaultValue="1") int page,Model model) {
+		PageHelper.startPage(page,10);
+		List<TbGoods> goods = goodsService.getAllGoods();
+		PageInfo<TbGoods> p=new PageInfo<>(goods);
+		model.addAttribute("goodsList",goods);
+		model.addAttribute("page",p);
 		return "Goods/index";
 	}
 

@@ -19,6 +19,12 @@
         gid, gname, gprice, gtype, gbrand, gspc, gpic, gcreatedate, gshelflife, mark
     </sql>
 
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_goods
+    </select>
+
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
         select 
         <include refid="Base_Column_List" />

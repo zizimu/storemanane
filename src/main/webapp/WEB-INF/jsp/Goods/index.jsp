@@ -1,9 +1,10 @@
 <%@page contentType="text/html"%>
 <%@page pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
-<title></title>
+<title>商品总览</title>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css"
 	href="https://cdn-1251943624.file.myqcloud.com/storeManage/Css/bootstrap.css" />
@@ -40,6 +41,13 @@ body {
 	}
 }
 </style>
+<script type="text/javascript">
+	function deleteGoods(id) {
+		$.ajax({
+			url:"",
+		})
+    }
+</script>
 </head>
 <body>
 	<form class="form-inline definewidth m20" action="index.html"
@@ -53,22 +61,46 @@ body {
 	<table class="table table-bordered table-hover definewidth m10">
 		<thead>
 			<tr>
-				<th>商品编号</th>
-				<th>商品名称</th>
-				<th>价格</th>
-				<th>类型</th>
-				<th>品牌</th>
-				<th>规格</th>
-				<th>生产日期</th>
-				<th>保质期</th>
-				<th>管理操作</th>
+				<th style="text-align: center">商品编号</th>
+				<th style="text-align: center">商品名称</th>
+				<th style="text-align: center">价格</th>
+				<th style="text-align: center">类型</th>
+				<th style="text-align: center">品牌</th>
+				<th style="text-align: center">规格</th>
+				<th style="text-align: center">生产日期</th>
+				<th style="text-align: center">保质期</th>
+				<th style="text-align: center">管理操作</th>
 			</tr>
+				<c:forEach items="${goodsList}" var="p" varStatus="st">
+					<tr>
+						<td style="text-align: center">${p.gid}</td>
+						<td style="text-align: center">${p.gname}</td>
+						<td style="text-align: right">￥${p.gprice}</td>
+						<td style="text-align: center">${p.gtype}</td>
+						<td style="text-align: center">${p.gbrand}</td>
+						<td style="text-align: right">${p.gspc}ml</td>
+						<td style="text-align: center">${p.gcreatedate}</td>
+						<td style="text-align: right">${p.gshelflife}年</td>
+						<td style="text-align: center">
+							<a href="edit.html?id=${p.gid}">
+								<button class="btn btn-primary" style="margin-left: 5px;">
+									编辑
+								</button>
+							</a>
+							<button class="btn btn-success" style="margin-left: 5px;" onclick="deleteGoods(${p.gid})">
+								删除
+							</button>
+						</td>
+					</tr>
+				</c:forEach>
 		</thead>
 	</table>
 	<div class="inline pull-right page">
-		10122 条记录 1/507 页 <a href='#'>下一页</a> <span class='current'>1</span><a
-			href='#'>2</a><a href='/chinapost/index.php?m=Label&a=index&p=3'>3</a><a
-			href='#'>4</a><a href='#'>5</a> <a href='#'>下5页</a> <a href='#'>最后一页</a>
+		总共${page.total} 条记录 ${page.pageNum}/${page.pages} 页
+		<a href="${pageContext.request.contextPath}/Goods/index?page=${page.firstPage}">第一页</a>
+		<a href="${pageContext.request.contextPath}/Goods/index?page=${page.nextPage}">下一页</a>
+		<a href="${pageContext.request.contextPath}/Goods/index?page=${page.prePage}">上一页</a>
+		<a href="${pageContext.request.contextPath}/Goods/index?page=${page.lastPage}">最后页</a>
 	</div>
 </body>
 </html>

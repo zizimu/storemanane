@@ -2,6 +2,8 @@ package org.rainbow.mapper;
 
 import org.rainbow.pojo.TbGoods;
 
+import java.util.List;
+
 public interface TbGoodsMapper {
     int deleteByPrimaryKey(Long gid);
 
@@ -14,4 +16,6 @@ public interface TbGoodsMapper {
     int updateByPrimaryKeySelective(TbGoods record);
 
     int updateByPrimaryKey(TbGoods record);
+
+    List<TbGoods> selectAll();
 }
