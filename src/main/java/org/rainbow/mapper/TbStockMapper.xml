@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.rainbow.mapper.TbStockMapper" >
+
+    <resultMap id="BaseResultMap" type="org.rainbow.pojo.TbStock" >
+        <id column="batch_id" property="batchId" jdbcType="BIGINT" />
+        <id column="goods_id" property="goodsId" jdbcType="BIGINT" />
+        <result column="goods_stock" property="goodsStock" jdbcType="INTEGER" />
+        <result column="goods_sold" property="goodsSold" jdbcType="INTEGER" />
+        <result column="store_id" property="storeId" jdbcType="BIGINT" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="mark" property="mark" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        batch_id, goods_id, goods_stock, goods_sold, store_id, create_time, status, mark
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="org.rainbow.pojo.TbStockKey" >
+        select 
+        <include refid="Base_Column_List" />
+        from tb_stock
+        where batch_id = #{batchId,jdbcType=BIGINT}
+          and goods_id = #{goodsId,jdbcType=BIGINT}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="org.rainbow.pojo.TbStockKey" >
+        delete from tb_stock
+        where batch_id = #{batchId,jdbcType=BIGINT}
+          and goods_id = #{goodsId,jdbcType=BIGINT}
+    </delete>
+
+    <insert id="insert" parameterType="org.rainbow.pojo.TbStock" >
+        insert into tb_stock (batch_id, goods_id, goods_stock, 
+            goods_sold, store_id, create_time, 
+            status, mark)
+        values (#{batchId,jdbcType=BIGINT}, #{goodsId,jdbcType=BIGINT}, #{goodsStock,jdbcType=INTEGER}, 
+            #{goodsSold,jdbcType=INTEGER}, #{storeId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+            #{status,jdbcType=INTEGER}, #{mark,jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertSelective" parameterType="org.rainbow.pojo.TbStock" >
+        insert into tb_stock
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="batchId != null" >
+                batch_id,
+            </if>
+            <if test="goodsId != null" >
+                goods_id,
+            </if>
+            <if test="goodsStock != null" >
+                goods_stock,
+            </if>
+            <if test="goodsSold != null" >
+                goods_sold,
+            </if>
+            <if test="storeId != null" >
+                store_id,
+            </if>
+            <if test="createTime != null" >
+                create_time,
+            </if>
+            <if test="status != null" >
+                status,
+            </if>
+            <if test="mark != null" >
+                mark,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="batchId != null" >
+                #{batchId,jdbcType=BIGINT},
+            </if>
+            <if test="goodsId != null" >
+                #{goodsId,jdbcType=BIGINT},
+            </if>
+            <if test="goodsStock != null" >
+                #{goodsStock,jdbcType=INTEGER},
+            </if>
+            <if test="goodsSold != null" >
+                #{goodsSold,jdbcType=INTEGER},
+            </if>
+            <if test="storeId != null" >
+                #{storeId,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null" >
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null" >
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="mark != null" >
+                #{mark,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="org.rainbow.pojo.TbStock" >
+        update tb_stock
+        <set >
+            <if test="goodsStock != null" >
+                goods_stock = #{goodsStock,jdbcType=INTEGER},
+            </if>
+            <if test="goodsSold != null" >
+                goods_sold = #{goodsSold,jdbcType=INTEGER},
+            </if>
+            <if test="storeId != null" >
+                store_id = #{storeId,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null" >
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null" >
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="mark != null" >
+                mark = #{mark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where batch_id = #{batchId,jdbcType=BIGINT}
+          and goods_id = #{goodsId,jdbcType=BIGINT}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="org.rainbow.pojo.TbStock" >
+        update tb_stock
+        set goods_stock = #{goodsStock,jdbcType=INTEGER},
+            goods_sold = #{goodsSold,jdbcType=INTEGER},
+            store_id = #{storeId,jdbcType=BIGINT},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            status = #{status,jdbcType=INTEGER},
+            mark = #{mark,jdbcType=VARCHAR}
+        where batch_id = #{batchId,jdbcType=BIGINT}
+          and goods_id = #{goodsId,jdbcType=BIGINT}
+    </update>
+</mapper>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.rainbow.mapper.TbActivityMapper" >
+
+    <resultMap id="BaseResultMap" type="org.rainbow.pojo.TbActivity" >
+        <id column="activity_id" property="activityId" jdbcType="INTEGER" />
+        <result column="activity_name" property="activityName" jdbcType="VARCHAR" />
+        <result column="activity_content" property="activityContent" jdbcType="VARCHAR" />
+        <result column="activity_startdate" property="activityStartdate" jdbcType="TIMESTAMP" />
+        <result column="activity_enddate" property="activityEnddate" jdbcType="TIMESTAMP" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="mark" property="mark" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        activity_id, activity_name, activity_content, activity_startdate, activity_enddate, 
+        create_time, status, mark
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from tb_activity
+        where activity_id = #{activityId,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from tb_activity
+        where activity_id = #{activityId,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="org.rainbow.pojo.TbActivity" >
+        insert into tb_activity (activity_id, activity_name, activity_content, 
+            activity_startdate, activity_enddate, 
+            create_time, status, mark
+            )
+        values (#{activityId,jdbcType=INTEGER}, #{activityName,jdbcType=VARCHAR}, #{activityContent,jdbcType=VARCHAR}, 
+            #{activityStartdate,jdbcType=TIMESTAMP}, #{activityEnddate,jdbcType=TIMESTAMP}, 
+            #{createTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{mark,jdbcType=VARCHAR}
+            )
+    </insert>
+
+    <insert id="insertSelective" parameterType="org.rainbow.pojo.TbActivity" >
+        insert into tb_activity
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="activityId != null" >
+                activity_id,
+            </if>
+            <if test="activityName != null" >
+                activity_name,
+            </if>
+            <if test="activityContent != null" >
+                activity_content,
+            </if>
+            <if test="activityStartdate != null" >
+                activity_startdate,
+            </if>
+            <if test="activityEnddate != null" >
+                activity_enddate,
+            </if>
+            <if test="createTime != null" >
+                create_time,
+            </if>
+            <if test="status != null" >
+                status,
+            </if>
+            <if test="mark != null" >
+                mark,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="activityId != null" >
+                #{activityId,jdbcType=INTEGER},
+            </if>
+            <if test="activityName != null" >
+                #{activityName,jdbcType=VARCHAR},
+            </if>
+            <if test="activityContent != null" >
+                #{activityContent,jdbcType=VARCHAR},
+            </if>
+            <if test="activityStartdate != null" >
+                #{activityStartdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="activityEnddate != null" >
+                #{activityEnddate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createTime != null" >
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null" >
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="mark != null" >
+                #{mark,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="org.rainbow.pojo.TbActivity" >
+        update tb_activity
+        <set >
+            <if test="activityName != null" >
+                activity_name = #{activityName,jdbcType=VARCHAR},
+            </if>
+            <if test="activityContent != null" >
+                activity_content = #{activityContent,jdbcType=VARCHAR},
+            </if>
+            <if test="activityStartdate != null" >
+                activity_startdate = #{activityStartdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="activityEnddate != null" >
+                activity_enddate = #{activityEnddate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createTime != null" >
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null" >
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="mark != null" >
+                mark = #{mark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where activity_id = #{activityId,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="org.rainbow.pojo.TbActivity" >
+        update tb_activity
+        set activity_name = #{activityName,jdbcType=VARCHAR},
+            activity_content = #{activityContent,jdbcType=VARCHAR},
+            activity_startdate = #{activityStartdate,jdbcType=TIMESTAMP},
+            activity_enddate = #{activityEnddate,jdbcType=TIMESTAMP},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            status = #{status,jdbcType=INTEGER},
+            mark = #{mark,jdbcType=VARCHAR}
+        where activity_id = #{activityId,jdbcType=INTEGER}
+    </update>
+</mapper>

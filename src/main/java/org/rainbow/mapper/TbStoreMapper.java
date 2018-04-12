@@ -3,13 +3,13 @@ package org.rainbow.mapper;
 import org.rainbow.pojo.TbStore;
 
 public interface TbStoreMapper {
-    int deleteByPrimaryKey(Integer sid);
+    int deleteByPrimaryKey(Long storeId);
 
     int insert(TbStore record);
 
     int insertSelective(TbStore record);
 
-    TbStore selectByPrimaryKey(Integer sid);
+    TbStore selectByPrimaryKey(Long storeId);
 
     int updateByPrimaryKeySelective(TbStore record);
 

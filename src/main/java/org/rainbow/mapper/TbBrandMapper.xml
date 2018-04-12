@@ -3,60 +3,67 @@
 <mapper namespace="org.rainbow.mapper.TbBrandMapper" >
 
     <resultMap id="BaseResultMap" type="org.rainbow.pojo.TbBrand" >
-        <id column="brandID" property="brandid" jdbcType="BIGINT" />
-        <result column="brandName" property="brandname" jdbcType="VARCHAR" />
-        <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+        <id column="brand_id" property="brandId" jdbcType="BIGINT" />
+        <result column="brand_name" property="brandName" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="status" property="status" jdbcType="INTEGER" />
         <result column="mark" property="mark" jdbcType="VARCHAR" />
     </resultMap>
 
     <sql id="Base_Column_List" >
-        brandID, brandName, createTime, mark
+        brand_id, brand_name, create_time, status, mark
     </sql>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
         select 
         <include refid="Base_Column_List" />
         from tb_brand
-        where brandID = #{brandid,jdbcType=BIGINT}
+        where brand_id = #{brandId,jdbcType=BIGINT}
     </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
         delete from tb_brand
-        where brandID = #{brandid,jdbcType=BIGINT}
+        where brand_id = #{brandId,jdbcType=BIGINT}
     </delete>
 
     <insert id="insert" parameterType="org.rainbow.pojo.TbBrand" >
-        insert into tb_brand (brandID, brandName, createTime, 
-            mark)
-        values (#{brandid,jdbcType=BIGINT}, #{brandname,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
-            #{mark,jdbcType=VARCHAR})
+        insert into tb_brand (brand_id, brand_name, create_time, 
+            status, mark)
+        values (#{brandId,jdbcType=BIGINT}, #{brandName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+            #{status,jdbcType=INTEGER}, #{mark,jdbcType=VARCHAR})
     </insert>
 
     <insert id="insertSelective" parameterType="org.rainbow.pojo.TbBrand" >
         insert into tb_brand
         <trim prefix="(" suffix=")" suffixOverrides="," >
-            <if test="brandid != null" >
-                brandID,
+            <if test="brandId != null" >
+                brand_id,
             </if>
-            <if test="brandname != null" >
-                brandName,
+            <if test="brandName != null" >
+                brand_name,
             </if>
-            <if test="createtime != null" >
-                createTime,
+            <if test="createTime != null" >
+                create_time,
+            </if>
+            <if test="status != null" >
+                status,
             </if>
             <if test="mark != null" >
                 mark,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
-            <if test="brandid != null" >
-                #{brandid,jdbcType=BIGINT},
+            <if test="brandId != null" >
+                #{brandId,jdbcType=BIGINT},
             </if>
-            <if test="brandname != null" >
-                #{brandname,jdbcType=VARCHAR},
+            <if test="brandName != null" >
+                #{brandName,jdbcType=VARCHAR},
             </if>
-            <if test="createtime != null" >
-                #{createtime,jdbcType=TIMESTAMP},
+            <if test="createTime != null" >
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null" >
+                #{status,jdbcType=INTEGER},
             </if>
             <if test="mark != null" >
                 #{mark,jdbcType=VARCHAR},
@@ -67,24 +74,28 @@
     <update id="updateByPrimaryKeySelective" parameterType="org.rainbow.pojo.TbBrand" >
         update tb_brand
         <set >
-            <if test="brandname != null" >
-                brandName = #{brandname,jdbcType=VARCHAR},
+            <if test="brandName != null" >
+                brand_name = #{brandName,jdbcType=VARCHAR},
             </if>
-            <if test="createtime != null" >
-                createTime = #{createtime,jdbcType=TIMESTAMP},
+            <if test="createTime != null" >
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null" >
+                status = #{status,jdbcType=INTEGER},
             </if>
             <if test="mark != null" >
                 mark = #{mark,jdbcType=VARCHAR},
             </if>
         </set>
-        where brandID = #{brandid,jdbcType=BIGINT}
+        where brand_id = #{brandId,jdbcType=BIGINT}
     </update>
 
     <update id="updateByPrimaryKey" parameterType="org.rainbow.pojo.TbBrand" >
         update tb_brand
-        set brandName = #{brandname,jdbcType=VARCHAR},
-            createTime = #{createtime,jdbcType=TIMESTAMP},
+        set brand_name = #{brandName,jdbcType=VARCHAR},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            status = #{status,jdbcType=INTEGER},
             mark = #{mark,jdbcType=VARCHAR}
-        where brandID = #{brandid,jdbcType=BIGINT}
+        where brand_id = #{brandId,jdbcType=BIGINT}
     </update>
 </mapper>

@@ -48,15 +48,38 @@ public class GoodsController {
 	public Map add(@RequestBody TbGoods goods) {
 		Map<String, Object> result = new HashMap<>();
 		if (goods == null) {
+			result.put("stat",400);
 			result.put("message", "缺少信息!");
 		} else {
 			if (goodsService.addGoods(goods) > 0) {
+				result.put("stat",200);
 				result.put("message","添加成功！");
 			}else{
+				result.put("stat",500);
 				result.put("message","添加失败，请重试！");
 			}
 		}
 		return result;
 	}
 
+	@RequestMapping(value = "edit/{id}",method = RequestMethod.GET)
+	public String edit(@PathVariable("id") long id,Model model){
+		TbGoods goods = goodsService.getGoodsByID(id);
+		model.addAttribute("goods",goods);
+		return "Goods/edit";
+	}
+
+	@RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
+	@ResponseBody
+	public Map delete(@PathVariable("id") long id){
+		Map<String,Object> result = new HashMap<>();
+		if(goodsService.deleteGoodsBystatus(id)>0){
+			result.put("stat",200);
+			result.put("message","删除成功！");
+		}else {
+			result.put("stat",500);
+			result.put("message","删除失败,请重试！");
+		}
+		return result;
+	}
 }

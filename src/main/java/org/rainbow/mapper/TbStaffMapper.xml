@@ -3,60 +3,83 @@
 <mapper namespace="org.rainbow.mapper.TbStaffMapper" >
 
     <resultMap id="BaseResultMap" type="org.rainbow.pojo.TbStaff" >
-        <id column="uid" property="uid" jdbcType="INTEGER" />
-        <result column="uname" property="uname" jdbcType="VARCHAR" />
-        <result column="sid" property="sid" jdbcType="VARCHAR" />
+        <id column="staff_id" property="staffId" jdbcType="BIGINT" />
+        <result column="staff_name" property="staffName" jdbcType="VARCHAR" />
+        <result column="staff_phone" property="staffPhone" jdbcType="VARCHAR" />
+        <result column="store_id" property="storeId" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="status" property="status" jdbcType="INTEGER" />
         <result column="mark" property="mark" jdbcType="VARCHAR" />
     </resultMap>
 
     <sql id="Base_Column_List" >
-        uid, uname, sid, mark
+        staff_id, staff_name, staff_phone, store_id, create_time, status, mark
     </sql>
 
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
         select 
         <include refid="Base_Column_List" />
         from tb_staff
-        where uid = #{uid,jdbcType=INTEGER}
+        where staff_id = #{staffId,jdbcType=BIGINT}
     </select>
 
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
         delete from tb_staff
-        where uid = #{uid,jdbcType=INTEGER}
+        where staff_id = #{staffId,jdbcType=BIGINT}
     </delete>
 
     <insert id="insert" parameterType="org.rainbow.pojo.TbStaff" >
-        insert into tb_staff (uid, uname, sid, 
+        insert into tb_staff (staff_id, staff_name, staff_phone, 
+            store_id, create_time, status, 
             mark)
-        values (#{uid,jdbcType=INTEGER}, #{uname,jdbcType=VARCHAR}, #{sid,jdbcType=VARCHAR}, 
+        values (#{staffId,jdbcType=BIGINT}, #{staffName,jdbcType=VARCHAR}, #{staffPhone,jdbcType=VARCHAR}, 
+            #{storeId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, 
             #{mark,jdbcType=VARCHAR})
     </insert>
 
     <insert id="insertSelective" parameterType="org.rainbow.pojo.TbStaff" >
         insert into tb_staff
         <trim prefix="(" suffix=")" suffixOverrides="," >
-            <if test="uid != null" >
-                uid,
+            <if test="staffId != null" >
+                staff_id,
             </if>
-            <if test="uname != null" >
-                uname,
+            <if test="staffName != null" >
+                staff_name,
             </if>
-            <if test="sid != null" >
-                sid,
+            <if test="staffPhone != null" >
+                staff_phone,
+            </if>
+            <if test="storeId != null" >
+                store_id,
+            </if>
+            <if test="createTime != null" >
+                create_time,
+            </if>
+            <if test="status != null" >
+                status,
             </if>
             <if test="mark != null" >
                 mark,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
-            <if test="uid != null" >
-                #{uid,jdbcType=INTEGER},
+            <if test="staffId != null" >
+                #{staffId,jdbcType=BIGINT},
             </if>
-            <if test="uname != null" >
-                #{uname,jdbcType=VARCHAR},
+            <if test="staffName != null" >
+                #{staffName,jdbcType=VARCHAR},
             </if>
-            <if test="sid != null" >
-                #{sid,jdbcType=VARCHAR},
+            <if test="staffPhone != null" >
+                #{staffPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="storeId != null" >
+                #{storeId,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null" >
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null" >
+                #{status,jdbcType=INTEGER},
             </if>
             <if test="mark != null" >
                 #{mark,jdbcType=VARCHAR},
@@ -67,24 +90,36 @@
     <update id="updateByPrimaryKeySelective" parameterType="org.rainbow.pojo.TbStaff" >
         update tb_staff
         <set >
-            <if test="uname != null" >
-                uname = #{uname,jdbcType=VARCHAR},
+            <if test="staffName != null" >
+                staff_name = #{staffName,jdbcType=VARCHAR},
             </if>
-            <if test="sid != null" >
-                sid = #{sid,jdbcType=VARCHAR},
+            <if test="staffPhone != null" >
+                staff_phone = #{staffPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="storeId != null" >
+                store_id = #{storeId,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null" >
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null" >
+                status = #{status,jdbcType=INTEGER},
             </if>
             <if test="mark != null" >
                 mark = #{mark,jdbcType=VARCHAR},
             </if>
         </set>
-        where uid = #{uid,jdbcType=INTEGER}
+        where staff_id = #{staffId,jdbcType=BIGINT}
     </update>
 
     <update id="updateByPrimaryKey" parameterType="org.rainbow.pojo.TbStaff" >
         update tb_staff
-        set uname = #{uname,jdbcType=VARCHAR},
-            sid = #{sid,jdbcType=VARCHAR},
+        set staff_name = #{staffName,jdbcType=VARCHAR},
+            staff_phone = #{staffPhone,jdbcType=VARCHAR},
+            store_id = #{storeId,jdbcType=VARCHAR},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            status = #{status,jdbcType=INTEGER},
             mark = #{mark,jdbcType=VARCHAR}
-        where uid = #{uid,jdbcType=INTEGER}
+        where staff_id = #{staffId,jdbcType=BIGINT}
     </update>
 </mapper>

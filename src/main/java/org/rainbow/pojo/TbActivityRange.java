@@ -10,11 +10,7 @@ import java.util.Date;
  * 
  * @date 2018-04-12
  */
-public class TbBrand implements Serializable {
-    private Long brandId;
-
-    private String brandName;
-
+public class TbActivityRange extends TbActivityRangeKey implements Serializable {
     private Date createTime;
 
     private Integer status;
@@ -22,22 +18,6 @@ public class TbBrand implements Serializable {
     private String mark;
 
     private static final long serialVersionUID = 1L;
-
-    public Long getBrandId() {
-        return brandId;
-    }
-
-    public void setBrandId(Long brandId) {
-        this.brandId = brandId;
-    }
-
-    public String getBrandName() {
-        return brandName;
-    }
-
-    public void setBrandName(String brandName) {
-        this.brandName = brandName == null ? null : brandName.trim();
-    }
 
     public Date getCreateTime() {
         return createTime;

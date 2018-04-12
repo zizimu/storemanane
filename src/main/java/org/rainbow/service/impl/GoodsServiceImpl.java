@@ -30,4 +30,17 @@ public class GoodsServiceImpl implements GoodsService {
 	public List<TbGoods> getAllGoods() {
 		return tbGoodsMapper.selectAll();
 	}
+
+	@Override
+	public TbGoods getGoodsByID(long ID) {
+		return tbGoodsMapper.selectByPrimaryKey(ID);
+	}
+
+	@Override
+	public int deleteGoodsBystatus(long ID) {
+		TbGoods goods = new TbGoods();
+		goods.setGoodsId(ID);
+		goods.setStatus(2);
+		return tbGoodsMapper.updateByPrimaryKeySelective(goods);
+	}
 }

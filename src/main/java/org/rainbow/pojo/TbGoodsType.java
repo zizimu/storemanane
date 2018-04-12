@@ -10,10 +10,10 @@ import java.util.Date;
  * 
  * @date 2018-04-12
  */
-public class TbBrand implements Serializable {
-    private Long brandId;
+public class TbGoodsType implements Serializable {
+    private Long typeId;
 
-    private String brandName;
+    private String typeName;
 
     private Date createTime;
 
@@ -23,20 +23,20 @@ public class TbBrand implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Long getBrandId() {
-        return brandId;
+    public Long getTypeId() {
+        return typeId;
     }
 
-    public void setBrandId(Long brandId) {
-        this.brandId = brandId;
+    public void setTypeId(Long typeId) {
+        this.typeId = typeId;
     }
 
-    public String getBrandName() {
-        return brandName;
+    public String getTypeName() {
+        return typeName;
     }
 
-    public void setBrandName(String brandName) {
-        this.brandName = brandName == null ? null : brandName.trim();
+    public void setTypeName(String typeName) {
+        this.typeName = typeName == null ? null : typeName.trim();
     }
 
     public Date getCreateTime() {

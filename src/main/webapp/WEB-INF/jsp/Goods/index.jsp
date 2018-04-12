@@ -43,9 +43,27 @@ body {
 </style>
 <script type="text/javascript">
 	function deleteGoods(id) {
-		$.ajax({
-			url:"",
-		})
+        $.ajax({
+            url: "${pageContext.request.contextPath}/Goods/"+id,
+            type: 'DELETE',
+            dataType: "json",
+            processData: false,
+            contentType: false,
+            beforeSend: function () {
+                console.log("正在进行，请稍候");
+            },
+            success: function (responseStr) {
+                if (responseStr['error'] == 1) {
+                    console.log(responseStr['message']);
+                } else {
+                    $("#picUrl").attr("src", responseStr["url"]);
+                    $("#picurl").val(responseStr["url"]);
+                }
+            },
+            error: function (responseStr) {
+                console.log("error");
+            }
+        });
     }
 </script>
 </head>
@@ -82,7 +100,7 @@ body {
 						<td style="text-align: center">${p.gcreatedate}</td>
 						<td style="text-align: right">${p.gshelflife}年</td>
 						<td style="text-align: center">
-							<a href="edit.html?id=${p.gid}">
+							<a href="edit/${p.gid}">
 								<button class="btn btn-primary" style="margin-left: 5px;">
 									编辑
 								</button>

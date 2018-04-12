@@ -1,5 +1,6 @@
 package org.rainbow.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -7,103 +8,118 @@ import java.util.Date;
  * 
  * @author ross
  * 
- * @date 2018-04-10
+ * @date 2018-04-12
  */
-public class TbStore {
+public class TbStore implements Serializable {
     /**
      * 门店编号
      */
-    private Integer sid;
+    private Long storeId;
 
     /**
      * 门店名称
      */
-    private String sname;
+    private String storeName;
 
     /**
      * 所属地区
      */
-    private String sarea;
+    private String storeArea;
 
     /**
      * 详细地址
      */
-    private String saddress;
+    private String storeAddress;
 
     /**
      * 门店主管
      */
-    private String smanager;
+    private String storeManager;
 
     /**
      * 主管电话
      */
-    private String mtel;
+    private String managerTel;
 
     /**
      * 注册日期
      */
-    private Date sdate;
+    private Date createTime;
+
+    /**
+     * 1店铺存在
+     */
+    private Integer status;
 
     /**
      * 备注
      */
     private String mark;
 
-    public Integer getSid() {
-        return sid;
+    private static final long serialVersionUID = 1L;
+
+    public Long getStoreId() {
+        return storeId;
     }
 
-    public void setSid(Integer sid) {
-        this.sid = sid;
+    public void setStoreId(Long storeId) {
+        this.storeId = storeId;
     }
 
-    public String getSname() {
-        return sname;
+    public String getStoreName() {
+        return storeName;
     }
 
-    public void setSname(String sname) {
-        this.sname = sname == null ? null : sname.trim();
+    public void setStoreName(String storeName) {
+        this.storeName = storeName == null ? null : storeName.trim();
     }
 
-    public String getSarea() {
-        return sarea;
+    public String getStoreArea() {
+        return storeArea;
     }
 
-    public void setSarea(String sarea) {
-        this.sarea = sarea == null ? null : sarea.trim();
+    public void setStoreArea(String storeArea) {
+        this.storeArea = storeArea == null ? null : storeArea.trim();
     }
 
-    public String getSaddress() {
-        return saddress;
+    public String getStoreAddress() {
+        return storeAddress;
     }
 
-    public void setSaddress(String saddress) {
-        this.saddress = saddress == null ? null : saddress.trim();
+    public void setStoreAddress(String storeAddress) {
+        this.storeAddress = storeAddress == null ? null : storeAddress.trim();
     }
 
-    public String getSmanager() {
-        return smanager;
+    public String getStoreManager() {
+        return storeManager;
     }
 
-    public void setSmanager(String smanager) {
-        this.smanager = smanager == null ? null : smanager.trim();
+    public void setStoreManager(String storeManager) {
+        this.storeManager = storeManager == null ? null : storeManager.trim();
     }
 
-    public String getMtel() {
-        return mtel;
+    public String getManagerTel() {
+        return managerTel;
     }
 
-    public void setMtel(String mtel) {
-        this.mtel = mtel == null ? null : mtel.trim();
+    public void setManagerTel(String managerTel) {
+        this.managerTel = managerTel == null ? null : managerTel.trim();
     }
 
-    public Date getSdate() {
-        return sdate;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setSdate(Date sdate) {
-        this.sdate = sdate;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public String getMark() {

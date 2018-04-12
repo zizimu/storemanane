@@ -1,5 +1,6 @@
 package org.rainbow.pojo;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
 
@@ -8,123 +9,151 @@ import java.sql.Date;
  * 
  * @author ross
  * 
- * @date 2018-04-10
+ * @date 2018-04-12
  */
-public class TbGoods {
+public class TbGoods implements Serializable {
     /**
      * 商品编号
      */
-    private Long gid;
+    private Long goodsId;
 
     /**
      * 商品名称
      */
-    private String gname;
+    private String goodsName;
 
     /**
      * 商品价格
      */
-    private BigDecimal gprice;
+    private BigDecimal goodsPrice;
 
     /**
      * 商品类型
      */
-    private Long gtype;
+    private Long goodsType;
 
     /**
      * 商品品牌
      */
-    private Long gbrand;
+    private Long goodsBrand;
 
     /**
      * 格规
      */
-    private Integer gspc;
+    private Integer goodsSpc;
 
-    private String gpic;
+    /**
+     * 主图
+     */
+    private String goodsPic;
 
     /**
      * 生产日期
      */
-    private Date gcreatedate;
+    private Date goodsCreatedate;
 
     /**
      * 保质期（整年）
      */
-    private Integer gshelflife;
+    private Integer goodsShelflife;
+
+    private Date createTime;
+
+    /**
+     * 1 正常 2 
+     */
+    private Integer status;
 
     private String mark;
 
-    public Long getGid() {
-        return gid;
+    private static final long serialVersionUID = 1L;
+
+    public Long getGoodsId() {
+        return goodsId;
     }
 
-    public void setGid(Long gid) {
-        this.gid = gid;
+    public void setGoodsId(Long goodsId) {
+        this.goodsId = goodsId;
     }
 
-    public String getGname() {
-        return gname;
+    public String getGoodsName() {
+        return goodsName;
     }
 
-    public void setGname(String gname) {
-        this.gname = gname == null ? null : gname.trim();
+    public void setGoodsName(String goodsName) {
+        this.goodsName = goodsName == null ? null : goodsName.trim();
     }
 
-    public BigDecimal getGprice() {
-        return gprice;
+    public BigDecimal getGoodsPrice() {
+        return goodsPrice;
     }
 
-    public void setGprice(BigDecimal gprice) {
-        this.gprice = gprice;
+    public void setGoodsPrice(BigDecimal goodsPrice) {
+        this.goodsPrice = goodsPrice;
     }
 
-    public Long getGtype() {
-        return gtype;
+    public Long getGoodsType() {
+        return goodsType;
     }
 
-    public void setGtype(Long gtype) {
-        this.gtype = gtype;
+    public void setGoodsType(Long goodsType) {
+        this.goodsType = goodsType;
     }
 
-    public Long getGbrand() {
-        return gbrand;
+    public Long getGoodsBrand() {
+        return goodsBrand;
     }
 
-    public void setGbrand(Long gbrand) {
-        this.gbrand = gbrand;
+    public void setGoodsBrand(Long goodsBrand) {
+        this.goodsBrand = goodsBrand;
     }
 
-    public Integer getGspc() {
-        return gspc;
+    public Integer getGoodsSpc() {
+        return goodsSpc;
     }
 
-    public void setGspc(Integer gspc) {
-        this.gspc = gspc;
+    public void setGoodsSpc(Integer goodsSpc) {
+        this.goodsSpc = goodsSpc;
     }
 
-    public String getGpic() {
-        return gpic;
+    public String getGoodsPic() {
+        return goodsPic;
     }
 
-    public void setGpic(String gpic) {
-        this.gpic = gpic == null ? null : gpic.trim();
+    public void setGoodsPic(String goodsPic) {
+        this.goodsPic = goodsPic == null ? null : goodsPic.trim();
     }
 
-    public Date getGcreatedate() {
-        return gcreatedate;
+    public Date getGoodsCreatedate() {
+        return goodsCreatedate;
     }
 
-    public void setGcreatedate(Date gcreatedate) {
-        this.gcreatedate = gcreatedate;
+    public void setGoodsCreatedate(Date goodsCreatedate) {
+        this.goodsCreatedate = goodsCreatedate;
     }
 
-    public Integer getGshelflife() {
-        return gshelflife;
+    public Integer getGoodsShelflife() {
+        return goodsShelflife;
     }
 
-    public void setGshelflife(Integer gshelflife) {
-        this.gshelflife = gshelflife;
+    public void setGoodsShelflife(Integer goodsShelflife) {
+        this.goodsShelflife = goodsShelflife;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public String getMark() {

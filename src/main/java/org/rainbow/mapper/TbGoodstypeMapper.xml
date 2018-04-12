@@ -1,62 +1,69 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.rainbow.mapper.TbGoodstypeMapper" >
+<mapper namespace="org.rainbow.mapper.TbGoodsTypeMapper" >
 
-    <resultMap id="BaseResultMap" type="org.rainbow.pojo.TbGoodstype" >
-        <id column="typeID" property="typeid" jdbcType="BIGINT" />
-        <result column="typeName" property="typename" jdbcType="VARCHAR" />
-        <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <resultMap id="BaseResultMap" type="org.rainbow.pojo.TbGoodsType" >
+        <id column="type_id" property="typeId" jdbcType="BIGINT" />
+        <result column="type_name" property="typeName" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="status" property="status" jdbcType="INTEGER" />
         <result column="mark" property="mark" jdbcType="VARCHAR" />
     </resultMap>
 
     <sql id="Base_Column_List" >
-        typeID, typeName, createTime, mark
+        type_id, type_name, create_time, status, mark
     </sql>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
         select 
         <include refid="Base_Column_List" />
-        from tb_goodsType
-        where typeID = #{typeid,jdbcType=BIGINT}
+        from tb_goods_type
+        where type_id = #{typeId,jdbcType=BIGINT}
     </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-        delete from tb_goodsType
-        where typeID = #{typeid,jdbcType=BIGINT}
+        delete from tb_goods_type
+        where type_id = #{typeId,jdbcType=BIGINT}
     </delete>
 
-    <insert id="insert" parameterType="org.rainbow.pojo.TbGoodstype" >
-        insert into tb_goodsType (typeID, typeName, createTime, 
-            mark)
-        values (#{typeid,jdbcType=BIGINT}, #{typename,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
-            #{mark,jdbcType=VARCHAR})
+    <insert id="insert" parameterType="org.rainbow.pojo.TbGoodsType" >
+        insert into tb_goods_type (type_id, type_name, create_time, 
+            status, mark)
+        values (#{typeId,jdbcType=BIGINT}, #{typeName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+            #{status,jdbcType=INTEGER}, #{mark,jdbcType=VARCHAR})
     </insert>
 
-    <insert id="insertSelective" parameterType="org.rainbow.pojo.TbGoodstype" >
-        insert into tb_goodsType
+    <insert id="insertSelective" parameterType="org.rainbow.pojo.TbGoodsType" >
+        insert into tb_goods_type
         <trim prefix="(" suffix=")" suffixOverrides="," >
-            <if test="typeid != null" >
-                typeID,
+            <if test="typeId != null" >
+                type_id,
             </if>
-            <if test="typename != null" >
-                typeName,
+            <if test="typeName != null" >
+                type_name,
             </if>
-            <if test="createtime != null" >
-                createTime,
+            <if test="createTime != null" >
+                create_time,
+            </if>
+            <if test="status != null" >
+                status,
             </if>
             <if test="mark != null" >
                 mark,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
-            <if test="typeid != null" >
-                #{typeid,jdbcType=BIGINT},
+            <if test="typeId != null" >
+                #{typeId,jdbcType=BIGINT},
             </if>
-            <if test="typename != null" >
-                #{typename,jdbcType=VARCHAR},
+            <if test="typeName != null" >
+                #{typeName,jdbcType=VARCHAR},
             </if>
-            <if test="createtime != null" >
-                #{createtime,jdbcType=TIMESTAMP},
+            <if test="createTime != null" >
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null" >
+                #{status,jdbcType=INTEGER},
             </if>
             <if test="mark != null" >
                 #{mark,jdbcType=VARCHAR},
@@ -64,27 +71,31 @@
         </trim>
     </insert>
 
-    <update id="updateByPrimaryKeySelective" parameterType="org.rainbow.pojo.TbGoodstype" >
-        update tb_goodsType
+    <update id="updateByPrimaryKeySelective" parameterType="org.rainbow.pojo.TbGoodsType" >
+        update tb_goods_type
         <set >
-            <if test="typename != null" >
-                typeName = #{typename,jdbcType=VARCHAR},
+            <if test="typeName != null" >
+                type_name = #{typeName,jdbcType=VARCHAR},
             </if>
-            <if test="createtime != null" >
-                createTime = #{createtime,jdbcType=TIMESTAMP},
+            <if test="createTime != null" >
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null" >
+                status = #{status,jdbcType=INTEGER},
             </if>
             <if test="mark != null" >
                 mark = #{mark,jdbcType=VARCHAR},
             </if>
         </set>
-        where typeID = #{typeid,jdbcType=BIGINT}
+        where type_id = #{typeId,jdbcType=BIGINT}
     </update>
 
-    <update id="updateByPrimaryKey" parameterType="org.rainbow.pojo.TbGoodstype" >
-        update tb_goodsType
-        set typeName = #{typename,jdbcType=VARCHAR},
-            createTime = #{createtime,jdbcType=TIMESTAMP},
+    <update id="updateByPrimaryKey" parameterType="org.rainbow.pojo.TbGoodsType" >
+        update tb_goods_type
+        set type_name = #{typeName,jdbcType=VARCHAR},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            status = #{status,jdbcType=INTEGER},
             mark = #{mark,jdbcType=VARCHAR}
-        where typeID = #{typeid,jdbcType=BIGINT}
+        where type_id = #{typeId,jdbcType=BIGINT}
     </update>
 </mapper>
