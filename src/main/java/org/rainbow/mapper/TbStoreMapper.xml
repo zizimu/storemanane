@@ -3,90 +3,100 @@
 <mapper namespace="org.rainbow.mapper.TbStoreMapper" >
 
     <resultMap id="BaseResultMap" type="org.rainbow.pojo.TbStore" >
-        <id column="sid" property="sid" jdbcType="INTEGER" />
-        <result column="sname" property="sname" jdbcType="VARCHAR" />
-        <result column="sarea" property="sarea" jdbcType="VARCHAR" />
-        <result column="saddress" property="saddress" jdbcType="VARCHAR" />
-        <result column="smanager" property="smanager" jdbcType="VARCHAR" />
-        <result column="mTel" property="mtel" jdbcType="VARCHAR" />
-        <result column="sdate" property="sdate" jdbcType="DATE" />
+        <id column="store_id" property="storeId" jdbcType="BIGINT" />
+        <result column="store_name" property="storeName" jdbcType="VARCHAR" />
+        <result column="store_area" property="storeArea" jdbcType="VARCHAR" />
+        <result column="store_address" property="storeAddress" jdbcType="VARCHAR" />
+        <result column="store_manager" property="storeManager" jdbcType="VARCHAR" />
+        <result column="manager_tel" property="managerTel" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="DATE" />
+        <result column="status" property="status" jdbcType="INTEGER" />
         <result column="mark" property="mark" jdbcType="VARCHAR" />
     </resultMap>
 
     <sql id="Base_Column_List" >
-        sid, sname, sarea, saddress, smanager, mTel, sdate, mark
+        store_id, store_name, store_area, store_address, store_manager, manager_tel, create_time, 
+        status, mark
     </sql>
 
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
         select 
         <include refid="Base_Column_List" />
         from tb_store
-        where sid = #{sid,jdbcType=INTEGER}
+        where store_id = #{storeId,jdbcType=BIGINT}
     </select>
 
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
         delete from tb_store
-        where sid = #{sid,jdbcType=INTEGER}
+        where store_id = #{storeId,jdbcType=BIGINT}
     </delete>
 
     <insert id="insert" parameterType="org.rainbow.pojo.TbStore" >
-        insert into tb_store (sid, sname, sarea, 
-            saddress, smanager, mTel, 
-            sdate, mark)
-        values (#{sid,jdbcType=INTEGER}, #{sname,jdbcType=VARCHAR}, #{sarea,jdbcType=VARCHAR}, 
-            #{saddress,jdbcType=VARCHAR}, #{smanager,jdbcType=VARCHAR}, #{mtel,jdbcType=VARCHAR}, 
-            #{sdate,jdbcType=DATE}, #{mark,jdbcType=VARCHAR})
+        insert into tb_store (store_id, store_name, store_area, 
+            store_address, store_manager, manager_tel, 
+            create_time, status, mark
+            )
+        values (#{storeId,jdbcType=BIGINT}, #{storeName,jdbcType=VARCHAR}, #{storeArea,jdbcType=VARCHAR}, 
+            #{storeAddress,jdbcType=VARCHAR}, #{storeManager,jdbcType=VARCHAR}, #{managerTel,jdbcType=VARCHAR}, 
+            #{createTime,jdbcType=DATE}, #{status,jdbcType=INTEGER}, #{mark,jdbcType=VARCHAR}
+            )
     </insert>
 
     <insert id="insertSelective" parameterType="org.rainbow.pojo.TbStore" >
         insert into tb_store
         <trim prefix="(" suffix=")" suffixOverrides="," >
-            <if test="sid != null" >
-                sid,
+            <if test="storeId != null" >
+                store_id,
             </if>
-            <if test="sname != null" >
-                sname,
+            <if test="storeName != null" >
+                store_name,
             </if>
-            <if test="sarea != null" >
-                sarea,
+            <if test="storeArea != null" >
+                store_area,
             </if>
-            <if test="saddress != null" >
-                saddress,
+            <if test="storeAddress != null" >
+                store_address,
             </if>
-            <if test="smanager != null" >
-                smanager,
+            <if test="storeManager != null" >
+                store_manager,
             </if>
-            <if test="mtel != null" >
-                mTel,
+            <if test="managerTel != null" >
+                manager_tel,
             </if>
-            <if test="sdate != null" >
-                sdate,
+            <if test="createTime != null" >
+                create_time,
+            </if>
+            <if test="status != null" >
+                status,
             </if>
             <if test="mark != null" >
                 mark,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
-            <if test="sid != null" >
-                #{sid,jdbcType=INTEGER},
+            <if test="storeId != null" >
+                #{storeId,jdbcType=BIGINT},
             </if>
-            <if test="sname != null" >
-                #{sname,jdbcType=VARCHAR},
+            <if test="storeName != null" >
+                #{storeName,jdbcType=VARCHAR},
             </if>
-            <if test="sarea != null" >
-                #{sarea,jdbcType=VARCHAR},
+            <if test="storeArea != null" >
+                #{storeArea,jdbcType=VARCHAR},
             </if>
-            <if test="saddress != null" >
-                #{saddress,jdbcType=VARCHAR},
+            <if test="storeAddress != null" >
+                #{storeAddress,jdbcType=VARCHAR},
             </if>
-            <if test="smanager != null" >
-                #{smanager,jdbcType=VARCHAR},
+            <if test="storeManager != null" >
+                #{storeManager,jdbcType=VARCHAR},
             </if>
-            <if test="mtel != null" >
-                #{mtel,jdbcType=VARCHAR},
+            <if test="managerTel != null" >
+                #{managerTel,jdbcType=VARCHAR},
             </if>
-            <if test="sdate != null" >
-                #{sdate,jdbcType=DATE},
+            <if test="createTime != null" >
+                #{createTime,jdbcType=DATE},
+            </if>
+            <if test="status != null" >
+                #{status,jdbcType=INTEGER},
             </if>
             <if test="mark != null" >
                 #{mark,jdbcType=VARCHAR},
@@ -97,40 +107,44 @@
     <update id="updateByPrimaryKeySelective" parameterType="org.rainbow.pojo.TbStore" >
         update tb_store
         <set >
-            <if test="sname != null" >
-                sname = #{sname,jdbcType=VARCHAR},
+            <if test="storeName != null" >
+                store_name = #{storeName,jdbcType=VARCHAR},
             </if>
-            <if test="sarea != null" >
-                sarea = #{sarea,jdbcType=VARCHAR},
+            <if test="storeArea != null" >
+                store_area = #{storeArea,jdbcType=VARCHAR},
             </if>
-            <if test="saddress != null" >
-                saddress = #{saddress,jdbcType=VARCHAR},
+            <if test="storeAddress != null" >
+                store_address = #{storeAddress,jdbcType=VARCHAR},
             </if>
-            <if test="smanager != null" >
-                smanager = #{smanager,jdbcType=VARCHAR},
+            <if test="storeManager != null" >
+                store_manager = #{storeManager,jdbcType=VARCHAR},
             </if>
-            <if test="mtel != null" >
-                mTel = #{mtel,jdbcType=VARCHAR},
+            <if test="managerTel != null" >
+                manager_tel = #{managerTel,jdbcType=VARCHAR},
             </if>
-            <if test="sdate != null" >
-                sdate = #{sdate,jdbcType=DATE},
+            <if test="createTime != null" >
+                create_time = #{createTime,jdbcType=DATE},
+            </if>
+            <if test="status != null" >
+                status = #{status,jdbcType=INTEGER},
             </if>
             <if test="mark != null" >
                 mark = #{mark,jdbcType=VARCHAR},
             </if>
         </set>
-        where sid = #{sid,jdbcType=INTEGER}
+        where store_id = #{storeId,jdbcType=BIGINT}
     </update>
 
     <update id="updateByPrimaryKey" parameterType="org.rainbow.pojo.TbStore" >
         update tb_store
-        set sname = #{sname,jdbcType=VARCHAR},
-            sarea = #{sarea,jdbcType=VARCHAR},
-            saddress = #{saddress,jdbcType=VARCHAR},
-            smanager = #{smanager,jdbcType=VARCHAR},
-            mTel = #{mtel,jdbcType=VARCHAR},
-            sdate = #{sdate,jdbcType=DATE},
+        set store_name = #{storeName,jdbcType=VARCHAR},
+            store_area = #{storeArea,jdbcType=VARCHAR},
+            store_address = #{storeAddress,jdbcType=VARCHAR},
+            store_manager = #{storeManager,jdbcType=VARCHAR},
+            manager_tel = #{managerTel,jdbcType=VARCHAR},
+            create_time = #{createTime,jdbcType=DATE},
+            status = #{status,jdbcType=INTEGER},
             mark = #{mark,jdbcType=VARCHAR}
-        where sid = #{sid,jdbcType=INTEGER}
+        where store_id = #{storeId,jdbcType=BIGINT}
     </update>
 </mapper>

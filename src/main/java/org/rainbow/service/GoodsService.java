@@ -2,6 +2,8 @@ package org.rainbow.service;
 
 import org.rainbow.pojo.TbGoods;
 
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * Description:
@@ -12,4 +14,10 @@ import org.rainbow.pojo.TbGoods;
 public interface GoodsService {
 
 	int addGoods(TbGoods goods);
+
+	List<TbGoods> getAllGoods();
+
+	TbGoods getGoodsByID(long ID);
+
+	int deleteGoodsBystatus(long ID);
 }

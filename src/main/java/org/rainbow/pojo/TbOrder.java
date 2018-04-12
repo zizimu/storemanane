@@ -1,5 +1,6 @@
 package org.rainbow.pojo;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -8,97 +9,99 @@ import java.util.Date;
  * 
  * @author ross
  * 
- * @date 2018-04-10
+ * @date 2018-04-12
  */
-public class TbOrder {
+public class TbOrder implements Serializable {
     /**
      * 订单编号
      */
-    private Integer oid;
+    private Long orderId;
 
     /**
      * 商品编号
      */
-    private Integer gid;
-
-    /**
-     * 商品名称
-     */
-    private String gname;
+    private Integer goodsId;
 
     /**
      * 商品数量
      */
-    private Integer gnum;
+    private Integer goodsNum;
 
     /**
      * 活动名称
      */
-    private Integer pid;
+    private Integer activityId;
 
     /**
      * 总价
      */
-    private BigDecimal total;
+    private BigDecimal totalPrice;
 
-    private Date createtime;
+    private Date createTime;
+
+    /**
+     * 1启用 0删除 2取消
+     */
+    private Integer status;
 
     private String mark;
 
-    public Integer getOid() {
-        return oid;
+    private static final long serialVersionUID = 1L;
+
+    public Long getOrderId() {
+        return orderId;
     }
 
-    public void setOid(Integer oid) {
-        this.oid = oid;
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
     }
 
-    public Integer getGid() {
-        return gid;
+    public Integer getGoodsId() {
+        return goodsId;
     }
 
-    public void setGid(Integer gid) {
-        this.gid = gid;
+    public void setGoodsId(Integer goodsId) {
+        this.goodsId = goodsId;
     }
 
-    public String getGname() {
-        return gname;
+    public Integer getGoodsNum() {
+        return goodsNum;
     }
 
-    public void setGname(String gname) {
-        this.gname = gname == null ? null : gname.trim();
+    public void setGoodsNum(Integer goodsNum) {
+        this.goodsNum = goodsNum;
     }
 
-    public Integer getGnum() {
-        return gnum;
+    public Integer getActivityId() {
+        return activityId;
     }
 
-    public void setGnum(Integer gnum) {
-        this.gnum = gnum;
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 
-    public Integer getPid() {
-        return pid;
+    public BigDecimal getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setPid(Integer pid) {
-        this.pid = pid;
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
-    public BigDecimal getTotal() {
-        return total;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setTotal(BigDecimal total) {
-        this.total = total;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
-    public Date getCreatetime() {
-        return createtime;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public String getMark() {

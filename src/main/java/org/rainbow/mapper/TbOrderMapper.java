@@ -3,13 +3,13 @@ package org.rainbow.mapper;
 import org.rainbow.pojo.TbOrder;
 
 public interface TbOrderMapper {
-    int deleteByPrimaryKey(Integer oid);
+    int deleteByPrimaryKey(Long orderId);
 
     int insert(TbOrder record);
 
     int insertSelective(TbOrder record);
 
-    TbOrder selectByPrimaryKey(Integer oid);
+    TbOrder selectByPrimaryKey(Long orderId);
 
     int updateByPrimaryKeySelective(TbOrder record);
 

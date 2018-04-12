@@ -1,52 +1,90 @@
 package org.rainbow.pojo;
 
+import java.io.Serializable;
+import java.util.Date;
+
 /**
  * 
  * 
  * @author ross
  * 
- * @date 2018-04-10
+ * @date 2018-04-12
  */
-public class TbStaff {
+public class TbStaff implements Serializable {
     /**
      * 员工编号
      */
-    private Integer uid;
+    private Long staffId;
 
     /**
      * 员工姓名
      */
-    private String uname;
+    private String staffName;
+
+    /**
+     * 联系电话
+     */
+    private String staffPhone;
 
     /**
      * 所属门店编号
      */
-    private String sid;
+    private String storeId;
+
+    private Date createTime;
+
+    private Integer status;
 
     private String mark;
 
-    public Integer getUid() {
-        return uid;
+    private static final long serialVersionUID = 1L;
+
+    public Long getStaffId() {
+        return staffId;
     }
 
-    public void setUid(Integer uid) {
-        this.uid = uid;
+    public void setStaffId(Long staffId) {
+        this.staffId = staffId;
     }
 
-    public String getUname() {
-        return uname;
+    public String getStaffName() {
+        return staffName;
     }
 
-    public void setUname(String uname) {
-        this.uname = uname == null ? null : uname.trim();
+    public void setStaffName(String staffName) {
+        this.staffName = staffName == null ? null : staffName.trim();
     }
 
-    public String getSid() {
-        return sid;
+    public String getStaffPhone() {
+        return staffPhone;
     }
 
-    public void setSid(String sid) {
-        this.sid = sid == null ? null : sid.trim();
+    public void setStaffPhone(String staffPhone) {
+        this.staffPhone = staffPhone == null ? null : staffPhone.trim();
+    }
+
+    public String getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(String storeId) {
+        this.storeId = storeId == null ? null : storeId.trim();
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public String getMark() {

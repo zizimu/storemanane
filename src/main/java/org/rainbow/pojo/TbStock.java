@@ -10,33 +10,55 @@ import java.util.Date;
  * 
  * @date 2018-04-12
  */
-public class TbBrand implements Serializable {
-    private Long brandId;
+public class TbStock extends TbStockKey implements Serializable {
+    /**
+     * 库存
+     */
+    private Integer goodsStock;
 
-    private String brandName;
+    /**
+     * 已销售数量
+     */
+    private Integer goodsSold;
+
+    /**
+     * 所属门店
+     */
+    private Long storeId;
 
     private Date createTime;
 
+    /**
+     * 1有货  0售空  2采购中
+     */
     private Integer status;
 
     private String mark;
 
     private static final long serialVersionUID = 1L;
 
-    public Long getBrandId() {
-        return brandId;
+    public Integer getGoodsStock() {
+        return goodsStock;
     }
 
-    public void setBrandId(Long brandId) {
-        this.brandId = brandId;
+    public void setGoodsStock(Integer goodsStock) {
+        this.goodsStock = goodsStock;
     }
 
-    public String getBrandName() {
-        return brandName;
+    public Integer getGoodsSold() {
+        return goodsSold;
     }
 
-    public void setBrandName(String brandName) {
-        this.brandName = brandName == null ? null : brandName.trim();
+    public void setGoodsSold(Integer goodsSold) {
+        this.goodsSold = goodsSold;
+    }
+
+    public Long getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(Long storeId) {
+        this.storeId = storeId;
     }
 
     public Date getCreateTime() {

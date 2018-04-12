@@ -3,13 +3,13 @@ package org.rainbow.mapper;
 import org.rainbow.pojo.TbStaff;
 
 public interface TbStaffMapper {
-    int deleteByPrimaryKey(Integer uid);
+    int deleteByPrimaryKey(Long staffId);
 
     int insert(TbStaff record);
 
     int insertSelective(TbStaff record);
 
-    TbStaff selectByPrimaryKey(Integer uid);
+    TbStaff selectByPrimaryKey(Long staffId);
 
     int updateByPrimaryKeySelective(TbStaff record);
 
