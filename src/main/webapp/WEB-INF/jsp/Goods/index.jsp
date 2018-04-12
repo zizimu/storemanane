@@ -91,21 +91,21 @@ body {
 			</tr>
 				<c:forEach items="${goodsList}" var="p" varStatus="st">
 					<tr>
-						<td style="text-align: center">${p.gid}</td>
-						<td style="text-align: center">${p.gname}</td>
-						<td style="text-align: right">￥${p.gprice}</td>
-						<td style="text-align: center">${p.gtype}</td>
-						<td style="text-align: center">${p.gbrand}</td>
-						<td style="text-align: right">${p.gspc}ml</td>
-						<td style="text-align: center">${p.gcreatedate}</td>
-						<td style="text-align: right">${p.gshelflife}年</td>
+						<td style="text-align: center">${p.goodsId}</td>
+						<td style="text-align: center">${p.goodsName}</td>
+						<td style="text-align: right">￥${p.goodsPrice}</td>
+						<td style="text-align: center">${p.goodsType}</td>
+						<td style="text-align: center">${p.goodsBrand}</td>
+						<td style="text-align: right">${p.goodsSpc}ml</td>
+						<td style="text-align: center">${p.goodsCreatedate}</td>
+						<td style="text-align: right">${p.goodsShelflife}年</td>
 						<td style="text-align: center">
-							<a href="edit/${p.gid}">
+							<a href="edit/${p.goodsId}">
 								<button class="btn btn-primary" style="margin-left: 5px;">
 									编辑
 								</button>
 							</a>
-							<button class="btn btn-success" style="margin-left: 5px;" onclick="deleteGoods(${p.gid})">
+							<button class="btn btn-success" style="margin-left: 5px;" onclick="deleteGoods(${p.goodsId})">
 								删除
 							</button>
 						</td>
