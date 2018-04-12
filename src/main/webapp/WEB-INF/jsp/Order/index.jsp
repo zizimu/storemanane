@@ -55,11 +55,11 @@ body {
 			<tr>
 				<th>订单编号</th>
 				<th>商品编号</th>
-				<th>商品名称</th>
 				<th>商品数量</th>
 				<th>活动名称</th>
 				<th>总价</th>
 				<th>订单创建时间</th>
+				<th>管理操作</th>
 				<th>备注</th>
 			</tr>
 		</thead>

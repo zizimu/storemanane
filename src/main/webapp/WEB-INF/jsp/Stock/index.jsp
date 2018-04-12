@@ -44,20 +44,22 @@ body {
 <body>
 	<form class="form-inline definewidth m20" action="index.html"
 		method="get">
-		商品编号： <input type="text" name="rolename" id="rolename"
+		批次/商品编号： <input type="text" name="rolename" id="rolename"
 			class="abc input-default" placeholder="" value="">&nbsp;&nbsp;
 		<button type="submit" class="btn btn-primary">查询</button>
 		&nbsp;&nbsp;
-		<button type="button" class="btn btn-success" id="addnew">新增商品</button>
+		<button type="button" class="btn btn-success" id="addnew">库存新增</button>
 	</form>
 	<table class="table table-bordered table-hover definewidth m10">
 		<thead>
 			<tr>
-				<th>商品编号</th>
-				<th>商品名称</th>
-				<th>库存</th>
+				<th>库存编号</th>
+				<th>商品编号</th>	
+				<th>库存数量</th>
 				<th>已售数量</th>
 				<th>所属门店</th>
+				<th>进货时间</th>
+				<th>管理操作</th>
 				<th>备注</th>
 			</tr>
 		</thead>

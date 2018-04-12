@@ -59,6 +59,8 @@ body {
 				<th>员工名称</th>
 				<th>联系电话</th>
 				<th>所属门店</th>
+				<th>入职时间</th>
+				<th>管理操作</th>
 				<th>备注</th>
 			</tr>
 		</thead>
