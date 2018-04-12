@@ -13,6 +13,10 @@ public class OrderController {
 		return "Order/index";
 	}
 	
+	@RequestMapping("/edit")
+	public String edit() {
+		return "Order/edit";
+	}
 	@RequestMapping("/{page}.html")
 	public String page(@PathVariable("page") String page) {	
 		return "Order/"+page;
