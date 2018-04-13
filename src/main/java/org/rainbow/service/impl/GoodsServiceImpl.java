@@ -48,4 +48,9 @@ public class GoodsServiceImpl implements GoodsService {
 	public int updateGoods(TbGoods goods) {
 		return tbGoodsMapper.updateByPrimaryKeySelective(goods);
 	}
+
+	@Override
+	public List<TbGoods> searchGoods(String key) {
+		return tbGoodsMapper.searchGoods(key);
+	}
 }

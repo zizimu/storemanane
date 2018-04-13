@@ -22,4 +22,6 @@ public interface GoodsService {
 	int deleteGoodsBystatus(long ID);
 
 	int updateGoods(TbGoods goods);
+
+	List<TbGoods> searchGoods(String key);
 }

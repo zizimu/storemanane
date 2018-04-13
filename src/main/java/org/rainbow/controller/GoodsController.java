@@ -2,6 +2,7 @@ package org.rainbow.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.rainbow.pojo.TbGoods;
 import org.rainbow.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,5 +99,11 @@ public class GoodsController {
 			result.put("message", "添加失败,请重试！");
 		}
 		return result;
+	}
+
+	@RequestMapping(value = "/s",method = RequestMethod.GET)
+	public String search(@RequestParam("wd")String wd, Model model){
+
+		return "Goods/index";
 	}
 }

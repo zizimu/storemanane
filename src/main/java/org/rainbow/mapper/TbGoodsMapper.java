@@ -18,4 +18,6 @@ public interface TbGoodsMapper {
     int updateByPrimaryKey(TbGoods record);
 
     List<TbGoods> selectAll();
+
+    List<TbGoods> searchGoods(String key);
 }

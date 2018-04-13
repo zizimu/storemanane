@@ -97,7 +97,6 @@
 	</script>
 </head>
 <body>
-	<input type="hidden" name="goodsId" value="${goods.goodsId}" />
 <table class="table table-bordered table-hover ">
    <tr>
 		<td width="10%" class="tableleft">商品名称</td>
