@@ -47,8 +47,9 @@ public class UploadController {
 			} else {
 				newFileName = uuid.toString();
 			}
-			String dateStr = new SimpleDateFormat("yyyyMMdd").format(new Date());
-			String filename = "store-manage/" + dateStr + "/" + newFileName;
+			String yearNmouth = new SimpleDateFormat("yyyyMM").format(new Date());
+			String day = new SimpleDateFormat("dd").format(new Date());
+			String filename = "store-manage/" + yearNmouth + "/" + day + "/" + newFileName;
 			try {
 				upload.uploadPic2Tencent(file.getInputStream(), filename, file.getSize());
 				result.put("stat", 200);
