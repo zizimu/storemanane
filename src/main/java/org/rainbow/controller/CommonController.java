@@ -18,9 +18,9 @@ public class CommonController {
 		return "index";
 	}
 
-	@RequestMapping("/{page}")
+	/*@RequestMapping("/{page}")
 	public String page2jsp(@PathVariable String page){
 		return page;
-	}
+	}*/
 	
 }

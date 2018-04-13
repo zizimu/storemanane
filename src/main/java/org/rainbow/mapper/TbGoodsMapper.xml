@@ -34,6 +34,7 @@
         <include refid="Base_Column_List" />
         from tb_goods
 	    where status = 1
+        ORDER BY create_time DESC
     </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
@@ -84,15 +85,13 @@
             <if test="goodsShelflife != null" >
                 goods_shelflife,
             </if>
-            <if test="createTime != null" >
-                create_time,
-            </if>
             <if test="status != null" >
                 status,
             </if>
             <if test="mark != null" >
                 mark,
             </if>
+                create_time
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
             <if test="goodsId != null" >
@@ -131,6 +130,7 @@
             <if test="mark != null" >
                 #{mark,jdbcType=VARCHAR},
             </if>
+                now()
         </trim>
     </insert>
 
@@ -161,9 +161,6 @@
             <if test="goodsShelflife != null" >
                 goods_shelflife = #{goodsShelflife,jdbcType=INTEGER},
             </if>
-            <if test="createTime != null" >
-                create_time = #{createTime,jdbcType=TIMESTAMP},
-            </if>
             <if test="status != null" >
                 status = #{status,jdbcType=INTEGER},
             </if>
@@ -184,7 +181,6 @@
             goods_pic = #{goodsPic,jdbcType=VARCHAR},
             goods_createdate = #{goodsCreatedate,jdbcType=TIMESTAMP},
             goods_shelflife = #{goodsShelflife,jdbcType=INTEGER},
-            create_time = #{createTime,jdbcType=TIMESTAMP},
             status = #{status,jdbcType=INTEGER},
             mark = #{mark,jdbcType=VARCHAR}
         where goods_id = #{goodsId,jdbcType=BIGINT}

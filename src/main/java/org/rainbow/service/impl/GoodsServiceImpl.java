@@ -43,4 +43,9 @@ public class GoodsServiceImpl implements GoodsService {
 		goods.setStatus(2);
 		return tbGoodsMapper.updateByPrimaryKeySelective(goods);
 	}
+
+	@Override
+	public int updateGoods(TbGoods goods) {
+		return tbGoodsMapper.updateByPrimaryKeySelective(goods);
+	}
 }

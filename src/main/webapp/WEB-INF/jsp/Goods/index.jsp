@@ -53,11 +53,11 @@ body {
                 console.log("正在进行，请稍候");
             },
             success: function (responseStr) {
-                if (responseStr['error'] == 1) {
-                    console.log(responseStr['message']);
+                if (responseStr['stat'] == 200) {
+                    alert(responseStr['message']);
+                    location.reload();
                 } else {
-                    $("#picUrl").attr("src", responseStr["url"]);
-                    $("#picurl").val(responseStr["url"]);
+                    alert(responseStr['message']);
                 }
             },
             error: function (responseStr) {
@@ -74,7 +74,11 @@ body {
 			class="abc input-default" placeholder="" value="">&nbsp;&nbsp;
 		<button type="submit" class="btn btn-primary">查询</button>
 		&nbsp;&nbsp;
-		<button type="button" class="btn btn-success" id="addnew">新增商品</button>
+		<a href="${pageContext.request.contextPath}/Goods/add">
+			<button type="button" class="btn btn-success">
+				新增商品
+			</button>
+		</a>
 	</form>
 	<table class="table table-bordered table-hover definewidth m10">
 		<thead>
@@ -100,7 +104,7 @@ body {
 						<td style="text-align: center">${p.goodsCreatedate}</td>
 						<td style="text-align: right">${p.goodsShelflife}年</td>
 						<td style="text-align: center">
-							<a href="edit/${p.goodsId}">
+							<a href="${pageContext.request.contextPath}/Goods/edit/${p.goodsId}">
 								<button class="btn btn-primary" style="margin-left: 5px;">
 									编辑
 								</button>
@@ -114,7 +118,7 @@ body {
 		</thead>
 	</table>
 	<div class="inline pull-right page">
-		总共${page.total} 条记录 ${page.pageNum}/${page.pages} 页
+		总共${page.total}条记录  第 ${page.pageNum}/${page.pages} 页
 		<a href="${pageContext.request.contextPath}/Goods/index?page=${page.firstPage}">第一页</a>
 		<a href="${pageContext.request.contextPath}/Goods/index?page=${page.nextPage}">下一页</a>
 		<a href="${pageContext.request.contextPath}/Goods/index?page=${page.prePage}">上一页</a>

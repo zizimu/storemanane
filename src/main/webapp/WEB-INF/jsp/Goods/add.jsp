@@ -55,11 +55,11 @@
                         console.log("正在进行，请稍候");
                     },
                     success: function (responseStr) {
-                        if (responseStr['error'] == 1) {
-                            console.log(responseStr['message']);
-                        } else {
+                        if (responseStr['stat'] == 200) {
                             $("#picUrl").attr("src", responseStr["url"]);
                             $("#picurl").val(responseStr["url"]);
+                        } else {
+                            alert(responseStr['message']);
                         }
                     },
                     error: function (responseStr) {
@@ -69,17 +69,18 @@
             });
             $("#submit").click(function () {
                 var data = {
-                    "gname" : $("#gname").val(),
-                    "gprice": $("#gprice").val(),
-                    "gtype": $("#gtype").val(),
-                    "gbrand": $("#gbrand").val(),
-                    "gspc": $("#gspc").val(),
-                    "gcreateTime": $("#gcreateTime").val(),
-                    "gshelfilfe": $("#gshelfilfe").val(),
+                    "goodsName" : $("#gname").val(),
+                    "goodsPrice": $("#gprice").val(),
+                    "goodsType": $("#gtype").val(),
+                    "goodsBrand": $("#gbrand").val(),
+                    "goodsSpc": $("#gspc").val(),
+	                "goodsPic":$("#picurl").val(),
+                    "goodsCreateTime": $("#gcreateTime").val(),
+                    "goodsShelfilfe": $("#gshelfilfe").val(),
                     "mark": $("#mark").val()
                 };
                 $.ajax({
-                    url: "${pageContext.request.contextPath}/Goods/add",
+                    url: "${pageContext.request.contextPath}/Goods",
                     type: 'POST',
                     dataType: "json",
                     data: JSON.stringify(data),
@@ -88,7 +89,11 @@
                         console.log("正在进行，请稍候");
                     },
                     success: function (responseStr) {
-                        alert(responseStr["message"]);
+                        if (responseStr['stat'] == 200) {
+                            window.location.href="${pageContext.request.contextPath}/Goods";
+                        } else {
+                            alert(responseStr['message']);
+                        }
                     },
                     error: function () {
                         console.log("error!");

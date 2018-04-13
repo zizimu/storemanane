@@ -33,11 +33,11 @@ public class UploadController {
 	@Autowired
 	private Upload upload;
 
-	@RequestMapping(value = "/upload",method = RequestMethod.POST)
+	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	@ResponseBody
-	public Map uploadFile(MultipartFile file){
-		Map<String,Object> result = new HashMap<>();
-		if(file.getSize()>0) {
+	public Map uploadFile(MultipartFile file) {
+		Map<String, Object> result = new HashMap<>();
+		if (file != null && file.getSize() > 0) {
 			String partFileName = file.getOriginalFilename();
 			UUID uuid = UUID.randomUUID();
 			String newFileName;
@@ -51,13 +51,16 @@ public class UploadController {
 			String filename = "store-manage/" + dateStr + "/" + newFileName;
 			try {
 				upload.uploadPic2Tencent(file.getInputStream(), filename, file.getSize());
-				result.put("success", 0);
+				result.put("stat", 200);
 				result.put("url", imageUrl + filename);
 			} catch (IOException e) {
 				e.printStackTrace();
-				result.put("error", 1);
+				result.put("stat", 500);
 				result.put("message", "上传失败！请重试！");
 			}
+		}else {
+			result.put("stat",400);
+			result.put("message","没有文件！");
 		}
 		return result;
 	}

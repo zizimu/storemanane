@@ -20,4 +20,6 @@ public interface GoodsService {
 	TbGoods getGoodsByID(long ID);
 
 	int deleteGoodsBystatus(long ID);
+
+	int updateGoods(TbGoods goods);
 }
