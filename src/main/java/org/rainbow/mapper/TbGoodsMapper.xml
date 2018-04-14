@@ -41,7 +41,8 @@
 	    select
 	    <include refid="Base_Column_List" />
 	    from tb_goods
-	    where goods_name = #{key,jdbcType=String}
+	    where goods_name like '%' #{key,jdbcType=VARCHAR} '%'
+	    	or goods_id like '%' #{key} '%'
 	    ORDER BY create_time DESC
     </select>
 

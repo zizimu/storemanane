@@ -2,7 +2,6 @@ package org.rainbow.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.rainbow.pojo.TbGoods;
 import org.rainbow.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +29,7 @@ public class GoodsController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
-		PageHelper.startPage(page, 10);
+		PageHelper.startPage(page, 8);
 		List<TbGoods> goods = goodsService.getAllGoods();
 		PageInfo<TbGoods> p = new PageInfo<>(goods);
 		model.addAttribute("goodsList", goods);
@@ -102,8 +101,13 @@ public class GoodsController {
 	}
 
 	@RequestMapping(value = "/s",method = RequestMethod.GET)
-	public String search(@RequestParam("wd")String wd, Model model){
-
+	public String search(@RequestParam("wd")String wd,@RequestParam(value = "page", defaultValue = "1") int page, Model model){
+		PageHelper.startPage(page, 8);
+		List<TbGoods> goods = goodsService.searchGoods(wd);
+		PageInfo<TbGoods> p = new PageInfo<>(goods);
+		model.addAttribute("goodsList", goods);
+		model.addAttribute("wd",wd);
+		model.addAttribute("page", p);
 		return "Goods/index";
 	}
 }
