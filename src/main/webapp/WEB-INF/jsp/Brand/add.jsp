@@ -100,7 +100,7 @@
 </head>
 <table class="table table-bordered table-hover definewidth m10">
 	<tr>
-		<td width="10%" class="tableleft">商品名称</td>
+		<td width="10%" class="tableleft">品牌名称</td>
 		<td><input type="text" id="gname" name="gname"/></td>
 	</tr>
 	<tr>

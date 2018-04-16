@@ -1,5 +1,7 @@
 package org.rainbow.mapper;
 
+import java.util.List;
+
 import org.rainbow.pojo.TbStaff;
 
 public interface TbStaffMapper {
@@ -14,4 +16,8 @@ public interface TbStaffMapper {
     int updateByPrimaryKeySelective(TbStaff record);
 
     int updateByPrimaryKey(TbStaff record);
+    
+    List<TbStaff> selectAll();
+    
+    List<TbStaff> searchStaff(String key);
 }
