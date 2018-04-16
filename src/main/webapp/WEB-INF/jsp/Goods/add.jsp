@@ -149,13 +149,6 @@
 		<td><input type="text" id="mark" name="mark"/></td>
 	</tr>
 	<tr>
-		<td class="tableleft">状态</td>
-		<td>
-			<input type="radio" name="status" value="1" checked/> 启用
-			<input type="radio" name="status" value="0"/> 禁用
-		</td>
-	</tr>
-	<tr>
 		<td class="tableleft"></td>
 		<td>
 			<button id="submit" class="btn btn-primary" type="button">保存</button>&nbsp;&nbsp;
@@ -170,7 +163,7 @@
 <script>
     $(function () {
         $('#backid').click(function () {
-            window.location.href = "index.html";
+            window.location.href = "${pageContext.request.contextPath}/Goods";
         });
     });
 </script>

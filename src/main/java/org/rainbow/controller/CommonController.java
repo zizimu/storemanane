@@ -17,10 +17,5 @@ public class CommonController {
 	public String showIndex(){
 		return "index";
 	}
-
-	/*@RequestMapping("/{page}")
-	public String page2jsp(@PathVariable String page){
-		return page;
-	}*/
 	
 }

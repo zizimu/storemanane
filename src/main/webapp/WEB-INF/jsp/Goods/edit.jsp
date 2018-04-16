@@ -142,13 +142,6 @@
 		<td class="tableleft">备注</td>
 		<td><input type="text" id="mark" name="mark" value="${goods.mark}"/></td>
 	</tr>
-	<tr>
-		<td class="tableleft">状态</td>
-		<td>
-			<input type="radio" name="status" value="1" checked/> 启用
-			<input type="radio" name="status" value="0"/> 禁用
-		</td>
-	</tr>
     <tr>
         <td class="tableleft"></td>
         <td>
@@ -162,7 +155,7 @@
 <script>
     $(function () {       
 		$('#backid').click(function(){
-				window.location.href="index.html";
+				window.location.href="${pageContext.request.contextPath}/Goods";
 		 });
 
     });

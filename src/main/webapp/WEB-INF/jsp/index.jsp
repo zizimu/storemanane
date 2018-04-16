@@ -77,7 +77,7 @@
     BUI.use('common/main',function(){
         var config = [{id:'1',menu:[{text:'系统管理',items:[
         	{id:'12',text:'商品管理',href:'Goods'},
-        	{id:'13',text:'品牌管理',href:'Brand/index'},
+        	{id:'13',text:'品牌管理',href:'Brand'},
         	{id:'14',text:'商品类型',href:'Type/index'},
         	{id:'15',text:'库存管理',href:'Stock/index'},	
         	{id:'16',text:'员工管理',href:'Staff/index'},     	

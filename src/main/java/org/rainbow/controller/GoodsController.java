@@ -15,6 +15,7 @@ import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
+ *
  * Description:
  *
  * @author ross
@@ -38,7 +39,7 @@ public class GoodsController {
 	}
 
 	@RequestMapping(value = "/add",method = RequestMethod.GET)
-	public String gotoAddPage(){
+	public String go2AddPage(){
 		return "Goods/add";
 	}
 
