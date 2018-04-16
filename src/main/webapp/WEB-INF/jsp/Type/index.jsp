@@ -162,7 +162,7 @@
 <script>
     $(function () {
         $('#addnew').click(function () {
-            window.location.href = "add";
+            window.location.href = "${pageContext.request.contextPath}/Type/add";
         });
     });
 </script>
