@@ -122,4 +122,21 @@
             mark = #{mark,jdbcType=VARCHAR}
         where staff_id = #{staffId,jdbcType=BIGINT}
     </update>
+     
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_staff
+	    where status = 1
+        ORDER BY create_time DESC
+    </select>
+	<!--TODO ：搜索的sql语句-->
+    <select id="searchStaff" resultMap="BaseResultMap" parameterType="java.lang.String">
+	    select
+	    <include refid="Base_Column_List" />
+	    from tb_staff
+	    where staff_name like '%' #{key,jdbcType=VARCHAR} '%'
+	    	or staff_id like '%' #{key} '%'
+	    ORDER BY create_time DESC
+    </select>
 </mapper>
