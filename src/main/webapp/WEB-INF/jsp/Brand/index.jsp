@@ -22,7 +22,8 @@
 	        src="https://cdn-1251943624.file.myqcloud.com/storeManage/Js/ckform.js"></script>
 	<script type="text/javascript"
 	        src="https://cdn-1251943624.file.myqcloud.com/storeManage/Js/common.js"></script>
-
+	<script type="text/javascript"
+	        src="https://cdn-1251943624.file.myqcloud.com/layer/layer.js"></script>
 	<style type="text/css">
 		body {
 			padding-bottom: 40px;
@@ -87,7 +88,7 @@
 	</script>
 </head>
 <body>
-<form class="form-inline definewidth m20" action="${pageContext.request.contextPath}/Goods/s"
+<form class="form-inline definewidth m20" action="${pageContext.request.contextPath}/Brand/s"
       method="get">
 	品牌编号/名称： <input type="text" name="wd" id="wd" class="abc input-default" placeholder="品牌编号/名称：">&nbsp;&nbsp;
 	<button type="submit" class="btn btn-primary">查询</button>

@@ -26,8 +26,9 @@
 		select
 		<include refid="Base_Column_List"/>
 		from tb_brand
-		where brand_id like '%' #{key,jdbcType=VARCHAR} '%'
-		or brand_name like '%' #{key} '%'
+		where status = 1
+        and ( brand_id like '%' #{key,jdbcType=VARCHAR} '%'
+		or brand_name like '%' #{key} '%' )
 		ORDER BY create_time DESC
 	</select>
 
@@ -59,9 +60,6 @@
             <if test="brandName != null" >
                 brand_name,
             </if>
-            <if test="status != null" >
-                status,
-            </if>
             <if test="mark != null" >
                 mark,
             </if>
@@ -73,9 +71,6 @@
             </if>
             <if test="brandName != null" >
                 #{brandName,jdbcType=VARCHAR},
-            </if>
-            <if test="status != null" >
-                #{status,jdbcType=INTEGER},
             </if>
             <if test="mark != null" >
                 #{mark,jdbcType=VARCHAR},

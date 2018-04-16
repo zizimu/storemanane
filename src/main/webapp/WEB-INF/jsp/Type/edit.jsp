@@ -30,35 +30,60 @@
                 padding-right: 5px;
             }
         }
-
-
     </style>
+    <script type="text/javascript">
+        $(function () {
+            $("#submit").click(function () {
+                var data = {
+                    "typeId":${type.typeId},
+                    "typeName" : $("#TypeName").val(),
+                    "mark": $("#mark").val(),
+                };
+                $.ajax({
+                    url: "${pageContext.request.contextPath}/Type/"+${type.typeId},
+                    type: 'PUT',
+                    dataType: "json",
+                    data: JSON.stringify(data),
+                    contentType: 'application/json;charset=UTF-8',
+                    beforeSend: function () {
+                        console.log("正在进行，请稍候");
+                    },
+                    success: function (responseStr) {
+                        if (responseStr['stat'] == 200) {
+                            window.location.href="${pageContext.request.contextPath}/Type";
+                        } else {
+                            alert(responseStr['message']);
+                        }
+                    },
+                    error: function () {
+                        console.log("error!");
+                    }
+                })
+            })
+        })
+    </script>
 </head>
 <body>
 <form action="index.html" method="post" class="definewidth m20">
 <input type="hidden" name="id" value="" />
 <table class="table table-bordered table-hover ">
-    <tr>
-        <td width="10%" class="tableleft">机构号</td>
-        <td><input type="text" name="grouptitle" value=""/></td>
-    </tr>
-    <tr>
-        <td class="tableleft">机构名称</td>
-        <td ><input type="text" name="moduletitle" value=""/></td>
-    </tr>  
-    <tr>
-        <td class="tableleft">状态</td>
-        <td >
-            <input type="radio" name="status" value="1" checked/> 启用
-           <input type="radio" name="status" value="0" /> 禁用
-        </td>
-    </tr>
-    <tr>
-        <td class="tableleft"></td>
-        <td>
-            <button type="submit" class="btn btn-primary" type="button">保存</button> &nbsp;&nbsp;<button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
-        </td>
-    </tr>
+	<tr>
+		<td width="10%" class="tableleft">类型名称</td>
+		<td><input type="text" id="TypeName" name="TypeName"/></td>
+	</tr>
+	<tr>
+		<td class="tableleft">备注</td>
+		<td><input type="text" id="mark" name="mark"/></td>
+	</tr>
+	<tr>
+		<td class="tableleft"></td>
+		<td>
+			<button id="submit" class="btn btn-primary" type="button">保存</button>&nbsp;&nbsp;
+			<button type="button" class="btn btn-success" name="backid" id="backid">
+				返回列表
+			</button>
+		</td>
+	</tr>
 </table>
 </form>
 </body>
@@ -66,7 +91,7 @@
 <script>
     $(function () {       
 		$('#backid').click(function(){
-				window.location.href="index.html";
+				window.location.href="${pageContext.request.contextPath}/Type";
 		 });
 
     });

@@ -27,7 +27,7 @@ public class BrandServiceImpl implements BrandService {
 
 	@Override
 	public int addBrand(TbBrand brand) {
-		return brandMapper.insert(brand);
+		return brandMapper.insertSelective(brand);
 	}
 
 	@Override
