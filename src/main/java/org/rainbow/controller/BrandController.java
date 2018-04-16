@@ -28,11 +28,6 @@ public class BrandController {
 	@Autowired
 	private BrandService brandService;
 
-	@RequestMapping("/index")
-	public String index() {
-		return "Brand/index";
-	}
-
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(@RequestParam(value = "page",defaultValue = "1")int page, Model  model){
 		PageHelper.startPage(page,8);
