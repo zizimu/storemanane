@@ -45,7 +45,7 @@
                     "mark": $("#mark").val()
                 };
                 $.ajax({
-                    url: "${pageContext.request.contextPath}/Type/add",
+                    url: "${pageContext.request.contextPath}/Type",
                     type: 'POST',
                     dataType: "json",
                     data: JSON.stringify(data),
