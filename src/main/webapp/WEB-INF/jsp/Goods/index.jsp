@@ -112,6 +112,8 @@
 		<th style="text-align: center">保质期</th>
 		<th style="text-align: center">管理操作</th>
 	</tr>
+	</thead>
+	<tbody>
 	<c:forEach items="${goodsList}" var="p" varStatus="st">
 		<tr>
 			<td style="text-align: center">${p.goodsId}</td>
@@ -134,7 +136,7 @@
 			</td>
 		</tr>
 	</c:forEach>
-	</thead>
+	</tbody>
 </table>
 <div class="inline pull-right page">
 	总共${page.total}条记录 第 ${page.pageNum}/${page.pages} 页

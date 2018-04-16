@@ -14,6 +14,23 @@
         brand_id, brand_name, create_time, status, mark
     </sql>
 
+    <select id="selectAll" resultMap="BaseResultMap">
+	    select
+	    <include refid="Base_Column_List"/>
+	    from tb_brand
+	    where status = 1
+	    ORDER BY create_time DESC
+    </select>
+
+	<select id="searchBrand" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List"/>
+		from tb_brand
+		where brand_id like '%' #{key,jdbcType=VARCHAR} '%'
+		or brand_name like '%' #{key} '%'
+		ORDER BY create_time DESC
+	</select>
+
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
         select 
         <include refid="Base_Column_List" />
@@ -42,15 +59,13 @@
             <if test="brandName != null" >
                 brand_name,
             </if>
-            <if test="createTime != null" >
-                create_time,
-            </if>
             <if test="status != null" >
                 status,
             </if>
             <if test="mark != null" >
                 mark,
             </if>
+		        create_time
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
             <if test="brandId != null" >
@@ -59,15 +74,13 @@
             <if test="brandName != null" >
                 #{brandName,jdbcType=VARCHAR},
             </if>
-            <if test="createTime != null" >
-                #{createTime,jdbcType=TIMESTAMP},
-            </if>
             <if test="status != null" >
                 #{status,jdbcType=INTEGER},
             </if>
             <if test="mark != null" >
                 #{mark,jdbcType=VARCHAR},
             </if>
+	        	now()
         </trim>
     </insert>
 
