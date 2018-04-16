@@ -1,6 +1,5 @@
 package org.rainbow.service.impl;
 
-import org.rainbow.mapper.TbGoodsMapper;
 import org.rainbow.mapper.TbGoodsTypeMapper;
 import org.rainbow.pojo.TbGoodsType;
 import org.rainbow.service.TypeService;

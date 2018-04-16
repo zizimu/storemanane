@@ -23,7 +23,6 @@ public class TypeController {
 	@Autowired
 	private TypeService typeService;
 
-
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(@RequestParam(value = "page",defaultValue = "1")int page, Model  model){
 		PageHelper.startPage(page,8);
