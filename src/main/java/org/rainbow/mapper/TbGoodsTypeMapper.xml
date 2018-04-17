@@ -20,13 +20,13 @@
         from tb_goods_type
         where type_id = #{typeId,jdbcType=BIGINT}
     </select>
-    <select id="selectAll" resultType="org.rainbow.pojo.TbGoodsType">
+    <select id="selectAll" resultMap="BaseResultMap">
         select
 	        <include refid="Base_Column_List"/>
 	    from tb_goods_type
 	    where status=1
     </select>
-	<select id="searchType" resultType="org.rainbow.pojo.TbGoodsType" parameterType="java.lang.String">
+	<select id="searchType" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List"/>
 		from tb_goods_type
