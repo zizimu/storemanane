@@ -20,6 +20,7 @@
         from tb_goods_type
         where type_id = #{typeId,jdbcType=BIGINT}
     </select>
+
     <select id="selectAll" resultMap="BaseResultMap">
         select
 	        <include refid="Base_Column_List"/>
@@ -36,7 +37,13 @@
 		ORDER BY create_time DESC
 	</select>
 
-	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    <select id="getAllTypeName" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_goods_type
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
         delete from tb_goods_type
         where type_id = #{typeId,jdbcType=BIGINT}
     </delete>

@@ -1,5 +1,6 @@
 <%@page contentType="text/html"%>
 <%@page pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,7 +55,7 @@
                             alert(responseStr['message'])
                         }
                     },
-                    error: function (responseStr) {
+                    error: function () {
                         console.log("error");
                     }
                 });
@@ -108,11 +109,23 @@
 	</tr>
 	<tr>
 		<td class="tableleft">类型</td>
-		<td><input type="text" id="goodsType" name="goodsType" value="${goods.goodsType}"/></td>
+		<td><input type="text" id="goodsType" name="goodsType" value="${goods.goodsType}" list="typeList"/>
+			<datalist id="typeList">
+				<c:forEach items="${types}" var="p">
+					<option value="${p.typeId}">${p.typeName}</option>
+				</c:forEach>
+			</datalist>
+		</td>
 	</tr>
 	<tr>
 		<td class="tableleft">品牌</td>
-		<td><input type="text" id="goodsBrand" name="goodsBrand" value="${goods.goodsBrand}"/></td>
+		<td><input type="text" id="goodsBrand" name="goodsBrand" value="${goods.goodsBrand}" list="BrandList"/>
+			<datalist id="BrandList">
+				<c:forEach items="${brands}" var="p">
+					<option value="${p.brandId}">${p.brandName}</option>
+				</c:forEach>
+			</datalist>
+		</td>
 	</tr>
 	<tr>
 		<td class="tableleft">图片</td>

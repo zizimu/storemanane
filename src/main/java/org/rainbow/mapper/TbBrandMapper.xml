@@ -39,6 +39,12 @@
         where brand_id = #{brandId,jdbcType=BIGINT}
     </select>
 
+    <select id="getAllBrandName" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_brand
+    </select>
+
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
         delete from tb_brand
         where brand_id = #{brandId,jdbcType=BIGINT}

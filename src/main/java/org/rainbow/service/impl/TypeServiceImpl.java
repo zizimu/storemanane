@@ -6,7 +6,9 @@ import org.rainbow.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -45,5 +47,15 @@ public class TypeServiceImpl implements TypeService {
 	@Override
 	public List<TbGoodsType> searchType(String key) {
 		return typeMapper.searchType(key);
+	}
+
+	@Override
+	public Map<Long, String> getAllTypeName() {
+		Map<Long, String> result = new HashMap<>();
+		List<TbGoodsType> types = typeMapper.getAllTypeName();
+		for (TbGoodsType temp : types) {
+			result.put(temp.getTypeId(), temp.getTypeName());
+		}
+		return result;
 	}
 }

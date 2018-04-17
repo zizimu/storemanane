@@ -1,4 +1,3 @@
-<%--suppress ALL --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" %>
 <%@page pageEncoding="UTF-8" %>
@@ -30,7 +29,6 @@
 		}
 
 		@media (max-width: 980px) {
-			/* Enable use of floated navbar text */
 			.navbar-text.pull-right {
 				float: none;
 				padding-left: 5px;
@@ -110,15 +108,27 @@
 	</tr>
 	<tr>
 		<td class="tableleft">价格</td>
-		<td><input type="text" id="gprice" name="gprice"/></td>
+		<td><input type="" id="gprice" name="gprice"/></td>
 	</tr>
 	<tr>
 		<td class="tableleft">类型</td>
-		<td><input type="text" id="gtype" name="gtype"/></td>
+		<td><input type="text" id="gtype" name="gtype" list="typeList"/>
+			<datalist id="typeList">
+				<c:forEach items="${types}" var="p">
+					<option value="${p.typeId}">${p.typeName}</option>
+				</c:forEach>
+			</datalist>
+		</td>
 	</tr>
 	<tr>
 		<td class="tableleft">品牌</td>
-		<td><input type="text" id="gbrand" name="gbrand"/></td>
+		<td><input type="text" id="gbrand" name="gbrand" list="BrandList"/>
+			<datalist id="BrandList">
+				<c:forEach items="${brands}" var="p">
+					<option value="${p.brandId}">${p.brandName}</option>
+				</c:forEach>
+			</datalist>
+		</td>
 	</tr>
 	<tr>
 		<td class="tableleft">图片</td>
@@ -134,15 +144,15 @@
 	</tr>
 	<tr>
 		<td class="tableleft">规格</td>
-		<td><input type="text" id="gspc" name="gspc"/></td>
+		<td><input type="number" id="gspc" name="gspc"/></td>
 	</tr>
 	<tr>
 		<td class="tableleft">生产日期</td>
-		<td><input type="text" id="gcreateTime" name="gcreatedate"/></td>
+		<td><input type="date" id="gcreateTime" name="gcreatedate"/></td>
 	</tr>
 	<tr>
 		<td class="tableleft">保质期</td>
-		<td><input type="text" id="gshelfilfe" name="gshelflife"/></td>
+		<td><input type="number" id="gshelfilfe" name="gshelflife"/></td>
 	</tr>
 	<tr>
 		<td class="tableleft">备注</td>

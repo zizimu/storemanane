@@ -3,12 +3,18 @@ package org.rainbow.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.rainbow.pojo.TbGoods;
+import org.rainbow.service.BrandService;
 import org.rainbow.service.GoodsService;
+import org.rainbow.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,8 +31,19 @@ import java.util.Map;
 @RequestMapping("/Goods")
 public class GoodsController {
 
+	@InitBinder
+	public void initBinder(ServletRequestDataBinder bin){
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		CustomDateEditor cust = new CustomDateEditor(sdf,true);
+		bin.registerCustomEditor(Date.class,cust);
+	}
+
 	@Autowired
 	private GoodsService goodsService;
+	@Autowired
+	private TypeService typeService;
+	@Autowired
+	private BrandService brandService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
@@ -35,11 +52,15 @@ public class GoodsController {
 		PageInfo<TbGoods> p = new PageInfo<>(goods);
 		model.addAttribute("goodsList", goods);
 		model.addAttribute("page", p);
+		model.addAttribute("brands",brandService.getAllBrandName());
+		model.addAttribute("types",typeService.getAllTypeName());
 		return "Goods/index";
 	}
 
 	@RequestMapping(value = "/add",method = RequestMethod.GET)
-	public String go2AddPage(){
+	public String go2AddPage(Model model){
+		model.addAttribute("brands",brandService.getAllBrand());
+		model.addAttribute("types",typeService.getAllType());
 		return "Goods/add";
 	}
 
@@ -65,6 +86,8 @@ public class GoodsController {
 	public String edit(@PathVariable("id") long id, Model model) {
 		TbGoods goods = goodsService.getGoodsByID(id);
 		model.addAttribute("goods", goods);
+		model.addAttribute("brands",brandService.getAllBrand());
+		model.addAttribute("types",typeService.getAllType());
 		return "Goods/edit";
 	}
 

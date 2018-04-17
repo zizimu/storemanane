@@ -25,6 +25,28 @@
           and goods_id = #{goodsId,jdbcType=BIGINT}
     </select>
 
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_stock
+        ORDER BY create_time DESC
+    </select>
+
+    <select id="searchStock" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_stock
+        where goods_id like '%' #{key} '%'
+        or batch_id like '%' #{key} '%'
+        ORDER BY create_time DESC
+    </select>
+
+    <select id="getAllBatch" resultType="java.lang.Long">
+        select batch_id
+        from tb_stock
+        group by batch_id
+    </select>
+
     <delete id="deleteByPrimaryKey" parameterType="org.rainbow.pojo.TbStockKey" >
         delete from tb_stock
         where batch_id = #{batchId,jdbcType=BIGINT}
@@ -58,15 +80,13 @@
             <if test="storeId != null" >
                 store_id,
             </if>
-            <if test="createTime != null" >
-                create_time,
-            </if>
             <if test="status != null" >
                 status,
             </if>
             <if test="mark != null" >
                 mark,
             </if>
+              create_time
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
             <if test="batchId != null" >
@@ -84,15 +104,13 @@
             <if test="storeId != null" >
                 #{storeId,jdbcType=BIGINT},
             </if>
-            <if test="createTime != null" >
-                #{createTime,jdbcType=TIMESTAMP},
-            </if>
             <if test="status != null" >
                 #{status,jdbcType=INTEGER},
             </if>
             <if test="mark != null" >
                 #{mark,jdbcType=VARCHAR},
             </if>
+              now()
         </trim>
     </insert>
 
