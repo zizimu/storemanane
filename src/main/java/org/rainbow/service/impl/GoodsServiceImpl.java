@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -52,5 +53,10 @@ public class GoodsServiceImpl implements GoodsService {
 	@Override
 	public List<TbGoods> searchGoods(String key) {
 		return tbGoodsMapper.searchGoods(key);
+	}
+
+	@Override
+	public Map<Long, String> getAllGoodsIdName() {
+		return tbGoodsMapper.getAllGoodsIdName();
 	}
 }

@@ -47,7 +47,14 @@
 	    ORDER BY create_time DESC
     </select>
 
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+	<select id="getAllGoodsIdName" resultType="java.util.Map">
+        select goods_id,goods_name
+        from tb_goods
+        where status = 1
+        ORDER BY create_time DESC
+    </select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
         delete from tb_goods
         where goods_id = #{goodsId,jdbcType=BIGINT}
     </delete>

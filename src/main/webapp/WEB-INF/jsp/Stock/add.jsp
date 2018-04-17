@@ -1,5 +1,8 @@
 <%@page contentType="text/html"%>
 <%@page pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,24 +23,26 @@
         .sidebar-nav {
             padding: 9px 0;
         }
-
         @media (max-width: 980px) {
-            /* Enable use of floated navbar text */
             .navbar-text.pull-right {
                 float: none;
                 padding-left: 5px;
                 padding-right: 5px;
             }
         }
-
-
     </style>
 </head>
 <form action="index.html" method="post">
 <table class="table table-bordered table-hover definewidth m10">
     <tr>
-        <td width="10%" class="tableleft">商品编号</td>
-        <td><input type="text" name="gid"/></td>
+        <td width="10%" class="tableleft">库存编号</td>
+        <td><input name="batchId" type="text" id="batchId" list="batchList"/>
+            <datalist id="batchList">
+                <c:forEach items="${batchs}" var="p">
+                    <option value="${p}">${p}</option>
+                </c:forEach>
+            </datalist>
+        </td>
     </tr>
     <tr>
         <td class="tableleft">商品名称</td>

@@ -1,4 +1,3 @@
-<%--suppress ALL --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" %>
 <%@page pageEncoding="UTF-8" %>
@@ -30,7 +29,6 @@
 		}
 
 		@media (max-width: 980px) {
-			/* Enable use of floated navbar text */
 			.navbar-text.pull-right {
 				float: none;
 				padding-left: 5px;
@@ -114,11 +112,23 @@
 	</tr>
 	<tr>
 		<td class="tableleft">类型</td>
-		<td><input type="text" id="gtype" name="gtype"/></td>
+		<td><input type="text" id="gtype" name="gtype" list="typeList"/>
+			<datalist id="typeList">
+				<c:forEach items="${types}" var="p">
+					<option value="${p.typeId}">${p.typeName}</option>
+				</c:forEach>
+			</datalist>
+		</td>
 	</tr>
 	<tr>
 		<td class="tableleft">品牌</td>
-		<td><input type="text" id="gbrand" name="gbrand"/></td>
+		<td><input type="text" id="gbrand" name="gbrand" list="BrandList"/>
+			<datalist id="BrandList">
+				<c:forEach items="${brands}" var="p">
+					<option value="${p.brandId}">${p.brandName}</option>
+				</c:forEach>
+			</datalist>
+		</td>
 	</tr>
 	<tr>
 		<td class="tableleft">图片</td>

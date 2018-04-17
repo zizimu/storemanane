@@ -3,6 +3,7 @@ package org.rainbow.mapper;
 import org.rainbow.pojo.TbGoods;
 
 import java.util.List;
+import java.util.Map;
 
 public interface TbGoodsMapper {
     int deleteByPrimaryKey(Long goodsId);
@@ -20,4 +21,6 @@ public interface TbGoodsMapper {
     List<TbGoods> selectAll();
 
     List<TbGoods> searchGoods(String key);
+
+    Map<Long,String> getAllGoodsIdName();
 }

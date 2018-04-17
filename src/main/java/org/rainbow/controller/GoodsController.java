@@ -3,7 +3,9 @@ package org.rainbow.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.rainbow.pojo.TbGoods;
+import org.rainbow.service.BrandService;
 import org.rainbow.service.GoodsService;
+import org.rainbow.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +29,10 @@ public class GoodsController {
 
 	@Autowired
 	private GoodsService goodsService;
+	@Autowired
+	private TypeService typeService;
+	@Autowired
+	private BrandService brandService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
@@ -39,7 +45,9 @@ public class GoodsController {
 	}
 
 	@RequestMapping(value = "/add",method = RequestMethod.GET)
-	public String go2AddPage(){
+	public String go2AddPage(Model model){
+		model.addAttribute("brands",brandService.getAllBrand());
+		model.addAttribute("types",typeService.getAllType());
 		return "Goods/add";
 	}
 
@@ -65,6 +73,8 @@ public class GoodsController {
 	public String edit(@PathVariable("id") long id, Model model) {
 		TbGoods goods = goodsService.getGoodsByID(id);
 		model.addAttribute("goods", goods);
+		model.addAttribute("brands",brandService.getAllBrand());
+		model.addAttribute("types",typeService.getAllType());
 		return "Goods/edit";
 	}
 
