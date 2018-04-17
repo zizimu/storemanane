@@ -1,11 +1,13 @@
 package org.rainbow.service.impl;
 
 import org.rainbow.mapper.TbGoodsMapper;
+import org.rainbow.pojo.TbBrand;
 import org.rainbow.pojo.TbGoods;
 import org.rainbow.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -57,6 +59,11 @@ public class GoodsServiceImpl implements GoodsService {
 
 	@Override
 	public Map<Long, String> getAllGoodsIdName() {
-		return tbGoodsMapper.getAllGoodsIdName();
+		Map<Long, String> result = new HashMap<>();
+		List<TbGoods> goods = tbGoodsMapper.getAllGoodsIdName();
+		for (TbGoods temp : goods) {
+			result.put(temp.getGoodsId(), temp.getGoodsName());
+		}
+		return result;
 	}
 }

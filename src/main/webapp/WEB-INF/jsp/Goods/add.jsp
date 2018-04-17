@@ -108,7 +108,7 @@
 	</tr>
 	<tr>
 		<td class="tableleft">价格</td>
-		<td><input type="text" id="gprice" name="gprice"/></td>
+		<td><input type="" id="gprice" name="gprice"/></td>
 	</tr>
 	<tr>
 		<td class="tableleft">类型</td>
@@ -144,15 +144,15 @@
 	</tr>
 	<tr>
 		<td class="tableleft">规格</td>
-		<td><input type="text" id="gspc" name="gspc"/></td>
+		<td><input type="number" id="gspc" name="gspc"/></td>
 	</tr>
 	<tr>
 		<td class="tableleft">生产日期</td>
-		<td><input type="text" id="gcreateTime" name="gcreatedate"/></td>
+		<td><input type="date" id="gcreateTime" name="gcreatedate"/></td>
 	</tr>
 	<tr>
 		<td class="tableleft">保质期</td>
-		<td><input type="text" id="gshelfilfe" name="gshelflife"/></td>
+		<td><input type="number" id="gshelfilfe" name="gshelflife"/></td>
 	</tr>
 	<tr>
 		<td class="tableleft">备注</td>

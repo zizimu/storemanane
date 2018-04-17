@@ -22,5 +22,5 @@ public interface TbGoodsMapper {
 
     List<TbGoods> searchGoods(String key);
 
-    Map<Long,String> getAllGoodsIdName();
+    List<TbGoods> getAllGoodsIdName();
 }

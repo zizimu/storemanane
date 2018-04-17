@@ -20,4 +20,6 @@ public interface TbBrandMapper {
     List<TbBrand> selectAll();
 
     List<TbBrand> searchBrand(String key);
+
+    List<TbBrand> getAllBrandName();
 }

@@ -6,7 +6,9 @@ import org.rainbow.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -43,5 +45,15 @@ public class BrandServiceImpl implements BrandService {
 	@Override
 	public List<TbBrand> searchBrand(String key) {
 		return brandMapper.searchBrand(key);
+	}
+
+	@Override
+	public Map<Long, String> getAllBrandName() {
+		Map<Long, String> result = new HashMap<>();
+		List<TbBrand> brands = brandMapper.getAllBrandName();
+		for (TbBrand temp : brands) {
+			result.put(temp.getBrandId(), temp.getBrandName());
+		}
+		return result;
 	}
 }

@@ -47,11 +47,10 @@
 	    ORDER BY create_time DESC
     </select>
 
-	<select id="getAllGoodsIdName" resultType="java.util.Map">
-        select goods_id,goods_name
+	<select id="getAllGoodsIdName" resultMap="BaseResultMap">
+        select
+			<include refid="Base_Column_List" />
         from tb_goods
-        where status = 1
-        ORDER BY create_time DESC
     </select>
 
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >

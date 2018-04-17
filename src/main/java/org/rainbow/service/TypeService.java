@@ -3,6 +3,7 @@ package org.rainbow.service;
 import org.rainbow.pojo.TbGoodsType;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,4 +23,6 @@ public interface TypeService {
 	int updateType(TbGoodsType goodsType);
 
 	List<TbGoodsType> searchType(String key);
+
+	Map<Long,String> getAllTypeName();
 }

@@ -3,6 +3,7 @@ package org.rainbow.service;
 import org.rainbow.pojo.TbBrand;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,4 +23,6 @@ public interface BrandService {
 	int updateBrand(TbBrand brand);
 
 	List<TbBrand> searchBrand(String key);
+
+	Map<Long,String> getAllBrandName();
 }

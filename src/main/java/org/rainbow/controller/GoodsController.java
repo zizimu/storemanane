@@ -7,10 +7,14 @@ import org.rainbow.service.BrandService;
 import org.rainbow.service.GoodsService;
 import org.rainbow.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +31,13 @@ import java.util.Map;
 @RequestMapping("/Goods")
 public class GoodsController {
 
+	@InitBinder
+	public void initBinder(ServletRequestDataBinder bin){
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		CustomDateEditor cust = new CustomDateEditor(sdf,true);
+		bin.registerCustomEditor(Date.class,cust);
+	}
+
 	@Autowired
 	private GoodsService goodsService;
 	@Autowired
@@ -41,6 +52,8 @@ public class GoodsController {
 		PageInfo<TbGoods> p = new PageInfo<>(goods);
 		model.addAttribute("goodsList", goods);
 		model.addAttribute("page", p);
+		model.addAttribute("brands",brandService.getAllBrandName());
+		model.addAttribute("types",typeService.getAllTypeName());
 		return "Goods/index";
 	}
 

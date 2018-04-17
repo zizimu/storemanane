@@ -20,4 +20,6 @@ public interface TbGoodsTypeMapper {
     List<TbGoodsType> selectAll();
 
     List<TbGoodsType> searchType(String key);
+
+    List<TbGoodsType> getAllTypeName();
 }
