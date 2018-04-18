@@ -69,11 +69,11 @@
 <table class="table table-bordered table-hover ">
 	<tr>
 		<td width="10%" class="tableleft">类型名称</td>
-		<td><input type="text" id="TypeName" name="TypeName"/>${type.typeName}</td>
+		<td><input type="text" id="TypeName" name="TypeName" value="${type.typeName}"/></td>
 	</tr>
 	<tr>
 		<td class="tableleft">备注</td>
-		<td><input type="text" id="mark" name="mark"/>${type.mark}</td>
+		<td><input type="text" id="mark" name="mark" value="${type.mark}"/></td>
 	</tr>
 	<tr>
 		<td class="tableleft"></td>
