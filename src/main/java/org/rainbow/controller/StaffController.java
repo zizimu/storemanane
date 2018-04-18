@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.rainbow.pojo.TbGoods;
 import org.rainbow.pojo.TbStaff;
 import org.rainbow.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -100,6 +101,17 @@ public class StaffController {
 		model.addAttribute("staff",staff);
 		return "Staff/edit";
 		
+	}
+	
+	@RequestMapping(value = "/s",method = RequestMethod.GET)
+	public String search(@RequestParam("wd")String wd,@RequestParam(value = "page", defaultValue = "1") int page, Model model){
+		PageHelper.startPage(page, 8);
+		List<TbStaff> staff = staffService.searchStaff(wd);
+		PageInfo<TbStaff> p = new PageInfo<>(staff);
+		model.addAttribute("staffList", staff);
+		model.addAttribute("wd",wd);
+		model.addAttribute("page", p);
+		return "Staff/index";
 	}
 
 }
