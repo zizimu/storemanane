@@ -53,11 +53,11 @@ body {
 			title:'删除',
 			btn:['确定','取消']
 		},function(){
-			deleteGoods(id);
+			deleteStaff(id);
 		}); */
-		deleteGoods(id);
+		deleteStaff(id);
 	};
-	function deleteGoods(id){
+	function deleteStaff(id){
 	/* layer.load(); 控件的加载框 */
 	$.ajax({
 		url:"${pageContext.request.contextPath}/Staff/" + id,
@@ -118,7 +118,7 @@ body {
 								编辑
 							</button>
 						</a>
-							<button class="btn btn-success" style="margin-left: 5px;" onclick="deleteGoods(${s.staffId})">
+							<button class="btn btn-success" style="margin-left: 5px;" onclick="deleteStaff(${s.staffId})">
 								删除
 							</button>
 						</td>
@@ -130,32 +130,32 @@ body {
 	总共${page.total}条记录 第 ${page.pageNum}/${page.pages} 页
 	<c:choose>
 		<c:when test="${wd!=null}">
-			<a href="${pageContext.request.contextPath}/Goods/s?wd=${wd}&page=${page.firstPage}">第一页</a>
+			<a href="${pageContext.request.contextPath}/Staff/s?wd=${wd}&page=${page.firstPage}">第一页</a>
 			<c:choose>
 				<c:when test="${!page.isFirstPage}">
-					<a href="${pageContext.request.contextPath}/Goods/s?wd=${wd}&page=${page.prePage}">上一页</a>
+					<a href="${pageContext.request.contextPath}/Staff/s?wd=${wd}&page=${page.prePage}">上一页</a>
 				</c:when>
 			</c:choose>
 			<c:choose>
 				<c:when test="${!page.isLastPage}">
-					<a href="${pageContext.request.contextPath}/Goods/s?wd=${wd}&page=${page.nextPage}">下一页</a>
+					<a href="${pageContext.request.contextPath}/Staff/s?wd=${wd}&page=${page.nextPage}">下一页</a>
 				</c:when>
 			</c:choose>
-			<a href="${pageContext.request.contextPath}/Goods/s?wd=${wd}&page=${page.lastPage}">最后页</a>
+			<a href="${pageContext.request.contextPath}/Staff/s?wd=${wd}&page=${page.lastPage}">最后页</a>
 		</c:when>
 		<c:otherwise>
-			<a href="${pageContext.request.contextPath}/Goods?page=${page.firstPage}">第一页</a>
+			<a href="${pageContext.request.contextPath}/Staff?page=${page.firstPage}">第一页</a>
 			<c:choose>
 				<c:when test="${!page.isFirstPage}">
-					<a href="${pageContext.request.contextPath}/Goods?page=${page.prePage}">上一页</a>
+					<a href="${pageContext.request.contextPath}/Staff?page=${page.prePage}">上一页</a>
 				</c:when>
 			</c:choose>
 			<c:choose>
 				<c:when test="${!page.isLastPage}">
-					<a href="${pageContext.request.contextPath}/Goods?page=${page.nextPage}">下一页</a>
+					<a href="${pageContext.request.contextPath}/Staff?page=${page.nextPage}">下一页</a>
 				</c:when>
 			</c:choose>
-			<a href="${pageContext.request.contextPath}/Goods?page=${page.lastPage}">最后页</a>
+			<a href="${pageContext.request.contextPath}/Staff?page=${page.lastPage}">最后页</a>
 		</c:otherwise>
 	</c:choose>
 </div>
