@@ -109,22 +109,20 @@
 	</tr>
 	<tr>
 		<td class="tableleft">类型</td>
-		<td><input type="text" id="goodsType" name="goodsType" value="${goods.goodsType}" list="typeList"/>
-			<datalist id="typeList">
+		<td><select type="text" id="goodsType" name="goodsType" style="width: 210px;">
 				<c:forEach items="${types}" var="p">
 					<option value="${p.typeId}">${p.typeName}</option>
 				</c:forEach>
-			</datalist>
+			</select>
 		</td>
 	</tr>
 	<tr>
 		<td class="tableleft">品牌</td>
-		<td><input type="text" id="goodsBrand" name="goodsBrand" value="${goods.goodsBrand}" list="BrandList"/>
-			<datalist id="BrandList">
+		<td><select type="text" id="goodsBrand" name="goodsBrand" style="width: 210px;">
 				<c:forEach items="${brands}" var="p">
 					<option value="${p.brandId}">${p.brandName}</option>
 				</c:forEach>
-			</datalist>
+		</select>
 		</td>
 	</tr>
 	<tr>
@@ -170,6 +168,9 @@
 		$('#backid').click(function(){
 				window.location.href="${pageContext.request.contextPath}/Goods";
 		 });
-
+        var selBrand="${goods.goodsBrand}";
+        $("#goodsBrand").find("option[value="+selBrand+"]").attr("selected",true);
+        var selType="${goods.goodsType}";
+        $("#goodsType").find("option[value="+selType+"]").attr("selected",true);
     });
 </script>
