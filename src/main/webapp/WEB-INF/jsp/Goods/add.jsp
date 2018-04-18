@@ -112,22 +112,20 @@
 	</tr>
 	<tr>
 		<td class="tableleft">类型</td>
-		<td><input type="text" id="gtype" name="gtype" list="typeList"/>
-			<datalist id="typeList">
+		<td><select type="text" id="gtype" name="gtype" list="typeList">
 				<c:forEach items="${types}" var="p">
 					<option value="${p.typeId}">${p.typeName}</option>
 				</c:forEach>
-			</datalist>
+			</select>
 		</td>
 	</tr>
 	<tr>
 		<td class="tableleft">品牌</td>
-		<td><input type="text" id="gbrand" name="gbrand" list="BrandList"/>
-			<datalist id="BrandList">
+		<td><select type="text" id="gbrand" name="gbrand">
 				<c:forEach items="${brands}" var="p">
 					<option value="${p.brandId}">${p.brandName}</option>
 				</c:forEach>
-			</datalist>
+			</select>
 		</td>
 	</tr>
 	<tr>

@@ -122,7 +122,7 @@
 				<c:forEach items="${brands}" var="p">
 					<option value="${p.brandId}">${p.brandName}</option>
 				</c:forEach>
-		</select>
+			</select>
 		</td>
 	</tr>
 	<tr>
