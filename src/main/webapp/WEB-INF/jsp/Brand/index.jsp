@@ -82,7 +82,7 @@
             });
             layer.closeAll();
         };
-	</script>
+	</script>z
 </head>
 <body>
 <form class="form-inline definewidth m20" action="${pageContext.request.contextPath}/Brand/s"

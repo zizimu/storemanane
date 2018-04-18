@@ -1,5 +1,7 @@
 package org.rainbow.mapper;
 
+import java.util.List;
+
 import org.rainbow.pojo.TbOrder;
 
 public interface TbOrderMapper {
@@ -14,4 +16,8 @@ public interface TbOrderMapper {
     int updateByPrimaryKeySelective(TbOrder record);
 
     int updateByPrimaryKey(TbOrder record);
+
+	List<TbOrder> searchOrder(String key);
+
+	List<TbOrder> selectAll();
 }

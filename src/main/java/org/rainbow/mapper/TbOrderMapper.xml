@@ -133,4 +133,21 @@
             mark = #{mark,jdbcType=VARCHAR}
         where order_id = #{orderId,jdbcType=BIGINT}
     </update>
+    
+      <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_order
+	    where status = 1
+        ORDER BY create_time DESC
+    </select>
+	<!--TODO ：搜索的sql语句-->
+    <select id="searchOrder" resultMap="BaseResultMap" parameterType="java.lang.String">
+	    select
+	    <include refid="Base_Column_List" />
+	    from tb_order
+	    where order_id like '%' #{key} '%'
+	    	and status = 1
+	    ORDER BY create_time DESC
+    </select>
 </mapper>
