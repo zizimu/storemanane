@@ -74,23 +74,19 @@
 <table class="table table-bordered table-hover definewidth m10">
     <tr>
         <td width="10%" class="tableleft">登录名</td>
-        <td><input type="text" name="staffName"/></td>
+        <td><input type="text" id="staffName"/></td>
     </tr>
     <tr>
         <td class="tableleft">联系电话</td>
-        <td><input type="text" name="staffPhone"/></td>
+        <td><input type="text" id="staffPhone"/></td>
     </tr>
     <tr>
         <td class="tableleft">所属门店</td>
-        <td><input type="text" name="storeId"/></td>
+        <td><input type="text" id="storeId"/></td>
     </tr>
-    <tr>
-        <td class="tableleft">创建时间</td>
-        <td><input type="text" name="createTime"/></td>
-    </tr>  
      <tr>
         <td class="tableleft">备注</td>
-        <td><input type="text" name="mark"/></td>
+        <td><input type="text" id="mark"/></td>
     </tr>
    <tr>
 		<td class="tableleft"></td>

@@ -85,7 +85,7 @@ body {
 <body>
 	<form class="form-inline definewidth m20"
 		action="${pageContext.request.contextPath}/Staff/s" method="get">
-		员工编号/名称： <input type="text" name="username" id="username"
+		员工编号/名称： <input type="text" name="wd" id="wd"
 			class="abc input-default" placeholder="员工编号/名称" value="">&nbsp;&nbsp;
 		<button type="submit" class="btn btn-primary">查询</button>
 		&nbsp;&nbsp; <a href="${pageContext.request.contextPath}/Staff/add">
