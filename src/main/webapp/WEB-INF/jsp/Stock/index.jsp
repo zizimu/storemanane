@@ -90,7 +90,7 @@
 	</script>
 </head>
 <body>
-<form class="form-inline definewidth m20" action="index.html"
+<form class="form-inline definewidth m20" action="${pageContext.request.contextPath}/Stock/s"
       method="get">
 	批次/商品编号： <input type="text" name="wd" id="wd" class="abc input-default" placeholder="批次/商品编号：">&nbsp;&nbsp;
 	<button type="submit" class="btn btn-primary">查询</button>
@@ -100,21 +100,21 @@
 <table class="table table-bordered table-hover definewidth m10">
 	<thead>
 	<tr>
-		<th>库存编号</th>
-		<th>商品编号</th>
-		<th>库存数量</th>
-		<th>已售数量</th>
-		<th>所属门店</th>
-		<th>进货时间</th>
-		<th>备注</th>
-		<th>管理操作</th>
+		<th style="text-align: center">库存批次</th>
+		<th style="text-align: center">商品编号</th>
+		<th style="text-align: center">库存数量</th>
+		<th style="text-align: center">已售数量</th>
+		<th style="text-align: center">所属门店</th>
+		<th style="text-align: center">进货时间</th>
+		<th style="text-align: center">备注</th>
+		<th style="text-align: center">管理操作</th>
 	</tr>
 	</thead>
 	<tbody>
-	<c:forEach items="${brandsList}" var="p" varStatus="st">
+	<c:forEach items="${stocksList}" var="p" varStatus="st">
 		<tr>
 			<td style="text-align: center">${p.batchId}</td>
-			<td style="text-align: center">${p.goodsId}</td>
+			<td style="text-align: center">${goods[p.goodsId]}</td>
 			<td style="text-align: center">${p.goodsStock}</td>
 			<td style="text-align: center">${p.goodsSold}</td>
 			<td style="text-align: center">${p.storeId}</td>

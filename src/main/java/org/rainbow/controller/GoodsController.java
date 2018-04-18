@@ -132,6 +132,8 @@ public class GoodsController {
 		model.addAttribute("goodsList", goods);
 		model.addAttribute("wd",wd);
 		model.addAttribute("page", p);
+		model.addAttribute("brands",brandService.getAllBrandName());
+		model.addAttribute("types",typeService.getAllTypeName());
 		return "Goods/index";
 	}
 }

@@ -26,6 +26,7 @@
 	        <include refid="Base_Column_List"/>
 	    from tb_goods_type
 	    where status=1
+        ORDER BY create_time DESC
     </select>
 	<select id="searchType" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select

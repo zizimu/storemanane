@@ -22,6 +22,8 @@ public interface StockService {
 
 	int updateStock(TbStock stock);
 
+	int deleteStock(TbStockKey id);
+
 	List<TbStock> searchStock(String key);
 
 	List<Long> getAllBatch();

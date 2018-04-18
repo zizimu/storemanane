@@ -66,4 +66,5 @@ public class GoodsServiceImpl implements GoodsService {
 		}
 		return result;
 	}
+
 }

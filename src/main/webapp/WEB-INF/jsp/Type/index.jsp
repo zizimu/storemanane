@@ -96,11 +96,11 @@
 <table class="table table-bordered table-hover definewidth m10">
 	<thead>
 	<tr>
-		<th>商品类型编号</th>
-		<th>商品类型名称</th>
-		<th>创建日期</th>
-		<th>备注</th>
-		<th>管理操作</th>
+		<th style="text-align: center">商品类型编号</th>
+		<th style="text-align: center">商品类型名称</th>
+		<th style="text-align: center">创建日期</th>
+		<th style="text-align: center">备注</th>
+		<th style="text-align: center">管理操作</th>
 	</tr>
 	</thead>
 	<tbody>

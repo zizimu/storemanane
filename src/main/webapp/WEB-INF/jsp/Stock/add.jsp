@@ -1,8 +1,6 @@
 <%@page contentType="text/html" %>
 <%@page pageEncoding="UTF-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,66 +35,90 @@
 		}
 	</style>
 </head>
-<form action="index.html" method="post">
-	<table class="table table-bordered table-hover definewidth m10">
-		<tr>
-			<td width="10%" class="tableleft">批次</td>
-			<td>
-				<select name="batchId" style="width: 210px;">
-					<c:forEach items="${batchs}" var="p">
-						<option value="${p}">${p}</option>
-					</c:forEach>
-					<option value="${batchs.get(batchs.size()-1) + 1}">新批次</option>
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<td class="tableleft">商品名称</td>
-			<td><input type="text" name="gname"/></td>
-		</tr>
-		<tr>
-			<td class="tableleft">库存</td>
-			<td><input type="text" name="gstock"/></td>
-		</tr>
-		<tr>
-			<td class="tableleft">已售数量</td>
-			<td><input type="text" name="gsold"/></td>
-		</tr>
-		<tr>
-			<td class="tableleft">所属门店</td>
-			<td><input type="text" name="sid"/></td>
-		</tr>
-		<tr>
-			<td class="tableleft">备注</td>
-			<td><input type="text" name="mark"/></td>
-		</tr>
-		<tr>
-			<td class="tableleft">状态</td>
-			<td>
-				<input type="radio" name="status" value="1" checked/> 启用
-				<input type="radio" name="status" value="0"/> 禁用
-			</td>
-		</tr>
-		<tr>
-			<td class="tableleft"></td>
-			<td>
-				<button type="submit" class="btn btn-primary" type="button">保存</button>&nbsp;&nbsp;<button type="button"
-				                                                                                           class="btn btn-success"
-				                                                                                           name="backid"
-				                                                                                           id="backid">
+<table class="table table-bordered table-hover definewidth m10">
+	<tr>
+		<td width="10%" class="tableleft">批次</td>
+		<td>
+			<select id="batchId" style="width: 210px;">
+				<c:forEach items="${batchs}" var="p">
+					<option value="${p}">第${p}批次</option>
+				</c:forEach>
+				<option value="${batchs.get(batchs.size()-1) + 1}">新批次</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td class="tableleft">商品名称</td>
+		<td>
+			<select id="gname" style="width: 210px;">
+				<c:forEach items="${goods}" var="p">
+					<option value="${p.goodsId}">${p.goodsName}</option>
+				</c:forEach>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td class="tableleft">库存</td>
+		<td><input type="number" id="gstock"/></td>
+	</tr>
+	<tr>
+		<td class="tableleft">已售数量</td>
+		<td><input type="number" id="gsold"/></td>
+	</tr>
+	<tr>
+		<td class="tableleft">所属门店</td>
+		<td><input type="number" id="sid"/></td>
+	</tr>
+	<tr>
+		<td class="tableleft">备注</td>
+		<td><input type="text" id="mark"/></td>
+	</tr>
+	<tr>
+		<td class="tableleft"></td>
+		<td>
+			<button id="submit" class="btn btn-primary" type="button">保存</button>&nbsp;&nbsp;
+			<button type="button" class="btn btn-success" name="backid" id="backid">
 				返回列表
 			</button>
-			</td>
-		</tr>
-	</table>
-</form>
+		</td>
+	</tr>
+</table>
 </body>
 </html>
 <script>
     $(function () {
         $('#backid').click(function () {
-            window.location.href = "index.html";
+            window.location.href = "${pageContext.request.contextPath}/Stock";
         });
-
+        $("#submit").click(function () {
+            var data = {
+                "batchId": $("#batchId").val(),
+                "goodsId": $("#gname").val(),
+                "goodsStock": $("#gstock").val(),
+                "goodsSold": $("#gsold").val(),
+                "storeId": $("#sid").val(),
+                "mark": $("#mark").val()
+            };
+            $.ajax({
+                url: "${pageContext.request.contextPath}/Stock",
+                type: 'POST',
+                dataType: "json",
+                data: JSON.stringify(data),
+                contentType: 'application/json;charset=UTF-8',
+                beforeSend: function () {
+                    console.log("正在进行，请稍候");
+                },
+                success: function (responseStr) {
+                    if (responseStr['stat'] == 200) {
+                        window.location.href = "${pageContext.request.contextPath}/Stock";
+                    } else {
+                        alert(responseStr['message']);
+                    }
+                },
+                error: function () {
+                    console.log("error!");
+                }
+            })
+        })
     });
 </script>

@@ -43,6 +43,11 @@ public class StockServiceImpl implements StockService {
 	}
 
 	@Override
+	public int deleteStock(TbStockKey id) {
+		return stockMapper.deleteByPrimaryKey(id);
+	}
+
+	@Override
 	public List<TbStock> searchStock(String key) {
 		return stockMapper.searchStock(key);
 	}

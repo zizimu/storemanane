@@ -27,4 +27,5 @@ public interface GoodsService {
 	List<TbGoods> searchGoods(String key);
 
 	Map<Long,String> getAllGoodsIdName();
+
 }
