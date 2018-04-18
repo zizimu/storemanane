@@ -131,8 +131,9 @@
 	    select
 	    <include refid="Base_Column_List" />
 	    from tb_staff
-	    where staff_name like '%' #{key,jdbcType=VARCHAR} '%'
-	    	or staff_id like '%' #{key} '%'
+	    where (staff_name like '%' #{key,jdbcType=VARCHAR} '%'
+	    	or staff_id like '%' #{key} '%')
+	    	and status = 1
 	    ORDER BY create_time DESC
     </select>
 </mapper>
