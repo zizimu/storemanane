@@ -58,7 +58,7 @@ body {
 		deleteGoods(id);
 	};
 	function deleteGoods(id){
-	/* layer.load();/* 控件的加载框 */ */
+	/* layer.load(); 控件的加载框 */
 	$.ajax({
 		url:"${pageContext.request.contextPath}/Staff/" + id,
 		type:'DELETE',
@@ -67,7 +67,7 @@ body {
 		processData:false,/* 不处理传到后台的数据 */
 		contentType:false,/* http协议传输的抬头；后台根据设置文件类型 （html，json） */
 		beforeSend:function(){
-			conlose.log("正在进行，请稍后")
+			console.log("正在进行，请稍后")
 		},
 		success:function(responseStr){
 			/* if(responseStr['stat'] == 200){ 
@@ -75,13 +75,12 @@ body {
 					icon:2,
 					btn:['确定']
 				}) */
-				alert(responseStr['message'],function{
+				alert(responseStr['message'],function(){
 					title:'313'
 				});
 			}
-		}
-	});
-	}
+		});
+	};
 </script>
 </head>
 <body>
