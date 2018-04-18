@@ -52,15 +52,13 @@
             <if test="storeId != null" >
                 store_id,
             </if>
-            <if test="createTime != null" >
-                create_time,
-            </if>
             <if test="status != null" >
                 status,
             </if>
             <if test="mark != null" >
                 mark,
             </if>
+              create_time
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
             <if test="staffId != null" >
@@ -75,15 +73,13 @@
             <if test="storeId != null" >
                 #{storeId,jdbcType=VARCHAR},
             </if>
-            <if test="createTime != null" >
-                #{createTime,jdbcType=TIMESTAMP},
-            </if>
             <if test="status != null" >
                 #{status,jdbcType=INTEGER},
             </if>
             <if test="mark != null" >
                 #{mark,jdbcType=VARCHAR},
             </if>
+               now()
         </trim>
     </insert>
 
