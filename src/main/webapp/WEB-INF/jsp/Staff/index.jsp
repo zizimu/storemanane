@@ -47,7 +47,6 @@ body {
 </style>
 <script type="text/javascript">
 	function del(id){
-		alert(1);
 		/* layer.confirm('确定要删除吗？',{
 			icon:0,
 			title:'删除',
@@ -118,7 +117,7 @@ body {
 								编辑
 							</button>
 						</a>
-							<button class="btn btn-success" style="margin-left: 5px;" onclick="deleteGoods(${s.staffId})">
+							<button class="btn btn-success" style="margin-left: 5px;" onclick="del(${s.staffId})">
 								删除
 							</button>
 						</td>

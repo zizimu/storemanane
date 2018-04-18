@@ -39,7 +39,7 @@ public class StaffServiceImpl implements StaffService {
 
 	@Override
 	public int updateStaff(TbStaff staff) {
-		return tbStaffMapper.updateByPrimaryKey(staff);
+		return tbStaffMapper.updateByPrimaryKeySelective(staff);
 	}
 
 }
