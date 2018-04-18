@@ -8,11 +8,11 @@ public interface StaffService {
 
 	int addStaff(TbStaff staff);
 
-	List<TbStaff> getAllGoods();
+	List<TbStaff> getAllStaff();
 
 	TbStaff getStaffById(long ID);
 
-	int updateGoods(TbStaff staff);
+	int updateStaff(TbStaff staff);
 
 	List<TbStaff> searchStaff(String key);
 

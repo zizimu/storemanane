@@ -47,6 +47,7 @@ body {
 </style>
 <script type="text/javascript">
 	function del(id){
+		alert(1);
 		/* layer.confirm('确定要删除吗？',{
 			icon:0,
 			title:'删除',
@@ -101,8 +102,8 @@ body {
 				<th style="text-align: center">联系电话</th>
 				<th style="text-align: center">所属门店</th>
 				<th style="text-align: center">入职时间</th>
-				<th style="text-align: center">管理操作</th>
 				<th style="text-align: center">备注</th>
+				<th style="text-align: center">管理操作</th>
 			</tr>
 			<c:forEach items="${staffList}" var="s" varStatus="st">
 				<tr>
@@ -111,15 +112,16 @@ body {
 					<td style="text-align: center">${s.staffPhone}</td>
 					<td style="text-align: center">${s.storeId}</td>
 					<td style="text-align: center">${s.createTime}</td>
+					<td style="text-align: center">${s.mark}</td>
 					<td style="text-align: center">
 						<a href="${pageContext.request.contextPath}/Staff/edit/${s.staffId}">
 							<button class="btn btn-primary" style="margin-left: 5px;">
 								编辑
 							</button>
-							<button class="btn btn-primary" style="margin-left: 5px;" onclick="del(${s.staffId})">
+						</a>
+							<button class="btn btn-success" style="margin-left: 5px;" onclick="deleteGoods(${s.staffId})">
 								删除
 							</button>
-						</a>
 						</td>
 					</tr>
 			</c:forEach>

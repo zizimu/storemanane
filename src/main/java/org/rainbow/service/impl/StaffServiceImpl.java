@@ -6,7 +6,8 @@ import org.rainbow.mapper.TbStaffMapper;
 import org.rainbow.pojo.TbStaff;
 import org.rainbow.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Service;
+@Service
 public class StaffServiceImpl implements StaffService {
 
 	@Autowired
@@ -19,21 +20,9 @@ public class StaffServiceImpl implements StaffService {
 	}
 
 	@Override
-	public List<TbStaff> getAllGoods() {
-
-		return tbStaffMapper.selectAll();
-	}
-
-	@Override
 	public TbStaff getStaffById(long ID) {
 
 		return tbStaffMapper.selectByPrimaryKey(ID);
-	}
-
-	@Override
-	public int updateGoods(TbStaff staff) {
-
-		return tbStaffMapper.updateByPrimaryKeySelective(staff);
 	}
 
 	@Override
@@ -41,6 +30,16 @@ public class StaffServiceImpl implements StaffService {
 
 		return tbStaffMapper.searchStaff(key);
 
+	}
+
+	@Override
+	public List<TbStaff> getAllStaff() {
+		return tbStaffMapper.selectAll();
+	}
+
+	@Override
+	public int updateStaff(TbStaff staff) {
+		return tbStaffMapper.updateByPrimaryKey(staff);
 	}
 
 }

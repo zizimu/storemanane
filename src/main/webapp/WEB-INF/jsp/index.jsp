@@ -80,8 +80,8 @@
         	{id:'13',text:'品牌管理',href:'Brand'},
         	{id:'14',text:'商品类型',href:'Type'},
         	{id:'15',text:'库存管理',href:'Stock'},
-        	{id:'16',text:'员工管理',href:'Staff/index'},     	
-        	{id:'17',text:'销售管理',href:'Order/index'}]}]},
+        	{id:'16',text:'员工管理',href:'Staff'},     	
+        	{id:'17',text:'销售管理',href:'Order'}]}]},
         	{id:'7',homePage : '9',menu:[{text:'业务管理',items:[{id:'9',text:'查询业务',href:'Node/index'}]}]}];
         new PageUtil.MainPage({
             modulesConfig : config
