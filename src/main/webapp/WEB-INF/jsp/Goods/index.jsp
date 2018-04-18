@@ -43,7 +43,7 @@
 		}
 	</style>
 	<script type="text/javascript">
-
+		/*TODO 测试layer弹窗控件 已知bug：在confirm框下不会跳alert框*/
         function del(id) {
             layer.confirm('确定要删除吗？', {
                 icon: 0,

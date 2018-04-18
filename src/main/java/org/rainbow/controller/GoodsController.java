@@ -37,6 +37,7 @@ public class GoodsController {
 		CustomDateEditor cust = new CustomDateEditor(sdf,true);
 		bin.registerCustomEditor(Date.class,cust);
 	}
+	//TODO 接受前台时间
 
 	@Autowired
 	private GoodsService goodsService;
