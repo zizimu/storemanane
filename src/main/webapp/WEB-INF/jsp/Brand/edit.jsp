@@ -68,11 +68,11 @@
 <table class="table table-bordered table-hover ">
     <tr>
         <td width="10%" class="tableleft">品牌名称</td>
-        <td><input type="text" id="brandName" name="brandName"/>${brand.brandName}</td>
+        <td><input type="text" id="brandName" name="brandName" value="${brand.brandName}"/></td>
     </tr>
     <tr>
         <td class="tableleft">备注</td>
-        <td><input type="text" id="mark" name="mark"/>${brand.mark}</td>
+        <td><input type="text" id="mark" name="mark" value="${brand.mark}"/></td>
     </tr>
     <tr>
         <td class="tableleft"></td>
