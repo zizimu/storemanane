@@ -69,7 +69,7 @@
                     "goodsBrand": $("#goodsBrand").val(),
 	                "goodsPic":$("#gpic").val(),
                     "goodsSpc": $("#gspc").val(),
-                    "goodsCreateTime": $("#gcreateTime").val(),
+                    "goodsCreatedate": $("#gcreateTime").val(),
                     "goodsShelfilfe": $("#gshelfilfe").val(),
                     "mark": $("#mark").val()
                 };
@@ -143,7 +143,7 @@
 	</tr>
 	<tr>
 		<td class="tableleft">生产日期</td>
-		<td><input type="text" id="gcreateTime" name="gcreatedate" value="${goods.goodsCreatedate}"/></td>
+		<td><input type="date" id="gcreateTime" name="gcreatedate" value="${goods.goodsCreatedate}"/></td>
 	</tr>
 	<tr>
 		<td class="tableleft">保质期</td>

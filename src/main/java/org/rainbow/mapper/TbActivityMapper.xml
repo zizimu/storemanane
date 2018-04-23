@@ -14,8 +14,8 @@
     </resultMap>
 
     <sql id="Base_Column_List" >
-        activity_id, activity_name, activity_content, activity_startdate, activity_enddate, 
-        create_time, status, mark
+        activity_id, activity_name, activity_content, activity_startdate, activity_enddate,
+        activity_range,create_time, status, mark
     </sql>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -33,11 +33,12 @@
     <insert id="insert" parameterType="org.rainbow.pojo.TbActivity" >
         insert into tb_activity (activity_id, activity_name, activity_content, 
             activity_startdate, activity_enddate, 
-            create_time, status, mark
+            create_time, status, mark, activity_range
             )
         values (#{activityId,jdbcType=INTEGER}, #{activityName,jdbcType=VARCHAR}, #{activityContent,jdbcType=VARCHAR}, 
             #{activityStartdate,jdbcType=TIMESTAMP}, #{activityEnddate,jdbcType=TIMESTAMP}, 
-            #{createTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{mark,jdbcType=VARCHAR}
+            #{createTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{mark,jdbcType=VARCHAR},
+                #{activity_range,jdbcType=VARCHAR}
             )
     </insert>
 
@@ -68,6 +69,9 @@
             <if test="mark != null" >
                 mark,
             </if>
+            <if test="activity_range != null" >
+                activity_range,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
             <if test="activityId != null" >
@@ -93,6 +97,9 @@
             </if>
             <if test="mark != null" >
                 #{mark,jdbcType=VARCHAR},
+            </if>
+            <if test="activity_range != null" >
+                #{activity_range,jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
@@ -121,6 +128,9 @@
             <if test="mark != null" >
                 mark = #{mark,jdbcType=VARCHAR},
             </if>
+            <if test="activity_range != null" >
+                activity_range = #{activity_range,jdbcType=VARCHAR},
+            </if>
         </set>
         where activity_id = #{activityId,jdbcType=INTEGER}
     </update>
@@ -133,7 +143,8 @@
             activity_enddate = #{activityEnddate,jdbcType=TIMESTAMP},
             create_time = #{createTime,jdbcType=TIMESTAMP},
             status = #{status,jdbcType=INTEGER},
-            mark = #{mark,jdbcType=VARCHAR}
-        where activity_id = #{activityId,jdbcType=INTEGER}
+            mark = #{mark,jdbcType=VARCHAR},
+            activity_range = #{activity_range,jdbcType=VARCHAR}
+            where activity_id = #{activityId,jdbcType=INTEGER}
     </update>
 </mapper>

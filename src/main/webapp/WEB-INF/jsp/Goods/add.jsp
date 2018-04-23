@@ -73,7 +73,7 @@
                     "goodsBrand": $("#gbrand").val(),
                     "goodsSpc": $("#gspc").val(),
 	                "goodsPic":$("#picurl").val(),
-                    "goodsCreateTime": $("#gcreateTime").val(),
+                    "goodsCreatedate": $("#gcreateTime").val(),
                     "goodsShelfilfe": $("#gshelfilfe").val(),
                     "mark": $("#mark").val()
                 };

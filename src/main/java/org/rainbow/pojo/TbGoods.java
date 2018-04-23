@@ -1,5 +1,7 @@
 package org.rainbow.pojo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
@@ -50,6 +52,7 @@ public class TbGoods implements Serializable {
     /**
      * 生产日期
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date goodsCreatedate;
 
     /**

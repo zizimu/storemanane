@@ -90,7 +90,7 @@
 </head>
 <body>
 <form class="form-inline definewidth m20" action="${pageContext.request.contextPath}/Goods/s"
-      method="get">
+      method="get" accept-charset="utf-8">
 	商品编号/名称： <input type="text" name="wd" class="abc input-default" placeholder="商品编号/名称">&nbsp;&nbsp;
 	<button type="submit" class="btn btn-primary">查询</button>&nbsp;&nbsp;
 	<a href="${pageContext.request.contextPath}/Goods/add">

@@ -36,6 +36,8 @@ public class TbActivity implements Serializable {
      */
     private Date activityEnddate;
 
+    private String activity_range;
+
     /**
      * 创建日期
      */
@@ -52,6 +54,18 @@ public class TbActivity implements Serializable {
     private String mark;
 
     private static final long serialVersionUID = 1L;
+
+    public String getActivity_range() {
+        return activity_range;
+    }
+
+    public void setActivity_range(String activity_range) {
+        this.activity_range = activity_range;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
     public Integer getActivityId() {
         return activityId;

@@ -7,14 +7,12 @@ import org.rainbow.service.BrandService;
 import org.rainbow.service.GoodsService;
 import org.rainbow.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,14 +28,6 @@ import java.util.Map;
 @Controller
 @RequestMapping("/Goods")
 public class GoodsController {
-
-	@InitBinder
-	public void initBinder(ServletRequestDataBinder bin){
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		CustomDateEditor cust = new CustomDateEditor(sdf,true);
-		bin.registerCustomEditor(Date.class,cust);
-	}
-	//TODO 接受前台时间
 
 	@Autowired
 	private GoodsService goodsService;
@@ -126,8 +116,13 @@ public class GoodsController {
 	}
 
 	@RequestMapping(value = "/s",method = RequestMethod.GET)
-	public String search(@RequestParam("wd")String wd,@RequestParam(value = "page", defaultValue = "1") int page, Model model){
+	public String search(@RequestParam("wd") String wd,@RequestParam(value = "page", defaultValue = "1") int page, Model model){
 		PageHelper.startPage(page, 8);
+		try {
+			wd = new String(wd.getBytes("ISO-8859-1"),"utf-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 		List<TbGoods> goods = goodsService.searchGoods(wd);
 		PageInfo<TbGoods> p = new PageInfo<>(goods);
 		model.addAttribute("goodsList", goods);
