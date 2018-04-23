@@ -1,7 +1,7 @@
 package org.rainbow.pojo;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * 
@@ -39,7 +39,7 @@ public class TbStore implements Serializable {
     /**
      * 主管电话
      */
-    private String managerTel;
+    private String staffPhone;
 
     /**
      * 注册日期
@@ -98,12 +98,12 @@ public class TbStore implements Serializable {
         this.storeManager = storeManager == null ? null : storeManager.trim();
     }
 
-    public String getManagerTel() {
-        return managerTel;
+    public String getStaffPhone() {
+        return staffPhone;
     }
 
-    public void setManagerTel(String managerTel) {
-        this.managerTel = managerTel == null ? null : managerTel.trim();
+    public void setStaffPhone(String staffPhone) {
+        this.staffPhone = staffPhone == null ? null : staffPhone.trim();
     }
 
     public Date getCreateTime() {

@@ -1,5 +1,7 @@
 package org.rainbow.mapper;
 
+import java.util.List;
+
 import org.rainbow.pojo.TbStore;
 
 public interface TbStoreMapper {
@@ -14,4 +16,8 @@ public interface TbStoreMapper {
     int updateByPrimaryKeySelective(TbStore record);
 
     int updateByPrimaryKey(TbStore record);
+
+	List<TbStore> selectAll();
+
+	List<TbStore> searchStore(String key);
 }

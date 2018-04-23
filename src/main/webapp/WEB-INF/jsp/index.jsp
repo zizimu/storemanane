@@ -82,13 +82,9 @@
         	{id:'15',text:'库存管理',href:'Stock'},
         	{id:'16',text:'员工管理',href:'Staff'},     	
         	{id:'17',text:'销售管理',href:'Order'}]}]},
-        	{id:'2',homePage : '9',menu:[{text:'业务管理',items:[
+        	{id:'9',homePage : '9',menu:[{text:'业务管理',items:[
         	{id:'21',text:'门店管理',href:'Store'},
-        	{id:'22',text:'活动管理',href:'Activity'},
-        	{id:'23',text:'活动范围',href:'Node'}
-        	
-        	
-        	
+        	{id:'22',text:'活动管理',href:'Activity'}	
         	]}]}];
         new PageUtil.MainPage({
             modulesConfig : config

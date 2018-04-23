@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>添加员工</title>
+    <title>添加门店</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="https://cdn-1251943624.file.myqcloud.com/storeManage/Css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn-1251943624.file.myqcloud.com/storeManage/Css/bootstrap-responsive.css" />
@@ -14,8 +14,7 @@
     <script type="text/javascript" src="https://cdn-1251943624.file.myqcloud.com/storeManage/Js/bootstrap.js"></script>
     <script type="text/javascript" src="https://cdn-1251943624.file.myqcloud.com/storeManage/Js/ckform.js"></script>
     <script type="text/javascript" src="https://cdn-1251943624.file.myqcloud.com/storeManage/Js/common.js"></script>
-	<script type="text/javascript"
-	        src="https://cdn-1251943624.file.myqcloud.com/storeManage/Js/jquery.form.min.js"></script>
+	<script type="text/javascript" src="https://cdn-1251943624.file.myqcloud.com/storeManage/Js/jquery.form.min.js"></script>
  
     <style type="text/css">
         body {
@@ -39,14 +38,16 @@
         $(function () {
             $("#submit").click(function () {
                 var data = {
-                    "staffName" : $("#staffName").val(),
-                    "staffPhone" : $("#staffPhone").val(),
-                    "storeId" : $("#storeId").val(),
+                    "storeName" : $("#storeName").val(),
+                    "storeArea" : $("#storeArea").val(),
+                    "storeAddress" : $("#storeAddress").val(),
+                    "storeManager" : $("#storeManager").val(),
+                    "staffPhone" : $("#staffPhone").val(),                
                     "createTime" : $("#createTime").val(),
                     "mark": $("#mark").val()
                 };
                 $.ajax({
-                    url: "${pageContext.request.contextPath}/Staff",
+                    url: "${pageContext.request.contextPath}/Store",
                     type: 'POST',
                     dataType: "json",
                     data: JSON.stringify(data),
@@ -56,7 +57,7 @@
                     },
                     success: function (responseStr) {
                         if (responseStr['stat'] == 200) {
-                            window.location.href="${pageContext.request.contextPath}/Staff";
+                            window.location.href="${pageContext.request.contextPath}/Store";
                         } else {
                             alert(responseStr['message']);
                         }
@@ -73,21 +74,30 @@
 <form action="index.html" method="post" class="definewidth m20">
 <table class="table table-bordered table-hover definewidth m10">
     <tr>
-        <td width="10%" class="tableleft">登录名</td>
-        <td><input type="text" id="staffName"/></td>
-    </tr>
-    <tr>
-        <td class="tableleft">联系电话</td>
-        <td><input type="text" id="staffPhone"/></td>
-    </tr>
-    <tr>
-        <td class="tableleft">所属门店</td>
-        <td><input type="text" id="storeId"/></td>
-    </tr>
-     <tr>
-        <td class="tableleft">备注</td>
-        <td><input type="text" id="mark"/></td>
-    </tr>
+				<td width="10%" class="tableleft">门店名称</td>
+				<td><input type="text" id="storeName"/></td>
+			</tr>
+			<tr>
+				<td class="tableleft">所属地区</td>
+				<td><input type="text" id="storePhone"/></td>
+			</tr>
+			<tr>
+				<td class="tableleft">详细地址</td>
+				<td><input type="text" id="storeAddress"/></td>
+			</tr>
+			<tr>
+				<td class="tableleft">店长</td>
+				<td><input type="text" id="storeId"/></td>
+			</tr>
+			<tr>
+				<td class="tableleft">联系方式</td>
+				<td><input type="text" id="storeId"/></td>
+			</tr>
+			
+			<tr>
+				<td class="tableleft">备注</td>
+				<td><input type="text" id="mark"/></td>
+			</tr>
    <tr>
 		<td class="tableleft"></td>
 		<td>
@@ -104,7 +114,7 @@
 <script>
     $(function () {
         $('#backid').click(function () {
-            window.location.href = "${pageContext.request.contextPath}/Staff";
+            window.location.href = "${pageContext.request.contextPath}/Store";
         });
     });
 </script>

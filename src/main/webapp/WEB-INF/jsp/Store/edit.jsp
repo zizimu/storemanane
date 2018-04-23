@@ -43,17 +43,17 @@ body {
         $(function () {
             $("#submit").click(function () {
                 var data = {
-                    "storeId":${store.storeId},
+                    "storeId":${store.storeId},/* 传过来对象store 以及他的值storeId */
                     "storeName" : $("#storeName").val(),
                     "storeArea" : $("#storeArea").val(),
                     "storeAddress" : $("#storeAddress").val(),
                     "storeManager" : $("#storeManager").val(),
-                    "managerTel" : $("#managerTel").val(),
+                    "managerTel" : $("#staffPhone").val(),
                     "createTime" : $("#createTime").val(),
                     "mark": $("#mark").val()       
                 };
                 $.ajax({
-                    url: "${pageContext.request.contextPath}/Staff/"+${store.storeId},
+                    url: "${pageContext.request.contextPath}/Store/"+${store.storeId},
                     type: 'PUT',
                     dataType: "json",
                     data: JSON.stringify(data),
@@ -63,7 +63,7 @@ body {
                     },
                     success: function (responseStr) {
                         if (responseStr['stat'] == 200) {
-                            window.location.href="${pageContext.request.contextPath}/Staff";
+                            window.location.href="${pageContext.request.contextPath}/Store";
                         } else {
                             alert(responseStr['message']);
                         }
@@ -81,20 +81,29 @@ body {
 		<input type="hidden" name="id" value="{$user.id}" />
 		<table class="table table-bordered table-hover definewidth m10">
 			<tr>
-				<td width="10%" class="tableleft">登录名</td>
-				<td><input type="text" id="staffName" value="${staff.staffName}"/></td>
+				<td width="10%" class="tableleft">门店名称</td>
+				<td><input type="text" id="StoreName" value="${store.storeName}"/></td>
 			</tr>
 			<tr>
-				<td class="tableleft">联系电话</td>
-				<td><input type="text" id="staffPhone" value="${staff.staffPhone}"/></td>
+				<td class="tableleft">所属地区</td>
+				<td><input type="text" id="storeArea" value="${store.storeArea}"/></td>
 			</tr>
 			<tr>
-				<td class="tableleft">所属门店</td>
-				<td><input type="text" id="storeId" value="${staff.storeId}"/></td>
+				<td class="tableleft">详细地址</td>
+				<td><input type="text" id="storeAddress" value="${store.storeAddress}"/></td>
 			</tr>
+			<tr>
+				<td class="tableleft">店长</td>
+				<td><input type="text" id="storeManager" value="${store.storeManager}"/></td>
+			</tr>
+			<tr>
+				<td class="tableleft">联系方式</td>
+				<td><input type="text" id="staffPhone" value="${store.staffPhone}"/></td>
+			</tr>
+			
 			<tr>
 				<td class="tableleft">备注</td>
-				<td><input type="text" id="mark" value="${staff.mark}"/></td>
+				<td><input type="text" id="mark" value="${store.mark}"/></td>
 			</tr>
 			<tr>
 				<td class="tableleft"></td>
@@ -111,7 +120,7 @@ body {
 <script>
     $(function () {       
 		$('#backid').click(function(){
-				window.location.href="${pageContext.request.contextPath}/Staff";
+				window.location.href="${pageContext.request.contextPath}/Store";
 		 });
 
     });

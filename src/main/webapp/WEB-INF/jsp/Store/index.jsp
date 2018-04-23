@@ -97,7 +97,7 @@ body {
 			<tr>
 				<th style="text-align: center">门店编号</th>
 				<th style="text-align: center">门店名称</th>
-				<th style="text-align: center">所属地区</th>
+				<th style="text-align: center">所属省份</th>
 				<th style="text-align: center">详细地址</th>
 				<th style="text-align: center">店长</th>
 				<th style="text-align: center">联系方式</th>
@@ -111,7 +111,7 @@ body {
 					<td style="text-align: center">${s.storeArea}</td>
 					<td style="text-align: center">${s.storeAddress}</td>
 					<td style="text-align: center">${s.storeManager}</td>
-					<td style="text-align: center">${s.managerTel}</td>
+					<td style="text-align: center">${s.staffPhone}</td>
 					<td style="text-align: center">${s.createTime}</td>
 					<td style="text-align: center">${s.mark}</td>
 					<td style="text-align: center">

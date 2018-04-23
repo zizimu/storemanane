@@ -8,14 +8,14 @@
         <result column="store_area" property="storeArea" jdbcType="VARCHAR" />
         <result column="store_address" property="storeAddress" jdbcType="VARCHAR" />
         <result column="store_manager" property="storeManager" jdbcType="VARCHAR" />
-        <result column="manager_tel" property="managerTel" jdbcType="VARCHAR" />
+        <result column="staff_phone" property="staffPhone" jdbcType="VARCHAR" />
         <result column="create_time" property="createTime" jdbcType="DATE" />
         <result column="status" property="status" jdbcType="INTEGER" />
         <result column="mark" property="mark" jdbcType="VARCHAR" />
     </resultMap>
 
     <sql id="Base_Column_List" >
-        store_id, store_name, store_area, store_address, store_manager, manager_tel, create_time, 
+        store_id, store_name, store_area, store_address, store_manager, staff_phone, create_time, 
         status, mark
     </sql>
 
@@ -33,11 +33,11 @@
 
     <insert id="insert" parameterType="org.rainbow.pojo.TbStore" >
         insert into tb_store (store_id, store_name, store_area, 
-            store_address, store_manager, manager_tel, 
+            store_address, store_manager, staff_phone, 
             create_time, status, mark
             )
         values (#{storeId,jdbcType=BIGINT}, #{storeName,jdbcType=VARCHAR}, #{storeArea,jdbcType=VARCHAR}, 
-            #{storeAddress,jdbcType=VARCHAR}, #{storeManager,jdbcType=VARCHAR}, #{managerTel,jdbcType=VARCHAR}, 
+            #{storeAddress,jdbcType=VARCHAR}, #{storeManager,jdbcType=VARCHAR}, #{staffPhone,jdbcType=VARCHAR}, 
             #{createTime,jdbcType=DATE}, #{status,jdbcType=INTEGER}, #{mark,jdbcType=VARCHAR}
             )
     </insert>
@@ -60,8 +60,8 @@
             <if test="storeManager != null" >
                 store_manager,
             </if>
-            <if test="managerTel != null" >
-                manager_tel,
+            <if test="staffPhone != null" >
+                staff_phone,
             </if>
             <if test="createTime != null" >
                 create_time,
@@ -89,8 +89,8 @@
             <if test="storeManager != null" >
                 #{storeManager,jdbcType=VARCHAR},
             </if>
-            <if test="managerTel != null" >
-                #{managerTel,jdbcType=VARCHAR},
+            <if test="staffPhone != null" >
+                #{staffPhone,jdbcType=VARCHAR},
             </if>
             <if test="createTime != null" >
                 #{createTime,jdbcType=DATE},
@@ -119,8 +119,8 @@
             <if test="storeManager != null" >
                 store_manager = #{storeManager,jdbcType=VARCHAR},
             </if>
-            <if test="managerTel != null" >
-                manager_tel = #{managerTel,jdbcType=VARCHAR},
+            <if test="staffPhone != null" >
+                staff_phone = #{staffPhone,jdbcType=VARCHAR},
             </if>
             <if test="createTime != null" >
                 create_time = #{createTime,jdbcType=DATE},
@@ -141,10 +141,29 @@
             store_area = #{storeArea,jdbcType=VARCHAR},
             store_address = #{storeAddress,jdbcType=VARCHAR},
             store_manager = #{storeManager,jdbcType=VARCHAR},
-            manager_tel = #{managerTel,jdbcType=VARCHAR},
+            staff_phone = #{staffPhone,jdbcType=VARCHAR},
             create_time = #{createTime,jdbcType=DATE},
             status = #{status,jdbcType=INTEGER},
             mark = #{mark,jdbcType=VARCHAR}
         where store_id = #{storeId,jdbcType=BIGINT}
     </update>
+    
+         
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_store
+	    where status = 1
+        ORDER BY create_time DESC
+    </select>
+	<!--TODO ：搜索的sql语句-->
+    <select id="searchStore" resultMap="BaseResultMap" parameterType="java.lang.String">
+	    select
+	    <include refid="Base_Column_List" />
+	    from tb_store
+	    where (store_area like '%' #{key} '%'
+	    	or store_id like '%' #{key} '%')
+	    	and status = 1
+	    ORDER BY create_time DESC
+    </select>
 </mapper>
