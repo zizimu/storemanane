@@ -4,6 +4,8 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+    <link rel="shortcut icon"
+          href="https://1213-1251943624.cos.ap-shanghai.myqcloud.com/default/R.ico" type="image/x-icon" />
     <title>后台管理系统</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="https://cdn-1251943624.file.myqcloud.com/storeManage/assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
@@ -62,11 +64,9 @@
         <ul id="J_Nav"  class="nav-list ks-clear">
             <li class="nav-item dl-selected"><div class="nav-item-inner nav-home">系统管理</div></li>		
             <li class="nav-item dl-selected"><div class="nav-item-inner nav-order">业务管理</div></li>
-
         </ul>
     </div>
     <ul id="J_NavContent" class="dl-tab-conten">
-
     </ul>
 </div>
 <script type="text/javascript" src="https://cdn-1251943624.file.myqcloud.com/storeManage/assets/js/jquery-1.8.1.min.js"></script>

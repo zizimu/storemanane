@@ -17,5 +17,5 @@ public class CommonController {
 	public String showIndex(){
 		return "index";
 	}
-	
+
 }
