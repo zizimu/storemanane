@@ -5,4 +5,8 @@
 .settings/
 /logs/
 .classpath
-
+.project
+storemanage.iml
+store-manage.eml
+store-manage.iml
+storemanage.userlibraries

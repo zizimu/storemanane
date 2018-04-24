@@ -7,19 +7,19 @@ import org.rainbow.service.BrandService;
 import org.rainbow.service.GoodsService;
 import org.rainbow.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
- *
+ * <p>
  * Description:
  *
  * @author ross
@@ -28,6 +28,11 @@ import java.util.Map;
 @Controller
 @RequestMapping("/Goods")
 public class GoodsController {
+
+	@Value("${pageSize}")
+	private int pageSize;
+
+	private String catalog = "Goods";
 
 	@Autowired
 	private GoodsService goodsService;
@@ -38,21 +43,21 @@ public class GoodsController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
-		PageHelper.startPage(page, 8);
+		PageHelper.startPage(page, pageSize);
 		List<TbGoods> goods = goodsService.getAllGoods();
 		PageInfo<TbGoods> p = new PageInfo<>(goods);
 		model.addAttribute("goodsList", goods);
 		model.addAttribute("page", p);
-		model.addAttribute("brands",brandService.getAllBrandName());
-		model.addAttribute("types",typeService.getAllTypeName());
-		return "Goods/index";
+		model.addAttribute("brands", brandService.getAllBrandName());
+		model.addAttribute("types", typeService.getAllTypeName());
+		return catalog + "/index";
 	}
 
-	@RequestMapping(value = "/add",method = RequestMethod.GET)
-	public String go2AddPage(Model model){
-		model.addAttribute("brands",brandService.getAllBrand());
-		model.addAttribute("types",typeService.getAllType());
-		return "Goods/add";
+	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	public String go2AddPage(Model model) {
+		model.addAttribute("brands", brandService.getAllBrand());
+		model.addAttribute("types", typeService.getAllType());
+		return catalog + "/add";
 	}
 
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
@@ -77,19 +82,19 @@ public class GoodsController {
 	public String edit(@PathVariable("id") long id, Model model) {
 		TbGoods goods = goodsService.getGoodsByID(id);
 		model.addAttribute("goods", goods);
-		model.addAttribute("brands",brandService.getAllBrand());
-		model.addAttribute("types",typeService.getAllType());
-		return "Goods/edit";
+		model.addAttribute("brands", brandService.getAllBrand());
+		model.addAttribute("types", typeService.getAllType());
+		return catalog + "/edit";
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseBody
 	public Map delete(@PathVariable("id") long id) {
 		Map<String, Object> result = new HashMap<>();
-		if (id == 0){
+		if (id == 0) {
 			result.put("stat", 400);
 			result.put("message", "信息缺失,请重试！");
-		}else if (goodsService.deleteGoodsBystatus(id) > 0) {
+		} else if (goodsService.deleteGoodsBystatus(id) > 0) {
 			result.put("stat", 200);
 			result.put("message", "删除成功！");
 		} else {
@@ -115,21 +120,21 @@ public class GoodsController {
 		return result;
 	}
 
-	@RequestMapping(value = "/s",method = RequestMethod.GET)
-	public String search(@RequestParam("wd") String wd,@RequestParam(value = "page", defaultValue = "1") int page, Model model){
-		PageHelper.startPage(page, 8);
+	@RequestMapping(value = "/s", method = RequestMethod.GET)
+	public String search(@RequestParam("wd") String wd, @RequestParam(value = "page", defaultValue = "1") int page, Model model) {
+		PageHelper.startPage(page, pageSize);
 		try {
-			wd = new String(wd.getBytes("ISO-8859-1"),"utf-8");
+			wd = new String(wd.getBytes("ISO-8859-1"), "utf-8");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
 		List<TbGoods> goods = goodsService.searchGoods(wd);
 		PageInfo<TbGoods> p = new PageInfo<>(goods);
 		model.addAttribute("goodsList", goods);
-		model.addAttribute("wd",wd);
+		model.addAttribute("wd", wd);
 		model.addAttribute("page", p);
-		model.addAttribute("brands",brandService.getAllBrandName());
-		model.addAttribute("types",typeService.getAllTypeName());
-		return "Goods/index";
+		model.addAttribute("brands", brandService.getAllBrandName());
+		model.addAttribute("types", typeService.getAllTypeName());
+		return catalog + "/index";
 	}
 }
