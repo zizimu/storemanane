@@ -145,7 +145,6 @@
 		<td><input type="number" id="gspc" name="gspc"/></td>
 	</tr>
 	<tr>
-		<%--TODO 需要选择好的时间控件--%>
 		<td class="tableleft">生产日期</td>
 		<td><input type="date" id="gcreateTime" name="gcreatedate"/></td>
 	</tr>
