@@ -23,8 +23,10 @@ import java.util.Map;
  * @date 2018-04-16
  */
 @Controller
-@RequestMapping("/Stock") 
+@RequestMapping("/Stock")
 public class StockController {
+
+	private String catalog = "Stock";
 
 	@Autowired
 	private StockService stockService;
@@ -32,24 +34,24 @@ public class StockController {
 	private GoodsService goodsService;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String index(@RequestParam(value = "page",defaultValue = "1")int page, Model  model){
-		PageHelper.startPage(page,8);
+	public String index(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
+		PageHelper.startPage(page, 8);
 		List<TbStock> stocks = stockService.getAllStock();
 		PageInfo<TbStock> p = new PageInfo<>(stocks);
-		model.addAttribute("stocksList",stocks);
-		model.addAttribute("goods",goodsService.getAllGoodsIdName());
-		model.addAttribute("page",p);
-		return "Stock/index";
+		model.addAttribute("stocksList", stocks);
+		model.addAttribute("goods", goodsService.getAllGoodsIdName());
+		model.addAttribute("page", p);
+		return catalog + "/index";
 	}
 
-	@RequestMapping(method = RequestMethod.POST,consumes = "application/json")
+	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
 	@ResponseBody
-	public Map addStock(@RequestBody TbStock stock){
-		Map<String,Object> result = new HashMap<>();
+	public Map addStock(@RequestBody TbStock stock) {
+		Map<String, Object> result = new HashMap<>();
 		TbStockKey temp = new TbStockKey();
 		temp.setBatchId(stock.getBatchId());
 		temp.setGoodsId(stock.getGoodsId());
-		TbStock rs =stockService.getStockByID(temp);
+		TbStock rs = stockService.getStockByID(temp);
 		if (rs != null) {
 			result.put("stat", 300);
 			result.put("message", "该批次下已存在此商品!");
@@ -63,14 +65,14 @@ public class StockController {
 		return result;
 	}
 
-	@RequestMapping(method = RequestMethod.DELETE,consumes = "application/json")
+	@RequestMapping(method = RequestMethod.DELETE, consumes = "application/json")
 	@ResponseBody
-	public Map deleteStock(@RequestBody TbStockKey id){
+	public Map deleteStock(@RequestBody TbStockKey id) {
 		Map<String, Object> result = new HashMap<>();
-		if (id.getGoodsId()==0){
+		if (id.getGoodsId() == 0) {
 			result.put("stat", 400);
 			result.put("message", "信息缺失,请重试！");
-		}else if (stockService.deleteStock(id) > 0) {
+		} else if (stockService.deleteStock(id) > 0) {
 			result.put("stat", 200);
 			result.put("message", "删除成功！");
 		} else {
@@ -82,7 +84,7 @@ public class StockController {
 
 	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
 	@ResponseBody
-	public Map updateStock(@RequestBody TbStock stock){
+	public Map updateStock(@RequestBody TbStock stock) {
 		Map<String, Object> result = new HashMap<>();
 		if (stockService.updateStock(stock) > 0) {
 			result.put("stat", 200);
@@ -93,35 +95,35 @@ public class StockController {
 		return result;
 	}
 
-	@RequestMapping(value = "/s",method = RequestMethod.GET)
-	public String search(@RequestParam("wd")String wd, @RequestParam(value = "page", defaultValue = "1") int page, Model model){
+	@RequestMapping(value = "/s", method = RequestMethod.GET)
+	public String search(@RequestParam("wd") String wd, @RequestParam(value = "page", defaultValue = "1") int page, Model model) {
 		PageHelper.startPage(page, 8);
 		List<TbStock> stock = stockService.searchStock(wd);
 		PageInfo<TbStock> p = new PageInfo<>(stock);
 		model.addAttribute("stocksList", stock);
-		model.addAttribute("wd",wd);
+		model.addAttribute("wd", wd);
 		model.addAttribute("page", p);
-		model.addAttribute("goods",goodsService.getAllGoodsIdName());
-		return "Stock/index";
+		model.addAttribute("goods", goodsService.getAllGoodsIdName());
+		return catalog + "/index";
 	}
 
-	@RequestMapping(value = "/add",method = RequestMethod.GET)
-	public String go2AddPage(Model model){
-		model.addAttribute("batchs",stockService.getAllBatch());
-		model.addAttribute("goods",goodsService.getAllGoods());
-		return "Stock/add";
+	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	public String go2AddPage(Model model) {
+		model.addAttribute("batchs", stockService.getAllBatch());
+		model.addAttribute("goods", goodsService.getAllGoods());
+		return catalog + "/add";
 	}
 
-	@RequestMapping(value = "/edit", method = RequestMethod.GET,produces = "text/plain")
-	public String edit(@RequestParam("batchId")long batchId,@RequestParam("goodsId")long goodsId, Model model) {
+	@RequestMapping(value = "/edit", method = RequestMethod.GET, produces = "text/plain")
+	public String edit(@RequestParam("batchId") long batchId, @RequestParam("goodsId") long goodsId, Model model) {
 		TbStockKey id = new TbStockKey();
 		id.setBatchId(batchId);
 		id.setGoodsId(goodsId);
 		TbStock stock = stockService.getStockByID(id);
 		model.addAttribute("stock", stock);
-		model.addAttribute("batchs",stockService.getAllBatch());
-		model.addAttribute("goods",goodsService.getAllGoodsIdName());
-		return "Stock/edit";
+		model.addAttribute("batchs", stockService.getAllBatch());
+		model.addAttribute("goods", goodsService.getAllGoodsIdName());
+		return catalog + "/edit";
 	}
 
 }

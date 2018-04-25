@@ -50,6 +50,7 @@ public class GoodsController {
 		model.addAttribute("page", p);
 		model.addAttribute("brands", brandService.getAllBrandName());
 		model.addAttribute("types", typeService.getAllTypeName());
+		model.addAttribute("units",typeService.getAllUnits());
 		return catalog + "/index";
 	}
 
@@ -135,6 +136,7 @@ public class GoodsController {
 		model.addAttribute("page", p);
 		model.addAttribute("brands", brandService.getAllBrandName());
 		model.addAttribute("types", typeService.getAllTypeName());
+		model.addAttribute("units",typeService.getAllUnits());
 		return catalog + "/index";
 	}
 }

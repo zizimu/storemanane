@@ -58,4 +58,14 @@ public class TypeServiceImpl implements TypeService {
 		}
 		return result;
 	}
+
+	@Override
+	public Map<Long, String> getAllUnits() {
+		Map<Long, String> result = new HashMap<>();
+		List<TbGoodsType> types = typeMapper.getAllTypeName();
+		for (TbGoodsType temp : types) {
+			result.put(temp.getTypeId(), temp.getUnits());
+		}
+		return result;
+	}
 }

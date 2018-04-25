@@ -121,7 +121,7 @@
 			<td style="text-align: right">￥${p.goodsPrice}</td>
 			<td style="text-align: center">${types[p.goodsType]}</td>
 			<td style="text-align: center">${brands[p.goodsBrand]}</td>
-			<td style="text-align: right">${p.goodsSpc}ml</td>
+			<td style="text-align: right">${p.goodsSpc}${units[p.goodsType]}</td>
 			<td style="text-align: center">${p.goodsCreatedate}</td>
 			<td style="text-align: right">${p.goodsShelflife}年</td>
 			<td style="text-align: center">

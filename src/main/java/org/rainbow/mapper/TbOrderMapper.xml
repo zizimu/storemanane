@@ -141,7 +141,7 @@
 	    where status = 1
         ORDER BY create_time DESC
     </select>
-	<!--TODO ：搜索的sql语句-->
+	<!-- 搜索的sql语句-->
     <select id="searchOrder" resultMap="BaseResultMap" parameterType="java.lang.String">
 	    select
 	    <include refid="Base_Column_List" />
