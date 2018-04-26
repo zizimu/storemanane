@@ -58,6 +58,7 @@ public class GoodsController {
 	public String go2AddPage(Model model) {
 		model.addAttribute("brands", brandService.getAllBrand());
 		model.addAttribute("types", typeService.getAllType());
+		model.addAttribute("units",typeService.getAllUnits());
 		return catalog + "/add";
 	}
 
@@ -85,6 +86,7 @@ public class GoodsController {
 		model.addAttribute("goods", goods);
 		model.addAttribute("brands", brandService.getAllBrand());
 		model.addAttribute("types", typeService.getAllType());
+		model.addAttribute("units",typeService.getAllUnits());
 		return catalog + "/edit";
 	}
 

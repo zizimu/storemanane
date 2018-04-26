@@ -139,7 +139,7 @@
 	</tr>
 	<tr>
 		<td class="tableleft">规格</td>
-		<td><input type="text" id="gspc" name="gspc" value="${goods.goodsSpc}"/></td>
+		<td><input type="text" id="gspc" name="gspc" value="${goods.goodsSpc}"/><span id="units" style="margin-left: 3px;font-size: 15px;"></span></td>
 	</tr>
 	<tr>
 		<td class="tableleft">生产日期</td>
@@ -166,11 +166,21 @@
 <script>
     $(function () {       
 		$('#backid').click(function(){
-				window.location.href="${pageContext.request.contextPath}/Goods";
+			window.location.href="${pageContext.request.contextPath}/Goods";
 		 });
         var selBrand="${goods.goodsBrand}";
         $("#goodsBrand").find("option[value="+selBrand+"]").attr("selected",true);
         var selType="${goods.goodsType}";
         $("#goodsType").find("option[value="+selType+"]").attr("selected",true);
+	    var units = {};
+	    <c:forEach items="${units}" var="p">units['${p.key}']='${p.value}';
+	    </c:forEach>
+        $("#gspc").attr('placeholder',units[selType]);
+        $("#units").text(units[selType]);
+        $("#goodsType").change(function () {
+            var index = $("#goodsType option:selected").val();
+            $("#gspc").attr('placeholder',units[index]);
+            $("#units").text(units[index]);
+        });
     });
 </script>

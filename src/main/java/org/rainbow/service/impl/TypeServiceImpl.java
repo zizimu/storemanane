@@ -62,7 +62,7 @@ public class TypeServiceImpl implements TypeService {
 	@Override
 	public Map<Long, String> getAllUnits() {
 		Map<Long, String> result = new HashMap<>();
-		List<TbGoodsType> types = typeMapper.getAllTypeName();
+		List<TbGoodsType> types = typeMapper.selectAll();
 		for (TbGoodsType temp : types) {
 			result.put(temp.getTypeId(), temp.getUnits());
 		}
