@@ -101,11 +101,13 @@
 <table class="table table-bordered table-hover ">
    <tr>
 		<td width="10%" class="tableleft">商品名称</td>
-		<td><input type="text" id="goodsName" name="goodsName" value="${goods.goodsName}"/></td>
+		<td><input type="text" id="goodsName" name="goodsName" value="${goods.goodsName}"/>
+			<span id="nameCheck" style="color: red; font-size: 15px;"></span></td>
 	</tr>
 	<tr>
 		<td class="tableleft">价格</td>
-		<td><input type="text" id="goodsPrice" name="goodsPrice" value="${goods.goodsPrice}"/></td>
+		<td><input type="text" id="goodsPrice" name="goodsPrice" value="${goods.goodsPrice}"/>
+			<span id="priceCheck" style="color: red; font-size: 15px;"></span></td>
 	</tr>
 	<tr>
 		<td class="tableleft">类型</td>
@@ -139,15 +141,19 @@
 	</tr>
 	<tr>
 		<td class="tableleft">规格</td>
-		<td><input type="text" id="gspc" name="gspc" value="${goods.goodsSpc}"/><span id="units" style="margin-left: 3px;font-size: 15px;"></span></td>
+		<td><input type="text" id="gspc" name="gspc" value="${goods.goodsSpc}"/>
+			<span id="units" style="margin-left: 3px;font-size: 15px;"></span>
+			<span id="unitsCheck" style="color: red; font-size: 15px;"></span></td>
 	</tr>
 	<tr>
 		<td class="tableleft">生产日期</td>
-		<td><input type="date" id="gcreateTime" name="gcreatedate" value="${goods.goodsCreatedate}"/></td>
+		<td><input type="date" id="gcreateTime" name="gcreatedate" value="${goods.goodsCreatedate}"/>
+			<span id="dateCheck" style="color: red; font-size: 15px;"></span></td>
 	</tr>
 	<tr>
 		<td class="tableleft">保质期</td>
-		<td><input type="text" id="gshelfilfe" name="gshelflife" value="${goods.goodsShelflife}"/></td>
+		<td><input type="text" id="gshelfilfe" name="gshelflife" value="${goods.goodsShelflife}"/>
+			<span id="shelflifeCheck" style="color: red; font-size: 15px;"></span></td>
 	</tr>
 	<tr>
 		<td class="tableleft">备注</td>

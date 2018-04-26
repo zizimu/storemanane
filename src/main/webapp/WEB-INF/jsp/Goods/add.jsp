@@ -265,7 +265,7 @@
             setUnits(units[index]);
         });
         setUnits(getFirstAttr(units));
-    });/*TODO 校验；类型和计量单位对应*/
+    });
     function getFirstAttr(obj) {
         for (var k in obj) return obj[k];
     };
