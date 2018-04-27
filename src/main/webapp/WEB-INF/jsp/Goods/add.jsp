@@ -39,7 +39,6 @@
 	<script type="text/javascript">
         $(function () {
             $("#pic").change(function () {
-                //获取文件对象，files是文件选取控件的属性，存储的是文件选取控件选取的文件对象，类型是一个数组
                 var formData = new FormData();
                 formData.append("file", $("#pic")[0].files[0]);
                 $.ajax({
@@ -55,7 +54,7 @@
                     success: function (responseStr) {
                         if (responseStr['stat'] == 200) {
                             $("#picUrl").attr("src", responseStr["url"]);
-                            $("#picurl").val(responseStr["url"]);
+                            $("#gpic").val(responseStr["url"]);
                         } else {
                             alert(responseStr['message']);
                         }
@@ -110,7 +109,7 @@
         function checkSpc() {
             var reg = /^[1-9]\d{1,4}$/;
             var spc = $("#gspc").val();
-            if (spc == null && spc == "") {
+            if (spc == null || spc == "") {
                 $("#unitsCheck").text('请输入规格!');
             }else if(!reg.test(spc)){
                 $("#unitsCheck").text('格式不正确!');
@@ -125,7 +124,7 @@
             if(date==null || date=='Invalid Date'){
                 $("#dateCheck").text('请选择日期！');
             } else if(date > today) {
-                $("#dateCheck").text('生产日期错误！');
+                $("#dateCheck").text('生产日期不能超过今天！');
             } else {
                 $("#dateCheck").text(''); return true;
             }
@@ -151,7 +150,7 @@
                 "goodsType": $("#gtype").val(),
                 "goodsBrand": $("#gbrand").val(),
                 "goodsSpc": $("#gspc").val(),
-                "goodsPic": $("#picurl").val(),
+                "goodsPic": $("#gpic").val(),
                 "goodsCreatedate": $("#gcreateTime").val(),
                 "goodsShelfilfe": $("#gshelfilfe").val(),
                 "mark": $("#mark").val()
@@ -217,7 +216,7 @@
 		<td>
 			<img id="picUrl" src="https://1213-1251943624.cos.ap-shanghai.myqcloud.com/default/no_pic.jpg"
 			     style="margin-left: 10px;width: 150px;height: 150px;"/>
-			<input type="hidden" id="picurl">
+			<input type="hidden" id="gpic"/>
 		</td>
 	</tr>
 	<tr>
@@ -238,7 +237,7 @@
 	</tr>
 	<tr>
 		<td class="tableleft">备注</td>
-		<td><input type="text" id="mark" name="mark"/></td>
+		<td><input type="text" id="mark"/></td>
 	</tr>
 	<tr>
 		<td class="tableleft"></td>
@@ -260,11 +259,11 @@
         var units = {};
         <c:forEach items="${units}" var="p">units['${p.key}'] = '${p.value}';
         </c:forEach>
+        setUnits(getFirstAttr(units));
         $("#gtype").change(function () {
             var index = $("#gtype option:selected").val();
             setUnits(units[index]);
         });
-        setUnits(getFirstAttr(units));
     });
     function getFirstAttr(obj) {
         for (var k in obj) return obj[k];

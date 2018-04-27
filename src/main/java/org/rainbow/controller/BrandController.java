@@ -6,10 +6,12 @@ import org.rainbow.pojo.TbBrand;
 import org.rainbow.pojo.TbGoods;
 import org.rainbow.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,13 +26,15 @@ import java.util.Map;
 @Controller
 @RequestMapping("/Brand")
 public class BrandController {
+	@Value("${pageSize}")
+	private int pageSize;
 
 	@Autowired
 	private BrandService brandService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(@RequestParam(value = "page",defaultValue = "1")int page, Model  model){
-		PageHelper.startPage(page,8);
+		PageHelper.startPage(page,pageSize);
 		List<TbBrand> brands = brandService.getAllBrand();
 		PageInfo<TbBrand> p = new PageInfo<>(brands);
 		model.addAttribute("brandsList",brands);
@@ -93,7 +97,12 @@ public class BrandController {
 
 	@RequestMapping(value = "/s",method = RequestMethod.GET)
 	public String search(@RequestParam("wd")String wd,@RequestParam(value = "page", defaultValue = "1") int page, Model model){
-		PageHelper.startPage(page, 8);
+		PageHelper.startPage(page, pageSize);
+		try {
+			wd = new String(wd.getBytes("ISO-8859-1"), "utf-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 		List<TbBrand> brands = brandService.searchBrand(wd);
 		PageInfo<TbBrand> p = new PageInfo<>(brands);
 		model.addAttribute("brandsList", brands);

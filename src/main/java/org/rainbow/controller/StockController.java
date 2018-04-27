@@ -7,10 +7,12 @@ import org.rainbow.pojo.TbStockKey;
 import org.rainbow.service.GoodsService;
 import org.rainbow.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +28,9 @@ import java.util.Map;
 @RequestMapping("/Stock")
 public class StockController {
 
+	@Value("${pageSize}")
+	private int pageSize;
+
 	private String catalog = "Stock";
 
 	@Autowired
@@ -35,7 +40,7 @@ public class StockController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
-		PageHelper.startPage(page, 8);
+		PageHelper.startPage(page, pageSize);
 		List<TbStock> stocks = stockService.getAllStock();
 		PageInfo<TbStock> p = new PageInfo<>(stocks);
 		model.addAttribute("stocksList", stocks);
@@ -97,7 +102,12 @@ public class StockController {
 
 	@RequestMapping(value = "/s", method = RequestMethod.GET)
 	public String search(@RequestParam("wd") String wd, @RequestParam(value = "page", defaultValue = "1") int page, Model model) {
-		PageHelper.startPage(page, 8);
+		PageHelper.startPage(page, pageSize);
+		try {
+			wd = new String(wd.getBytes("ISO-8859-1"), "utf-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 		List<TbStock> stock = stockService.searchStock(wd);
 		PageInfo<TbStock> p = new PageInfo<>(stock);
 		model.addAttribute("stocksList", stock);
@@ -124,6 +134,19 @@ public class StockController {
 		model.addAttribute("batchs", stockService.getAllBatch());
 		model.addAttribute("goods", goodsService.getAllGoodsIdName());
 		return catalog + "/edit";
+	}
+
+	@RequestMapping(value = "/check", method = RequestMethod.GET)
+	@ResponseBody
+	public Map checkGoods(@RequestParam("batchID") String batchID, @RequestParam("goodsID") String goodsID) {
+		Map<String, Object> result = new HashMap<>();
+		if (stockService.isGoodsByBatch(batchID, goodsID)) {
+			result.put("stat", 200);
+		} else {
+			result.put("stat", 500);
+			result.put("message", "已存在,请重新选择！");
+		}
+		return result;
 	}
 
 }

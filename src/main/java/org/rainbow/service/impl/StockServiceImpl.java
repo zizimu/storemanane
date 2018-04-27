@@ -56,4 +56,23 @@ public class StockServiceImpl implements StockService {
 	public List<Long> getAllBatch() {
 		return stockMapper.getAllBatch();
 	}
+
+	@Override
+	public boolean isGoodsByBatch(String batchId, String goodsId) {
+		boolean rs = false;
+		try {
+			Long batch = Long.parseLong(batchId);
+			Long goods = Long.parseLong(goodsId);
+			TbStockKey temp = new TbStockKey();
+			temp.setGoodsId(goods);
+			temp.setBatchId(batch);
+			if (getStockByID(temp) == null) {
+				rs = true;
+			}
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			return rs;
+		}
+		return rs;
+	}
 }

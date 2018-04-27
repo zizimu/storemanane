@@ -40,42 +40,61 @@
 	<script type="text/javascript">
         $(function () {
             $("#submit").click(function () {
-                var data = {
-                    "typeName" : $("#TypeName").val(),
-                    "mark": $("#mark").val()
-                };
-                $.ajax({
-                    url: "${pageContext.request.contextPath}/Type",
-                    type: 'POST',
-                    dataType: "json",
-                    data: JSON.stringify(data),
-                    contentType: 'application/json;charset=UTF-8',
-                    beforeSend: function () {
-                        console.log("正在进行，请稍候");
-                    },
-                    success: function (responseStr) {
-                        if (responseStr['stat'] == 200) {
-                            window.location.href="${pageContext.request.contextPath}/Type";
-                        } else {
-                            alert(responseStr['message']);
-                        }
-                    },
-                    error: function () {
-                        console.log("error!");
-                    }
-                })
+                if(checkName()){
+                    post();
+                }
+            });
+            $("#TypeName").focus(function () {
+	            $("#namecheck").text('');
             })
-        })
+        });
+        function checkName() {
+            var name = $("#TypeName").val();
+            if(name == null || name ==""){
+                $("#namecheck").text("请输入名称!");
+            }else{
+                $("#namecheck").text('');
+                return true;
+            }
+            return false;
+        };
+        function post() {
+            var data = {
+                "typeName" : $("#TypeName").val(),
+                "mark": $("#mark").val()
+            };
+            $.ajax({
+                url: "${pageContext.request.contextPath}/Type",
+                type: 'POST',
+                dataType: "json",
+                data: JSON.stringify(data),
+                contentType: 'application/json;charset=UTF-8',
+                beforeSend: function () {
+                    console.log("正在进行，请稍候");
+                },
+                success: function (responseStr) {
+                    if (responseStr['stat'] == 200) {
+                        window.location.href="${pageContext.request.contextPath}/Type";
+                    } else {
+                        alert(responseStr['message']);
+                    }
+                },
+                error: function () {
+                    console.log("error!");
+                }
+            })
+        };
 	</script>
 </head>
 <table class="table table-bordered table-hover definewidth m10">
 	<tr>
 		<td width="10%" class="tableleft">类型名称</td>
-		<td><input type="text" id="TypeName" name="TypeName"/></td>
+		<td><input type="text" id="TypeName" />
+			<span id="namecheck" style="color: red; font-size: 15px;"></span></td>
 	</tr>
 	<tr>
 		<td class="tableleft">备注</td>
-		<td><input type="text" id="mark" name="mark"/></td>
+		<td><input type="text" id="mark" /></td>
 	</tr>
 	<tr>
 		<td class="tableleft"></td>
