@@ -1,6 +1,7 @@
 package org.rainbow.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.rainbow.pojo.TbStore;
 
@@ -15,5 +16,7 @@ public interface StoreService {
 	int updateStore(TbStore store);
 
 	List<TbStore> searchStore(String key);
+
+	Map<Long,String> getAllStores();
 
 }

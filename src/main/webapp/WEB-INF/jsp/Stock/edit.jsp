@@ -57,7 +57,11 @@
     </tr>
     <tr>
         <td class="tableleft">所属门店</td>
-        <td><input type="number" id="sid" value="${stock.storeId}"/></td>
+        <td><select id="sid" style="width: 210px;">
+	        <c:forEach items="${stores}" var="p">
+		        <option value="${p.key}">${p.value}</option>
+	        </c:forEach>
+        </select></td>
     </tr>
     <tr>
         <td class="tableleft">备注</td>
@@ -91,14 +95,16 @@
         $("#gsold").focus(function () {
             $("#soldCheck").text('');
         });
+        var sel="${stock.storeId}";
+        $("#sid").find("option[value="+sel+"]").attr("selected",true);
     });
     function checkStock() {
         var reg =/^[1-9]\d{0,4}$/;
         var stock = $("#gstock").val();
         if(stock==null||stock==""){
             $("#stockCheck").text("请输入库存数！");
-        }else if(!reg.test(stock)){
-            $("#stockCheck").text('请输入六位以内正整数！');
+        }else if(!reg.test(stock)&&stock!=0){
+            $("#stockCheck").text('请输入0或六位以内正整数！');
         }else {
             $("#stockCheck").text('');
             return true;
@@ -110,8 +116,8 @@
         var stock = $("#gsold").val();
         if(stock==null||stock==""){
             $("#soldCheck").text("请输入已售数量！");
-        }else if(!reg.test(stock)){
-            $("#soldCheck").text('请输入六位以内正整数！');
+        }else if(!reg.test(stock)&&stock!=0){
+            $("#soldCheck").text('请输入0或六位以内正整数！');
         }else {
             $("#soldCheck").text('');
             return true;

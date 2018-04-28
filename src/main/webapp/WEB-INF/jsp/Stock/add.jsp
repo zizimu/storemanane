@@ -68,7 +68,11 @@
 	</tr>
 	<tr>
 		<td class="tableleft">所属门店</td>
-		<td><input type="number" id="sid"/></td>
+		<td><select id="sid" style="width: 210px;">
+			<c:forEach items="${stores}" var="p">
+				<option value="${p.key}">${p.value}</option>
+			</c:forEach>
+		</select></td>
 	</tr>
 	<tr>
 		<td class="tableleft">备注</td>

@@ -156,6 +156,14 @@
 	    where status = 1
         ORDER BY create_time DESC
     </select>
+
+    <select id="selectAllWithoutStatus" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List"/>
+        from tb_store
+        ORDER BY create_time DESC
+    </select>
+
 	<!-- 搜索的sql语句-->
     <select id="searchStore" resultMap="BaseResultMap" parameterType="java.lang.String">
 	    select

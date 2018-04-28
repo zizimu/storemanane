@@ -1,8 +1,11 @@
 package org.rainbow.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.rainbow.mapper.TbStoreMapper;
+import org.rainbow.pojo.TbGoods;
 import org.rainbow.pojo.TbStore;
 import org.rainbow.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +33,16 @@ public class StoreServiceImpl implements StoreService {
 
 		return tbStoreMapper.searchStore(key);
 
+	}
+
+	@Override
+	public Map<Long, String> getAllStores() {
+		Map<Long, String> result = new HashMap<>();
+		List<TbStore> goods = tbStoreMapper.selectAllWithoutStatus();
+		for (TbStore temp : goods) {
+			result.put(temp.getStoreId(), temp.getStoreName());
+		}
+		return result;
 	}
 
 	@Override

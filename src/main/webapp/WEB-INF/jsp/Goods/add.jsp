@@ -134,7 +134,7 @@
             var reg = /^[1-9]\d?$/;
             var shelfLife = $("#gshelfilfe").val();
             if (shelfLife == null || shelfLife == "") {
-                $("#shelflifeCheck").text('请输入!');
+                $("#shelflifeCheck").text('请输入保质期!');
             }else if(!reg.test(shelfLife)){
                 $("#shelflifeCheck").text('格式不正确!');
             } else {
@@ -232,7 +232,7 @@
 	</tr>
 	<tr>
 		<td class="tableleft">保质期</td>
-		<td><input type="text" maxlength="2" value="1" id="gshelfilfe" onblur="checkShelfLife()"/>
+		<td><input type="text" maxlength="2" value="1" id="gshelfilfe" onblur="checkShelfLife()"/> 年
 			<span id="shelflifeCheck" style="color: red; font-size: 15px;"></span></td>
 	</tr>
 	<tr>

@@ -20,4 +20,6 @@ public interface TbStoreMapper {
 	List<TbStore> selectAll();
 
 	List<TbStore> searchStore(String key);
+
+	List<TbStore> selectAllWithoutStatus();
 }

@@ -6,6 +6,7 @@ import org.rainbow.pojo.TbStock;
 import org.rainbow.pojo.TbStockKey;
 import org.rainbow.service.GoodsService;
 import org.rainbow.service.StockService;
+import org.rainbow.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -37,6 +38,8 @@ public class StockController {
 	private StockService stockService;
 	@Autowired
 	private GoodsService goodsService;
+	@Autowired
+	private StoreService storeService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
@@ -121,6 +124,7 @@ public class StockController {
 	public String go2AddPage(Model model) {
 		model.addAttribute("batchs", stockService.getAllBatch());
 		model.addAttribute("goods", goodsService.getAllGoods());
+		model.addAttribute("stores",storeService.getAllStores());
 		return catalog + "/add";
 	}
 
@@ -133,6 +137,7 @@ public class StockController {
 		model.addAttribute("stock", stock);
 		model.addAttribute("batchs", stockService.getAllBatch());
 		model.addAttribute("goods", goodsService.getAllGoodsIdName());
+		model.addAttribute("stores",storeService.getAllStores());
 		return catalog + "/edit";
 	}
 

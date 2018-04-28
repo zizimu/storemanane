@@ -24,18 +24,13 @@
 	src="https://cdn-1251943624.file.myqcloud.com/storeManage/Js/common.js"></script>
 <script type="text/javascript"
 	src="https://cdn-1251943624.file.myqcloud.com/layer/layer.js"></script>
-
-
-
 <style type="text/css">
 body {
 	padding-bottom: 40px;
 }
-
 .sidebar-nav {
 	padding: 9px 0;
 }
-
 @media ( max-width : 980px) {
 	/* Enable use of floated navbar text */
 	.navbar-text.pull-right {
