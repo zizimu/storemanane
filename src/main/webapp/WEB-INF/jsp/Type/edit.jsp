@@ -34,46 +34,64 @@
     <script type="text/javascript">
         $(function () {
             $("#submit").click(function () {
-                var data = {
-                    "typeId":${type.typeId},
-                    "typeName" : $("#TypeName").val(),
-                    "mark": $("#mark").val(),
-                };
-                $.ajax({
-                    url: "${pageContext.request.contextPath}/Type/"+${type.typeId},
-                    type: 'PUT',
-                    dataType: "json",
-                    data: JSON.stringify(data),
-                    contentType: 'application/json;charset=UTF-8',
-                    beforeSend: function () {
-                        console.log("正在进行，请稍候");
-                    },
-                    success: function (responseStr) {
-                        if (responseStr['stat'] == 200) {
-                            window.location.href="${pageContext.request.contextPath}/Type";
-                        } else {
-                            alert(responseStr['message']);
-                        }
-                    },
-                    error: function () {
-                        console.log("error!");
-                    }
-                })
+                if(checkName()){
+                    put();
+                }
+            });
+            $("#TypeName").focus(function () {
+                $("#namecheck").text('');
             })
-        })
+        });
+        function checkName() {
+            var name = $("#TypeName").val();
+            if(name == null || name ==""){
+                $("#namecheck").text("请输入名称!");
+            }else{
+                $("#namecheck").text('');
+                return true;
+            }
+            return false;
+        };
+        function put() {
+            var data = {
+                "typeId":${type.typeId},
+                "typeName" : $("#TypeName").val(),
+                "mark": $("#mark").val(),
+            };
+            $.ajax({
+                url: "${pageContext.request.contextPath}/Type/"+${type.typeId},
+                type: 'PUT',
+                dataType: "json",
+                data: JSON.stringify(data),
+                contentType: 'application/json;charset=UTF-8',
+                beforeSend: function () {
+                    console.log("正在进行，请稍候");
+                },
+                success: function (responseStr) {
+                    if (responseStr['stat'] == 200) {
+                        window.location.href="${pageContext.request.contextPath}/Type";
+                    } else {
+                        alert(responseStr['message']);
+                    }
+                },
+                error: function () {
+                    console.log("error!");
+                }
+            })
+        }
     </script>
 </head>
 <body>
-<form action="index.html" method="post" class="definewidth m20">
 <input type="hidden" name="id" value="" />
 <table class="table table-bordered table-hover ">
 	<tr>
 		<td width="10%" class="tableleft">类型名称</td>
-		<td><input type="text" id="TypeName" name="TypeName" value="${type.typeName}"/></td>
+		<td><input type="text" id="TypeName" value="${type.typeName}"/>
+			<span id="namecheck" style="color: red; font-size: 15px;"></span></td>
 	</tr>
 	<tr>
 		<td class="tableleft">备注</td>
-		<td><input type="text" id="mark" name="mark" value="${type.mark}"/></td>
+		<td><input type="text" id="mark" value="${type.mark}"/></td>
 	</tr>
 	<tr>
 		<td class="tableleft"></td>
@@ -85,7 +103,6 @@
 		</td>
 	</tr>
 </table>
-</form>
 </body>
 </html>
 <script>

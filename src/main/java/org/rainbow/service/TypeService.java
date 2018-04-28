@@ -24,5 +24,7 @@ public interface TypeService {
 
 	List<TbGoodsType> searchType(String key);
 
-	Map<Long,String> getAllTypeName();
+	Map<Long, String> getAllTypeName();
+
+	Map<Long, String> getAllUnits();
 }

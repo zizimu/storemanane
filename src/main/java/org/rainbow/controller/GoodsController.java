@@ -50,6 +50,7 @@ public class GoodsController {
 		model.addAttribute("page", p);
 		model.addAttribute("brands", brandService.getAllBrandName());
 		model.addAttribute("types", typeService.getAllTypeName());
+		model.addAttribute("units",typeService.getAllUnits());
 		return catalog + "/index";
 	}
 
@@ -57,6 +58,7 @@ public class GoodsController {
 	public String go2AddPage(Model model) {
 		model.addAttribute("brands", brandService.getAllBrand());
 		model.addAttribute("types", typeService.getAllType());
+		model.addAttribute("units",typeService.getAllUnits());
 		return catalog + "/add";
 	}
 
@@ -84,6 +86,7 @@ public class GoodsController {
 		model.addAttribute("goods", goods);
 		model.addAttribute("brands", brandService.getAllBrand());
 		model.addAttribute("types", typeService.getAllType());
+		model.addAttribute("units",typeService.getAllUnits());
 		return catalog + "/edit";
 	}
 
@@ -135,6 +138,7 @@ public class GoodsController {
 		model.addAttribute("page", p);
 		model.addAttribute("brands", brandService.getAllBrandName());
 		model.addAttribute("types", typeService.getAllTypeName());
+		model.addAttribute("units",typeService.getAllUnits());
 		return catalog + "/index";
 	}
 }

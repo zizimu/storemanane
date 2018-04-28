@@ -21,6 +21,16 @@ public class TbGoodsType implements Serializable {
 
     private String mark;
 
+    private String units;
+
+    public String getUnits() {
+        return units;
+    }
+
+    public void setUnits(String units) {
+        this.units = units;
+    }
+
     private static final long serialVersionUID = 1L;
 
     public Long getTypeId() {

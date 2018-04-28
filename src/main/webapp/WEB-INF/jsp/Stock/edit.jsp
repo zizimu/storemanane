@@ -47,11 +47,13 @@
     </tr>
     <tr>
         <td class="tableleft">库存</td>
-        <td><input type="number" id="gstock" value="${stock.goodsStock}"/></td>
+        <td><input type="number" id="gstock" onblur="checkStock()" value="${stock.goodsStock}"/>
+            <span id="stockCheck" style="color: red; font-size: 15px;"></span></td>
     </tr>
     <tr>
         <td class="tableleft">已售数量</td>
-        <td><input type="number" id="gsold" value="${stock.goodsSold}"/></td>
+        <td><input type="number" id="gsold" onblur="checkSoldNum()" value="${stock.goodsSold}"/>
+            <span id="soldCheck" style="color: red; font-size: 15px;"></span></td>
     </tr>
     <tr>
         <td class="tableleft">所属门店</td>
@@ -79,34 +81,71 @@
             window.location.href="${pageContext.request.contextPath}/Stock";
         });
         $("#submit").click(function () {
-            var data = {
-                "batchId": ${stock.batchId},
-                "goodsId": ${stock.goodsId},
-                "goodsStock": $("#gstock").val(),
-                "goodsSold": $("#gsold").val(),
-                "storeId": $("#sid").val(),
-                "mark": $("#mark").val()
-            };
-            $.ajax({
-                url: "${pageContext.request.contextPath}/Stock",
-                type: 'PUT',
-                dataType: "json",
-                data: JSON.stringify(data),
-                contentType: 'application/json;charset=UTF-8',
-                beforeSend: function () {
-                    console.log("正在进行，请稍候");
-                },
-                success: function (responseStr) {
-                    if (responseStr['stat'] == 200) {
-                        window.location.href = "${pageContext.request.contextPath}/Stock";
-                    } else {
-                        alert(responseStr['message']);
-                    }
-                },
-                error: function () {
-                    console.log("error!");
-                }
-            })
-        })
+            if(checkSoldNum()&checkStock()){
+                put();
+            }
+        });
+        $("#gstock").focus(function () {
+            $("#stockCheck").text('');
+        });
+        $("#gsold").focus(function () {
+            $("#soldCheck").text('');
+        });
     });
+    function checkStock() {
+        var reg =/^[1-9]\d{0,4}$/;
+        var stock = $("#gstock").val();
+        if(stock==null||stock==""){
+            $("#stockCheck").text("请输入库存数！");
+        }else if(!reg.test(stock)){
+            $("#stockCheck").text('请输入六位以内正整数！');
+        }else {
+            $("#stockCheck").text('');
+            return true;
+        }
+        return false;
+    }
+    function checkSoldNum() {
+        var reg =/^[1-9]\d{0,4}$/;
+        var stock = $("#gsold").val();
+        if(stock==null||stock==""){
+            $("#soldCheck").text("请输入已售数量！");
+        }else if(!reg.test(stock)){
+            $("#soldCheck").text('请输入六位以内正整数！');
+        }else {
+            $("#soldCheck").text('');
+            return true;
+        }
+        return false;
+    }
+    function put() {
+        var data = {
+            "batchId": ${stock.batchId},
+            "goodsId": ${stock.goodsId},
+            "goodsStock": $("#gstock").val(),
+            "goodsSold": $("#gsold").val(),
+            "storeId": $("#sid").val(),
+            "mark": $("#mark").val()
+        };
+        $.ajax({
+            url: "${pageContext.request.contextPath}/Stock",
+            type: 'PUT',
+            dataType: "json",
+            data: JSON.stringify(data),
+            contentType: 'application/json;charset=UTF-8',
+            beforeSend: function () {
+                console.log("正在进行，请稍候");
+            },
+            success: function (responseStr) {
+                if (responseStr['stat'] == 200) {
+                    window.location.href = "${pageContext.request.contextPath}/Stock";
+                } else {
+                    alert(responseStr['message']);
+                }
+            },
+            error: function () {
+                console.log("error!");
+            }
+        })
+    }
 </script>

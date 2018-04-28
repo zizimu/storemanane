@@ -5,10 +5,12 @@ import com.github.pagehelper.PageInfo;
 import org.rainbow.pojo.TbGoodsType;
 import org.rainbow.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,12 +22,15 @@ import java.util.Map;
 @RequestMapping("/Type")
 public class TypeController {
 
+	@Value("${pageSize}")
+	private int pageSize;
+
 	@Autowired
 	private TypeService typeService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(@RequestParam(value = "page",defaultValue = "1")int page, Model  model){
-		PageHelper.startPage(page,8);
+		PageHelper.startPage(page,pageSize);
 		List<TbGoodsType> types = typeService.getAllType();
 		PageInfo<TbGoodsType> p = new PageInfo<>(types);
 		model.addAttribute("typesList",types);
@@ -88,7 +93,12 @@ public class TypeController {
 
 	@RequestMapping(value = "/s",method = RequestMethod.GET)
 	public String search(@RequestParam("wd")String wd,@RequestParam(value = "page", defaultValue = "1") int page, Model model){
-		PageHelper.startPage(page, 8);
+		PageHelper.startPage(page, pageSize);
+		try {
+			wd = new String(wd.getBytes("ISO-8859-1"), "utf-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 		List<TbGoodsType> types = typeService.searchType(wd);
 		PageInfo<TbGoodsType> p = new PageInfo<>(types);
 		model.addAttribute("typesList", types);

@@ -27,7 +27,7 @@ import java.util.UUID;
  */
 @Controller
 public class UploadController {
-	@Value("https://1213-1251943624.cos.ap-shanghai.myqcloud.com/")
+	@Value("${ossUrl}")
 	private String imageUrl;
 
 	@Autowired
