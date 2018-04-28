@@ -42,7 +42,8 @@
                     "staffName" : $("#staffName").val(),
                     "staffPhone" : $("#staffPhone").val(),
                     "storeId" : $("#storeId").val(),
-                    "createTime" : $("#createTime").val(),
+                    "createTime" : $("#entryTime").val(),
+                    "createTime" : $("#role").val(),
                     "mark": $("#mark").val()
                 };
                 $.ajax({
@@ -83,6 +84,14 @@
     <tr>
         <td class="tableleft">所属门店</td>
         <td><input type="text" id="storeId"/></td>
+    </tr>
+     <tr>
+        <td class="tableleft">入职时间</td>
+        <td><input type="date" id="entryTime"/></td>
+    </tr>
+     <tr>
+        <td class="tableleft">角色</td>
+        <td><input type="text" id="role"/></td>
     </tr>
      <tr>
         <td class="tableleft">备注</td>

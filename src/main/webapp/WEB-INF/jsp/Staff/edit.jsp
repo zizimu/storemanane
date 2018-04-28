@@ -47,7 +47,7 @@ body {
                     "staffName" : $("#staffName").val(),
                     "staffPhone" : $("#staffPhone").val(),
                     "storeId" : $("#storeId").val(),
-                    "createTime" : $("#createTime").val(),
+                    "role" : $("#role").val(),
                     "mark": $("#mark").val()                };
                 $.ajax({
                     url: "${pageContext.request.contextPath}/Staff/"+${staff.staffId},
@@ -88,6 +88,14 @@ body {
 			<tr>
 				<td class="tableleft">所属门店</td>
 				<td><input type="text" id="storeId" value="${staff.storeId}"/></td>
+			</tr>
+			<tr>
+				<td class="tableleft">入职时间</td>
+				<td><input type="date" id="entryTime" value="${staff.entryTime}"/></td>
+			</tr>
+			<tr>
+				<td class="tableleft">角色</td>
+				<td><input type="text" id="role" value="${staff.role}"/></td>
 			</tr>
 			<tr>
 				<td class="tableleft">备注</td>
