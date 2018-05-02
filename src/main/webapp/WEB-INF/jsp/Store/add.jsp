@@ -93,7 +93,10 @@
 				<td class="tableleft">联系方式</td>
 				<td><input type="text" id="storeId"/></td>
 			</tr>
-			
+			<tr>
+				<td class="tableleft">注册时间</td>
+				<td><input type="date" id="createTime"/></td>
+			</tr>
 			<tr>
 				<td class="tableleft">备注</td>
 				<td><input type="text" id="mark"/></td>
