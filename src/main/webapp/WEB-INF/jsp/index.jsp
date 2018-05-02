@@ -50,7 +50,7 @@
         </div>
 
         <div class="img-item">
-            <a href="#">
+            <a href="${pageContext.request.contextPath}/logout">
             <img class="img-head" src="https://cdn-1251943624.file.myqcloud.com/storeManage/Images/actionIcons_016.png" >
             <br>退&nbsp;出
             </a>

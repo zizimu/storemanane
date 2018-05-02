@@ -16,7 +16,7 @@
 	<script type="text/javascript">
         $(function () {
             $("#submit").click(function () {
-                if(checkName()&& checkPsw()){
+                if(checkName() && checkPsw()){
                     post();
                 }
             });
@@ -47,7 +47,7 @@
         };
         function post() {
             var data = {
-                "loginName": $("#loginname").val(),
+                "loginname": $("#loginname").val(),
                 "password": $("#loginpwd").val(),
             };
             $.ajax({
@@ -70,7 +70,7 @@
         };
 	</script>
 </head>
-<body class="bgimg" style="background: url('${BGimage}') no-repeat;">
+<body class="bgimg" style="background: url('${BGimage}') no-repeat;background-size:cover;width:100%;height: auto;">
 <div id="content">
 	<%--<div class="logoNloginText" style="text-align:center;">
 		<a href="../index.html"><img src="/shopping/images/logo/logoMiddle.png" alt="logo"></a>
@@ -83,8 +83,8 @@
 		<input class="textStyle" type="password" id="loginpwd" placeholder="密码">
 	</div>
 	<div class="centerText">
-		<input type="submit" value="登录" class="btn">
-		<span id="check" style="color: red; font-size: 15px;"></span>
+		<input type="button" id="submit" value="登录" class="btn">
+		<br><span id="check" style="color: red; font-size: 15px;"></span>
 	</div>
 </div>
 </body>

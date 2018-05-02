@@ -21,7 +21,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			System.out.println("尚未登录，跳转登录页面");
 			response.sendRedirect("/login");
 		}else {
-			System.out.println(user);
 			return true;
 		}
 		return false;
