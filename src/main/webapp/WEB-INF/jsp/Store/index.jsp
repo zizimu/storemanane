@@ -101,7 +101,7 @@ body {
 				<th style="text-align: center">详细地址</th>
 				<th style="text-align: center">店长</th>
 				<th style="text-align: center">联系方式</th>
-				<th style="text-align: center">创建时间</th>
+				<th style="text-align: center">注册时间</th>
 				<th style="text-align: center">备注</th>
 				<th style="text-align: center">管理操作</th>
 			</tr>

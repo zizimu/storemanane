@@ -48,7 +48,7 @@ body {
                     "storeArea" : $("#storeArea").val(),
                     "storeAddress" : $("#storeAddress").val(),
                     "storeManager" : $("#storeManager").val(),
-                    "managerTel" : $("#staffPhone").val(),
+                    "staffPhone" : $("#staffPhone").val(),
                     "createTime" : $("#createTime").val(),
                     "mark": $("#mark").val()       
                 };
@@ -100,7 +100,10 @@ body {
 				<td class="tableleft">联系方式</td>
 				<td><input type="text" id="staffPhone" value="${store.staffPhone}"/></td>
 			</tr>
-			
+			<tr>
+				<td class="tableleft">注册时间</td>
+				<td><input type="date" id="createTime" value="${store.createTime}"/></td>
+			</tr>
 			<tr>
 				<td class="tableleft">备注</td>
 				<td><input type="text" id="mark" value="${store.mark}"/></td>
