@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.rainbow.mapper.TbParameterMapper" >
+
+    <resultMap id="BaseResultMap" type="org.rainbow.pojo.TbParameter" >
+        <id column="parameterID" property="parameterid" jdbcType="INTEGER" />
+        <result column="parameterName" property="parametername" jdbcType="VARCHAR" />
+        <result column="parameterContent" property="parametercontent" jdbcType="VARCHAR" />
+        <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+        <result column="mark" property="mark" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        parameterID, parameterName, parameterContent, createTime, mark
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from tb_parameter
+        where parameterID = #{parameterid,jdbcType=INTEGER}
+    </select>
+
+	<select id="selectByParameterName" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from tb_parameter
+		where parameterName = #{name}
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from tb_parameter
+        where parameterID = #{parameterid,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="org.rainbow.pojo.TbParameter" >
+        insert into tb_parameter (parameterID, parameterName, parameterContent, 
+            createTime, mark)
+        values (#{parameterid,jdbcType=INTEGER}, #{parametername,jdbcType=VARCHAR}, #{parametercontent,jdbcType=VARCHAR}, 
+            #{createtime,jdbcType=TIMESTAMP}, #{mark,jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertSelective" parameterType="org.rainbow.pojo.TbParameter" >
+        insert into tb_parameter
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="parameterid != null" >
+                parameterID,
+            </if>
+            <if test="parametername != null" >
+                parameterName,
+            </if>
+            <if test="parametercontent != null" >
+                parameterContent,
+            </if>
+            <if test="createtime != null" >
+                createTime,
+            </if>
+            <if test="mark != null" >
+                mark,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="parameterid != null" >
+                #{parameterid,jdbcType=INTEGER},
+            </if>
+            <if test="parametername != null" >
+                #{parametername,jdbcType=VARCHAR},
+            </if>
+            <if test="parametercontent != null" >
+                #{parametercontent,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null" >
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="mark != null" >
+                #{mark,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="org.rainbow.pojo.TbParameter" >
+        update tb_parameter
+        <set >
+            <if test="parametername != null" >
+                parameterName = #{parametername,jdbcType=VARCHAR},
+            </if>
+            <if test="parametercontent != null" >
+                parameterContent = #{parametercontent,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null" >
+                createTime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="mark != null" >
+                mark = #{mark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where parameterID = #{parameterid,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="org.rainbow.pojo.TbParameter" >
+        update tb_parameter
+        set parameterName = #{parametername,jdbcType=VARCHAR},
+            parameterContent = #{parametercontent,jdbcType=VARCHAR},
+            createTime = #{createtime,jdbcType=TIMESTAMP},
+            mark = #{mark,jdbcType=VARCHAR}
+        where parameterID = #{parameterid,jdbcType=INTEGER}
+    </update>
+</mapper>
