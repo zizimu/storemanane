@@ -22,6 +22,7 @@
 		<property name="validationQuery" value="${jdbc.validationQuery}"/>
 		<property name="validationQueryTimeout" value="${jdbc.validationQueryTimeout}"/>
 		<property name="initialSize" value="${jdbc.initialSize}"/>
+		<property name="filters" value="stat" />
 	</bean>
 	<!-- 让spring管理sqlsessionfactory 使用mybatis和spring整合包中的 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

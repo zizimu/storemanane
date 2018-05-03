@@ -131,7 +131,8 @@ public class CommonController {
 	}
 
 	@RequestMapping("/person")
-	public String toPerson(){
+	public String toPerson(@ModelAttribute("user")TbAccount account,Model model){
+		model.addAttribute("account",account);
 		return "person";
 	}
 }

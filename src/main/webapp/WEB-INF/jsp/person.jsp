@@ -9,78 +9,84 @@
 <html>
 <head>
 	<title>个人信息</title>
-	<link href="/css/person/main.css" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" type="text/css"
 	      href="https://cdn-1251943624.file.myqcloud.com/storeManage/Css/bootstrap.css"/>
 	<link rel="stylesheet" type="text/css"
 	      href="https://cdn-1251943624.file.myqcloud.com/storeManage/Css/bootstrap-responsive.css"/>
+	<link rel="stylesheet" type="text/css" href="https://cdn-1251943624.file.myqcloud.com/storeManage/Css/style.css"/>
+	<script type="text/javascript" src="https://cdn-1251943624.file.myqcloud.com/storeManage/Js/jquery.js"></script>
+	<script type="text/javascript"
+	        src="https://cdn-1251943624.file.myqcloud.com/storeManage/Js/jquery.sorted.js"></script>
+	<script type="text/javascript" src="https://cdn-1251943624.file.myqcloud.com/storeManage/Js/bootstrap.js"></script>
+	<script type="text/javascript" src="https://cdn-1251943624.file.myqcloud.com/storeManage/Js/ckform.js"></script>
+	<script type="text/javascript" src="https://cdn-1251943624.file.myqcloud.com/storeManage/Js/common.js"></script>
+	<script type="text/javascript"
+	        src="https://cdn-1251943624.file.myqcloud.com/storeManage/Js/jquery.form.min.js"></script>
+	<style type="text/css">
+		body {
+			padding-bottom: 40px;
+		}
+
+		.sidebar-nav {
+			padding: 9px 0;
+		}
+
+		@media (max-width: 980px) {
+			.navbar-text.pull-right {
+				float: none;
+				padding-left: 5px;
+				padding-right: 5px;
+			}
+		}
+	</style>
 </head>
 <body>
-<div class="container">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">个人信息</h3>
-				</div>
-				<div class="panel-body">
-					<form class="form-horizontal" name="form1" action="" method="post">
-						<input type="hidden" name="model.userid" value="" />
-						<div class="form-group">
-							<label for="username" class="col-sm-2 control-label">登录名</label>
-							<div class="col-sm-10">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="old_password" class="col-sm-2 control-label">原始密码</label>
-							<div class="col-sm-10">
-								<input name="old_password" type="password"class="form-control" id="old_password" placeholder="原始密码">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="new_password" class="col-sm-2 control-label">新密码</label>
-							<div class="col-sm-10">
-								<input name="new_password" type="password"class="form-control" id="new_password" placeholder="新密码">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="new_password2" class="col-sm-2 control-label">重复密码</label>
-							<div class="col-sm-10">
-								<input name="new_password2" type="password" class="form-control" id="new_password2" placeholder="重复密码">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="tel" class="col-sm-2 control-label">手机号</label>
-							<div class="col-sm-10">
-								<input name="model.tel" type="text" class="form-control" id="tel"
-								       value="" placeholder="手机号">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="remark" class="col-sm-2 control-label">备注</label>
-							<div class="col-sm-10">
-							    	<textarea rows="3" cols="30" class="form-control" id="remark"
-								              name="model.remark" placeholder="备注"></textarea>
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-10">
-								<input type="button" value="保 存"  class="btn btn-primary" onclick="oper_save();"/>
-								&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="reset" value="重 置"  class="btn btn-default" />
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-10">
-								1. 修改基本信息需要输入原始密码。<br>
-								2. 修改密码需要输入原始密码、新密码。
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+<form>
+<table class="table table-bordered table-hover definewidth m10">
+	<tr>
+		<td width="10%" class="tableleft">登录名</td>
+		<td><input type="text" id="brandName" onblur="checkName()" value="${account.loginname}"/>
+			<span id="namecheck" style="color: red; font-size: 15px;"></span></td>
+	</tr>
+	<tr>
+		<td class="tableleft">原始密码</td>
+		<td><input type="password" id="old_password"/></td>
+	</tr>
+	<tr>
+		<td class="tableleft">新密码</td>
+		<td><input type="password" id="new_password"/></td>
+	</tr>
+	<tr>
+		<td class="tableleft">确认密码</td>
+		<td><input type="password" id="new_password2"/></td>
+	</tr>
+	<tr>
+		<td class="tableleft">电话</td>
+		<td><input type="text" id="phone" value="${account.phone}"/></td>
+	</tr>
+	<tr>
+		<td class="tableleft">地址</td>
+		<td><input type="text" id="address" value="${account.address}"/></td>
+	</tr>
+	<tr>
+		<td class="tableleft">备注</td>
+		<td><input type="text" id="mark" value="${account.mark}"/></td>
+	</tr>
+	<tr>
+		<td class="tableleft"></td>
+		<td>
+			<button id="submit" class="btn btn-primary" type="button">保存</button>&nbsp;&nbsp;
+			<input type="reset" value="重 置"  class="btn btn-success" />&nbsp;&nbsp;
+		</td>
+	</tr>
+	<tr>
+		<td class="tableleft"></td>
+		<td>
+			1. 修改基本信息需要输入原始密码。<br>
+			2. 修改密码需要输入原始密码、新密码。
+		</td>
+	</tr>
+</table>
+</form>
 </body>
 </html>
