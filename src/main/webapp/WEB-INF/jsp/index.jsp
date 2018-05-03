@@ -111,7 +111,8 @@
                     },
                     {   text: '业务管理', items: [
                         {id: '21', text: '管理门店', href: 'Store'},
-                        {id: '22', text: '管理活动', href: 'Activity'},]
+                        {id: '22', text: '管理活动', href: 'Activity'},
+                        {id: '23', text: '管理角色', href: 'Role'}]
                     }]
             }];
         new PageUtil.MainPage({

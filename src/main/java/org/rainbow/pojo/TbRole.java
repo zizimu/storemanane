@@ -25,8 +25,18 @@ public class TbRole implements Serializable {
      * 创建时间
      */
     private Date createTime;
+    
+    private int status;
 
-    /**
+    public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	/**
      * 备注
      */
     private String mark;

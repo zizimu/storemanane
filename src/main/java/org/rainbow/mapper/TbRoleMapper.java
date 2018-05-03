@@ -1,6 +1,9 @@
 package org.rainbow.mapper;
 
+import java.util.List;
+
 import org.rainbow.pojo.TbRole;
+import org.rainbow.pojo.TbStaff;
 
 public interface TbRoleMapper {
     int deleteByPrimaryKey(Integer roleId);
@@ -14,4 +17,8 @@ public interface TbRoleMapper {
     int updateByPrimaryKeySelective(TbRole record);
 
     int updateByPrimaryKey(TbRole record);
+    
+    List<TbRole> selectAll();
+
+	List<TbRole> searchRole(String key);
 }

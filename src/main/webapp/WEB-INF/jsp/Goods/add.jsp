@@ -181,7 +181,7 @@
 <table class="table table-bordered table-hover definewidth m10">
 	<tr>
 		<td width="10%" class="tableleft">商品名称</td>
-		<td><input type="text" id="gname" onblur="checkName()"/>
+		<td><input type="text" id="gname" onblur="checkName()" maxlength="20"/>
 			<span id="nameCheck" style="color: red; font-size: 15px;"></span></td>
 	</tr>
 	<tr>
