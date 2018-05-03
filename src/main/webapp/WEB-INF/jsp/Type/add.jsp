@@ -40,7 +40,7 @@
 	<script type="text/javascript">
         $(function () {
             $("#submit").click(function () {
-                if(checkName()){
+                if(checkName()&checkUnits()){
                     post();
                 }
             });
@@ -58,10 +58,21 @@
             }
             return false;
         };
+        function checkUnits() {
+            var name = $("#units").val();
+            if(name == null || name ==""){
+                $("#unitsCheck").text("请输入规格名!");
+            }else{
+                $("#unitsCheck").text('');
+                return true;
+            }
+            return false;
+        };
         function post() {
             var data = {
                 "typeName" : $("#TypeName").val(),
-                "mark": $("#mark").val()
+                "mark": $("#mark").val(),
+	            "units":$("#units").val()
             };
             $.ajax({
                 url: "${pageContext.request.contextPath}/Type",
@@ -91,6 +102,11 @@
 		<td width="10%" class="tableleft">类型名称</td>
 		<td><input type="text" id="TypeName" />
 			<span id="namecheck" style="color: red; font-size: 15px;"></span></td>
+	</tr>
+	<tr>
+		<td width="10%" class="tableleft">规格</td>
+		<td><input type="text" id="units" />
+			<span id="unitscheck" style="color: red; font-size: 15px;"></span></td>
 	</tr>
 	<tr>
 		<td class="tableleft">备注</td>

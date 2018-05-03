@@ -23,7 +23,7 @@ import java.util.Map;
  * @date 2018-04-08
  */
 @Controller
-@SessionAttributes("user")
+@SessionAttributes(value = {"pageSize", "user", "ossUrl"})
 public class CommonController {
 	@Autowired
 	private ParameterService parameterService;
@@ -37,13 +37,16 @@ public class CommonController {
 	}
 
 	@RequestMapping("/index")
-	public String index() {
+	public String index(HttpSession session, ModelMap modelMap) {
+		Map paras = parameterService.getPara();
+		modelMap.addAttribute("pageSize", paras.get("pageSize"));
+		modelMap.addAttribute("ossUrl", paras.get("ossUrl"));
 		return "index";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
-	public Map loginVerification(@RequestBody TbAccount loginer, ModelMap modelMap,HttpSession session) {
+	public Map loginVerification(@RequestBody TbAccount loginer, ModelMap modelMap, HttpSession session) {
 		Map<String, Object> result = new HashMap<>();
 		if (loginer == null || loginer.getLoginname() == null || loginer.getPassword() == null) {
 			result.put("stat", 400);
@@ -72,7 +75,7 @@ public class CommonController {
 
 	@RequestMapping("/")
 	public String rootDirectory() {
-		return "index";
+		return "redirect:/index";
 	}
 
 	@RequestMapping("/logout")
@@ -80,5 +83,55 @@ public class CommonController {
 		session.removeAttribute("user");
 		sessionStatus.setComplete();
 		return "redirect:/login";
+	}
+
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	public String register(Model model) {
+		model.addAttribute("BGimage", parameterService.getLoginBGimage());
+		return "register";
+	}
+
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	@ResponseBody
+	public Map registerNew(@RequestBody TbAccount loginer) {
+		Map<String, Object> result = new HashMap<>();
+		if (loginer == null || loginer.getLoginname() == null || loginer.getPassword() == null) {
+			result.put("stat", 400);
+			result.put("message", "缺少信息!");
+		} else {
+			Encryption en = Encryption.getInstance();
+			loginer.setPassword(en.byte2BASE64(en.passwordEncry(loginer.getPassword())));
+			if (accountService.insertNew(loginer) > 0) {
+				result.put("stat", 200);
+				result.put("message", "注册成功！");
+				result.put("url", "/login");
+			} else {
+				result.put("stat", 500);
+				result.put("message", "注册失败，请重试！");
+			}
+		}
+		return result;
+	}
+
+	@RequestMapping(value = "/initPara", method = RequestMethod.GET)
+	@ResponseBody
+	public Map initParameter(HttpSession session, ModelMap modelMap) {
+		Map<String, Object> result = new HashMap<>();
+		Map paras = parameterService.getPara();
+		if (paras.size() > 0) {
+			modelMap.addAttribute("pageSize", paras.get("pageSize"));
+			modelMap.addAttribute("ossUrl", paras.get("ossUrl"));
+			result.put("stat", 200);
+			result.put("message", "缓存更新成功！");
+		} else {
+			result.put("stat", 500);
+			result.put("message", "缓存更新失败，请重试！");
+		}
+		return result;
+	}
+
+	@RequestMapping("/person")
+	public String toPerson(){
+		return "person";
 	}
 }

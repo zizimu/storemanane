@@ -98,6 +98,7 @@
 	<tr>
 		<th style="text-align: center">商品类型编号</th>
 		<th style="text-align: center">商品类型名称</th>
+		<th style="text-align: center">规格</th>
 		<th style="text-align: center">创建日期</th>
 		<th style="text-align: center">备注</th>
 		<th style="text-align: center">管理操作</th>
@@ -108,6 +109,7 @@
 		<tr>
 			<td style="text-align: center">${p.typeId}</td>
 			<td style="text-align: center">${p.typeName}</td>
+			<td style="text-align: center">${p.units}</td>
 			<td style="text-align: center">${p.createTime}</td>
 			<td style="text-align: center">${p.mark}</td>
 			<td style="text-align: center">

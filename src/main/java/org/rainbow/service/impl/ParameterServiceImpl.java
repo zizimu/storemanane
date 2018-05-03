@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created with IntelliJ IDEA.
  * Description:
@@ -18,6 +21,10 @@ import org.springframework.stereotype.Service;
 public class ParameterServiceImpl implements ParameterService {
 	@Value("${backgroundImage}")
 	private String bgImage;
+	@Value("${ossUrl}")
+	private String ossurl;
+	@Value("${pageSize}")
+	private Integer pageSize;
 	@Autowired
 	private TbParameterMapper parameterMapper;
 
@@ -31,5 +38,27 @@ public class ParameterServiceImpl implements ParameterService {
 			}
 		}
 		return bgImage;
+	}
+
+	@Override
+	public Map getPara() {
+		Map paras = new HashMap();
+		TbParameter tbParameter = parameterMapper.selectByParameterName("ossurl");
+		if (tbParameter != null) {
+			String temp = tbParameter.getParametercontent();
+			if (temp != null && !"".equals(temp)) {
+				ossurl = temp;
+			}
+		}
+		paras.put("ossUrl",ossurl);
+		TbParameter tbParameter2 = parameterMapper.selectByParameterName("pageSize");
+		if (tbParameter2 != null) {
+			Integer temp = Integer.valueOf(tbParameter2.getParametercontent());
+			if (temp>0) {
+				pageSize = temp;
+			}
+		}
+		paras.put("pageSize",pageSize);
+		return paras;
 	}
 }

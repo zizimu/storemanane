@@ -25,6 +25,13 @@ public class TbAccount implements Serializable {
      */
     private String password;
 
+
+    private String address;
+
+    private String phone;
+
+	private Long storeid;
+
     /**
      * 账号状态，0为封禁;1为正常;2及以上越大权限越大
      */
@@ -76,4 +83,28 @@ public class TbAccount implements Serializable {
     public void setMark(String mark) {
         this.mark = mark == null ? null : mark.trim();
     }
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public Long getStoreid() {
+		return storeid;
+	}
+
+	public void setStoreid(Long storeid) {
+		this.storeid = storeid;
+	}
 }

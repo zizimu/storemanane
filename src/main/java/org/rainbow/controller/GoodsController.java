@@ -27,10 +27,11 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/Goods")
+@SessionAttributes("pageSize")
 public class GoodsController {
 
 	@Value("${pageSize}")
-	private int pageSize;
+	private int pageSize1;
 
 	private String catalog = "Goods";
 
@@ -42,7 +43,7 @@ public class GoodsController {
 	private BrandService brandService;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String index(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
+	public String index(@RequestParam(value = "page", defaultValue = "1") int page, Model model,@ModelAttribute("pageSize")int pageSize) {
 		PageHelper.startPage(page, pageSize);
 		List<TbGoods> goods = goodsService.getAllGoods();
 		PageInfo<TbGoods> p = new PageInfo<>(goods);
@@ -124,7 +125,7 @@ public class GoodsController {
 	}
 
 	@RequestMapping(value = "/s", method = RequestMethod.GET)
-	public String search(@RequestParam("wd") String wd, @RequestParam(value = "page", defaultValue = "1") int page, Model model) {
+	public String search(@RequestParam("wd") String wd, @RequestParam(value = "page", defaultValue = "1") int page, Model model,@ModelAttribute("pageSize")int pageSize) {
 		PageHelper.startPage(page, pageSize);
 		try {
 			wd = new String(wd.getBytes("ISO-8859-1"), "utf-8");

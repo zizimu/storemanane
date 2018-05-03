@@ -6,12 +6,15 @@
         <id column="SID" property="sid" jdbcType="BIGINT" />
         <result column="loginName" property="loginname" jdbcType="VARCHAR" />
         <result column="password" property="password" jdbcType="VARCHAR" />
+	    <result column="address" property="address" jdbcType="VARCHAR" />
+	    <result column="phone" property="phone" jdbcType="VARCHAR" />
+	    <result column="storeID" property="storeid" jdbcType="BIGINT" />
         <result column="status" property="status" jdbcType="INTEGER" />
         <result column="mark" property="mark" jdbcType="VARCHAR" />
     </resultMap>
 
     <sql id="Base_Column_List" >
-        SID, loginName, password, status, mark
+        SID, loginName, password, address, phone, storeID, status, mark
     </sql>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
@@ -33,9 +36,10 @@
     </delete>
 
     <insert id="insert" parameterType="org.rainbow.pojo.TbAccount" >
-        insert into tb_account (SID, loginName, password, 
+        insert into tb_account (SID, loginName, password, address, phone, storeID,
             status, mark)
-        values (#{sid,jdbcType=BIGINT}, #{loginname,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+        values (#{sid,jdbcType=BIGINT}, #{loginname,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+                #{address,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{storeid,jdbcType=BIGINT},
             #{status,jdbcType=INTEGER}, #{mark,jdbcType=VARCHAR})
     </insert>
 
@@ -51,6 +55,15 @@
             <if test="password != null" >
                 password,
             </if>
+	        <if test="address != null" >
+		        address,
+	        </if>
+	        <if test="phone != null" >
+		        phone,
+	        </if>
+	        <if test="storeid != null" >
+		        storeID,
+	        </if>
             <if test="status != null" >
                 status,
             </if>
@@ -68,6 +81,15 @@
             <if test="password != null" >
                 #{password,jdbcType=VARCHAR},
             </if>
+	        <if test="address != null" >
+		        #{address,jdbcType=VARCHAR},
+	        </if>
+	        <if test="phone != null" >
+		        #{phone,jdbcType=VARCHAR},
+	        </if>
+	        <if test="storeid != null" >
+		        #{storeid,jdbcType=BIGINT},
+	        </if>
             <if test="status != null" >
                 #{status,jdbcType=INTEGER},
             </if>
@@ -86,6 +108,15 @@
             <if test="password != null" >
                 password = #{password,jdbcType=VARCHAR},
             </if>
+	        <if test="address != null" >
+		        address = #{address,jdbcType=VARCHAR},
+	        </if>
+	        <if test="phone != null" >
+		        phone = #{phone,jdbcType=VARCHAR},
+	        </if>
+	        <if test="storeid != null" >
+		        storeID = #{storeid,jdbcType=BIGINT},
+	        </if>
             <if test="status != null" >
                 status = #{status,jdbcType=INTEGER},
             </if>
@@ -100,6 +131,9 @@
         update tb_account
         set loginName = #{loginname,jdbcType=VARCHAR},
             password = #{password,jdbcType=VARCHAR},
+	        address = #{address,jdbcType=VARCHAR},
+	        phone = #{phone,jdbcType=VARCHAR},
+	        storeID = #{storeid,jdbcType=BIGINT},
             status = #{status,jdbcType=INTEGER},
             mark = #{mark,jdbcType=VARCHAR}
         where SID = #{sid,jdbcType=BIGINT}

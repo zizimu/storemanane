@@ -1,5 +1,7 @@
 package org.rainbow.service;
 
+import java.util.Map;
+
 /**
  * Created with IntelliJ IDEA.
  * Description:
@@ -10,4 +12,6 @@ package org.rainbow.service;
 public interface ParameterService {
 
 	String getLoginBGimage();
+
+	Map getPara();
 }

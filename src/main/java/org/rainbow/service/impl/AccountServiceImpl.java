@@ -37,4 +37,9 @@ public class AccountServiceImpl implements AccountService {
 		}
 		return rs;
 	}
+
+	@Override
+	public int insertNew(TbAccount account) {
+		return accountMapper.insertSelective(account);
+	}
 }

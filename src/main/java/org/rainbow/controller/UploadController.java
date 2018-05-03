@@ -5,10 +5,7 @@ import org.rainbow.service.Upload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -26,16 +23,17 @@ import java.util.UUID;
  * @date 2018-04-08
  */
 @Controller
+@SessionAttributes("ossUrl")
 public class UploadController {
 	@Value("${ossUrl}")
-	private String imageUrl;
+	private String imageUrl1;
 
 	@Autowired
 	private Upload upload;
 
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	@ResponseBody
-	public Map uploadFile(MultipartFile file) {
+	public Map uploadFile(MultipartFile file,@ModelAttribute("ossUrl")String imageUrl) {
 		Map<String, Object> result = new HashMap<>();
 		if (file != null && file.getSize() > 0) {
 			String partFileName = file.getOriginalFilename();

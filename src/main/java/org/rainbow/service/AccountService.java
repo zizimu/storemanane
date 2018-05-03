@@ -12,4 +12,6 @@ import org.rainbow.pojo.TbAccount;
 public interface AccountService{
 
 	TbAccount loginByIdOrName(TbAccount account);
+
+	int insertNew(TbAccount account);
 }
