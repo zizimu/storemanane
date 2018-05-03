@@ -43,7 +43,7 @@ public class CommonController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
-	public Map loginVerification(@RequestBody TbAccount loginer, ModelMap modelMap) {
+	public Map loginVerification(@RequestBody TbAccount loginer, ModelMap modelMap,HttpSession session) {
 		Map<String, Object> result = new HashMap<>();
 		if (loginer == null || loginer.getLoginname() == null || loginer.getPassword() == null) {
 			result.put("stat", 400);
@@ -53,10 +53,15 @@ public class CommonController {
 			loginer.setPassword(en.byte2BASE64(en.passwordEncry(loginer.getPassword())));
 			TbAccount account = accountService.loginByIdOrName(loginer);
 			if (account != null) {
-				modelMap.addAttribute("user",account);
-				result.put("stat", 200);
-				result.put("message", "登陆成功！");
-				result.put("url","/index");
+				if (account.getStatus() > 0) {
+					modelMap.addAttribute("user", account);
+					result.put("stat", 200);
+					result.put("message", "登陆成功！");
+					result.put("url", "/index");
+				} else {
+					result.put("stat", 300);
+					result.put("message", "账号待审核！");
+				}
 			} else {
 				result.put("stat", 500);
 				result.put("message", "用户名或密码错误！");
@@ -66,12 +71,12 @@ public class CommonController {
 	}
 
 	@RequestMapping("/")
-	public String rootDirectory(){
+	public String rootDirectory() {
 		return "index";
 	}
 
 	@RequestMapping("/logout")
-	public String loginOut(HttpSession session, SessionStatus sessionStatus){
+	public String loginOut(HttpSession session, SessionStatus sessionStatus) {
 		session.removeAttribute("user");
 		sessionStatus.setComplete();
 		return "redirect:/login";

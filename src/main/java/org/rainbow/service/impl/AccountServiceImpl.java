@@ -26,6 +26,7 @@ public class AccountServiceImpl implements AccountService {
 		if (temp != null) {
 			if (temp.getPassword().equals(account.getPassword())) {
 				rs = temp;
+				return rs;
 			}
 		}
 		temp = accountMapper.selectByPrimaryKey(Long.valueOf(name));

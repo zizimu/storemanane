@@ -20,12 +20,6 @@
                     post();
                 }
             });
-            $("#loginname").focus(function () {
-                $("#check").text("");
-            });
-            $("#loginpwd").focus(function () {
-                $("#check").text("");
-            });
         });
         function checkName() {
             var name = $("#loginname").val();

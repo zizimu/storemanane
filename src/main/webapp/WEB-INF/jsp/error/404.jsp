@@ -118,6 +118,10 @@
 <table style="height: 600px;">
 	<tr>
 		<td align="center" valign="middle">
+			<div id="area-c"
+			     style="position: absolute; left: 30%; top: 500px; width: 480px; background: #fff; border-left: 2px solid #08c; padding: 16px; text-align: left;">
+				<a href="${pageContext.request.contextPath}/index" style="font-size: 16px;">转到我们的主页</a>
+			</div>
 			<div id="area-a">
 				<h1 class="l">4<span>0</span>4</h1>
 				<div class="l">
