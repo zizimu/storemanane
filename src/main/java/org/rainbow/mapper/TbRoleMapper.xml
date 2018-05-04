@@ -103,7 +103,7 @@
         select
         <include refid="Base_Column_List" />
         from tb_role
-	    where status = 1
+	    where status = 0
         ORDER BY create_time DESC
     </select>
 </mapper>

@@ -45,42 +45,50 @@ body {
 	}
 }
 </style>
-<script type="text/javascript">
-	function del(id){
-		/* layer.confirm('确定要删除吗？',{
-			icon:0,
-			title:'删除',
-			btn:['确定','取消']
-		},function(){
-			deleteStaff(id);
-		}); */
-		deleteRole(id);
-	};
-	function deleteRole(id){
-	/* layer.load(); 控件的加载框 */
-	$.ajax({
-		url:"${pageContext.request.contextPath}/Role/" + id,
-		type:'DELETE',
-		dataType:"json",
-		async:false,/* 同步 */
-		processData:false,/* 不处理传到后台的数据 */
-		contentType:false,/* http协议传输的抬头；后台根据设置文件类型 （html，json） */
-		beforeSend:function(){
-			console.log("正在进行，请稍后")
-		},
-		success:function(responseStr){
-			/* if(responseStr['stat'] == 200){ 
-				 layer.msg(responseStr['message'],{
-					icon:2,
-					btn:['确定']
-				}) */
-				alert(responseStr['message'],function(){
-					title:'313'
-				});
-			}
-		});
-	};
-</script>
+	<script type="text/javascript">
+        function del(id) {
+            layer.confirm('确定要删除吗？', {
+                icon: 0,
+                title:'删除',
+                btn: ['确定', '取消'] //按钮
+            },function () {
+                deleteRole(id);
+            });
+        };
+        function deleteRole(id) {
+            layer.load();
+            $.ajax({
+                url: "${pageContext.request.contextPath}/Role/" + id,
+                type: 'DELETE',
+                dataType: "json",
+                async:false,
+                processData: false,
+                contentType: false,
+                beforeSend: function () {
+                    console.log("正在进行，请稍候");
+                },
+                success: function (responseStr) {
+                    if (responseStr['stat'] == 200) {
+                        layer.msg(responseStr['message'], {
+                            icon:2,
+                            btn: ['确定']
+                        },function () {
+                            location.reload();
+                        });
+                    } else {
+                        layer.open(responseStr['message'], {
+                            icon: 2,
+                            btn: ['确定']
+                        });
+                    }
+                },
+                error: function (responseStr) {
+                    console.log("error");
+                }
+            });
+            layer.closeAll();
+        };
+	</script>
 </head>
 <body>
 	<div class="form-inline definewidth m20">

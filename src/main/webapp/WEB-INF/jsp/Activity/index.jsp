@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>员工信息</title>
+<title>商品活动</title>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css"
 	href="https://cdn-1251943624.file.myqcloud.com/storeManage/Css/bootstrap.css" />
@@ -47,14 +47,14 @@ body {
 			title:'删除',
 			btn:['确定','取消']
 		},function(){
-			deleteStaff(id);
+			deleteActivity(id);
 		}); */
-		deleteStaff(id);
+		deleteActivity(id);
 	};
-	function deleteStaff(id){
+	function deleteActivity(id){
 	/* layer.load(); 控件的加载框 */
 	$.ajax({
-		url:"${pageContext.request.contextPath}/Staff/" + id,
+		url:"${pageContext.request.contextPath}/Activity/" + id,
 		type:'DELETE',
 		dataType:"json",
 		async:false,/* 同步 */
@@ -79,40 +79,42 @@ body {
 </head>
 <body>
 	<form class="form-inline definewidth m20"
-		action="${pageContext.request.contextPath}/Staff/s" method="get">
-		员工编号/名称： <input type="text" name="wd" id="wd"
-			class="abc input-default" placeholder="员工编号/名称" value="">&nbsp;&nbsp;
+		action="${pageContext.request.contextPath}/Activity/s" method="get">
+		活动编号/名称： <input type="text" name="wd" id="wd"
+			class="abc input-default" placeholder="活动编号/名称" value="">&nbsp;&nbsp;
 		<button type="submit" class="btn btn-primary">查询</button>
-		&nbsp;&nbsp; <a href="${pageContext.request.contextPath}/Staff/add">
-			<button type="button" class="btn btn-success" id="addnew">新增员工</button>
+		&nbsp;&nbsp; <a href="${pageContext.request.contextPath}/Activity/add">
+			<button type="button" class="btn btn-success" id="addnew">新增活动</button>
 		</a>
 	</form>
 	<table class="table table-bordered table-hover definewidth m10">
 		<thead>
 			<tr>
-				<th style="text-align: center">员工编号</th>
-				<th style="text-align: center">员工名称</th>
-				<th style="text-align: center">联系电话</th>
-				<th style="text-align: center">所属门店</th>
-				<th style="text-align: center">入职时间</th>
-				<th style="text-align: center">备注</th>
+				<th style="text-align: center">活动编号</th>
+				<th style="text-align: center">活动名称</th>
+				<th style="text-align: center">活动内容</th>
+				<th style="text-align: center">开始时间</th>
+				<th style="text-align: center">截止时间</th>
+				<th style="text-align: center">活动范围</th>
+				<th style="text-align: center">创建时间</th>
 				<th style="text-align: center">管理操作</th>
 			</tr>
-			<c:forEach items="${staffList}" var="s" varStatus="st">
+			<c:forEach items="${activityList}" var="s" varStatus="st">
 				<tr>
-					<td style="text-align: center">${s.staffId}</td>
-					<td style="text-align: center">${s.staffName}</td>
-					<td style="text-align: center">${s.staffPhone}</td>
-					<td style="text-align: center">${s.storeId}</td>
+					<td style="text-align: center">${s.activityId}</td>
+					<td style="text-align: center">${s.activityName}</td>
+					<td style="text-align: center">${s.activityContent}</td>
+					<td style="text-align: center">${s.activityStartdate}</td>
+					<td style="text-align: center">${s.activityEnddate}</td>
+					<td style="text-align: center">${s.activityRange}</td>
 					<td style="text-align: center">${s.createTime}</td>
-					<td style="text-align: center">${s.mark}</td>
 					<td style="text-align: center">
-						<a href="${pageContext.request.contextPath}/Staff/edit/${s.staffId}">
+						<a href="${pageContext.request.contextPath}/Activity/edit/${s.activityId}">
 							<button class="btn btn-primary" style="margin-left: 5px;">
 								编辑
 							</button>
 						</a>
-							<button class="btn btn-success" style="margin-left: 5px;" onclick="del(${s.staffId})">
+							<button class="btn btn-success" style="margin-left: 5px;" onclick="del(${s.activityId})">
 								删除
 							</button>
 						</td>
@@ -124,32 +126,32 @@ body {
 	总共${page.total}条记录 第 ${page.pageNum}/${page.pages} 页
 	<c:choose>
 		<c:when test="${wd!=null}">
-			<a href="${pageContext.request.contextPath}/Staff/s?wd=${wd}&page=${page.firstPage}">第一页</a>
+			<a href="${pageContext.request.contextPath}/Activity/s?wd=${wd}&page=${page.firstPage}">第一页</a>
 			<c:choose>
 				<c:when test="${!page.isFirstPage}">
-					<a href="${pageContext.request.contextPath}/Staff/s?wd=${wd}&page=${page.prePage}">上一页</a>
+					<a href="${pageContext.request.contextPath}/Activity/s?wd=${wd}&page=${page.prePage}">上一页</a>
 				</c:when>
 			</c:choose>
 			<c:choose>
 				<c:when test="${!page.isLastPage}">
-					<a href="${pageContext.request.contextPath}/Staff/s?wd=${wd}&page=${page.nextPage}">下一页</a>
+					<a href="${pageContext.request.contextPath}/Activity/s?wd=${wd}&page=${page.nextPage}">下一页</a>
 				</c:when>
 			</c:choose>
-			<a href="${pageContext.request.contextPath}/Staff/s?wd=${wd}&page=${page.lastPage}">最后页</a>
+			<a href="${pageContext.request.contextPath}/Activity/s?wd=${wd}&page=${page.lastPage}">最后页</a>
 		</c:when>
 		<c:otherwise>
-			<a href="${pageContext.request.contextPath}/Staff?page=${page.firstPage}">第一页</a>
+			<a href="${pageContext.request.contextPath}/Activity?page=${page.firstPage}">第一页</a>
 			<c:choose>
 				<c:when test="${!page.isFirstPage}">
-					<a href="${pageContext.request.contextPath}/Staff?page=${page.prePage}">上一页</a>
+					<a href="${pageContext.request.contextPath}/Activity?page=${page.prePage}">上一页</a>
 				</c:when>
 			</c:choose>
 			<c:choose>
 				<c:when test="${!page.isLastPage}">
-					<a href="${pageContext.request.contextPath}/Staff?page=${page.nextPage}">下一页</a>
+					<a href="${pageContext.request.contextPath}/Activity?page=${page.nextPage}">下一页</a>
 				</c:when>
 			</c:choose>
-			<a href="${pageContext.request.contextPath}/Staff?page=${page.lastPage}">最后页</a>
+			<a href="${pageContext.request.contextPath}/Activity?page=${page.lastPage}">最后页</a>
 		</c:otherwise>
 	</c:choose>
 </div>
