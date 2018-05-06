@@ -1,20 +1,13 @@
 package org.rainbow.pojo;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 
-/**
- * 
- * 
- * @author ross
- * 
- * @date 2018-04-12
- */
 public class TbActivity implements Serializable {
     /**
      * 活动编码
      */
-    private Integer activityId;
+    private int activityId;
 
     /**
      * 活动名称
@@ -36,7 +29,7 @@ public class TbActivity implements Serializable {
      */
     private Date activityEnddate;
 
-    private String activity_range;
+    private String activityRange;
 
     /**
      * 创建日期
@@ -55,12 +48,12 @@ public class TbActivity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public String getActivity_range() {
-        return activity_range;
+    public String getActivityRange() {
+        return activityRange;
     }
 
-    public void setActivity_range(String activity_range) {
-        this.activity_range = activity_range;
+    public void setActivityRange(String activityRange) {
+        this.activityRange = activityRange;
     }
 
     public static long getSerialVersionUID() {
@@ -71,8 +64,8 @@ public class TbActivity implements Serializable {
         return activityId;
     }
 
-    public void setActivityId(Integer activityId) {
-        this.activityId = activityId;
+    public void setActivityId(int id) {
+        this.activityId = id;
     }
 
     public String getActivityName() {

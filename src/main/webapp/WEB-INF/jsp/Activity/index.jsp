@@ -83,7 +83,8 @@ body {
 		活动编号/名称： <input type="text" name="wd" id="wd"
 			class="abc input-default" placeholder="活动编号/名称" value="">&nbsp;&nbsp;
 		<button type="submit" class="btn btn-primary">查询</button>
-		&nbsp;&nbsp; <a href="${pageContext.request.contextPath}/Activity/add">
+		&nbsp;&nbsp; 
+		<a href="${pageContext.request.contextPath}/Activity/add">
 			<button type="button" class="btn btn-success" id="addnew">新增活动</button>
 		</a>
 	</form>
@@ -99,7 +100,10 @@ body {
 				<th style="text-align: center">创建时间</th>
 				<th style="text-align: center">管理操作</th>
 			</tr>
-			<c:forEach items="${activityList}" var="s" varStatus="st">
+			
+		</thead>
+		<tbody>
+		<c:forEach items="${activityList}" var="s" varStatus="st">
 				<tr>
 					<td style="text-align: center">${s.activityId}</td>
 					<td style="text-align: center">${s.activityName}</td>
@@ -120,7 +124,7 @@ body {
 						</td>
 					</tr>
 			</c:forEach>
-		</thead>
+		</tbody>
 	</table>
 <div class="inline pull-right page">
 	总共${page.total}条记录 第 ${page.pageNum}/${page.pages} 页

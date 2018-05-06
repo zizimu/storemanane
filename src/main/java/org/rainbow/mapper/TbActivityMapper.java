@@ -1,5 +1,7 @@
 package org.rainbow.mapper;
 
+import java.util.List;
+
 import org.rainbow.pojo.TbActivity;
 
 public interface TbActivityMapper {
@@ -14,4 +16,8 @@ public interface TbActivityMapper {
     int updateByPrimaryKeySelective(TbActivity record);
 
     int updateByPrimaryKey(TbActivity record);
+    
+    List<TbActivity> selectAll();
+
+	List<TbActivity> searchActivity(String key);
 }

@@ -39,14 +39,17 @@
         $(function () {
             $("#submit").click(function () {
                 var data = {
-                    "staffName" : $("#staffName").val(),
-                    "staffPhone" : $("#staffPhone").val(),
-                    "storeId" : $("#storeId").val(),
+                    "activityName" : $("#activityName").val(),
+                    "activityContent" : $("#activityContent").val(),
+                    "activityStartdate" : $("#activityStartdate").val(),
+                    "activityEnddate" : $("#activityEnddate").val(),
+                    "activityEnddate" : $("#activityEnddate").val(),
+                    "activityRange" : $("#activityRange").val(),
                     "createTime" : $("#createTime").val(),
                     "mark": $("#mark").val()
                 };
                 $.ajax({
-                    url: "${pageContext.request.contextPath}/Staff",
+                    url: "${pageContext.request.contextPath}/Activity",
                     type: 'POST',
                     dataType: "json",
                     data: JSON.stringify(data),
@@ -56,7 +59,7 @@
                     },
                     success: function (responseStr) {
                         if (responseStr['stat'] == 200) {
-                            window.location.href="${pageContext.request.contextPath}/Staff";
+                            window.location.href="${pageContext.request.contextPath}/Activity";
                         } else {
                             alert(responseStr['message']);
                         }
@@ -73,16 +76,24 @@
 <form action="index.html" method="post" class="definewidth m20">
 <table class="table table-bordered table-hover definewidth m10">
     <tr>
-        <td width="10%" class="tableleft">登录名</td>
-        <td><input type="text" id="staffName"/></td>
+        <td width="10%" class="tableleft">活动名称</td>
+        <td><input type="text" id="activityName"/></td>
     </tr>
     <tr>
-        <td class="tableleft">联系电话</td>
-        <td><input type="text" id="staffPhone"/></td>
+        <td class="tableleft">活动内容</td>
+        <td><input type="text" id="activityContent"/></td>
     </tr>
     <tr>
-        <td class="tableleft">所属门店</td>
-        <td><input type="text" id="storeId"/></td>
+        <td class="tableleft">开始时间</td>
+        <td><input type="date" id="activityStartdate"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">结束时间</td>
+        <td><input type="date" id="activityEnddate"/></td>
+    </tr>
+     <tr>
+        <td class="tableleft">活动范围</td>
+        <td><input type="date" id="activityRange"/></td>
     </tr>
      <tr>
         <td class="tableleft">备注</td>
@@ -104,7 +115,7 @@
 <script>
     $(function () {
         $('#backid').click(function () {
-            window.location.href = "${pageContext.request.contextPath}/Staff";
+            window.location.href = "${pageContext.request.contextPath}/Activity";
         });
     });
 </script>

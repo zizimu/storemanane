@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>修改员工信息</title>
+<title>修改活动信息</title>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css"
 	href="https://cdn-1251943624.file.myqcloud.com/storeManage/Css/bootstrap.css" />
@@ -25,9 +25,11 @@
 body {
 	padding-bottom: 40px;
 }
+
 .sidebar-nav {
 	padding: 9px 0;
 }
+
 @media ( max-width : 980px) {
 	/* Enable use of floated navbar text */
 	.navbar-text.pull-right {
@@ -41,14 +43,17 @@ body {
         $(function () {
             $("#submit").click(function () {
                 var data = {
-                    "staffId":${staff.staffId},
-                    "staffName" : $("#staffName").val(),
-                    "staffPhone" : $("#staffPhone").val(),
-                    "storeId" : $("#storeId").val(),
+                    "activityId":${activity.activityId},
+                    "activityName" : $("#activityName").val(),
+                    "activityContent" : $("#activityContent").val(),
+                    "activityStartdate" : $("#activityStartdate").val(),
+                    "activityEnddate" : $("#activityEnddate").val(),
+                    "activityEnddate" : $("#activityEnddate").val(),
+                    "activityRange" : $("#activityRange").val(),
                     "createTime" : $("#createTime").val(),
                     "mark": $("#mark").val()                };
                 $.ajax({
-                    url: "${pageContext.request.contextPath}/Staff/"+${staff.staffId},
+                    url: "${pageContext.request.contextPath}/Activity/"+${activity.activityId},
                     type: 'PUT',
                     dataType: "json",
                     data: JSON.stringify(data),
@@ -58,7 +63,7 @@ body {
                     },
                     success: function (responseStr) {
                         if (responseStr['stat'] == 200) {
-                            window.location.href="${pageContext.request.contextPath}/Staff";
+                            window.location.href="${pageContext.request.contextPath}/Activity";
                         } else {
                             alert(responseStr['message']);
                         }
@@ -76,20 +81,28 @@ body {
 		<input type="hidden" name="id" value="{$user.id}" />
 		<table class="table table-bordered table-hover definewidth m10">
 			<tr>
-				<td width="10%" class="tableleft">登录名</td>
-				<td><input type="text" id="staffName" value="${staff.staffName}"/></td>
+				<td width="10%" class="tableleft">活动名称</td>
+				<td><input type="text" id="activityName"  value="${activity.activityName}" /></td>
 			</tr>
 			<tr>
-				<td class="tableleft">联系电话</td>
-				<td><input type="text" id="staffPhone" value="${staff.staffPhone}"/></td>
+				<td class="tableleft">活动内容</td>
+				<td><input type="text" id="activityContent" value="${activity.activityContent}"/></td>
 			</tr>
 			<tr>
-				<td class="tableleft">所属门店</td>
-				<td><input type="text" id="storeId" value="${staff.storeId}"/></td>
+				<td class="tableleft">开始时间</td>
+				<td><input type="date" id="activityStartdate" value="${activity.activityStartdate}"/></td>
+			</tr>
+			<tr>
+				<td class="tableleft">结束时间</td>
+				<td><input type="date" id="activityEnddate" value="${activity.activityEnddate}" /></td>
+			</tr>
+			<tr>
+				<td class="tableleft">活动范围</td>
+				<td><input type="date" id="activityRange"  value="${activity.activityRange}"/></td>
 			</tr>
 			<tr>
 				<td class="tableleft">备注</td>
-				<td><input type="text" id="mark" value="${staff.mark}"/></td>
+				<td><input type="text" id="mark" value="${staff.mark}" /></td>
 			</tr>
 			<tr>
 				<td class="tableleft"></td>
@@ -106,7 +119,7 @@ body {
 <script>
     $(function () {       
 		$('#backid').click(function(){
-				window.location.href="${pageContext.request.contextPath}/Staff";
+				window.location.href="${pageContext.request.contextPath}/Activity";
 		 });
     });
 </script>
