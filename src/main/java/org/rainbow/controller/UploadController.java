@@ -1,6 +1,5 @@
 package org.rainbow.controller;
 
-import com.google.gson.Gson;
 import org.rainbow.service.Upload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

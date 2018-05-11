@@ -6,6 +6,8 @@ import org.rainbow.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * Description:
@@ -41,5 +43,10 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public int insertNew(TbAccount account) {
 		return accountMapper.insertSelective(account);
+	}
+
+	@Override
+	public List<TbAccount> getAllAccount() {
+		return null;
 	}
 }
