@@ -101,7 +101,7 @@
 	<thead>
 	<tr>
 		<th style="text-align: center">库存批次</th>
-		<th style="text-align: center">商品编号</th>
+		<th style="text-align: center">商品名称</th>
 		<th style="text-align: center">库存数量</th>
 		<th style="text-align: center">已售数量</th>
 		<th style="text-align: center">所属门店</th>
@@ -117,7 +117,7 @@
 			<td style="text-align: center">${goods[p.goodsId]}</td>
 			<td style="text-align: center">${p.goodsStock}</td>
 			<td style="text-align: center">${p.goodsSold}</td>
-			<td style="text-align: center">${p.storeId}</td>
+			<td style="text-align: center">${store[p.storeId]}</td>
 			<td style="text-align: center">${p.createTime}</td>
 			<td style="text-align: center">${p.mark}</td>
 			<td style="text-align: center">

@@ -110,9 +110,9 @@ body {
 					<td style="text-align: center">${s.staffId}</td>
 					<td style="text-align: center">${s.staffName}</td>
 					<td style="text-align: center">${s.staffPhone}</td>
-					<td style="text-align: center">${s.storeId}</td>
+					<td style="text-align: center">${store[s.storeId]}</td>
 					<td style="text-align: center">${s.entryTime}</td>
-					<td style="text-align: center">${s.role}</td>
+					<td style="text-align: center">${role[s.role]}</td>
 					<td style="text-align: center">${s.createTime}</td>
 					<td style="text-align: center">${s.mark}</td>
 					<td style="text-align: center">

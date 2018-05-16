@@ -5,9 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.rainbow.pojo.TbStaff;
+import org.rainbow.service.RoleService;
 import org.rainbow.service.StaffService;
 import org.rainbow.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,10 +26,17 @@ import com.github.pagehelper.PageInfo;
 @RequestMapping("/Staff")
 public class StaffController {
 
+	@Value("${pageSize}")
+	private int pageSize1;
+
+	private String catalog = "Staff";
+	
 	@Autowired
 	private StaffService staffService;
 	@Autowired
 	private StoreService storeService;
+	@Autowired
+	private RoleService roleService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
@@ -36,13 +45,15 @@ public class StaffController {
 		PageInfo<TbStaff> st = new PageInfo<>(staff);
 		model.addAttribute("staffList", staff);
 		model.addAttribute("page", st);
-		return "Staff/index";
+		model.addAttribute("store", storeService.getAllStores());
+		model.addAttribute("role", roleService.getAllRole());
+		return catalog + "/index";
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String gotoAddPage(Model model) {
 		model.addAttribute("stores", storeService.getAllStore());
-		return "Staff/add";
+		return catalog + "/add";
 	}
 
 	@RequestMapping(method = RequestMethod.POST,consumes = "application/json")
@@ -102,7 +113,7 @@ public class StaffController {
 	public String edit(@PathVariable("id") long id,Model model) {
 		TbStaff staff = staffService.getStaffById(id);
 		model.addAttribute("staff",staff);
-		return "Staff/edit";
+		return catalog+"/edit";
 		
 	}
 	
@@ -114,7 +125,7 @@ public class StaffController {
 		model.addAttribute("staffList", staff);
 		model.addAttribute("wd",wd);
 		model.addAttribute("page", p);
-		return "Staff/index";
+		return catalog+"/index";
 	}
 
 }

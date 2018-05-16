@@ -34,8 +34,18 @@ public class TbStock extends TbStockKey implements Serializable {
     private Integer status;
 
     private String mark;
+    
+    private String storeName;
 
-    private static final long serialVersionUID = 1L;
+    public String getStoreName() {
+		return storeName;
+	}
+
+	public void setStoreName(String storeName) {
+		this.storeName = storeName;
+	}
+
+	private static final long serialVersionUID = 1L;
 
     public Integer getGoodsStock() {
         return goodsStock;

@@ -17,14 +17,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created with IntelliJ IDEA.
- * <p>
- * Description:
- *
- * @author ross
- * @date 2018-04-08
- */
 @Controller
 @RequestMapping("/Goods")
 @SessionAttributes("pageSize")

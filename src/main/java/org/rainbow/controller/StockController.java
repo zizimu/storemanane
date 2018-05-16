@@ -18,13 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created with IntelliJ IDEA.
- * Description:
- *
- * @author ross
- * @date 2018-04-16
- */
+
 @Controller
 @RequestMapping("/Stock")
 public class StockController {
@@ -46,8 +40,10 @@ public class StockController {
 		PageHelper.startPage(page, pageSize);
 		List<TbStock> stocks = stockService.getAllStock();
 		PageInfo<TbStock> p = new PageInfo<>(stocks);
+		Map<Long, String> stores = storeService.getAllStores();
 		model.addAttribute("stocksList", stocks);
 		model.addAttribute("goods", goodsService.getAllGoodsIdName());
+		model.addAttribute("store", storeService.getAllStores());
 		model.addAttribute("page", p);
 		return catalog + "/index";
 	}
