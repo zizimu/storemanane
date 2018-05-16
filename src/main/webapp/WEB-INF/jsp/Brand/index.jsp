@@ -115,9 +115,13 @@
 						编辑
 					</button>
 				</a>
+				<c:choose>
+					<c:when test="${status>2}">
 				<button class="btn btn-success" style="margin-left: 5px;" onclick="del(${p.brandId})">
 					删除
 				</button>
+				</c:when>
+				</c:choose>
 			</td>
 		</tr>
 	</c:forEach>

@@ -2,6 +2,7 @@ package org.rainbow.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.rainbow.pojo.TbAccount;
 import org.rainbow.pojo.TbBrand;
 import org.rainbow.pojo.TbGoods;
 import org.rainbow.service.BrandService;
@@ -25,6 +26,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/Brand")
+@SessionAttributes("user")
 public class BrandController {
 	@Value("${pageSize}")
 	private int pageSize;
@@ -33,19 +35,20 @@ public class BrandController {
 	private BrandService brandService;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String index(@RequestParam(value = "page",defaultValue = "1")int page, Model  model){
-		PageHelper.startPage(page,pageSize);
+	public String index(@RequestParam(value = "page", defaultValue = "1") int page, Model model, @ModelAttribute("user") TbAccount account) {
+		PageHelper.startPage(page, pageSize);
 		List<TbBrand> brands = brandService.getAllBrand();
 		PageInfo<TbBrand> p = new PageInfo<>(brands);
-		model.addAttribute("brandsList",brands);
-		model.addAttribute("page",p);
+		model.addAttribute("brandsList", brands);
+		model.addAttribute("page", p);
+		model.addAttribute("status", account.getStatus());
 		return "Brand/index";
 	}
 
-	@RequestMapping(method = RequestMethod.POST,consumes = "application/json")
+	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
 	@ResponseBody
-	public Map addBrand(@RequestBody TbBrand brand){
-		Map<String,Object> result = new HashMap<>();
+	public Map addBrand(@RequestBody TbBrand brand) {
+		Map<String, Object> result = new HashMap<>();
 		if (brand == null) {
 			result.put("stat", 400);
 			result.put("message", "缺少信息!");
@@ -59,17 +62,17 @@ public class BrandController {
 		return result;
 	}
 
-	@RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseBody
-	public Map deleteBrand(@PathVariable("id") long id){
+	public Map deleteBrand(@PathVariable("id") long id) {
 		Map<String, Object> result = new HashMap<>();
 		TbBrand brand = new TbBrand();
 		brand.setBrandId(id);
 		brand.setStatus(2);
-		if (id == 0){
+		if (id == 0) {
 			result.put("stat", 400);
 			result.put("message", "信息缺失,请重试！");
-		}else if (brandService.updateBrand(brand) > 0) {
+		} else if (brandService.updateBrand(brand) > 0) {
 			result.put("stat", 200);
 			result.put("message", "删除成功！");
 		} else {
@@ -81,7 +84,7 @@ public class BrandController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = "application/json")
 	@ResponseBody
-	public Map updateBrand(@RequestBody TbBrand brand, @PathVariable("id") String id){
+	public Map updateBrand(@RequestBody TbBrand brand, @PathVariable("id") String id) {
 		Map<String, Object> result = new HashMap<>();
 		if (brand == null) {
 			result.put("stat", 400);
@@ -95,24 +98,25 @@ public class BrandController {
 		return result;
 	}
 
-	@RequestMapping(value = "/s",method = RequestMethod.GET)
-	public String search(@RequestParam("wd")String wd,@RequestParam(value = "page", defaultValue = "1") int page, Model model){
+	@RequestMapping(value = "/s", method = RequestMethod.GET)
+	public String search(@RequestParam("wd") String wd, @RequestParam(value = "page", defaultValue = "1") int page, Model model, @ModelAttribute("user") TbAccount account) {
 		PageHelper.startPage(page, pageSize);
 		try {
 			wd = new String(wd.getBytes("ISO-8859-1"), "utf-8");
-		} catch (UnsupportedEncodingException e) {
+		} catch (UnsupportedEncodingException | NullPointerException e) {
 			e.printStackTrace();
 		}
 		List<TbBrand> brands = brandService.searchBrand(wd);
 		PageInfo<TbBrand> p = new PageInfo<>(brands);
 		model.addAttribute("brandsList", brands);
-		model.addAttribute("wd",wd);
+		model.addAttribute("wd", wd);
 		model.addAttribute("page", p);
+		model.addAttribute("status", account.getStatus());
 		return "Brand/index";
 	}
 
-	@RequestMapping(value = "/add",method = RequestMethod.GET)
-	public String go2AddPage(){
+	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	public String go2AddPage() {
 		return "Brand/add";
 	}
 

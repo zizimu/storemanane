@@ -2,6 +2,7 @@ package org.rainbow.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.rainbow.pojo.TbAccount;
 import org.rainbow.pojo.TbGoods;
 import org.rainbow.service.BrandService;
 import org.rainbow.service.GoodsService;
@@ -27,7 +28,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/Goods")
-@SessionAttributes("pageSize")
+@SessionAttributes({"pageSize", "user"})
 public class GoodsController {
 
 	@Value("${pageSize}")
@@ -43,7 +44,7 @@ public class GoodsController {
 	private BrandService brandService;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String index(@RequestParam(value = "page", defaultValue = "1") int page, Model model,@ModelAttribute("pageSize")int pageSize) {
+	public String index(@RequestParam(value = "page", defaultValue = "1") int page, Model model, @ModelAttribute("pageSize") int pageSize, @ModelAttribute("user") TbAccount account) {
 		PageHelper.startPage(page, pageSize);
 		List<TbGoods> goods = goodsService.getAllGoods();
 		PageInfo<TbGoods> p = new PageInfo<>(goods);
@@ -51,7 +52,8 @@ public class GoodsController {
 		model.addAttribute("page", p);
 		model.addAttribute("brands", brandService.getAllBrandName());
 		model.addAttribute("types", typeService.getAllTypeName());
-		model.addAttribute("units",typeService.getAllUnits());
+		model.addAttribute("units", typeService.getAllUnits());
+		model.addAttribute("status", account.getStatus());
 		return catalog + "/index";
 	}
 
@@ -59,7 +61,7 @@ public class GoodsController {
 	public String go2AddPage(Model model) {
 		model.addAttribute("brands", brandService.getAllBrand());
 		model.addAttribute("types", typeService.getAllType());
-		model.addAttribute("units",typeService.getAllUnits());
+		model.addAttribute("units", typeService.getAllUnits());
 		return catalog + "/add";
 	}
 
@@ -87,7 +89,7 @@ public class GoodsController {
 		model.addAttribute("goods", goods);
 		model.addAttribute("brands", brandService.getAllBrand());
 		model.addAttribute("types", typeService.getAllType());
-		model.addAttribute("units",typeService.getAllUnits());
+		model.addAttribute("units", typeService.getAllUnits());
 		return catalog + "/edit";
 	}
 
@@ -125,7 +127,7 @@ public class GoodsController {
 	}
 
 	@RequestMapping(value = "/s", method = RequestMethod.GET)
-	public String search(@RequestParam("wd") String wd, @RequestParam(value = "page", defaultValue = "1") int page, Model model,@ModelAttribute("pageSize")int pageSize) {
+	public String search(@RequestParam("wd") String wd, @RequestParam(value = "page", defaultValue = "1") int page, Model model, @ModelAttribute("pageSize") int pageSize, @ModelAttribute("user") TbAccount account) {
 		PageHelper.startPage(page, pageSize);
 		try {
 			wd = new String(wd.getBytes("ISO-8859-1"), "utf-8");
@@ -139,7 +141,8 @@ public class GoodsController {
 		model.addAttribute("page", p);
 		model.addAttribute("brands", brandService.getAllBrandName());
 		model.addAttribute("types", typeService.getAllTypeName());
-		model.addAttribute("units",typeService.getAllUnits());
+		model.addAttribute("units", typeService.getAllUnits());
+		model.addAttribute("status", account.getStatus());
 		return catalog + "/index";
 	}
 }

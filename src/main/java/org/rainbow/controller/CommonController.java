@@ -23,22 +23,29 @@ import java.util.Map;
  * @date 2018-04-08
  */
 @Controller
-@SessionAttributes(value = {"pageSize", "ossUrl"})
+@SessionAttributes(value = {"pageSize", "ossUrl","user"})
 public class CommonController {
 	@Autowired
 	private ParameterService parameterService;
 
 	@RequestMapping("/index")
-	public String index(HttpSession session, ModelMap modelMap) {
+	public String index(HttpSession session, ModelMap modelMap,Model model,@ModelAttribute("user")TbAccount account) {
 		Map paras = parameterService.getPara();
 		modelMap.addAttribute("pageSize", paras.get("pageSize"));
 		modelMap.addAttribute("ossUrl", paras.get("ossUrl"));
+		model.addAttribute("topImage", parameterService.getTopImage());
+		model.addAttribute("status", account.getStatus());
 		return "index";
 	}
 
 	@RequestMapping("/")
 	public String rootDirectory() {
 		return "redirect:/index";
+	}
+
+	@RequestMapping("/1/person.html")
+	public String firstPage() {
+		return "redirect:/account/information";
 	}
 
 	@RequestMapping(value = "/initPara", method = RequestMethod.GET)

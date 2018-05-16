@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -42,7 +43,7 @@ public class ParameterServiceImpl implements ParameterService {
 
 	@Override
 	public Map getPara() {
-		Map paras = new HashMap();
+		Map<String,Object> paras = new HashMap<>();
 		TbParameter tbParameter = parameterMapper.selectByParameterName("ossurl");
 		if (tbParameter != null) {
 			String temp = tbParameter.getParametercontent();
@@ -60,5 +61,22 @@ public class ParameterServiceImpl implements ParameterService {
 		}
 		paras.put("pageSize",pageSize);
 		return paras;
+	}
+
+	@Override
+	public List<TbParameter> selectAll() {
+		return parameterMapper.selectAll();
+	}
+
+	@Override
+	public String getTopImage() {
+		TbParameter tbParameter = parameterMapper.selectByParameterName("indexTitleImage");
+		if (tbParameter != null) {
+			String temp = tbParameter.getParametercontent();
+			if (temp != null && !"".equals(temp)) {
+				bgImage = temp;
+			}
+		}
+		return bgImage;
 	}
 }

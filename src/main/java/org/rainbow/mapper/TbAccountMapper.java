@@ -2,6 +2,8 @@ package org.rainbow.mapper;
 
 import org.rainbow.pojo.TbAccount;
 
+import java.util.List;
+
 public interface TbAccountMapper {
     int deleteByPrimaryKey(Long sid);
 
@@ -16,6 +18,8 @@ public interface TbAccountMapper {
     int updateByPrimaryKey(TbAccount record);
 
     TbAccount selectByName(String name);
+
+	List<TbAccount> selectAll();
 
 
 }

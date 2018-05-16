@@ -9,7 +9,7 @@
 	    <result column="address" property="address" jdbcType="VARCHAR" />
 	    <result column="phone" property="phone" jdbcType="VARCHAR" />
 	    <result column="storeID" property="storeid" jdbcType="BIGINT" />
-        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="status" property="status" jdbcType="BIGINT" />
         <result column="mark" property="mark" jdbcType="VARCHAR" />
     </resultMap>
 
@@ -28,6 +28,12 @@
 		<include refid="Base_Column_List" />
 		from tb_account
 		where loginName = #{name}
+	</select>
+
+	<select id="selectAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tb_account
 	</select>
 
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >

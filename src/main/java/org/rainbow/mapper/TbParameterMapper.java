@@ -2,6 +2,8 @@ package org.rainbow.mapper;
 
 import org.rainbow.pojo.TbParameter;
 
+import java.util.List;
+
 public interface TbParameterMapper {
     int deleteByPrimaryKey(Integer parameterid);
 
@@ -16,4 +18,6 @@ public interface TbParameterMapper {
     int updateByPrimaryKeySelective(TbParameter record);
 
     int updateByPrimaryKey(TbParameter record);
+
+    List<TbParameter> selectAll();
 }

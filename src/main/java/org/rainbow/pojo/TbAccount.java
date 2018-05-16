@@ -35,7 +35,7 @@ public class TbAccount implements Serializable {
     /**
      * 账号状态，0为封禁;1为正常;2及以上越大权限越大
      */
-    private Integer status;
+    private Long status;
 
     /**
      * 备注
@@ -68,11 +68,11 @@ public class TbAccount implements Serializable {
         this.password = password == null ? null : password.trim();
     }
 
-    public Integer getStatus() {
+    public Long getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(Long status) {
         this.status = status;
     }
 

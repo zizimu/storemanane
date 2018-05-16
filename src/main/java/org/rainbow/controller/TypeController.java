@@ -2,6 +2,7 @@ package org.rainbow.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.rainbow.pojo.TbAccount;
 import org.rainbow.pojo.TbGoodsType;
 import org.rainbow.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/Type")
+@SessionAttributes("user")
 public class TypeController {
 
 	@Value("${pageSize}")
@@ -29,12 +31,13 @@ public class TypeController {
 	private TypeService typeService;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String index(@RequestParam(value = "page",defaultValue = "1")int page, Model  model){
+	public String index(@RequestParam(value = "page",defaultValue = "1")int page, Model  model,@ModelAttribute("user") TbAccount account){
 		PageHelper.startPage(page,pageSize);
 		List<TbGoodsType> types = typeService.getAllType();
 		PageInfo<TbGoodsType> p = new PageInfo<>(types);
 		model.addAttribute("typesList",types);
 		model.addAttribute("page",p);
+		model.addAttribute("status", account.getStatus());
 		return "Type/index";
 	}
 
@@ -92,11 +95,11 @@ public class TypeController {
 	}
 
 	@RequestMapping(value = "/s",method = RequestMethod.GET)
-	public String search(@RequestParam("wd")String wd,@RequestParam(value = "page", defaultValue = "1") int page, Model model){
+	public String search(@RequestParam("wd")String wd,@RequestParam(value = "page", defaultValue = "1") int page, Model model,@ModelAttribute("user") TbAccount account){
 		PageHelper.startPage(page, pageSize);
 		try {
 			wd = new String(wd.getBytes("ISO-8859-1"), "utf-8");
-		} catch (UnsupportedEncodingException e) {
+		} catch (UnsupportedEncodingException | NullPointerException e) {
 			e.printStackTrace();
 		}
 		List<TbGoodsType> types = typeService.searchType(wd);
@@ -104,6 +107,7 @@ public class TypeController {
 		model.addAttribute("typesList", types);
 		model.addAttribute("wd",wd);
 		model.addAttribute("page", p);
+		model.addAttribute("status", account.getStatus());
 		return "Type/index";
 	}
 

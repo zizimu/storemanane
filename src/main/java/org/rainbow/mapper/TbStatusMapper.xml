@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.rainbow.mapper.TbStatusMapper" >
+
+	<resultMap id="BaseResultMap" type="org.rainbow.pojo.TbStatus" >
+		<id column="statusNum" property="statusNum" jdbcType="BIGINT" />
+		<result column="powerName" property="powerName" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Base_Column_List" >
+        statusNum, powerName
+    </sql>
+
+	<select id="selectAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tb_power
+	</select>
+</mapper>

@@ -6,7 +6,7 @@
 <head>
 	<link rel="shortcut icon"
 	      href="https://1213-1251943624.cos.ap-shanghai.myqcloud.com/default/R.ico" type="image/x-icon"/>
-	<title>后台管理系统</title>
+	<title>优聚门店管理</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<link href="https://cdn-1251943624.file.myqcloud.com/storeManage/assets/css/dpl-min.css" rel="stylesheet"
 	      type="text/css"/>
@@ -34,7 +34,7 @@
 <body>
 <div class="header">
 	<div class="dl-title">
-		<img src="https://cdn-1251943624.file.myqcloud.com/storeManage/assets/img/top.png">
+		<img style="width: 199px;height: 60px;" onerror="this.src='https://1213-1251943624.cos.ap-shanghai.myqcloud.com/store-manage/logo/top2.bmp.png'" src="${topImage}">
 	</div>
 	<div class="dl-log">
 		<div class="img-item">
@@ -70,9 +70,13 @@
 			<li class="nav-item dl-selected">
 				<div class="nav-item-inner nav-home">系统管理</div>
 			</li>
+			<c:choose>
+			<c:when test="${status>2}">
 			<li class="nav-item dl-selected">
 				<div class="nav-item-inner nav-order">业务管理</div>
 			</li>
+			</c:when>
+			</c:choose>
 		</ul>
 	</div>
 	<ul id="J_NavContent" class="dl-tab-conten">
@@ -90,8 +94,7 @@
         var config = [{
             id: '1', homePage: 'person', menu: [{
                 text: '系统管理', items: [
-                    {id: '10', text: '账号信息', href: 'person'},
-                    {id: '11', text: '账号审核', href: 'person'},]
+                    {id: '10', text: '账号信息', href: 'account/information'},]
             }, {
                 text: '商品管理', items: [
                     {id: '12', text: '商品管理', href: 'Goods'},
@@ -104,17 +107,23 @@
                     {id: '16', text: '员工管理', href: 'Staff'},]
             }]
         },
+            <c:choose>
+	        <c:when test="${status>2}">
             {
                 id: '9', menu: [
                     {   text: '系统管理', items: [
-                            {id: '12', text: '管理参数', href: 'person'},]
+                            {id: '12', text: '系统参数', href: 'param'},
+                            {id: '11', text: '账号审核', href: 'account'},]
                     },
                     {   text: '业务管理', items: [
                         {id: '21', text: '管理门店', href: 'Store'},
                         {id: '22', text: '管理活动', href: 'Activity'},
                         {id: '23', text: '管理角色', href: 'Role'}]
                     }]
-            }];
+            }
+            </c:when>
+	        </c:choose>
+        ];
         new PageUtil.MainPage({
             modulesConfig: config
         });
