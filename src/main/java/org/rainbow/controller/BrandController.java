@@ -4,7 +4,6 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.rainbow.pojo.TbAccount;
 import org.rainbow.pojo.TbBrand;
-import org.rainbow.pojo.TbGoods;
 import org.rainbow.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

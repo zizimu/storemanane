@@ -3,7 +3,6 @@ package org.rainbow.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.rainbow.pojo.TbAccount;
-import org.rainbow.pojo.TbGoods;
 import org.rainbow.service.AccountService;
 import org.rainbow.service.ParameterService;
 import org.rainbow.service.StoreService;

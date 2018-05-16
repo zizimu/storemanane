@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.rainbow.mapper.TbOrderMapper" >
+<mapper namespace="org.rainbow.mapper.TbOrderMapper">
 
-    <resultMap id="BaseResultMap" type="org.rainbow.pojo.TbOrder" >
-        <id column="order_id" property="orderId" jdbcType="BIGINT" />
-        <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
-        <result column="goods_num" property="goodsNum" jdbcType="INTEGER" />
-        <result column="activity_id" property="activityId" jdbcType="INTEGER" />
-        <result column="total_price" property="totalPrice" jdbcType="DECIMAL" />
-        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-        <result column="status" property="status" jdbcType="INTEGER" />
-        <result column="mark" property="mark" jdbcType="VARCHAR" />
-    </resultMap>
+	<resultMap id="BaseResultMap" type="org.rainbow.pojo.TbOrder">
+		<id column="order_id" property="orderId" jdbcType="BIGINT"/>
+		<result column="goods_id" property="goodsId" jdbcType="INTEGER"/>
+		<result column="goods_num" property="goodsNum" jdbcType="INTEGER"/>
+		<result column="activity_id" property="activityId" jdbcType="INTEGER"/>
+		<result column="total_price" property="totalPrice" jdbcType="DECIMAL"/>
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+		<result column="status" property="status" jdbcType="INTEGER"/>
+		<result column="mark" property="mark" jdbcType="VARCHAR"/>
+	</resultMap>
 
-    <sql id="Base_Column_List" >
+	<sql id="Base_Column_List">
         order_id, goods_id, goods_num, activity_id, total_price, create_time, status, mark
     </sql>
 
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-        select 
-        <include refid="Base_Column_List" />
-        from tb_order
-        where order_id = #{orderId,jdbcType=BIGINT}
-    </select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List"/>
+		from tb_order
+		where order_id = #{orderId,jdbcType=BIGINT}
+	</select>
 
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         delete from tb_order
         where order_id = #{orderId,jdbcType=BIGINT}
     </delete>
 
-    <insert id="insert" parameterType="org.rainbow.pojo.TbOrder" >
+	<insert id="insert" parameterType="org.rainbow.pojo.TbOrder">
         insert into tb_order (order_id, goods_id, goods_num, 
             activity_id, total_price, create_time, 
             status, mark)
@@ -38,91 +38,91 @@
             #{status,jdbcType=INTEGER}, #{mark,jdbcType=VARCHAR})
     </insert>
 
-    <insert id="insertSelective" parameterType="org.rainbow.pojo.TbOrder" >
-        insert into tb_order
-        <trim prefix="(" suffix=")" suffixOverrides="," >
-            <if test="orderId != null" >
-                order_id,
-            </if>
-            <if test="goodsId != null" >
-                goods_id,
-            </if>
-            <if test="goodsNum != null" >
-                goods_num,
-            </if>
-            <if test="activityId != null" >
-                activity_id,
-            </if>
-            <if test="totalPrice != null" >
-                total_price,
-            </if>
-            <if test="createTime != null" >
-                create_time,
-            </if>
-            <if test="status != null" >
-                status,
-            </if>
-            <if test="mark != null" >
-                mark,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides="," >
-            <if test="orderId != null" >
-                #{orderId,jdbcType=BIGINT},
-            </if>
-            <if test="goodsId != null" >
-                #{goodsId,jdbcType=INTEGER},
-            </if>
-            <if test="goodsNum != null" >
-                #{goodsNum,jdbcType=INTEGER},
-            </if>
-            <if test="activityId != null" >
-                #{activityId,jdbcType=INTEGER},
-            </if>
-            <if test="totalPrice != null" >
-                #{totalPrice,jdbcType=DECIMAL},
-            </if>
-            <if test="createTime != null" >
-                #{createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="status != null" >
-                #{status,jdbcType=INTEGER},
-            </if>
-            <if test="mark != null" >
-                #{mark,jdbcType=VARCHAR},
-            </if>
-        </trim>
-    </insert>
+	<insert id="insertSelective" parameterType="org.rainbow.pojo.TbOrder">
+		insert into tb_order
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="orderId != null">
+				order_id,
+			</if>
+			<if test="goodsId != null">
+				goods_id,
+			</if>
+			<if test="goodsNum != null">
+				goods_num,
+			</if>
+			<if test="activityId != null">
+				activity_id,
+			</if>
+			<if test="totalPrice != null">
+				total_price,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="mark != null">
+				mark,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="orderId != null">
+				#{orderId,jdbcType=BIGINT},
+			</if>
+			<if test="goodsId != null">
+				#{goodsId,jdbcType=INTEGER},
+			</if>
+			<if test="goodsNum != null">
+				#{goodsNum,jdbcType=INTEGER},
+			</if>
+			<if test="activityId != null">
+				#{activityId,jdbcType=INTEGER},
+			</if>
+			<if test="totalPrice != null">
+				#{totalPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="mark != null">
+				#{mark,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
 
-    <update id="updateByPrimaryKeySelective" parameterType="org.rainbow.pojo.TbOrder" >
-        update tb_order
-        <set >
-            <if test="goodsId != null" >
-                goods_id = #{goodsId,jdbcType=INTEGER},
-            </if>
-            <if test="goodsNum != null" >
-                goods_num = #{goodsNum,jdbcType=INTEGER},
-            </if>
-            <if test="activityId != null" >
-                activity_id = #{activityId,jdbcType=INTEGER},
-            </if>
-            <if test="totalPrice != null" >
-                total_price = #{totalPrice,jdbcType=DECIMAL},
-            </if>
-            <if test="createTime != null" >
-                create_time = #{createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="status != null" >
-                status = #{status,jdbcType=INTEGER},
-            </if>
-            <if test="mark != null" >
-                mark = #{mark,jdbcType=VARCHAR},
-            </if>
-        </set>
-        where order_id = #{orderId,jdbcType=BIGINT}
-    </update>
+	<update id="updateByPrimaryKeySelective" parameterType="org.rainbow.pojo.TbOrder">
+		update tb_order
+		<set>
+			<if test="goodsId != null">
+				goods_id = #{goodsId,jdbcType=INTEGER},
+			</if>
+			<if test="goodsNum != null">
+				goods_num = #{goodsNum,jdbcType=INTEGER},
+			</if>
+			<if test="activityId != null">
+				activity_id = #{activityId,jdbcType=INTEGER},
+			</if>
+			<if test="totalPrice != null">
+				total_price = #{totalPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="mark != null">
+				mark = #{mark,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where order_id = #{orderId,jdbcType=BIGINT}
+	</update>
 
-    <update id="updateByPrimaryKey" parameterType="org.rainbow.pojo.TbOrder" >
+	<update id="updateByPrimaryKey" parameterType="org.rainbow.pojo.TbOrder">
         update tb_order
         set goods_id = #{goodsId,jdbcType=INTEGER},
             goods_num = #{goodsNum,jdbcType=INTEGER},
@@ -133,21 +133,22 @@
             mark = #{mark,jdbcType=VARCHAR}
         where order_id = #{orderId,jdbcType=BIGINT}
     </update>
-    
-      <select id="selectAll" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List" />
-        from tb_order
-	    where status = 1
-        ORDER BY create_time DESC
-    </select>
+
+	<select id="selectAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List"/>
+		from tb_order
+		where status = 1
+		ORDER BY create_time DESC
+	</select>
+
 	<!-- 搜索的sql语句-->
-    <select id="searchOrder" resultMap="BaseResultMap" parameterType="java.lang.String">
-	    select
-	    <include refid="Base_Column_List" />
-	    from tb_order
-	    where order_id like '%' #{key} '%'
-	    	and status = 1
-	    ORDER BY create_time DESC
-    </select>
+	<select id="searchOrder" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List"/>
+		from tb_order
+		where order_id like '%' #{key} '%'
+		and status = 1
+		ORDER BY create_time DESC
+	</select>
 </mapper>

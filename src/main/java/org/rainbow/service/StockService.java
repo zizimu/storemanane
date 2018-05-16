@@ -16,6 +16,8 @@ public interface StockService {
 
 	List<TbStock> getAllStock();
 
+	List<TbStock> getAllStockByStoreID(Long storeId);
+
 	int addStock(TbStock stock);
 
 	TbStock getStockByID(TbStockKey id);
@@ -25,6 +27,8 @@ public interface StockService {
 	int deleteStock(TbStockKey id);
 
 	List<TbStock> searchStock(String key);
+
+	List<TbStock> searchStockInStore(String key,Long storeID);
 
 	List<Long> getAllBatch();
 

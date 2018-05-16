@@ -20,4 +20,5 @@ public interface TbOrderMapper {
 	List<TbOrder> searchOrder(String key);
 
 	List<TbOrder> selectAll();
+
 }

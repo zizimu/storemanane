@@ -33,8 +33,18 @@ public class StaffServiceImpl implements StaffService {
 	}
 
 	@Override
+	public List<TbStaff> searchStaffInStore(String key, Long storeID) {
+		return tbStaffMapper.searchStaffInStore(key,storeID);
+	}
+
+	@Override
 	public List<TbStaff> getAllStaff() {
 		return tbStaffMapper.selectAll();
+	}
+
+	@Override
+	public List<TbStaff> getAllStaffInStore(Long storeID) {
+		return tbStaffMapper.selectAllInStore(storeID);
 	}
 
 	@Override

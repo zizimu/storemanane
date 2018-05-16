@@ -2,6 +2,7 @@ package org.rainbow.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.rainbow.pojo.TbStaff;
 
 public interface TbStaffMapper {
@@ -18,6 +19,10 @@ public interface TbStaffMapper {
     int updateByPrimaryKey(TbStaff record);
     
     List<TbStaff> selectAll();
-    
+
+	List<TbStaff> selectAllInStore(Long storeID);
+
     List<TbStaff> searchStaff(String key);
+
+	List<TbStaff> searchStaffInStore(@Param("key")String key, @Param("storeId") Long storeID);
 }

@@ -10,10 +10,14 @@ public interface StaffService {
 
 	List<TbStaff> getAllStaff();
 
+	List<TbStaff> getAllStaffInStore(Long storeID);
+
 	TbStaff getStaffById(long ID);
 
 	int updateStaff(TbStaff staff);
 
 	List<TbStaff> searchStaff(String key);
+
+	List<TbStaff> searchStaffInStore(String key,Long storeID);
 
 }

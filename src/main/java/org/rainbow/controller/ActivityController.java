@@ -93,7 +93,7 @@ public class ActivityController {
 		PageHelper.startPage(page, pageSize);
 		try {
 			wd = new String(wd.getBytes("ISO-8859-1"), "utf-8");
-		} catch (UnsupportedEncodingException e) {
+		} catch (UnsupportedEncodingException | NullPointerException e) {
 			e.printStackTrace();
 		}
 		List<TbActivity> activity = activityService.searchActivity(wd);

@@ -32,6 +32,14 @@
         ORDER BY create_time DESC
     </select>
 
+	<select id="selectStockByStoreID" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List"/>
+		from tb_stock
+		where  store_id =  #{storeId,jdbcType=BIGINT}
+		ORDER BY create_time DESC
+	</select>
+
     <select id="searchStock" resultMap="BaseResultMap" parameterType="java.lang.String">
         select
         <include refid="Base_Column_List"/>
@@ -47,7 +55,17 @@
         group by batch_id
     </select>
 
-    <delete id="deleteByPrimaryKey" parameterType="org.rainbow.pojo.TbStockKey" >
+	<select id="searchStockInStoreID" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List"/>
+		from tb_stock
+		where goods_id like '%' #{key} '%'
+		or batch_id like '%' #{key} '%'
+		and store_id = #{storeId,jdbcType=BIGINT}
+		ORDER BY create_time DESC
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="org.rainbow.pojo.TbStockKey" >
         delete from tb_stock
         where batch_id = #{batchId,jdbcType=BIGINT}
           and goods_id = #{goodsId,jdbcType=BIGINT}

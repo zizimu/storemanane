@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.rainbow.mapper.TbStaffMapper" >
+<mapper namespace="org.rainbow.mapper.TbStaffMapper">
 
-    <resultMap id="BaseResultMap" type="org.rainbow.pojo.TbStaff" >
-        <id column="staff_id" property="staffId" jdbcType="BIGINT" />
-        <result column="staff_name" property="staffName" jdbcType="VARCHAR" />
-        <result column="staff_phone" property="staffPhone" jdbcType="VARCHAR" />
-        <result column="store_id" property="storeId" jdbcType="VARCHAR" />
-        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-        <result column="entry_time" property="entryTime" jdbcType="TIMESTAMP" />
-        <result column="role" property="role" jdbcType="INTEGER" />
-        <result column="status" property="status" jdbcType="INTEGER" />
-        <result column="mark" property="mark" jdbcType="VARCHAR" />
-    </resultMap>
+	<resultMap id="BaseResultMap" type="org.rainbow.pojo.TbStaff">
+		<id column="staff_id" property="staffId" jdbcType="BIGINT"/>
+		<result column="staff_name" property="staffName" jdbcType="VARCHAR"/>
+		<result column="staff_phone" property="staffPhone" jdbcType="VARCHAR"/>
+		<result column="store_id" property="storeId" jdbcType="VARCHAR"/>
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+		<result column="entry_time" property="entryTime" jdbcType="TIMESTAMP"/>
+		<result column="role" property="role" jdbcType="INTEGER"/>
+		<result column="status" property="status" jdbcType="INTEGER"/>
+		<result column="mark" property="mark" jdbcType="VARCHAR"/>
+	</resultMap>
 
-    <sql id="Base_Column_List" >
+	<sql id="Base_Column_List">
         staff_id, staff_name, staff_phone, store_id, create_time,entry_time,role, status, mark
     </sql>
 
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-        select 
-        <include refid="Base_Column_List" />
-        from tb_staff
-        where staff_id = #{staffId,jdbcType=BIGINT}
-    </select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List"/>
+		from tb_staff
+		where staff_id = #{staffId,jdbcType=BIGINT}
+	</select>
 
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         delete from tb_staff
         where staff_id = #{staffId,jdbcType=BIGINT}
     </delete>
 
-    <insert id="insert" parameterType="org.rainbow.pojo.TbStaff" >
+	<insert id="insert" parameterType="org.rainbow.pojo.TbStaff">
         insert into tb_staff (staff_id, staff_name, staff_phone, 
             store_id, create_time,entry_time,role, status,mark)
         values (#{staffId,jdbcType=BIGINT}, #{staffName,jdbcType=VARCHAR}, #{staffPhone,jdbcType=VARCHAR}, 
@@ -38,96 +38,96 @@
              #{role,jdbcType=INTEGER},#{status,jdbcType=INTEGER},#{mark,jdbcType=VARCHAR})
     </insert>
 
-    <insert id="insertSelective" parameterType="org.rainbow.pojo.TbStaff" >
-        insert into tb_staff
-        <trim prefix="(" suffix=")" suffixOverrides="," >
-            <if test="staffId != null" >
-                staff_id,
-            </if>
-            <if test="staffName != null" >
-                staff_name,
-            </if>
-            <if test="staffPhone != null" >
-                staff_phone,
-            </if>
-            <if test="storeId != null" >
-                store_id,
-            </if>
-             <if test="entryTime != null" >
-                entry_time,
-            </if>
-             <if test="role != null" >
-                role,
-            </if>
-            <if test="status != null" >
-                status,
-            </if>
-            <if test="mark != null" >
-                mark,
-            </if>
-              create_time
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides="," >
-            <if test="staffId != null" >
-                #{staffId,jdbcType=BIGINT},
-            </if>
-            <if test="staffName != null" >
-                #{staffName,jdbcType=VARCHAR},
-            </if>
-            <if test="staffPhone != null" >
-                #{staffPhone,jdbcType=VARCHAR},
-            </if>
-            <if test="storeId != null" >
-                #{storeId,jdbcType=VARCHAR},
-            </if>
-            <if test="entryTime != null" >
-                #{entryTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="role != null" >
-                #{role,jdbcType=INTEGER},
-            </if>
-            <if test="status != null" >
-                #{status,jdbcType=INTEGER},
-            </if>
-            <if test="mark != null" >
-                #{mark,jdbcType=VARCHAR},
-            </if>
-               now()
-        </trim>
-    </insert>
+	<insert id="insertSelective" parameterType="org.rainbow.pojo.TbStaff">
+		insert into tb_staff
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="staffId != null">
+				staff_id,
+			</if>
+			<if test="staffName != null">
+				staff_name,
+			</if>
+			<if test="staffPhone != null">
+				staff_phone,
+			</if>
+			<if test="storeId != null">
+				store_id,
+			</if>
+			<if test="entryTime != null">
+				entry_time,
+			</if>
+			<if test="role != null">
+				role,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="mark != null">
+				mark,
+			</if>
+			create_time
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="staffId != null">
+				#{staffId,jdbcType=BIGINT},
+			</if>
+			<if test="staffName != null">
+				#{staffName,jdbcType=VARCHAR},
+			</if>
+			<if test="staffPhone != null">
+				#{staffPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="storeId != null">
+				#{storeId,jdbcType=VARCHAR},
+			</if>
+			<if test="entryTime != null">
+				#{entryTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="role != null">
+				#{role,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="mark != null">
+				#{mark,jdbcType=VARCHAR},
+			</if>
+			now()
+		</trim>
+	</insert>
 
-    <update id="updateByPrimaryKeySelective" parameterType="org.rainbow.pojo.TbStaff" >
-        update tb_staff
-        <set >
-            <if test="staffName != null" >
-                staff_name = #{staffName,jdbcType=VARCHAR},
-            </if>
-            <if test="staffPhone != null" >
-                staff_phone = #{staffPhone,jdbcType=VARCHAR},
-            </if>
-            <if test="storeId != null" >
-                store_id = #{storeId,jdbcType=VARCHAR},
-            </if>
-            <if test="createTime != null" >
-                create_time = #{createTime,jdbcType=TIMESTAMP},
-            </if>
-              <if test="entryTime != null" >
-                entry_Time = #{entryTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="role != null" >
-                role = #{role,jdbcType=INTEGER},
-            </if>
-            <if test="status != null" >
-                status = #{status,jdbcType=INTEGER},
-            </if>
-            <if test="mark != null" >
-                mark = #{mark,jdbcType=VARCHAR},
-            </if>
-        </set>
-        where staff_id = #{staffId,jdbcType=BIGINT}
-    </update>
+	<update id="updateByPrimaryKeySelective" parameterType="org.rainbow.pojo.TbStaff">
+		update tb_staff
+		<set>
+			<if test="staffName != null">
+				staff_name = #{staffName,jdbcType=VARCHAR},
+			</if>
+			<if test="staffPhone != null">
+				staff_phone = #{staffPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="storeId != null">
+				store_id = #{storeId,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="entryTime != null">
+				entry_Time = #{entryTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="role != null">
+				role = #{role,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="mark != null">
+				mark = #{mark,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where staff_id = #{staffId,jdbcType=BIGINT}
+	</update>
 
-    <update id="updateByPrimaryKey" parameterType="org.rainbow.pojo.TbStaff" >
+	<update id="updateByPrimaryKey" parameterType="org.rainbow.pojo.TbStaff">
         update tb_staff
         set staff_name = #{staffName,jdbcType=VARCHAR},
             staff_phone = #{staffPhone,jdbcType=VARCHAR},
@@ -139,22 +139,42 @@
             mark = #{mark,jdbcType=VARCHAR}
         where staff_id = #{staffId,jdbcType=BIGINT}
     </update>
-     
-    <select id="selectAll" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List" />
-        from tb_staff
-	    where status = 1
-        ORDER BY create_time DESC
-    </select>
+
+	<select id="selectAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List"/>
+		from tb_staff
+		where status = 1
+		ORDER BY create_time DESC
+	</select>
+
+	<select id="selectAllInStore" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List"/>
+		from tb_staff
+		where status = 1
+		and store_id = #{storeID,jdbcType=BIGINT}
+		ORDER BY create_time DESC
+	</select>
 	<!-- 搜索的sql语句-->
-    <select id="searchStaff" resultMap="BaseResultMap" parameterType="java.lang.String">
-	    select
-	    <include refid="Base_Column_List" />
-	    from tb_staff
-	    where (staff_name like '%' #{key,jdbcType=VARCHAR} '%'
-	    	or staff_id like '%' #{key} '%')
-	    	and status = 1
-	    ORDER BY create_time DESC
-    </select>
+	<select id="searchStaff" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List"/>
+		from tb_staff
+		where (staff_name like '%' #{key,jdbcType=VARCHAR} '%'
+		or staff_id like '%' #{key} '%')
+		and status = 1
+		ORDER BY create_time DESC
+	</select>
+
+	<select id="searchStaffInStore" resultMap="BaseResultMap" >
+		select
+		<include refid="Base_Column_List"/>
+		from tb_staff
+		where (staff_name like '%' #{key} '%'
+		or staff_id like '%' #{key} '%')
+		and status = 1
+		and store_id = #{storeID,jdbcType=BIGINT}
+		ORDER BY create_time DESC
+	</select>
 </mapper>

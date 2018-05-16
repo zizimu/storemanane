@@ -1,64 +1,64 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.rainbow.mapper.TbGoodsMapper" >
+<mapper namespace="org.rainbow.mapper.TbGoodsMapper">
 
-    <resultMap id="BaseResultMap" type="org.rainbow.pojo.TbGoods" >
-        <id column="goods_id" property="goodsId" jdbcType="BIGINT" />
-        <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
-        <result column="goods_price" property="goodsPrice" jdbcType="DECIMAL" />
-        <result column="goods_type" property="goodsType" jdbcType="BIGINT" />
-        <result column="goods_brand" property="goodsBrand" jdbcType="BIGINT" />
-        <result column="goods_spc" property="goodsSpc" jdbcType="INTEGER" />
-        <result column="goods_pic" property="goodsPic" jdbcType="VARCHAR" />
-        <result column="goods_createdate" property="goodsCreatedate" jdbcType="TIMESTAMP" />
-        <result column="goods_shelflife" property="goodsShelflife" jdbcType="INTEGER" />
-        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-        <result column="status" property="status" jdbcType="INTEGER" />
-        <result column="mark" property="mark" jdbcType="VARCHAR" />
-    </resultMap>
+	<resultMap id="BaseResultMap" type="org.rainbow.pojo.TbGoods">
+		<id column="goods_id" property="goodsId" jdbcType="BIGINT"/>
+		<result column="goods_name" property="goodsName" jdbcType="VARCHAR"/>
+		<result column="goods_price" property="goodsPrice" jdbcType="DECIMAL"/>
+		<result column="goods_type" property="goodsType" jdbcType="BIGINT"/>
+		<result column="goods_brand" property="goodsBrand" jdbcType="BIGINT"/>
+		<result column="goods_spc" property="goodsSpc" jdbcType="INTEGER"/>
+		<result column="goods_pic" property="goodsPic" jdbcType="VARCHAR"/>
+		<result column="goods_createdate" property="goodsCreatedate" jdbcType="TIMESTAMP"/>
+		<result column="goods_shelflife" property="goodsShelflife" jdbcType="INTEGER"/>
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+		<result column="status" property="status" jdbcType="INTEGER"/>
+		<result column="mark" property="mark" jdbcType="VARCHAR"/>
+	</resultMap>
 
-    <sql id="Base_Column_List" >
+	<sql id="Base_Column_List">
         goods_id, goods_name, goods_price, goods_type, goods_brand, goods_spc, goods_pic, 
         goods_createdate, goods_shelflife, create_time, status, mark
     </sql>
 
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-        select 
-        <include refid="Base_Column_List" />
-        from tb_goods
-        where goods_id = #{goodsId,jdbcType=BIGINT}
-    </select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List"/>
+		from tb_goods
+		where goods_id = #{goodsId,jdbcType=BIGINT}
+	</select>
 
-    <select id="selectAll" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List" />
-        from tb_goods
-	    where status = 1
-        ORDER BY create_time DESC
-    </select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List"/>
+		from tb_goods
+		where status = 1
+		ORDER BY create_time DESC
+	</select>
 	<!--搜索的sql语句-->
-    <select id="searchGoods" resultMap="BaseResultMap" parameterType="java.lang.String">
-	    select
-	    <include refid="Base_Column_List" />
-	    from tb_goods
-	    where status = 1
-	       and ( goods_name like '%' #{key,jdbcType=VARCHAR} '%'
-	    	or goods_id like '%' #{key} '%')
-	    ORDER BY create_time DESC
-    </select>
+	<select id="searchGoods" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List"/>
+		from tb_goods
+		where status = 1
+		and ( goods_name like '%' #{key,jdbcType=VARCHAR} '%'
+		or goods_id like '%' #{key} '%')
+		ORDER BY create_time DESC
+	</select>
 
 	<select id="getAllGoodsIdName" resultMap="BaseResultMap">
-        select
-			<include refid="Base_Column_List" />
-        from tb_goods
-    </select>
+		select
+		<include refid="Base_Column_List"/>
+		from tb_goods
+	</select>
 
-	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         delete from tb_goods
         where goods_id = #{goodsId,jdbcType=BIGINT}
     </delete>
 
-    <insert id="insert" parameterType="org.rainbow.pojo.TbGoods" >
+	<insert id="insert" parameterType="org.rainbow.pojo.TbGoods">
         insert into tb_goods (goods_id, goods_name, goods_price, 
             goods_type, goods_brand, goods_spc, 
             goods_pic, goods_createdate, goods_shelflife, 
@@ -71,123 +71,123 @@
             )
     </insert>
 
-    <insert id="insertSelective" parameterType="org.rainbow.pojo.TbGoods" >
-        insert into tb_goods
-        <trim prefix="(" suffix=")" suffixOverrides="," >
-            <if test="goodsId != null" >
-                goods_id,
-            </if>
-            <if test="goodsName != null" >
-                goods_name,
-            </if>
-            <if test="goodsPrice != null" >
-                goods_price,
-            </if>
-            <if test="goodsType != null" >
-                goods_type,
-            </if>
-            <if test="goodsBrand != null" >
-                goods_brand,
-            </if>
-            <if test="goodsSpc != null" >
-                goods_spc,
-            </if>
-            <if test="goodsPic != null" >
-                goods_pic,
-            </if>
-            <if test="goodsCreatedate != null" >
-                goods_createdate,
-            </if>
-            <if test="goodsShelflife != null" >
-                goods_shelflife,
-            </if>
-            <if test="status != null" >
-                status,
-            </if>
-            <if test="mark != null" >
-                mark,
-            </if>
-                create_time
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides="," >
-            <if test="goodsId != null" >
-                #{goodsId,jdbcType=BIGINT},
-            </if>
-            <if test="goodsName != null" >
-                #{goodsName,jdbcType=VARCHAR},
-            </if>
-            <if test="goodsPrice != null" >
-                #{goodsPrice,jdbcType=DECIMAL},
-            </if>
-            <if test="goodsType != null" >
-                #{goodsType,jdbcType=BIGINT},
-            </if>
-            <if test="goodsBrand != null" >
-                #{goodsBrand,jdbcType=BIGINT},
-            </if>
-            <if test="goodsSpc != null" >
-                #{goodsSpc,jdbcType=INTEGER},
-            </if>
-            <if test="goodsPic != null" >
-                #{goodsPic,jdbcType=VARCHAR},
-            </if>
-            <if test="goodsCreatedate != null" >
-                #{goodsCreatedate,jdbcType=TIMESTAMP},
-            </if>
-            <if test="goodsShelflife != null" >
-                #{goodsShelflife,jdbcType=INTEGER},
-            </if>
-            <if test="createTime != null" >
-                #{createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="status != null" >
-                #{status,jdbcType=INTEGER},
-            </if>
-            <if test="mark != null" >
-                #{mark,jdbcType=VARCHAR},
-            </if>
-                now()
-        </trim>
-    </insert>
+	<insert id="insertSelective" parameterType="org.rainbow.pojo.TbGoods">
+		insert into tb_goods
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="goodsId != null">
+				goods_id,
+			</if>
+			<if test="goodsName != null">
+				goods_name,
+			</if>
+			<if test="goodsPrice != null">
+				goods_price,
+			</if>
+			<if test="goodsType != null">
+				goods_type,
+			</if>
+			<if test="goodsBrand != null">
+				goods_brand,
+			</if>
+			<if test="goodsSpc != null">
+				goods_spc,
+			</if>
+			<if test="goodsPic != null">
+				goods_pic,
+			</if>
+			<if test="goodsCreatedate != null">
+				goods_createdate,
+			</if>
+			<if test="goodsShelflife != null">
+				goods_shelflife,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="mark != null">
+				mark,
+			</if>
+			create_time
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="goodsId != null">
+				#{goodsId,jdbcType=BIGINT},
+			</if>
+			<if test="goodsName != null">
+				#{goodsName,jdbcType=VARCHAR},
+			</if>
+			<if test="goodsPrice != null">
+				#{goodsPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="goodsType != null">
+				#{goodsType,jdbcType=BIGINT},
+			</if>
+			<if test="goodsBrand != null">
+				#{goodsBrand,jdbcType=BIGINT},
+			</if>
+			<if test="goodsSpc != null">
+				#{goodsSpc,jdbcType=INTEGER},
+			</if>
+			<if test="goodsPic != null">
+				#{goodsPic,jdbcType=VARCHAR},
+			</if>
+			<if test="goodsCreatedate != null">
+				#{goodsCreatedate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="goodsShelflife != null">
+				#{goodsShelflife,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="mark != null">
+				#{mark,jdbcType=VARCHAR},
+			</if>
+			now()
+		</trim>
+	</insert>
 
-    <update id="updateByPrimaryKeySelective" parameterType="org.rainbow.pojo.TbGoods" >
-        update tb_goods
-        <set >
-            <if test="goodsName != null" >
-                goods_name = #{goodsName,jdbcType=VARCHAR},
-            </if>
-            <if test="goodsPrice != null" >
-                goods_price = #{goodsPrice,jdbcType=DECIMAL},
-            </if>
-            <if test="goodsType != null" >
-                goods_type = #{goodsType,jdbcType=BIGINT},
-            </if>
-            <if test="goodsBrand != null" >
-                goods_brand = #{goodsBrand,jdbcType=BIGINT},
-            </if>
-            <if test="goodsSpc != null" >
-                goods_spc = #{goodsSpc,jdbcType=INTEGER},
-            </if>
-            <if test="goodsPic != null" >
-                goods_pic = #{goodsPic,jdbcType=VARCHAR},
-            </if>
-            <if test="goodsCreatedate != null" >
-                goods_createdate = #{goodsCreatedate,jdbcType=TIMESTAMP},
-            </if>
-            <if test="goodsShelflife != null" >
-                goods_shelflife = #{goodsShelflife,jdbcType=INTEGER},
-            </if>
-            <if test="status != null" >
-                status = #{status,jdbcType=INTEGER},
-            </if>
-            <if test="mark != null" >
-                mark = #{mark,jdbcType=VARCHAR},
-            </if>
-        </set>
-        where goods_id = #{goodsId,jdbcType=BIGINT}
-    </update>
+	<update id="updateByPrimaryKeySelective" parameterType="org.rainbow.pojo.TbGoods">
+		update tb_goods
+		<set>
+			<if test="goodsName != null">
+				goods_name = #{goodsName,jdbcType=VARCHAR},
+			</if>
+			<if test="goodsPrice != null">
+				goods_price = #{goodsPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="goodsType != null">
+				goods_type = #{goodsType,jdbcType=BIGINT},
+			</if>
+			<if test="goodsBrand != null">
+				goods_brand = #{goodsBrand,jdbcType=BIGINT},
+			</if>
+			<if test="goodsSpc != null">
+				goods_spc = #{goodsSpc,jdbcType=INTEGER},
+			</if>
+			<if test="goodsPic != null">
+				goods_pic = #{goodsPic,jdbcType=VARCHAR},
+			</if>
+			<if test="goodsCreatedate != null">
+				goods_createdate = #{goodsCreatedate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="goodsShelflife != null">
+				goods_shelflife = #{goodsShelflife,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="mark != null">
+				mark = #{mark,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where goods_id = #{goodsId,jdbcType=BIGINT}
+	</update>
 
-    <update id="updateByPrimaryKey" parameterType="org.rainbow.pojo.TbGoods" >
+	<update id="updateByPrimaryKey" parameterType="org.rainbow.pojo.TbGoods">
         update tb_goods
         set goods_name = #{goodsName,jdbcType=VARCHAR},
             goods_price = #{goodsPrice,jdbcType=DECIMAL},

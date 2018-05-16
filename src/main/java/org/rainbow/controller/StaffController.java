@@ -1,27 +1,25 @@
 package org.rainbow.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.rainbow.pojo.TbAccount;
 import org.rainbow.pojo.TbStaff;
 import org.rainbow.service.StaffService;
 import org.rainbow.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 @Controller
 @RequestMapping("/Staff")
+@SessionAttributes("user")
 public class StaffController {
 
 	@Autowired
@@ -30,9 +28,14 @@ public class StaffController {
 	private StoreService storeService;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String index(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
+	public String index(@RequestParam(value = "page", defaultValue = "1") int page, Model model,@ModelAttribute("user") TbAccount account) {
 		PageHelper.startPage(page, 8);
-		List<TbStaff> staff = staffService.getAllStaff();
+		List<TbStaff> staff ;
+		if (account.getStatus() > 2) {
+			staff = staffService.getAllStaff();
+		} else {
+			staff = staffService.getAllStaffInStore(account.getStoreid());
+		}
 		PageInfo<TbStaff> st = new PageInfo<>(staff);
 		model.addAttribute("staffList", staff);
 		model.addAttribute("page", st);
@@ -107,9 +110,19 @@ public class StaffController {
 	}
 	
 	@RequestMapping(value = "/s",method = RequestMethod.GET)
-	public String search(@RequestParam("wd")String wd,@RequestParam(value = "page", defaultValue = "1") int page, Model model){
+	public String search(@RequestParam("wd")String wd,@RequestParam(value = "page", defaultValue = "1") int page, Model model,@ModelAttribute("user") TbAccount account){
 		PageHelper.startPage(page, 8);
-		List<TbStaff> staff = staffService.searchStaff(wd);
+		try {
+			wd = new String(wd.getBytes("ISO-8859-1"), "utf-8");
+		} catch (UnsupportedEncodingException | NullPointerException e) {
+			e.printStackTrace();
+		}
+		List<TbStaff> staff;
+		if (account.getStatus() > 2) {
+			staff = staffService.searchStaff(wd);
+		} else {
+			staff = staffService.searchStaffInStore(wd,account.getStoreid());
+		}
 		PageInfo<TbStaff> p = new PageInfo<>(staff);
 		model.addAttribute("staffList", staff);
 		model.addAttribute("wd",wd);

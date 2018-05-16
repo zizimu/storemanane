@@ -2,6 +2,7 @@ package org.rainbow.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.rainbow.pojo.TbAccount;
 import org.rainbow.pojo.TbStock;
 import org.rainbow.pojo.TbStockKey;
 import org.rainbow.service.GoodsService;
@@ -27,6 +28,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/Stock")
+@SessionAttributes("user")
 public class StockController {
 
 	@Value("${pageSize}")
@@ -42,9 +44,14 @@ public class StockController {
 	private StoreService storeService;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String index(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
+	public String index(@RequestParam(value = "page", defaultValue = "1") int page, Model model, @ModelAttribute("user") TbAccount account) {
 		PageHelper.startPage(page, pageSize);
-		List<TbStock> stocks = stockService.getAllStock();
+		List<TbStock> stocks;
+		if (account.getStatus() > 2) {
+			stocks = stockService.getAllStock();
+		} else {
+			stocks = stockService.getAllStockByStoreID(account.getStoreid());
+		}
 		PageInfo<TbStock> p = new PageInfo<>(stocks);
 		model.addAttribute("stocksList", stocks);
 		model.addAttribute("goods", goodsService.getAllGoodsIdName());
@@ -104,14 +111,19 @@ public class StockController {
 	}
 
 	@RequestMapping(value = "/s", method = RequestMethod.GET)
-	public String search(@RequestParam("wd") String wd, @RequestParam(value = "page", defaultValue = "1") int page, Model model) {
+	public String search(@RequestParam("wd") String wd, @RequestParam(value = "page", defaultValue = "1") int page, Model model,@ModelAttribute("user") TbAccount account) {
 		PageHelper.startPage(page, pageSize);
 		try {
 			wd = new String(wd.getBytes("ISO-8859-1"), "utf-8");
-		} catch (UnsupportedEncodingException e) {
+		} catch (UnsupportedEncodingException | NullPointerException e) {
 			e.printStackTrace();
 		}
-		List<TbStock> stock = stockService.searchStock(wd);
+		List<TbStock> stock;
+		if (account.getStatus() > 2) {
+			stock = stockService.searchStock(wd);
+		} else {
+			stock = stockService.searchStockInStore(wd,account.getStoreid());
+		}
 		PageInfo<TbStock> p = new PageInfo<>(stock);
 		model.addAttribute("stocksList", stock);
 		model.addAttribute("wd", wd);
@@ -124,7 +136,7 @@ public class StockController {
 	public String go2AddPage(Model model) {
 		model.addAttribute("batchs", stockService.getAllBatch());
 		model.addAttribute("goods", goodsService.getAllGoods());
-		model.addAttribute("stores",storeService.getAllStores());
+		model.addAttribute("stores", storeService.getAllStores());
 		return catalog + "/add";
 	}
 
@@ -137,7 +149,7 @@ public class StockController {
 		model.addAttribute("stock", stock);
 		model.addAttribute("batchs", stockService.getAllBatch());
 		model.addAttribute("goods", goodsService.getAllGoodsIdName());
-		model.addAttribute("stores",storeService.getAllStores());
+		model.addAttribute("stores", storeService.getAllStores());
 		return catalog + "/edit";
 	}
 

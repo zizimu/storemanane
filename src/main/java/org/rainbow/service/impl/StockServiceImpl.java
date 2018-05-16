@@ -28,6 +28,11 @@ public class StockServiceImpl implements StockService {
 	}
 
 	@Override
+	public List<TbStock> getAllStockByStoreID(Long storeId) {
+		return stockMapper.selectStockByStoreID(storeId);
+	}
+
+	@Override
 	public int addStock(TbStock stock) {
 		return stockMapper.insertSelective(stock);
 	}
@@ -50,6 +55,11 @@ public class StockServiceImpl implements StockService {
 	@Override
 	public List<TbStock> searchStock(String key) {
 		return stockMapper.searchStock(key);
+	}
+
+	@Override
+	public List<TbStock> searchStockInStore(String key,Long storeID) {
+		return stockMapper.searchStockInStoreID(key,storeID);
 	}
 
 	@Override
