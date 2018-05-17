@@ -20,7 +20,7 @@ public class TbOrder implements Serializable {
     /**
      * 商品编号
      */
-    private Integer goodsId;
+    private Long goodsId;
 
     /**
      * 商品数量
@@ -56,11 +56,11 @@ public class TbOrder implements Serializable {
         this.orderId = orderId;
     }
 
-    public Integer getGoodsId() {
+    public Long getGoodsId() {
         return goodsId;
     }
 
-    public void setGoodsId(Integer goodsId) {
+    public void setGoodsId(Long goodsId) {
         this.goodsId = goodsId;
     }
 

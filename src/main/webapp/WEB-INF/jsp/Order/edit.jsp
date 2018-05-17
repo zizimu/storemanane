@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html"%>
 <%@page pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -80,7 +81,11 @@ body {
 		<table class="table table-bordered table-hover m10">
 			<tr>
 				<td width="10%" class="tableleft">商品名称</td>
-				<td><input type="text" id="goodsId" value="${order.goodsId}" /></td>
+				<td><select type="text" id="goodsId" style="width: 210px;">
+						<c:forEach items="${goods}" var="p">
+							<option value="${p.key}">${p.value}</option>
+						</c:forEach>
+					</select></td>
 			</tr>
 			<tr>
 				<td class="tableleft">商品数量</td>
@@ -116,6 +121,7 @@ $(function () {
 	$('#backid').click(function(){
 			window.location.href="${pageContext.request.contextPath}/Order";
 	 });
-
+    var selBrand = "${order.goodsId}";
+    $("#goodsId").find("option[value=" + selBrand + "]").attr("selected", true);
 });
 </script>

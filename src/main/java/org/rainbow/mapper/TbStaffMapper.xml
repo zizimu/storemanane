@@ -6,7 +6,7 @@
 		<id column="staff_id" property="staffId" jdbcType="BIGINT"/>
 		<result column="staff_name" property="staffName" jdbcType="VARCHAR"/>
 		<result column="staff_phone" property="staffPhone" jdbcType="VARCHAR"/>
-		<result column="store_id" property="storeId" jdbcType="VARCHAR"/>
+		<result column="store_id" property="storeId" jdbcType="BIGINT"/>
 		<result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
 		<result column="entry_time" property="entryTime" jdbcType="TIMESTAMP"/>
 		<result column="role" property="role" jdbcType="INTEGER"/>

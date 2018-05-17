@@ -56,6 +56,7 @@ public class StockController {
 		model.addAttribute("stocksList", stocks);
 		model.addAttribute("goods", goodsService.getAllGoodsIdName());
 		model.addAttribute("page", p);
+		model.addAttribute("stores", storeService.getAllStores());
 		return catalog + "/index";
 	}
 
@@ -129,6 +130,7 @@ public class StockController {
 		model.addAttribute("wd", wd);
 		model.addAttribute("page", p);
 		model.addAttribute("goods", goodsService.getAllGoodsIdName());
+		model.addAttribute("stores", storeService.getAllStores());
 		return catalog + "/index";
 	}
 

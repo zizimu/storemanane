@@ -162,7 +162,7 @@
                 success: function (responseStr) {
                     if (responseStr['stat'] == 200) {
                         alert('修改成功！');
-                        window.location.href = "${pageContext.request.contextPath}/account//information";
+                        window.location.href = "${pageContext.request.contextPath}/account/information";
                     } else {
                         alert(responseStr['message']);
                     }
@@ -190,22 +190,22 @@
 		</tr>
 		<tr>
 			<td class="tableleft">新密码</td>
-			<td><input type="password" id="new_password"/></td>
+			<td><input type="password" id="new_password"/>
 			<span id="newPwdCheck" style="color: red; font-size: 15px;"></span></td>
 		</tr>
 		<tr>
 			<td class="tableleft">确认密码</td>
-			<td><input type="password" onblur="checkNewPwd()" id="new_password2"/></td>
+			<td><input type="password" onblur="checkNewPwd()" id="new_password2"/>
 			<span id="newPwdConfirm" style="color: red; font-size: 15px;"></span></td>
 		</tr>
 		<tr>
 			<td class="tableleft">电话</td>
-			<td><input type="text" id="phone" onblur="checkTel()" value="${account.phone}"/></td>
+			<td><input type="text" id="phone" onblur="checkTel()" value="${account.phone}"/>
 			<span id="telCheck" style="color: red; font-size: 15px;"></span></td>
 		</tr>
 		<tr>
 			<td class="tableleft">地址</td>
-			<td><input type="text" id="address" onblur="checkAddress()" value="${account.address}"/></td>
+			<td><input type="text" id="address" onblur="checkAddress()" value="${account.address}"/>
 			<span id="addCheck" style="color: red; font-size: 15px;"></span></td>
 		</tr>
 		<tr>

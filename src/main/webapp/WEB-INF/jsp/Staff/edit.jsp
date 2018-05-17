@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html"%>
 <%@page pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -74,8 +75,6 @@ body {
     </script>
 </head>
 <body>
-	<form action="{:U('User/edit')}" method="post" class="definewidth m20">
-		<input type="hidden" name="id" value="{$user.id}" />
 		<table class="table table-bordered table-hover definewidth m10">
 			<tr>
 				<td width="10%" class="tableleft">登录名</td>
@@ -87,7 +86,11 @@ body {
 			</tr>
 			<tr>
 				<td class="tableleft">所属门店</td>
-				<td><input type="text" id="storeId" value="${staff.storeId}"/></td>
+				<td><select type="text" id="storeId" style="width: 210px;">
+					<c:forEach items="${stores}" var="s">
+						<option value="${s.key}">${s.value}</option>
+					</c:forEach>
+				</select></td>
 			</tr>
 			<tr>
 				<td class="tableleft">入职时间</td>
@@ -95,7 +98,12 @@ body {
 			</tr>
 			<tr>
 				<td class="tableleft">角色</td>
-				<td><input type="text" id="role" value="${staff.role}"/></td>
+				<td>
+					<select type="text" id="role" style="width: 210px;">
+						<c:forEach items="${roles}" var="s">
+							<option value="${s.key}">${s.value}</option>
+						</c:forEach>
+					</select></td>
 			</tr>
 			<tr>
 				<td class="tableleft">备注</td>
@@ -110,7 +118,6 @@ body {
 				</td>
 			</tr>
 		</table>
-	</form>
 </body>
 </html>
 <script>
@@ -118,6 +125,9 @@ body {
 		$('#backid').click(function(){
 				window.location.href="${pageContext.request.contextPath}/Staff";
 		 });
-
+        var selBrand = "${staff.storeId}";
+        $("#storeId").find("option[value=" + selBrand + "]").attr("selected", true);
+        var selBrand2 = "${staff.role}";
+        $("#role").find("option[value=" + selBrand2 + "]").attr("selected", true);
     });
 </script>

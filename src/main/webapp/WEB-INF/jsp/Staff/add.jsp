@@ -145,7 +145,7 @@ body {
 			</tr>
 			<tr>
 				<td class="tableleft">所属门店</td>
-				<td><select type="text" id="storeId">
+				<td><select type="text" id="storeId" style="width: 210px;">
 					<c:forEach items="${stores}" var="s">
 						<option value="${s.storeId}">${s.storeName}</option>
 					</c:forEach>
@@ -159,7 +159,11 @@ body {
 			</tr>
 			<tr>
 				<td class="tableleft">角色</td>
-				<td><input type="text" id="role" /></td>
+				<td>select type="text" id="storeId" style="width: 210px;">
+					<c:forEach items="${stores}" var="s">
+						<option value="${s.key}">${s.value}</option>
+					</c:forEach>
+					</select></td>
 			</tr>
 			<tr>
 				<td class="tableleft">备注</td>

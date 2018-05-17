@@ -93,7 +93,7 @@ body {
 		<thead>
 			<tr>
 				<th style="text-align: center">订单编号</th>
-				<th style="text-align: center">商品编号</th>
+				<th style="text-align: center">商品名称</th>
 				<th style="text-align: center">商品数量</th>
 				<th style="text-align: center">活动名称</th>
 				<th style="text-align: center">总价</th>
@@ -105,7 +105,7 @@ body {
 			<c:forEach items="${orderList}" var="o" varStatus="st">
 				<tr>
 					<td style="text-align: center">${o.orderId}</td>
-					<td style="text-align: center">${o.goodsId}</td>
+					<td style="text-align: center">${goods[o.goodsId]}</td>
 					<td style="text-align: center">${o.goodsNum}</td>
 					<td style="text-align: center">${o.activityId}</td>
 					<td style="text-align: center">${o.totalPrice}</td>

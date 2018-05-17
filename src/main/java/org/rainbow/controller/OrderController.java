@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.rainbow.pojo.TbOrder;
+import org.rainbow.service.GoodsService;
 import org.rainbow.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,8 @@ public class OrderController {
 
 	@Autowired
 	private OrderService orderService;
+	@Autowired
+	private GoodsService goodsService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
@@ -29,11 +32,13 @@ public class OrderController {
 		PageInfo<TbOrder> st = new PageInfo<>(order);
 		model.addAttribute("orderList", order);
 		model.addAttribute("page", st);
+		model.addAttribute("goods",goodsService.getAllGoodsIdName());
 		return "Order/index";
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public String gotoAddPage() {
+	public String gotoAddPage(Model model) {
+		model.addAttribute("goods",goodsService.getAllGoodsIdName());
 		return "Order/add";
 	}
 
@@ -94,6 +99,7 @@ public class OrderController {
 	public String edit(@PathVariable("id") long id, Model model) {
 		TbOrder order = orderService.getOrderById(id);
 		model.addAttribute("order", order);
+		model.addAttribute("goods",goodsService.getAllGoodsIdName());
 		return "Order/edit";
 
 	}
@@ -111,6 +117,7 @@ public class OrderController {
 		model.addAttribute("orderList", order);
 		model.addAttribute("wd", wd);
 		model.addAttribute("page", p);
+		model.addAttribute("goods",goodsService.getAllGoodsIdName());
 		return "Order/index";
 	}
 

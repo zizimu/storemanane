@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.rainbow.pojo.TbAccount;
 import org.rainbow.pojo.TbStaff;
+import org.rainbow.service.RoleService;
 import org.rainbow.service.StaffService;
 import org.rainbow.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,8 @@ public class StaffController {
 	private StaffService staffService;
 	@Autowired
 	private StoreService storeService;
+	@Autowired
+	private RoleService roleService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(@RequestParam(value = "page", defaultValue = "1") int page, Model model,@ModelAttribute("user") TbAccount account) {
@@ -39,12 +42,15 @@ public class StaffController {
 		PageInfo<TbStaff> st = new PageInfo<>(staff);
 		model.addAttribute("staffList", staff);
 		model.addAttribute("page", st);
+		model.addAttribute("stores", storeService.getAllStores());
+		model.addAttribute("roles",roleService.getAllRoles());
 		return "Staff/index";
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String gotoAddPage(Model model) {
 		model.addAttribute("stores", storeService.getAllStore());
+		model.addAttribute("roles",roleService.getAllRoles());
 		return "Staff/add";
 	}
 
@@ -105,6 +111,8 @@ public class StaffController {
 	public String edit(@PathVariable("id") long id,Model model) {
 		TbStaff staff = staffService.getStaffById(id);
 		model.addAttribute("staff",staff);
+		model.addAttribute("stores", storeService.getAllStores());
+		model.addAttribute("roles",roleService.getAllRoles());
 		return "Staff/edit";
 		
 	}
@@ -127,6 +135,8 @@ public class StaffController {
 		model.addAttribute("staffList", staff);
 		model.addAttribute("wd",wd);
 		model.addAttribute("page", p);
+		model.addAttribute("stores", storeService.getAllStores());
+		model.addAttribute("roles",roleService.getAllRoles());
 		return "Staff/index";
 	}
 

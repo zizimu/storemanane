@@ -117,7 +117,7 @@
 			<td style="text-align: center">${goods[p.goodsId]}</td>
 			<td style="text-align: center">${p.goodsStock}</td>
 			<td style="text-align: center">${p.goodsSold}</td>
-			<td style="text-align: center">${p.storeId}</td>
+			<td style="text-align: center">${stores[p.storeId]}</td>
 			<td style="text-align: center">${p.createTime}</td>
 			<td style="text-align: center">${p.mark}</td>
 			<td style="text-align: center">

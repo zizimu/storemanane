@@ -4,7 +4,7 @@
 
 	<resultMap id="BaseResultMap" type="org.rainbow.pojo.TbOrder">
 		<id column="order_id" property="orderId" jdbcType="BIGINT"/>
-		<result column="goods_id" property="goodsId" jdbcType="INTEGER"/>
+		<result column="goods_id" property="goodsId" jdbcType="BIGINT"/>
 		<result column="goods_num" property="goodsNum" jdbcType="INTEGER"/>
 		<result column="activity_id" property="activityId" jdbcType="INTEGER"/>
 		<result column="total_price" property="totalPrice" jdbcType="DECIMAL"/>

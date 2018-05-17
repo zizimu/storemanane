@@ -18,7 +18,7 @@ public class TbStaff implements Serializable {
 
     private String staffPhone;
 
-    private String storeId;
+    private Long storeId;
 
     private Date createTime;
     
@@ -50,11 +50,11 @@ public class TbStaff implements Serializable {
 		this.staffPhone = staffPhone;
 	}
 
-	public String getStoreId() {
+	public Long getStoreId() {
 		return storeId;
 	}
 
-	public void setStoreId(String storeId) {
+	public void setStoreId(Long storeId) {
 		this.storeId = storeId;
 	}
 
