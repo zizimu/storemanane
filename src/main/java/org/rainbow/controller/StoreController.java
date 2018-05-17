@@ -7,6 +7,7 @@ import java.util.Map;
 import org.rainbow.pojo.TbStore;
 import org.rainbow.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,11 @@ import com.github.pagehelper.PageInfo;
 @Controller
 @RequestMapping("/Store")
 public class StoreController {
+	
+	@Value("${pageSize}")
+	private int pageSize;
+
+	private String catalog = "Stock";
 
 	@Autowired
 	private StoreService storeService;
@@ -33,12 +39,12 @@ public class StoreController {
 		PageInfo<TbStore> st = new PageInfo<>(store);
 		model.addAttribute("storeList", store);
 		model.addAttribute("page", st);
-		return "Store/index";
+		return catalog + "/index";
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String gotoAddPage() {
-		return "Store/add";
+		return catalog + "/add";
 	}
 
 	@RequestMapping(method = RequestMethod.POST,consumes = "application/json")
@@ -98,7 +104,7 @@ public class StoreController {
 	public String edit(@PathVariable("id") long id,Model model) {
 		TbStore store = storeService.getStoreById(id);
 		model.addAttribute("store",store);
-		return "Store/edit";
+		return catalog + "/edit";
 		
 	}
 	
@@ -110,7 +116,7 @@ public class StoreController {
 		model.addAttribute("storeList", store);
 		model.addAttribute("wd",wd);
 		model.addAttribute("page", p);
-		return "Store/index";
+		return catalog + "/index";
 	}
 
 }

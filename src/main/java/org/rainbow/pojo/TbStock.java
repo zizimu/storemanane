@@ -35,7 +35,7 @@ public class TbStock extends TbStockKey implements Serializable {
 
     private String mark;
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
     public Integer getGoodsStock() {
         return goodsStock;
