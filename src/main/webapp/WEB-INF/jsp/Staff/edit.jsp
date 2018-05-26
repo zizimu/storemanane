@@ -92,10 +92,10 @@ body {
 					</c:forEach>
 				</select></td>
 			</tr>
-			<tr>
+			<%-- <tr>
 				<td class="tableleft">入职时间</td>
 				<td><input type="date" id="entryTime" value="${staff.entryTime}"/></td>
-			</tr>
+			</tr> --%>
 			<tr>
 				<td class="tableleft">角色</td>
 				<td>

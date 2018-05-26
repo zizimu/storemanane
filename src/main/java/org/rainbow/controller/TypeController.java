@@ -16,9 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @author ross
- */
+
 @Controller
 @RequestMapping("/Type")
 @SessionAttributes("user")

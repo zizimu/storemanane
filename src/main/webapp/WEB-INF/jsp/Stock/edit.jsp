@@ -50,11 +50,11 @@
         <td><input type="number" id="gstock" onblur="checkStock()" value="${stock.goodsStock}"/>
             <span id="stockCheck" style="color: red; font-size: 15px;"></span></td>
     </tr>
-    <tr>
+   <%--  <tr>
         <td class="tableleft">已售数量</td>
         <td><input type="number" id="gsold" onblur="checkSoldNum()" value="${stock.goodsSold}"/>
             <span id="soldCheck" style="color: red; font-size: 15px;"></span></td>
-    </tr>
+    </tr> --%>
     <tr>
         <td class="tableleft">所属门店</td>
         <td><select id="sid" style="width: 210px;">
@@ -85,16 +85,16 @@
             window.location.href="${pageContext.request.contextPath}/Stock";
         });
         $("#submit").click(function () {
-            if(checkSoldNum()&checkStock()){
+            if(checkStock()){
                 put();
             }
         });
         $("#gstock").focus(function () {
             $("#stockCheck").text('');
         });
-        $("#gsold").focus(function () {
+        /* $("#gsold").focus(function () {
             $("#soldCheck").text('');
-        });
+        }); */
         var sel="${stock.storeId}";
         $("#sid").find("option[value="+sel+"]").attr("selected",true);
     });
@@ -111,7 +111,7 @@
         }
         return false;
     }
-    function checkSoldNum() {
+  /*   function checkSoldNum() {
         var reg =/^[1-9]\d{0,4}$/;
         var stock = $("#gsold").val();
         if(stock==null||stock==""){
@@ -123,13 +123,13 @@
             return true;
         }
         return false;
-    }
+    } */
     function put() {
         var data = {
             "batchId": ${stock.batchId},
             "goodsId": ${stock.goodsId},
             "goodsStock": $("#gstock").val(),
-            "goodsSold": $("#gsold").val(),
+          /*   "goodsSold": $("#gsold").val(), */
             "storeId": $("#sid").val(),
             "mark": $("#mark").val()
         };

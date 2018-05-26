@@ -6,7 +6,7 @@
 <head>
 	<link rel="shortcut icon"
 	      href="https://1213-1251943624.cos.ap-shanghai.myqcloud.com/default/R.ico" type="image/x-icon"/>
-	<title>优聚门店管理</title>
+	<title>彩妍门店管理</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<link href="https://cdn-1251943624.file.myqcloud.com/storeManage/assets/css/dpl-min.css" rel="stylesheet"
 	      type="text/css"/>
@@ -19,12 +19,10 @@
 			text-decoration: none;
 			color: white;
 		}
-
 		.img-item {
 			float: left;
 			margin-left: 10px;
 		}
-
 		.img-head {
 			width: 40px;
 			height: 40px;
@@ -34,7 +32,7 @@
 <body>
 <div class="header">
 	<div class="dl-title">
-		<img style="width: 199px;height: 60px;" onerror="this.src='https://1213-1251943624.cos.ap-shanghai.myqcloud.com/store-manage/logo/top2.bmp.png'" src="${topImage}">
+		<img style="width: 200px;height: 65px;" src="../../img/caiyan.ico" alt="logo">
 	</div>
 	<div class="dl-log">
 		<div class="img-item">
@@ -112,12 +110,12 @@
             {
                 id: '9', menu: [
                     {   text: '系统管理', items: [
-                            {id: '12', text: '系统参数', href: 'param'},
-                            {id: '11', text: '账号审核', href: 'account'},]
+                            {id: '11', text: '账号审核', href: 'account'},
+                            {id: '12', text: '管理调货', href: 'transfer'}]
                     },
                     {   text: '业务管理', items: [
                         {id: '21', text: '管理门店', href: 'Store'},
-                        {id: '22', text: '管理活动', href: 'Activity'},
+                        /* {id: '22', text: '管理活动', href: 'Activity'}, */
                         {id: '23', text: '管理角色', href: 'Role'}]
                     }]
             }

@@ -10,13 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created with IntelliJ IDEA.
- * Description:
- *
- * @author ross
- * @date 2018-04-16
- */
+
 @Service
 public class BrandServiceImpl implements BrandService {
 	@Autowired
@@ -55,5 +49,10 @@ public class BrandServiceImpl implements BrandService {
 			result.put(temp.getBrandId(), temp.getBrandName());
 		}
 		return result;
+	}
+
+	@Override
+	public TbBrand getTbBrandByname(String name) {
+		return brandMapper.getTbBrandByname(name);
 	}
 }

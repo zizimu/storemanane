@@ -42,9 +42,9 @@
             <if test="roleName != null" >
                 role_name,
             </if>
-            <if test="createTime != null" >
+          
                 create_time,
-            </if>
+          
             <if test="status != null" >
                 status,
             </if>
@@ -59,9 +59,7 @@
             <if test="roleName != null" >
                 #{roleName,jdbcType=VARCHAR},
             </if>
-            <if test="createTime != null" >
-                #{createTime,jdbcType=TIMESTAMP},
-            </if>
+            now(),
              <if test="status != null" >
                 #{status,jdbcType=INTEGER},
             </if>

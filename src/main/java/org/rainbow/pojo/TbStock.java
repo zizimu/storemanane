@@ -3,85 +3,88 @@ package org.rainbow.pojo;
 import java.io.Serializable;
 import java.sql.Date;
 
-/**
- * 
- * 
- * @author ross
- * 
- * @date 2018-04-12
- */
 public class TbStock extends TbStockKey implements Serializable {
-    /**
-     * 库存
-     */
-    private Integer goodsStock;
+	/**
+	 * 库存
+	 */
+	private Integer goodsStock;
 
-    /**
-     * 已销售数量
-     */
-    private Integer goodsSold;
+	/**
+	 * 已销售数量
+	 */
+	private Integer goodsSold;
 
-    /**
-     * 所属门店
-     */
-    private Long storeId;
+	/**
+	 * 所属门店
+	 */
+	private Long storeId;
 
-    private Date createTime;
+	private Date createTime;
 
-    /**
-     * 1有货  0售空  2采购中
-     */
-    private Integer status;
+	/**
+	 * 1有货 0售空 2采购中
+	 */
+	private Integer status;
 
-    private String mark;
+	private String mark;
+
+	private Long storez;
+
+	public Long getStorez() {
+		return storez;
+	}
+
+	public void setStorez(Long storez) {
+		this.storez = storez;
+	}
 
 	private static final long serialVersionUID = 1L;
 
-    public Integer getGoodsStock() {
-        return goodsStock;
-    }
+	public Integer getGoodsStock() {
+		return goodsStock;
+	}
 
-    public void setGoodsStock(Integer goodsStock) {
-        this.goodsStock = goodsStock;
-    }
+	public void setGoodsStock(Integer goodsStock) {
+		this.goodsStock = goodsStock;
+	}
 
-    public Integer getGoodsSold() {
-        return goodsSold;
-    }
+	public Integer getGoodsSold() {
+		return goodsSold;
+	}
 
-    public void setGoodsSold(Integer goodsSold) {
-        this.goodsSold = goodsSold;
-    }
+	public void setGoodsSold(Integer goodsSold) {
+		this.goodsSold = goodsSold;
+	}
 
-    public Long getStoreId() {
-        return storeId;
-    }
+	public Long getStoreId() {
+		return storeId;
+	}
 
-    public void setStoreId(Long storeId) {
-        this.storeId = storeId;
-    }
+	public void setStoreId(Long storeId) {
+		this.storeId = storeId;
+	}
 
-    public Date getCreateTime() {
-        return createTime;
-    }
+	public Date getCreateTime() {
+		return createTime;
+	}
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
 
-    public Integer getStatus() {
-        return status;
-    }
+	public Integer getStatus() {
+		return status;
+	}
 
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 
-    public String getMark() {
-        return mark;
-    }
+	public String getMark() {
+		return mark;
+	}
 
-    public void setMark(String mark) {
-        this.mark = mark == null ? null : mark.trim();
-    }
+	public void setMark(String mark) {
+		this.mark = mark == null ? null : mark.trim();
+	}
 }

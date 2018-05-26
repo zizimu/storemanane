@@ -101,8 +101,8 @@ body {
 				<th style="text-align: center">所属门店</th>
 				<th style="text-align: center">入职时间</th>
 				<th style="text-align: center">角色</th>
-				<th style="text-align: center">创建时间</th>
-				<th style="text-align: center">备注</th>
+<!-- 				<th style="text-align: center">创建时间</th> -->
+				<!-- <th style="text-align: center">备注</th> -->
 				<th style="text-align: center">管理操作</th>
 			</tr>
 			<c:forEach items="${staffList}" var="s" varStatus="st">
@@ -111,10 +111,11 @@ body {
 					<td style="text-align: center">${s.staffName}</td>
 					<td style="text-align: center">${s.staffPhone}</td>
 					<td style="text-align: center">${stores[s.storeId]}</td>
-					<td style="text-align: center">${s.entryTime}</td>
-					<td style="text-align: center">${roles[s.role]}</td>
+					<%-- <td style="text-align: center">${s.entryTime}</td> --%>
 					<td style="text-align: center">${s.createTime}</td>
-					<td style="text-align: center">${s.mark}</td>
+					<td style="text-align: center">${roles[s.role]}</td>
+					
+					<%-- <td style="text-align: center">${s.mark}</td> --%>
 					<td style="text-align: center">
 						<a href="${pageContext.request.contextPath}/Staff/edit/${s.staffId}">
 							<button class="btn btn-primary" style="margin-left: 5px;">

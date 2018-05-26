@@ -15,13 +15,6 @@ import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created with IntelliJ IDEA.
- * Description:
- *
- * @author ross
- * @date 2018-05-01
- */
 @Controller
 @SessionAttributes("user")
 public class LoginNRegisterController {

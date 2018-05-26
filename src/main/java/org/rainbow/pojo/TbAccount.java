@@ -2,13 +2,7 @@ package org.rainbow.pojo;
 
 import java.io.Serializable;
 
-/**
- * 
- * 
- * @author wcyong
- * 
- * @date 2018-05-02
- */
+
 public class TbAccount implements Serializable {
     /**
      * 主键

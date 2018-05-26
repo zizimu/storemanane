@@ -1,13 +1,22 @@
 package org.rainbow.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.rainbow.pojo.TbAccount;
+import org.rainbow.pojo.TbGoods;
 import org.rainbow.pojo.TbOrder;
+import org.rainbow.pojo.TbStock;
 import org.rainbow.service.GoodsService;
 import org.rainbow.service.OrderService;
+import org.rainbow.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,11 +33,29 @@ public class OrderController {
 	private OrderService orderService;
 	@Autowired
 	private GoodsService goodsService;
+	
+	@Autowired
+	private StockService stockService;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String index(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
+	public String index(@RequestParam(value = "page", defaultValue = "1") int page, Model model,HttpServletRequest request) {
 		PageHelper.startPage(page, 8);
-		List<TbOrder> order = orderService.getAllOrder();
+		HttpSession session=request.getSession();
+		TbAccount account=(TbAccount) session.getAttribute("user");
+		System.out.println("account=="+account.getStoreid());
+		List<TbOrder> order =new ArrayList<>();
+		if(account.getStoreid()==8) {
+			order = orderService.getAllOrder();
+		}else {
+			order =orderService.findOrderBystoreid(account.getStoreid());
+		}
+		System.out.println("orqder=="+order.size());
+		for (TbOrder tbOrder : order) {
+			TbGoods goods=goodsService.getGoodsByID(tbOrder.getGoodsId());
+			BigDecimal price=goods.getGoodsPrice().multiply(BigDecimal.valueOf(tbOrder.getGoodsNum()));
+			System.out.println("price=="+price);
+			tbOrder.setTotalPrice(price);
+		}
 		PageInfo<TbOrder> st = new PageInfo<>(order);
 		model.addAttribute("orderList", order);
 		model.addAttribute("page", st);
@@ -37,19 +64,51 @@ public class OrderController {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public String gotoAddPage(Model model) {
-		model.addAttribute("goods",goodsService.getAllGoodsIdName());
+	public String gotoAddPage(Model model,HttpServletRequest request) {
+		HttpSession session=request.getSession();
+		TbAccount account=(TbAccount) session.getAttribute("user");
+		List<TbStock> stocks;
+		System.out.println("status=="+account.getStatus());
+		if (account.getStatus() > 2) {
+			stocks = stockService.getAllStock();
+		} else {
+			stocks = stockService.getAllStockByStoreID(account.getStoreid());
+		}
+		List<TbGoods> goods=new ArrayList<>();
+		System.out.println("stocks=="+stocks.size());
+		for (TbStock tbStock : stocks) {
+			System.out.println("goodid=="+tbStock.getGoodsId());
+			TbGoods god=goodsService.getGoodsByID(tbStock.getGoodsId());
+			if(!goods.contains(god)) {
+				goods.add(god);
+			}
+		}
+		model.addAttribute("goods",goods);
+		//model.addAttribute("goods",goodsService.getAllGoodsIdName());
 		return "Order/add";
 	}
 
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
 	@ResponseBody
-	public Map add(@RequestBody TbOrder order) {
+	public Map add(@RequestBody TbOrder order,HttpSession session) {
+		System.out.println("添加订单！！");
+		TbAccount account=(TbAccount) session.getAttribute("user");
 		Map<String, Object> result = new HashMap<>();
+		System.out.println("storeid=="+order.getStore_id());
+		TbStock tbstock=stockService.findStockBygoodid(order.getGoodsId(),account.getStoreid());
 		if (order == null) {
 			result.put("stat", 400);
 			result.put("message", "缺少信息！");
-		} else if (orderService.addOrder(order) > 0) {
+			return result;
+		}
+		if(order.getGoodsNum()>tbstock.getGoodsStock()) {
+				result.put("stat", 400);
+				result.put("message", "库存不足！！");
+				return result;
+		}else if (orderService.addOrder(order) > 0) {
+			tbstock.setGoodsStock(tbstock.getGoodsStock()-order.getGoodsNum());
+			tbstock.setGoodsSold(tbstock.getGoodsSold()+order.getGoodsNum());
+			stockService.updateStockBygoodsid(tbstock);
 			result.put("stat", 200);
 			result.put("message", "添加成功！");
 		} else {

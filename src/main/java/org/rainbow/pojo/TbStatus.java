@@ -2,13 +2,6 @@ package org.rainbow.pojo;
 
 import java.io.Serializable;
 
-/**
- * Created with IntelliJ IDEA.
- * Description:
- *
- * @author ross
- * @date 2018-05-16
- */
 public class TbStatus implements Serializable {
 	private static final long serialVersionUID = 6621279960224027988L;
 

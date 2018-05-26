@@ -28,7 +28,7 @@
                 $("#check").text("");
                 return true;
             } else {
-                $("#check").text("请输入登陆名!");
+                $("#check").text("请输入登录名!");
             }
             return false;
         };
@@ -39,7 +39,7 @@
                 $("#check").text("");
                 return true;
             } else {
-                $("#check").text("请输入地址");
+                $("#check").text("请输入详细地址!");
             }
             return false;
         };

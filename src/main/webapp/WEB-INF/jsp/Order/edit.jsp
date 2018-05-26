@@ -48,8 +48,8 @@ body {
                     "orderId":${order.orderId},
                     "goodsId" : $("#goodsId").val(),
                     "goodsNum" : $("#goodsNum").val(),
-                    "activityId" : $("#activityId").val(),
-                    "totalPrice" : $("#totalPrice").val(),
+                   /*  "storeId" : $("#storeId").val(),  */
+                 /*    "totalPrice" : $("#totalPrice").val(), */
                     "createTime" : $("#createTime").val(),
                     "mark": $("#mark").val()                };
                 $.ajax({
@@ -91,14 +91,14 @@ body {
 				<td class="tableleft">商品数量</td>
 				<td><input type="text" id="goodsNum" value="${order.goodsNum}" /></td>
 			</tr>
-			<tr>
-				<td class="tableleft">活动名称</td>
-				<td><input type="text" id="activityId" value="${order.activityId}" /></td>
-			</tr>
-			<tr>
+			<%--  <tr>
+				<td class="tableleft">门店编号</td>
+				<td><input type="text" id="storeId" value="${order.storeId}" /></td>
+			</tr>  --%>
+			<%-- <tr>
 				<td class="tableleft">总价</td>
 				<td><input type="text" id="totalPrice" value="${order.totalPrice}" /></td>
-			</tr>
+			</tr> --%>
 			<tr>
 				<td class="tableleft">备注</td>
 				<td><input type="text" id="mark" value="${order.mark}" /></td>

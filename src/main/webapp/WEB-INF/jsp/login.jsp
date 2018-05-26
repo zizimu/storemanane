@@ -1,8 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2018/5/2
---%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <html lang="en">
@@ -28,7 +23,7 @@
                 $("#check").text("");
                 return true;
             } else {
-                $("#check").text("请输入ID或登陆名!");
+                $("#check").text("请输入ID或登录名!");
             }
             return false;
         };
@@ -63,7 +58,7 @@
                     }
                 },
                 error: function () {
-                    $("#check").text('登陆失败请重试！');
+                    $("#check").text('登录失败请重试！');
                 }
             })
         };
@@ -76,7 +71,7 @@
 	</div>--%>
 	<div class="centerText"></div>
 	<div class="centerText">
-		<input class="textStyle" type="text" id="loginname" placeholder="ID或登陆名">
+		<input class="textStyle" type="text" id="loginname" placeholder="ID或登录名">
 	</div>
 	<div class="centerText">
 		<input class="textStyle" type="password" id="loginpwd" placeholder="密码">

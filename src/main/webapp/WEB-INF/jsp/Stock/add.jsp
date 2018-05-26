@@ -34,7 +34,7 @@
 	</style>
 </head>
 <table class="table table-bordered table-hover definewidth m10">
-	<tr>
+	<%-- <tr>
 		<td width="10%" class="tableleft">批次</td>
 		<td>
 			<select id="batchId" style="width: 210px;">
@@ -44,7 +44,7 @@
 				<option value="${batchs.get(batchs.size()-1) + 1}">新批次</option>
 			</select>
 		</td>
-	</tr>
+	</tr> --%>
 	<tr>
 		<td class="tableleft">商品名称</td>
 		<td>
@@ -61,32 +61,39 @@
 		<td><input type="number" min="0" max="99999" id="gstock" onblur="checkStock()"/>
 			<span id="stockCheck" style="color: red; font-size: 15px;"></span></td>
 	</tr>
-	<tr>
+	<!-- <tr>
 		<td class="tableleft">已售数量</td>
 		<td><input type="number" min="0" maxlength="5" id="gsold" onblur="checkSoldNum()"/>
 			<span id="soldCheck" style="color: red; font-size: 15px;"></span></td>
-	</tr>
+	</tr> -->
 	<tr>
 		<td class="tableleft">所属门店</td>
-		<td><select id="sid" style="width: 210px;">
+		<td><input type="text" name="storeid" id="sid" value="${store.storeName }" storename="${store.storeId }"></td>
+		
+		<%-- <select id="sid" style="width: 210px;">
 			<c:forEach items="${stores}" var="p">
 				<option value="${p.key}">${p.value}</option>
 			</c:forEach>
-		</select></td>
+		</select> --%>
 	</tr>
 	<tr>
 		<td class="tableleft">备注</td>
 		<td><input type="text" id="mark"/>
 	</tr>
+
 	<tr>
 		<td class="tableleft"></td>
 		<td>
-			<button id="submit" class="btn btn-primary" type="button">保存</button>&nbsp;&nbsp;
+			<button id="submit" class="btn btn-primary" type="button">进货</button>&nbsp;&nbsp;&nbsp;&nbsp;
+	
+			<button type="button" class="btn btn-primary" id="trAdd">调货</button>&nbsp;&nbsp;&nbsp;&nbsp;
+			
 			<button type="button" class="btn btn-success" name="backid" id="backid">
-				返回列表
+				返回
 			</button>
 		</td>
 	</tr>
+
 </table>
 </body>
 </html>
@@ -97,26 +104,25 @@
             window.location.href = "${pageContext.request.contextPath}/Stock";
         });
         $("#submit").click(function () {
-			if(isGoodsExit>0&checkStock()&checkSoldNum()){
+        	post();
+			/* if(isGoodsExit>0&checkStock()){
 			    post();
-			}
+			} */
         });
-        $("#gstock").focus(function () {
+       /*  $("#gstock").focus(function () {
 	        $("#stockCheck").text('');
-        });
-        $("#gsold").focus(function () {
-            $("#soldCheck").text('');
-        });
-        $("#gname").change(function () {
+        }); */
+       
+       /*  $("#gname").change(function () {
             checkGoods();
-        });
-        $("#batchId").change(function () {
+        }); */
+       /*  $("#batchId").change(function () {
 	        checkGoods();
-        })
+        }) */
     });
     function checkGoods() {
         var data = {
-            "batchID": $("#batchId").val(),
+          /*   "batchID": $("#batchId").val(), */
             "goodsID": $("#gname").val()
         };
         $.ajax({
@@ -152,26 +158,27 @@
 	    }
 	    return false;
     }
-    function checkSoldNum() {
-        var reg =/^[1-9]\d{0,4}$/;
+    /* function checkSoldNum() {
+        var reg =/^[0-9]\d{0,4}$/;
         var stock = $("#gsold").val();
         if(stock==null||stock==""){
             $("#soldCheck").text("请输入已售数量！");
         }else if(!reg.test(stock)){
-            $("#soldCheck").text('请输入六位以内正整数！');
+            $("#soldCheck").text('请输入四位以内非负数！');
         }else {
             $("#soldCheck").text('');
             return true;
         }
         return false;
-    }
+    } */
     function post() {
+    	console.log(23232);
+    	console.log($("#sid").attr("storename"));
         var data = {
-            "batchId": $("#batchId").val(),
             "goodsId": $("#gname").val(),
             "goodsStock": $("#gstock").val(),
-            "goodsSold": $("#gsold").val(),
-            "storeId": $("#sid").val(),
+         /*    "goodsSold": $("#gsold").val(), */
+            "storeId": $("#sid").attr("storename"),
             "mark": $("#mark").val()
         };
         $.ajax({
@@ -195,4 +202,10 @@
             }
         })
     }
+    
+    $(function () {
+        $('#trAdd').click(function () {
+            window.location.href = "${pageContext.request.contextPath}/Stock/tranAdd";
+        });
+    });
 </script>

@@ -1,0 +1,142 @@
+<!-- <?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.rainbow.mapper.TbTransferMapper">
+
+	<resultMap id="BaseResultMap" type="org.rainbow.pojo.TbTransfer">
+		<id column="transfer_id" property="transferId" jdbcType="BIGINT" />
+		<result column="store_fromid" property="storeFromId" jdbcType="VARCHAR" />
+		<result column="store_toid" property="storeToId" jdbcType="VARCHAR" />
+		<result column="goods_id" property="goodsTd" jdbcType="VARCHAR" />
+		<result column="createtime" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		transfer_id, store_fromid, store_toid,goods_id,createtime, status
+	</sql>
+
+	<select id="selectAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tb_transfer
+		where status = 1
+		ORDER BY createtime DESC
+	</select>
+
+	<select id="searchTransfer" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from tb_transfer
+		where status = 1
+		and ( store_fromid =
+		#{storeFromId,jdbcType=BIGINT})
+		and( store_toid =
+		#{storeToId,jdbcType=BIGINT})
+		ORDER BY createtime DESC
+	</select>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from tb_transfer
+		where transfer_id = #{transferId,jdbcType=BIGINT}
+	</select>
+
+	<select id="getAllTransferName" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tb_transfer
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from tb_transfer
+		where transfer_id = #{transferId,jdbcType=BIGINT}
+	</delete>
+
+	<insert id="insert" parameterType="org.rainbow.pojo.TbTransfer">
+		insert into tb_transfer ( transfer_id, store_fromid,
+		store_toid,goods_id,createtime, status)
+		values (#{transferId,jdbcType=BIGINT},
+		#{storeFromId,jdbcType=BIGINT},
+		#{storeToId,jdbcType=BIGINT},
+		#{goosId,jdbcType=BIGINT},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{status,jdbcType=INTEGER})
+	</insert>
+
+	<insert id="insertSelective" parameterType="org.rainbow.pojo.TbTransfer">
+		insert into tb_transfer
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="transferId != null">
+				transfer_id,
+			</if>
+			<if test="storeFromId != null">
+				store_fromid,
+			</if>
+			<if test="storeToId != null">
+				store_toid,
+			</if>
+			<if test="goosId != null">
+				goods_id,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			createtime
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="transferId != null">
+				transfer_id,
+			</if>
+			<if test="storeFromId != null">
+				store_fromid,
+			</if>
+			<if test="storeToId != null">
+				store_toid,
+			</if>
+			<if test="goosId != null">
+				goods_id,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			createtime
+		</trim>
+	</insert>
+
+	<update id="updateByPrimaryKeySelective" parameterType="org.rainbow.pojo.TbTransfer">
+		update tb_transfer
+		<set>
+			<if test="storeFromId != null">
+				store_fromid = #{storeFromId,jdbcType=VARCHAR},
+			</if>
+			<if test="storeToId != null">
+				store_toid = #{storeToId,jdbcType=TIMESTAMP},
+			</if>
+			<if test="goosId != null">
+				goods_id = #{goosId,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime!= null">
+				createtime = #{createTime,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			
+		</set>
+		where transfer_id = #{transferId,jdbcType=BIGINT}
+	</update>
+
+	<update id="updateByPrimaryKey" parameterType="org.rainbow.pojo.TbTransfer">
+		update tb_transfer
+		set store_fromid = #{storeFromId,jdbcType=VARCHAR},
+		store_toid = #{storeToId,jdbcType=VARCHAR},
+		goods_id = #{goosId,jdbcType=VARCHAR},
+		createtime = #{createTime,jdbcType=TIMESTAMP},
+		status = #{status,jdbcType=INTEGER}
+		
+		where transfer_id = #{transferId,jdbcType=BIGINT}
+	</update>
+</mapper> -->

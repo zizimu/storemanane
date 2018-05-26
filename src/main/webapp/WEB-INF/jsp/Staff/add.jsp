@@ -47,16 +47,16 @@ body {
 <script type="text/javascript">
 	$(function() {
 		$("#submit").click(function() {
-			if (checkName() & checkDate() & checkPhone()) {
+			if (checkName()  & checkPhone()) {
 				post();
 			}
 		});
 		$("#staffName").focus(function() {
 			$("#nameCheck").text('');
 		});
-		$("#entryTime").focus(function() {
+		/* $("#entryTime").focus(function() {
 			$("#dateCheck").text('');
-		});
+		}); */
 		$("#staffPhone").focus(function() {
 			$("#phoneCheck").text('');
 		});
@@ -151,16 +151,16 @@ body {
 					</c:forEach>
 				</select></td>
 			</tr>
-			<tr>
+			<!-- <tr>
 				<td class="tableleft">入职时间</td>
 				<td><input type="date" id="entryTime" onblur="checkDate()"/>
 					<span id="dateCheck" style="color: red; font-size: 15px;"></span></td>
 				</td>
-			</tr>
+			</tr>	 -->	
 			<tr>
 				<td class="tableleft">角色</td>
-				<td>select type="text" id="storeId" style="width: 210px;">
-					<c:forEach items="${stores}" var="s">
+				<td><select type="text" id="role" style="width: 210px;">
+					<c:forEach items="${roles}" var="s">
 						<option value="${s.key}">${s.value}</option>
 					</c:forEach>
 					</select></td>

@@ -76,8 +76,11 @@
                 success: function (responseStr) {
                     if (responseStr['stat'] == 200) {
                         window.location.href="${pageContext.request.contextPath}/Brand";
-                    } else {
-                        alert(responseStr['message']);
+                    } else  if (responseStr['stat'] == 300){
+                    	  $("#namecheck").text(responseStr['message']);
+                    }else{
+                    	 $("#namecheck").text(responseStr['message']);
+                       /*  alert(responseStr['message']); */
                     }
                 },
                 error: function () {
@@ -90,7 +93,7 @@
 <table class="table table-bordered table-hover definewidth m10">
 	<tr>
 		<td width="10%" class="tableleft">品牌名称</td>
-		<td><input type="text" id="brandName" onblur="checkName()"/>
+		<td><input type="text" id="brandName" onblur="checkName()" maxlength="5"/>
 			<span id="namecheck" style="color: red; font-size: 15px;"></span></td>
 	</tr>
 	<tr>

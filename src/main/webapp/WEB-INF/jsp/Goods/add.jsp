@@ -186,7 +186,7 @@
 	</tr>
 	<tr>
 		<td class="tableleft">价格</td>
-		<td><input type="number" maxlength="9" onblur="checkPrice()" step="0.01" max="999999.99" min="0" id="gprice"/>
+		<td><input type="number" maxlength="9" onblur="checkPrice()" step="0.01" max="9999.99" min="0" id="gprice"/>
 			<span id="priceCheck" style="color: red; font-size: 15px;"></span></td>
 	</tr>
 	<tr>
@@ -232,7 +232,7 @@
 	</tr>
 	<tr>
 		<td class="tableleft">保质期</td>
-		<td><input type="text" maxlength="2" value="1" id="gshelfilfe" onblur="checkShelfLife()"/> 年
+		<td><input type="text" maxlength="1" value="1" id="gshelfilfe" onblur="checkShelfLife()"/> 年
 			<span id="shelflifeCheck" style="color: red; font-size: 15px;"></span></td>
 	</tr>
 	<tr>

@@ -21,4 +21,6 @@ public interface TbRoleMapper {
     List<TbRole> selectAll();
 
 	List<TbRole> searchRole(String key);
+
+	List<TbRole> selectAllWithoutStatus();
 }

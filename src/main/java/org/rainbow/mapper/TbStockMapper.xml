@@ -11,18 +11,25 @@
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
         <result column="status" property="status" jdbcType="INTEGER" />
         <result column="mark" property="mark" jdbcType="VARCHAR" />
+         <result column="storez" property="storez" jdbcType="BIGINT" />
     </resultMap>
 
     <sql id="Base_Column_List" >
-        batch_id, goods_id, goods_stock, goods_sold, store_id, create_time, status, mark
+        batch_id, goods_id, goods_stock, goods_sold, store_id, create_time, status, mark,storez
     </sql>
 
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="org.rainbow.pojo.TbStockKey" >
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
         select 
         <include refid="Base_Column_List" />
         from tb_stock
-        where batch_id = #{batchId,jdbcType=BIGINT}
-          and goods_id = #{goodsId,jdbcType=BIGINT}
+        where goods_id = #{goodsId,jdbcType=BIGINT}
+    </select>
+    
+    <select id="findStockBygoodid" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select 
+        <include refid="Base_Column_List" />
+        from tb_stock
+        where goods_id = #{param1,jdbcType=BIGINT} and store_id=#{param2,jdbcType=BIGINT}
     </select>
 
     <select id="selectAll" resultMap="BaseResultMap">
@@ -74,10 +81,10 @@
     <insert id="insert" parameterType="org.rainbow.pojo.TbStock" >
         insert into tb_stock (batch_id, goods_id, goods_stock, 
             goods_sold, store_id, create_time, 
-            status, mark)
+            status, mark,storez)
         values (#{batchId,jdbcType=BIGINT}, #{goodsId,jdbcType=BIGINT}, #{goodsStock,jdbcType=INTEGER}, 
             #{goodsSold,jdbcType=INTEGER}, #{storeId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
-            #{status,jdbcType=INTEGER}, #{mark,jdbcType=VARCHAR})
+            #{status,jdbcType=INTEGER}, #{mark,jdbcType=VARCHAR}, #{storez,jdbcType=BIGINT})
     </insert>
 
     <insert id="insertSelective" parameterType="org.rainbow.pojo.TbStock" >
@@ -104,6 +111,9 @@
             <if test="mark != null" >
                 mark,
             </if>
+             <if test="storez != null" >
+                storez,
+            </if>
               create_time
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -127,6 +137,9 @@
             </if>
             <if test="mark != null" >
                 #{mark,jdbcType=VARCHAR},
+            </if>
+            <if test="storez != null" >
+                #{storez,jdbcType=BIGINT},
             </if>
               now()
         </trim>
@@ -153,6 +166,9 @@
             <if test="mark != null" >
                 mark = #{mark,jdbcType=VARCHAR},
             </if>
+            <if test="storez != null" >
+                #{storez,jdbcType=BIGINT}
+            </if>
         </set>
         where batch_id = #{batchId,jdbcType=BIGINT}
           and goods_id = #{goodsId,jdbcType=BIGINT}
@@ -165,8 +181,21 @@
             store_id = #{storeId,jdbcType=BIGINT},
             create_time = #{createTime,jdbcType=TIMESTAMP},
             status = #{status,jdbcType=INTEGER},
-            mark = #{mark,jdbcType=VARCHAR}
+            mark = #{mark,jdbcType=VARCHAR},
+            storez=#{storez,jdbcType=BIGINT}    
         where batch_id = #{batchId,jdbcType=BIGINT}
           and goods_id = #{goodsId,jdbcType=BIGINT}
+    </update>
+    
+     <update id="updateStockBygoodsid" parameterType="org.rainbow.pojo.TbStock" >
+        update tb_stock
+        set goods_stock = #{goodsStock,jdbcType=INTEGER},
+            goods_sold = #{goodsSold,jdbcType=INTEGER},
+            store_id = #{storeId,jdbcType=BIGINT},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            status = #{status,jdbcType=INTEGER},
+            mark = #{mark,jdbcType=VARCHAR},
+            storez=#{storez,jdbcType=BIGINT}    
+        where goods_id = #{goodsId,jdbcType=BIGINT}
     </update>
 </mapper>

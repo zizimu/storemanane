@@ -1,15 +1,8 @@
 package org.rainbow.pojo;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 
-/**
- * 
- * 
- * @author ross
- * 
- * @date 2018-04-25
- */
 public class TbRole implements Serializable {
     /**
      * 角色id

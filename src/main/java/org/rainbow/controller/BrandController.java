@@ -16,13 +16,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created with IntelliJ IDEA.
- * Description:
- *
- * @author ross
- * @date 2018-04-14
- */
 @Controller
 @RequestMapping("/Brand")
 @SessionAttributes("user")
@@ -32,7 +25,7 @@ public class BrandController {
 
 	@Autowired
 	private BrandService brandService;
-
+//全部
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(@RequestParam(value = "page", defaultValue = "1") int page, Model model, @ModelAttribute("user") TbAccount account) {
 		PageHelper.startPage(page, pageSize);
@@ -43,20 +36,28 @@ public class BrandController {
 		model.addAttribute("status", account.getStatus());
 		return "Brand/index";
 	}
-
+//添加
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
 	@ResponseBody
 	public Map addBrand(@RequestBody TbBrand brand) {
 		Map<String, Object> result = new HashMap<>();
+		System.out.println("name=="+brand.getBrandName());
+		TbBrand brand2=brandService.getTbBrandByname(brand.getBrandName());
 		if (brand == null) {
 			result.put("stat", 400);
 			result.put("message", "缺少信息!");
-		} else if (brandService.addBrand(brand) > 0) {
-			result.put("stat", 200);
-			result.put("message", "添加成功！");
-		} else {
-			result.put("stat", 500);
-			result.put("message", "添加失败，请重试！");
+		}
+		if(brand2==null) {
+			 if (brandService.addBrand(brand) > 0) {
+				result.put("stat", 200);
+				result.put("message", "添加成功！");
+			} else {
+				result.put("stat", 500);
+				result.put("message", "添加失败，请重试！");
+			}
+		}else {
+			result.put("stat", 300);
+			result.put("message", "添加失败,该品牌已存在！");
 		}
 		return result;
 	}
@@ -84,6 +85,7 @@ public class BrandController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = "application/json")
 	@ResponseBody
 	public Map updateBrand(@RequestBody TbBrand brand, @PathVariable("id") String id) {
+		System.out.println(11);
 		Map<String, Object> result = new HashMap<>();
 		if (brand == null) {
 			result.put("stat", 400);

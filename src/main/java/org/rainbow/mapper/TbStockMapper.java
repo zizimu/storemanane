@@ -13,7 +13,7 @@ public interface TbStockMapper {
 
     int insertSelective(TbStock record);
 
-    TbStock selectByPrimaryKey(TbStockKey key);
+    TbStock selectByPrimaryKey(Long goodid);
 
     int updateByPrimaryKeySelective(TbStock record);
 
@@ -28,4 +28,8 @@ public interface TbStockMapper {
 	List<TbStock> searchStockInStoreID(@Param("key")String key,@Param("storeId") Long storeID);
 
     List<Long> getAllBatch();
+    
+    TbStock findStockBygoodid(Long goodid,Long storeid);
+    
+    void updateStockBygoodsid(TbStock tbStock);
 }

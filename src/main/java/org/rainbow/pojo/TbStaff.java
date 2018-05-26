@@ -3,13 +3,6 @@ package org.rainbow.pojo;
 import java.io.Serializable;
 import java.sql.Date;
 
-/**
- * 
- * 
- * @author ross
- * 
- * @date 2018-04-12
- */
 public class TbStaff implements Serializable {
 
     private Long staffId;

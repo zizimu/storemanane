@@ -100,12 +100,12 @@
 <table class="table table-bordered table-hover definewidth m10">
 	<tr>
 		<td width="10%" class="tableleft">类型名称</td>
-		<td><input type="text" id="TypeName" />
+		<td><input type="text" id="TypeName" maxlength="10" />
 			<span id="namecheck" style="color: red; font-size: 15px;"></span></td>
 	</tr>
 	<tr>
 		<td width="10%" class="tableleft">规格</td>
-		<td><input type="text" id="units" />
+		<td><input type="text" id="units" maxlength="3"/>
 			<span id="unitscheck" style="color: red; font-size: 15px;"></span></td>
 	</tr>
 	<tr>

@@ -44,4 +44,9 @@ public class OrderServiceImpl implements OrderService {
 		return tbOrderMapper.updateByPrimaryKeySelective(order);
 	}
 
+	@Override
+	public List<TbOrder> findOrderBystoreid(Long store_id) {
+		return tbOrderMapper.findOrderBystoreid(store_id);
+	}
+
 }

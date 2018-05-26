@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import org.rainbow.pojo.TbAccount;
 import org.rainbow.pojo.TbStock;
 import org.rainbow.pojo.TbStockKey;
+import org.rainbow.pojo.TbStore;
 import org.rainbow.service.GoodsService;
 import org.rainbow.service.StockService;
 import org.rainbow.service.StoreService;
@@ -18,6 +19,9 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 
 @Controller
@@ -56,22 +60,32 @@ public class StockController {
 
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
 	@ResponseBody
-	public Map addStock(@RequestBody TbStock stock) {
+	public Map addStock(@RequestBody TbStock stock,HttpSession session) {
+		System.out.println(2121);
+		TbAccount account=(TbAccount) session.getAttribute("user");
 		Map<String, Object> result = new HashMap<>();
 		TbStockKey temp = new TbStockKey();
 		temp.setBatchId(stock.getBatchId());
 		temp.setGoodsId(stock.getGoodsId());
-		TbStock rs = stockService.getStockByID(temp);
-		if (rs != null) {
-			result.put("stat", 300);
-			result.put("message", "该批次下已存在此商品!");
-		} else if (stockService.addStock(stock) > 0) {
+		TbStock rs =stockService.findStockBygoodid(stock.getGoodsId(),account.getStoreid());
+	/*	根据货物的id查找，如果有，相加，如果没有，生成一条记录*/
+		if(rs!=null) {
+			System.out.println("1212");
+			rs.setGoodsStock(rs.getGoodsStock()+stock.getGoodsStock());
+			stockService.updateStockBygoodsid(rs);
 			result.put("stat", 200);
 			result.put("message", "添加成功！");
-		} else {
-			result.put("stat", 500);
-			result.put("message", "添加失败，请重试！");
+		}else {
+			int a=stockService.addStock(stock);
+			if(a>0) {
+				result.put("stat", 200);
+				result.put("message", "添加成功！");
+			}else {
+				result.put("stat", 500);
+				result.put("message", "添加失败，请重试！");
+			}
 		}
+		//TbStock rs = stockService.getStockByID(temp);
 		return result;
 	}
 
@@ -129,19 +143,25 @@ public class StockController {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public String go2AddPage(Model model) {
-		model.addAttribute("batchs", stockService.getAllBatch());
+	public String gotoAddPage(Model model,HttpServletRequest request) {
+		/*通过当前用户找到店铺*/
+		HttpSession session=request.getSession();
+		TbAccount account=(TbAccount) session.getAttribute("user");
+		TbStore store=storeService.getStoreById(account.getStoreid());
+		/*后面找到  前面放到前端页面*/
+		model.addAttribute("store", store);
+		//model.addAttribute("batchs", stockService.getAllBatch());
 		model.addAttribute("goods", goodsService.getAllGoods());
-		model.addAttribute("stores", storeService.getAllStores());
+		//model.addAttribute("stores", storeService.getAllStores());
 		return catalog + "/add";
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET, produces = "text/plain")
-	public String edit(@RequestParam("batchId") long batchId, @RequestParam("goodsId") long goodsId, Model model) {
-		TbStockKey id = new TbStockKey();
-		id.setBatchId(batchId);
-		id.setGoodsId(goodsId);
-		TbStock stock = stockService.getStockByID(id);
+	public String edit( @RequestParam("goodsId") long goodsId, Model model) {
+		//TbStockKey id = new TbStockKey();
+		//id.setBatchId(batchId);
+		//id.setGoodsId(goodsId);
+		TbStock stock = stockService.getStockByID(goodsId);
 		model.addAttribute("stock", stock);
 		model.addAttribute("batchs", stockService.getAllBatch());
 		model.addAttribute("goods", goodsService.getAllGoodsIdName());
@@ -149,7 +169,7 @@ public class StockController {
 		return catalog + "/edit";
 	}
 
-	@RequestMapping(value = "/check", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/check", method = RequestMethod.GET)
 	@ResponseBody
 	public Map checkGoods(@RequestParam("batchID") String batchID, @RequestParam("goodsID") String goodsID) {
 		Map<String, Object> result = new HashMap<>();
@@ -160,6 +180,36 @@ public class StockController {
 			result.put("message", "已存在,请重新选择！");
 		}
 		return result;
+	}*/
+	/*向总部申请调货*/
+	/*@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
+	@ResponseBody
+	public Map addTTransfer(@RequestBody TbStock stock) {
+		Map<String, Object> result = new HashMap<>();
+		TbStockKey temp = new TbStockKey();
+		temp.setBatchId(stock.getBatchId());
+		temp.setGoodsId(stock.getGoodsId());
+		TbStock rs = stockService.getStockByID(temp);
+		if (rs != null) {
+			result.put("stat", 300);
+			result.put("message", "该批次下已存在此商品!");
+		} else if (stockService.addStock(stock) > 0) {
+			result.put("stat", 200);
+			result.put("message", "添加成功！");
+		} else {
+			result.put("stat", 500);
+			result.put("message", "添加失败，请重试！");
+		}
+		return result;
 	}
+	*/
+	@RequestMapping(value = "/tranAdd", method = RequestMethod.GET)
+	public String gotoTransfer(Model model) {
+		model.addAttribute("batchs", stockService.getAllBatch());
+		model.addAttribute("goods", goodsService.getAllGoods());
+		model.addAttribute("stores", storeService.getAllStores());
+		return catalog + "/tranAdd";
+	}
+
 
 }

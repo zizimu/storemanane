@@ -4,13 +4,6 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
 
-/**
- * 
- * 
- * @author ross
- * 
- * @date 2018-04-12
- */
 public class TbOrder implements Serializable {
     /**
      * 订单编号
@@ -45,8 +38,22 @@ public class TbOrder implements Serializable {
     private Integer status;
 
     private String mark;
+    
+   private Long store_id;
+   
+   
 
-    private static final long serialVersionUID = 1L;
+
+	public Long getStore_id() {
+		return store_id;
+	}
+
+	public void setStore_id(Long store_id) {
+		this.store_id = store_id;
+	}
+
+
+	private static final long serialVersionUID = 1L;
 
     public Long getOrderId() {
         return orderId;
@@ -84,6 +91,7 @@ public class TbOrder implements Serializable {
         return totalPrice;
     }
 
+    
     public void setTotalPrice(BigDecimal totalPrice) {
         this.totalPrice = totalPrice;
     }
@@ -108,6 +116,7 @@ public class TbOrder implements Serializable {
         return mark;
     }
 
+    
     public void setMark(String mark) {
         this.mark = mark == null ? null : mark.trim();
     }

@@ -49,9 +49,8 @@ body {
 							var data = {
 								"goodsId" : $("#goodsId").val(),
 								"goodsNum" : $("#goodsNum").val(),
-								"activityId" : $("#activityId").val(),
-								"totalPrice" : $("#totalPrice").val(),
-								"createTime" : $("#createTime").val(),
+							 	"store_id" : $("#store_id").val(), 
+								/* "totalPrice" : $("#totalPrice").val(), */
 								"mark" : $("#mark").val()
 							};
 							$.ajax({
@@ -85,7 +84,8 @@ body {
 			<td width="10%" class="tableleft">商品名称</td>
 			<td><select type="text" id="goodsId" style="width: 210px;">
 				<c:forEach items="${goods}" var="p">
-					<option value="${p.key}">${p.value}</option>
+					<option value="${p.goodsId}">${p.goodsName}</option>
+					<%-- <option value="${p.key}">${p.value}</option> --%>
 				</c:forEach>
 			</select></td>
 		</tr>
@@ -93,14 +93,14 @@ body {
 			<td class="tableleft">商品数量</td>
 			<td><input type="text" id="goodsNum" /></td>
 		</tr>
-		<tr>
-			<td class="tableleft">活动名称</td>
-			<td><input type="text" id="activityId" /></td>
-		</tr>
-		<tr>
+		 <tr>
+			<td class="tableleft">门店编号</td>
+			<td><input type="text" id="store_id" value="${user.storeid}"/></td>
+		</tr> 
+		<!-- <tr>
 			<td class="tableleft">总价</td>
 			<td><input type="text" id="totalPrice" /></td>
-		</tr>
+		</tr> -->
 		<tr>
 			<td class="tableleft">备注</td>
 			<td><input type="text" id="mark" /></td>

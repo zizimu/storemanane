@@ -11,13 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created with IntelliJ IDEA.
- * Description:
- *
- * @author ross
- * @date 2018-05-02
- */
+
 @Service
 public class ParameterServiceImpl implements ParameterService {
 	@Value("${backgroundImage}")

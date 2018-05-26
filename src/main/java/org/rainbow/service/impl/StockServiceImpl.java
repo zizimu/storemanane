@@ -9,13 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * Created with IntelliJ IDEA.
- * Description:
- *
- * @author ross
- * @date 2018-04-17
- */
 @Service
 public class StockServiceImpl implements StockService {
 
@@ -38,8 +31,8 @@ public class StockServiceImpl implements StockService {
 	}
 
 	@Override
-	public TbStock getStockByID(TbStockKey id) {
-		return stockMapper.selectByPrimaryKey(id);
+	public TbStock getStockByID(Long goodid) {
+		return stockMapper.selectByPrimaryKey(goodid);
 	}
 
 	@Override
@@ -67,8 +60,8 @@ public class StockServiceImpl implements StockService {
 		return stockMapper.getAllBatch();
 	}
 
-	@Override
-	public boolean isGoodsByBatch(String batchId, String goodsId) {
+	//@Override
+	/*public boolean isGoodsByBatch(String batchId, String goodsId) {
 		boolean rs = false;
 		try {
 			Long batch = Long.parseLong(batchId);
@@ -84,5 +77,15 @@ public class StockServiceImpl implements StockService {
 			return rs;
 		}
 		return rs;
+	}*/
+
+	@Override
+	public TbStock findStockBygoodid(Long goodid,Long storeid) {
+		return stockMapper.findStockBygoodid(goodid,storeid);
+	}
+
+	@Override
+	public void updateStockBygoodsid(TbStock tbStock) {
+		stockMapper.updateStockBygoodsid(tbStock);
 	}
 }

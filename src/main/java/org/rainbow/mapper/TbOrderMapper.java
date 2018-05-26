@@ -20,5 +20,8 @@ public interface TbOrderMapper {
 	List<TbOrder> searchOrder(String key);
 
 	List<TbOrder> selectAll();
+	
+	List<TbOrder> findOrderBystoreid(Long store_id);
 
 }
+

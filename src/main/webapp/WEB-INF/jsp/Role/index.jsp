@@ -102,7 +102,7 @@ body {
 				<th style="text-align: center">角色编号</th>
 				<th style="text-align: center">角色名称</th>
 				<th style="text-align: center">创建时间</th>
-				<th style="text-align: center">备注</th>
+				<!-- <th style="text-align: center">备注</th> -->
 				<th style="text-align: center">管理操作</th>
 			</tr>
 			<c:forEach items="${roleList}" var="s" varStatus="st">
@@ -110,7 +110,7 @@ body {
 					<td style="text-align: center">${s.roleId}</td>
 					<td style="text-align: center">${s.roleName}</td>
 					<td style="text-align: center">${s.createTime}</td>
-					<td style="text-align: center">${s.mark}</td>
+					<%-- <td style="text-align: center">${s.mark}</td> --%>
 					<td style="text-align: center">
 						<a href="${pageContext.request.contextPath}/Role/edit/${s.roleId}">
 							<button class="btn btn-primary" style="margin-left: 5px;">

@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2018/5/3
-  Time: 12:39
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -45,7 +38,7 @@
             $("#submit").click(function () {
                 checkOldPwd();
                 if (pwdIsTrue) {
-                    if (checkName() & checkAddress() & checkTel()) {
+                    if (checkName() & checkAddress() & checkTel()&checkNewPwd()) {
                         put();
                     }
                 }
@@ -89,16 +82,18 @@
         }
 
         function checkTel() {
-            var name = $("#phone").val();
-            if (name !== null && name !== "") {
-                $("#telCheck").text("");
-                return true;
-            } else {
-                $("#telCheck").text("请输入手机号!");
-            }
-            return false;
-        }
-
+    		var phone = $("#phone").val();
+    		var phonecheck = /^[1][3,4,5,7,8,9][0-9]{9}$/;
+    		if (phone == null || phone == "") {
+    			$("#phone").text("请输入手机号码！");
+    		} else if (!phonecheck.test(phone)) {
+    			$("#telCheck").text('请输入正确的手机号码！');
+    		}else{
+    			$("#telCheck").text("");
+    			return true;
+    		}
+    		return false;
+    	};
         function checkOldPwd() {
             var old_password = $("#old_password").val();
             if (old_password == null || old_password == "") {
@@ -161,7 +156,7 @@
                 },
                 success: function (responseStr) {
                     if (responseStr['stat'] == 200) {
-                        alert('修改成功！');
+                    	 alert('修改成功！');
                         window.location.href = "${pageContext.request.contextPath}/account/information";
                     } else {
                         alert(responseStr['message']);
@@ -216,7 +211,7 @@
 			<td class="tableleft">操作</td>
 			<td>
 				<button id="submit" class="btn btn-primary" type="button">保存</button>&nbsp;&nbsp;
-				<input type="reset" value="重 置" class="btn btn-success"/>&nbsp;&nbsp;
+			
 			</td>
 		</tr>
 		<tr>

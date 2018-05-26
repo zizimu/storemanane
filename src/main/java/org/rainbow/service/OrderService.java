@@ -14,5 +14,7 @@ public interface OrderService {
 	int updateOrder(TbOrder order);
 
 	List<TbOrder> searchOrder(String key);
+	
+	List<TbOrder> findOrderBystoreid(Long store_id);
 
 }

@@ -5,13 +5,7 @@ import org.rainbow.pojo.TbBrand;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created with IntelliJ IDEA.
- * Description:
- *
- * @author ross
- * @date 2018-04-16
- */
+
 public interface BrandService {
 
 	List<TbBrand> getAllBrand();
@@ -25,4 +19,6 @@ public interface BrandService {
 	List<TbBrand> searchBrand(String key);
 
 	Map<Long,String> getAllBrandName();
+	
+	TbBrand getTbBrandByname(String name);
 }

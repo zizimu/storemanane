@@ -14,13 +14,6 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.Part;
 import java.io.InputStream;
 
-/**
- * Created with IntelliJ IDEA.
- * Description:
- *
- * @author ross
- * @date 2018-04-08
- */
 @Service
 public class UploadImpl implements Upload {
 	@Override

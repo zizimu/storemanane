@@ -6,13 +6,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
 
-/**
- * 
- * 
- * @author ross
- * 
- * @date 2018-04-12
- */
+
 public class TbGoods implements Serializable {
     /**
      * 商品编号

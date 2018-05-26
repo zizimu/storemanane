@@ -27,7 +27,7 @@ public class StoreController {
 	@Value("${pageSize}")
 	private int pageSize;
 
-	private String catalog = "Stock";
+	private String catalog = "Store";
 
 	@Autowired
 	private StoreService storeService;

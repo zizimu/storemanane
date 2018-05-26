@@ -5,13 +5,7 @@ import org.rainbow.pojo.TbGoods;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created with IntelliJ IDEA.
- * Description:
- *
- * @author ross
- * @date 2018-04-10
- */
+
 public interface GoodsService {
 
 	int addGoods(TbGoods goods);

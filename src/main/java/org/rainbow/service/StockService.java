@@ -5,13 +5,6 @@ import org.rainbow.pojo.TbStockKey;
 
 import java.util.List;
 
-/**
- * Created with IntelliJ IDEA.
- * Description:
- *
- * @author ross
- * @date 2018-04-17
- */
 public interface StockService {
 
 	List<TbStock> getAllStock();
@@ -20,7 +13,7 @@ public interface StockService {
 
 	int addStock(TbStock stock);
 
-	TbStock getStockByID(TbStockKey id);
+	TbStock getStockByID(Long goodid);
 
 	int updateStock(TbStock stock);
 
@@ -31,6 +24,10 @@ public interface StockService {
 	List<TbStock> searchStockInStore(String key,Long storeID);
 
 	List<Long> getAllBatch();
+	
+	TbStock findStockBygoodid(Long goodid,Long storeId);
+	
+	 void updateStockBygoodsid(TbStock tbStock);
 
 	/**
 	 *
@@ -39,5 +36,5 @@ public interface StockService {
 	 * Description:是否[batchID]下存在[goodsId]
 	 * @return
 	 */
-	boolean isGoodsByBatch(String batchId ,String goodsId);
+	//boolean isGoodsByBatch(String batchId ,String goodsId);
 }

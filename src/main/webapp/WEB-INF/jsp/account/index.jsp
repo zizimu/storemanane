@@ -48,7 +48,7 @@
 <table class="table table-bordered table-hover definewidth m10">
 	<thead>
 	<tr>
-		<th style="text-align: center">登陆名</th>
+		<th style="text-align: center">登录名</th>
 		<th style="text-align: center">手机</th>
 		<th style="text-align: center">通讯地址</th>
 		<th style="text-align: center">账号状态</th>
