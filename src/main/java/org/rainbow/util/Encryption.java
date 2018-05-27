@@ -5,13 +5,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import com.alibaba.druid.util.Base64;
-/**
- * Created with IntelliJ IDEA.
- * Description:
- *
- * @author ross
- * @date 2018-05-02
- */
+
 
 public class Encryption {
 

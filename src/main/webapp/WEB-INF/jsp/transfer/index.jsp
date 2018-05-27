@@ -87,12 +87,12 @@
 <body>
 <form class="form-inline definewidth m20" action="${pageContext.request.contextPath}/transfer/s"
       method="get">
-	来源及去向： <input type="text" name="wd" id="wd" class="abc input-default" placeholder="商品来源门店：">&nbsp;&nbsp;
+	<!-- 来源及去向： <input type="text" name="wd" id="wd" class="abc input-default" placeholder="商品来源门店：">&nbsp;&nbsp;
 	&nbsp;&nbsp;
 	 <input type="text" name="wd" id="wd" class="abc input-default" placeholder="商品去向门店：">&nbsp;&nbsp;
 	<button type="submit" class="btn btn-primary">查询</button>
-	&nbsp;&nbsp;
-	<button type="button" class="btn btn-success" id="addnew">新增调货</button>
+	&nbsp;&nbsp; -->
+<!-- 	<button type="button" class="btn btn-success" id="addnew">新增调货</button> -->
 </form>
 <table class="table table-bordered table-hover definewidth m10">
 	<thead>
@@ -116,10 +116,10 @@
 			<td style="text-align: center">${p.goods.goodsName}</td>
 			<td style="text-align: center">${p.goods_num}</td>
 			<td style="text-align: center">${p.createtime}</td>
-			<td style="text-align: center">
+			<td style="text-align: center;color: green">
 			<c:if test="${p.status==1 }">待审核</c:if>
-			<c:if test="${p.status==2 }">通过</c:if>
-			<c:if test="${p.status==3 }">不通过</c:if>
+			<c:if test="${p.status==2 }">已通过</c:if>
+			<c:if test="${p.status==3 }">未通过</c:if>
 			</td>
 			<td style="text-align: center">
 				<a href="${pageContext.request.contextPath}/transfer/edit/${p.transfer_id}">
@@ -128,7 +128,7 @@
 					</button>
 				</a>
 				<button class="btn btn-success" style="margin-left: 5px;" onclick="del(${p.transfer_id})">
-					不通过
+					未达标
 				</button>
 			</td>
 		</tr>

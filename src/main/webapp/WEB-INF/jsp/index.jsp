@@ -42,13 +42,6 @@
 				<br>刷&nbsp;新
 			</a>
 		</div>
-		<%--<div class="img-item">
-			<a href="${pageContext.request.contextPath}/person">
-				<img class="img-head"
-				     src="https://cdn-1251943624.file.myqcloud.com/storeManage/Images/actionIcons_014.png">
-				<br>个人信息
-			</a>
-		</div>--%>
 		<div class="img-item">
 			<a href="${pageContext.request.contextPath}/logout">
 				<img class="img-head"
@@ -115,7 +108,7 @@
                     },
                     {   text: '业务管理', items: [
                         {id: '21', text: '管理门店', href: 'Store'},
-                        {id: '22', text: '管理活动', href: 'param'},
+                  /*       {id: '22', text: '管理参数', href: 'param'}, */
                         {id: '23', text: '管理角色', href: 'Role'}]
                     }]
             }

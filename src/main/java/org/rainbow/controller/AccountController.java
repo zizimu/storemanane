@@ -55,7 +55,7 @@ public class AccountController {
 		model.addAttribute("stores", storeService.getAllStores());
 		return "account/edit";
 	}
-
+//总店的修改 和分店使用一个方法
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = "application/json")
 	@ResponseBody
 	public Map updateInformation(@PathVariable("id") String id, @RequestBody TbAccount account) {
@@ -71,7 +71,31 @@ public class AccountController {
 		}
 		return result;
 	}
-
+	//分店修改账户信息
+		@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
+		@ResponseBody
+		public Map updateAccount(@RequestBody TbAccount account, ModelMap modelMap, HttpSession session) {
+			Map<String, Object> result = new HashMap<>();
+			if (account == null) {
+				result.put("stat", 400);
+				result.put("message", "信息缺失,请重试！");
+			} else {
+				if (account.getPassword() != null) {
+					Encryption en = Encryption.getInstance();
+					account.setPassword(en.byte2BASE64(en.passwordEncry(account.getPassword())));
+				}
+				
+				if (accountService.updateAccount(account) > 0) {
+					account = accountService.getAccountByID(account.getSid());
+					modelMap.addAttribute("user", account);
+					result.put("stat", 200);
+				} else {
+					result.put("stat", 500);
+					result.put("message", "更新失败,请重试！");
+				}
+			}
+			return result;
+		}
 	@RequestMapping(value = "/pwdCheck", method = RequestMethod.POST)
 	@ResponseBody
 	public Map pwdCheck(@RequestParam("pwd") String pwd, @ModelAttribute("user") TbAccount account) {
@@ -88,28 +112,5 @@ public class AccountController {
 		}
 		return result;
 	}
-
-	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
-	@ResponseBody
-	public Map updateAccount(@RequestBody TbAccount account, ModelMap modelMap, HttpSession session) {
-		Map<String, Object> result = new HashMap<>();
-		if (account == null) {
-			result.put("stat", 400);
-			result.put("message", "信息缺失,请重试！");
-		} else {
-			if (account.getPassword() != null) {
-				Encryption en = Encryption.getInstance();
-				account.setPassword(en.byte2BASE64(en.passwordEncry(account.getPassword())));
-			}
-			if (accountService.updateAccount(account) > 0) {
-				account = accountService.getAccountByID(account.getSid());
-				modelMap.addAttribute("user", account);
-				result.put("stat", 200);
-			} else {
-				result.put("stat", 500);
-				result.put("message", "更新失败,请重试！");
-			}
-		}
-		return result;
-	}
+	
 }

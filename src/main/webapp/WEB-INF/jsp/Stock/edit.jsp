@@ -33,12 +33,12 @@
 </head>
 <body>
 <table class="table table-bordered table-hover definewidth m10">
-    <tr>
+   <%--  <tr>
         <td width="10%" class="tableleft">批次</td>
         <td>
             <input id="batchId" readOnly="true" value="第${stock.batchId}批次"/>
         </td>
-    </tr>
+    </tr> --%>
     <tr>
         <td class="tableleft">商品名称</td>
         <td>

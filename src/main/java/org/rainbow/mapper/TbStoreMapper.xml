@@ -12,12 +12,12 @@
 		<result column="create_time" property="createTime" jdbcType="DATE"/>
 		<result column="status" property="status" jdbcType="INTEGER"/>
 		<result column="mark" property="mark" jdbcType="VARCHAR"/>
-		<!-- <result column="ishead" property="ishead" jdbcType="INTEGER"/> -->
+		<result column="ishead" property="ishead" jdbcType="INTEGER"/>
 	</resultMap>
 
 	<sql id="Base_Column_List">
         store_id, store_name, store_area, store_address, store_manager, staff_phone, create_time, 
-        status, mark
+        status, mark,ishead
     </sql>
 
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
@@ -35,11 +35,11 @@
 	<insert id="insert" parameterType="org.rainbow.pojo.TbStore">
         insert into tb_store (store_id, store_name, store_area, 
             store_address, store_manager, staff_phone, 
-            create_time, status, mark
+            create_time, status, mark,ishead
             )
         values (#{storeId,jdbcType=BIGINT}, #{storeName,jdbcType=VARCHAR}, #{storeArea,jdbcType=VARCHAR}, 
             #{storeAddress,jdbcType=VARCHAR}, #{storeManager,jdbcType=VARCHAR}, #{staffPhone,jdbcType=VARCHAR}, 
-            #{createTime,jdbcType=DATE}, #{status,jdbcType=INTEGER}, #{mark,jdbcType=VARCHAR}
+            #{createTime,jdbcType=DATE}, #{status,jdbcType=INTEGER}, #{mark,jdbcType=VARCHAR},{ishead,jdbcType=INTEGER}
             )
     </insert>
 
@@ -73,7 +73,9 @@
 			<if test="mark != null">
 				mark,
 			</if>
-		
+			<if test="ishead != null">
+				ishead
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="storeId != null">
@@ -103,7 +105,9 @@
 			<if test="mark != null">
 				#{mark,jdbcType=VARCHAR},
 			</if>
-			
+			<if test="ishead != null">
+				#{ishead,jdbcType=INTEGER}
+			</if>
 		</trim>
 	</insert>
 
@@ -134,7 +138,9 @@
 			<if test="mark != null">
 				mark = #{mark,jdbcType=VARCHAR},
 			</if>
-			
+			<if test="ishead != null">
+				ishead = #{ishead,jdbcType=INTEGER}
+			</if>
 		</set>
 		where store_id = #{storeId,jdbcType=BIGINT}
 	</update>
@@ -149,7 +155,7 @@
             create_time = #{createTime,jdbcType=DATE},
             status = #{status,jdbcType=INTEGER},
             mark = #{mark,jdbcType=VARCHAR},
-           
+            ishead = #{ishead,jdbcType=INTEGER}
         where store_id = #{storeId,jdbcType=BIGINT}
     </update>
 

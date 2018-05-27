@@ -52,8 +52,16 @@ public class TbStore implements Serializable {
 	/**
 	 * 是否总部
 	 */
-	//private int ishead;
+	private int ishead;
 	
+	public int getIshead() {
+		return ishead;
+	}
+
+	public void setIshead(int ishead) {
+		this.ishead = ishead;
+	}
+
 	private static final long serialVersionUID = 1L;
 
 	public Long getStoreId() {

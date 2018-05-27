@@ -56,15 +56,10 @@
 			<span id="stockCheck" style="color: red; font-size: 15px;"></span></td>
 	</tr>
 	
-	<tr>
+	<!-- <tr>
 		<td class="tableleft">调货门店</td>
 		<td><input type="text" name="storeid" id="sid" value="总店" storename="8"></td>
-		<%-- <select id="sid" style="width: 210px;">
-			<c:forEach items="${stores}" var="p">
-				<option value="${p.key}">${p.value}</option>
-			</c:forEach>
-		</select> --%>
-	</tr>
+	</tr> -->
 	
 	<tr>
 		<td class="tableleft"></td>
