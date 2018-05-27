@@ -8,8 +8,16 @@ import java.util.Map;
 
 
 public interface TransferService{
+	
+	int addTransfer(TbTransfer transfer);
+	
+	 List<TbTransfer> findAllCheckTransfer();
+	 
+	 TbTransfer findCheckTransfer(Long transfer_id);
+	 
+	 void updateTransfer(TbTransfer transfer);
 
-	int insertNew(TbTransfer transfer);
+	/*int insertNew(TbTransfer transfer);
 
 	List<TbTransfer> getAllTransfer();
 
@@ -17,6 +25,6 @@ public interface TransferService{
 
 	TbTransfer getTransferByID(long ID);//更新需要
 
-	int updateTransfer(TbTransfer transfer);
+	int updateTransfer(TbTransfer transfer);*/
 
 }

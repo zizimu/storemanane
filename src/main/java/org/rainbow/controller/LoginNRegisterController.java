@@ -25,7 +25,7 @@ public class LoginNRegisterController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Model model) {
-		model.addAttribute("BGimage", parameterService.getLoginBGimage());
+		/*model.addAttribute("BGimage", parameterService.getLoginBGimage());*/
 		return "login";
 	}
 
@@ -67,7 +67,7 @@ public class LoginNRegisterController {
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String register(Model model) {
-		model.addAttribute("BGimage", parameterService.getLoginBGimage());
+		/*model.addAttribute("BGimage", parameterService.getLoginBGimage());*/
 		return "register";
 	}
 

@@ -58,11 +58,12 @@
 	
 	<tr>
 		<td class="tableleft">调货门店</td>
-		<td><select id="sid" style="width: 210px;">
+		<td><input type="text" name="storeid" id="sid" value="总店" storename="8"></td>
+		<%-- <select id="sid" style="width: 210px;">
 			<c:forEach items="${stores}" var="p">
 				<option value="${p.key}">${p.value}</option>
 			</c:forEach>
-		</select></td>
+		</select> --%>
 	</tr>
 	
 	<tr>
@@ -84,11 +85,12 @@
             window.location.href = "${pageContext.request.contextPath}/Stock";
         });
         $("#submit").click(function () {
-			if(isGoodsExit>0&checkStock()&checkSoldNum()){
+        	 post();
+			/* if(isGoodsExit>0&checkStock()&checkSoldNum()){
 			    post();
-			}
+			} */
         });
-        $("#gstock").focus(function () {
+        /* $("#gstock").focus(function () {
 	        $("#stockCheck").text('');
         });
         $("#gsold").focus(function () {
@@ -99,7 +101,7 @@
         });
         $("#batchId").change(function () {
 	        checkGoods();
-        })
+        }) */
     });
     function checkGoods() {
         var data = {
@@ -141,15 +143,15 @@
     }
    
     function post() {
+    	console.log("申请调货")
         var data = {
-            "batchId": $("#batchId").val(),
             "goodsId": $("#gname").val(),
             "goodsStock": $("#gstock").val(),
-            "storeId": $("#sid").val(),
+            "storeId": $("#sid").attr("storename"),
             "mark": $("#mark").val()
         };
         $.ajax({
-            url: "${pageContext.request.contextPath}/Stock",
+            url: "${pageContext.request.contextPath}/Stock/transfer",
             type: 'POST',
             dataType: "json",
             data: JSON.stringify(data),
@@ -160,6 +162,7 @@
             success: function (responseStr) {
                 if (responseStr['stat'] == 200) {
                     window.location.href = "${pageContext.request.contextPath}/Stock";
+                    alert(responseStr['message']);
                 } else {
                     alert(responseStr['message']);
                 }

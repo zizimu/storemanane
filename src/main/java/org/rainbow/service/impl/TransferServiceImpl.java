@@ -1,4 +1,4 @@
-/*package org.rainbow.service.impl;
+package org.rainbow.service.impl;
 
 
 import org.rainbow.mapper.TbStatusMapper;
@@ -23,9 +23,25 @@ public class TransferServiceImpl implements TransferService {
 	private TbTransferMapper transferMapper;
 	@Autowired
 	private TbStatusMapper statusMapper;
-
-
 	@Override
+	public int addTransfer(TbTransfer transfer) {
+		return transferMapper.addTransfer(transfer);
+	}
+	@Override
+	public List<TbTransfer> findAllCheckTransfer() {
+		return transferMapper.findAllCheckTransfer();
+	}
+	@Override
+	public TbTransfer findCheckTransfer(Long transfer_id) {
+		return transferMapper.findCheckTransfer(transfer_id);
+	}
+	@Override
+	public void updateTransfer(TbTransfer transfer) {
+		transferMapper.updateTransfer(transfer);
+	}
+
+
+	/*@Override
 	public int insertNew(TbTransfer account) {
 		return transferMapper.insertSelective(account);
 	}
@@ -53,6 +69,6 @@ public class TransferServiceImpl implements TransferService {
 	@Override
 	public int updateTransfer(TbTransfer account) {
 		return transferMapper.updateByPrimaryKeySelective(account);
-	}
+	}*/
 
-}*/
+}

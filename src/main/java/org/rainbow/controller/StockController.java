@@ -6,9 +6,11 @@ import org.rainbow.pojo.TbAccount;
 import org.rainbow.pojo.TbStock;
 import org.rainbow.pojo.TbStockKey;
 import org.rainbow.pojo.TbStore;
+import org.rainbow.pojo.TbTransfer;
 import org.rainbow.service.GoodsService;
 import org.rainbow.service.StockService;
 import org.rainbow.service.StoreService;
+import org.rainbow.service.TransferService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,6 +43,9 @@ public class StockController {
 	private GoodsService goodsService;
 	@Autowired
 	private StoreService storeService;
+	
+	@Autowired
+	private TransferService tranService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(@RequestParam(value = "page", defaultValue = "1") int page, Model model, @ModelAttribute("user") TbAccount account) {
@@ -58,15 +64,17 @@ public class StockController {
 		return catalog + "/index";
 	}
 
-	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
+	@RequestMapping(value="addStocks",method = RequestMethod.POST, consumes = "application/json")
 	@ResponseBody
-	public Map addStock(@RequestBody TbStock stock,HttpSession session) {
+	public Map addStocks(@RequestBody TbStock stock,HttpServletRequest request) {
 		System.out.println(2121);
+		HttpSession session=request.getSession();
 		TbAccount account=(TbAccount) session.getAttribute("user");
 		Map<String, Object> result = new HashMap<>();
 		TbStockKey temp = new TbStockKey();
 		temp.setBatchId(stock.getBatchId());
 		temp.setGoodsId(stock.getGoodsId());
+		System.out.println("bun=="+stock.getGoodsStock());
 		TbStock rs =stockService.findStockBygoodid(stock.getGoodsId(),account.getStoreid());
 	/*	根据货物的id查找，如果有，相加，如果没有，生成一条记录*/
 		if(rs!=null) {
@@ -182,32 +190,47 @@ public class StockController {
 		return result;
 	}*/
 	/*向总部申请调货*/
-	/*@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
+	@RequestMapping(value="transfer",method = RequestMethod.POST, consumes = "application/json")
 	@ResponseBody
-	public Map addTTransfer(@RequestBody TbStock stock) {
+	public Map addTTransfer(@RequestBody TbStock stock,HttpServletRequest request) {
 		Map<String, Object> result = new HashMap<>();
-		TbStockKey temp = new TbStockKey();
-		temp.setBatchId(stock.getBatchId());
-		temp.setGoodsId(stock.getGoodsId());
-		TbStock rs = stockService.getStockByID(temp);
-		if (rs != null) {
+		System.out.println("申请调货");
+		HttpSession session=request.getSession();
+		TbAccount account=(TbAccount) session.getAttribute("user");
+		TbTransfer transfer=new TbTransfer();
+		transfer.setGoods_id(stock.getGoodsId());
+		Date date=new Date();
+		transfer.setCreatetime(new java.sql.Date(date.getTime()));
+		System.out.println("num=="+stock.getGoodsStock());
+		transfer.setGoods_num(stock.getGoodsStock());
+		transfer.setStore_toid(account.getStoreid());
+		transfer.setStatus(1);
+		int st=tranService.addTransfer(transfer);
+		if(st>0) {
+			result.put("stat", 200);
+			result.put("message", "申请成功！");
+		}else {
+			result.put("stat", 500);
+			result.put("message", "申请失败，请重试！");
+		}
+		//TbStock rs = stockService.getStockByID(temp);
+		/*if (rs != null) {
 			result.put("stat", 300);
 			result.put("message", "该批次下已存在此商品!");
 		} else if (stockService.addStock(stock) > 0) {
-			result.put("stat", 200);
-			result.put("message", "添加成功！");
+			
 		} else {
 			result.put("stat", 500);
 			result.put("message", "添加失败，请重试！");
-		}
+		}*/
 		return result;
 	}
-	*/
+	
 	@RequestMapping(value = "/tranAdd", method = RequestMethod.GET)
 	public String gotoTransfer(Model model) {
-		model.addAttribute("batchs", stockService.getAllBatch());
+		//model.addAttribute("batchs", stockService.getAllBatch());
 		model.addAttribute("goods", goodsService.getAllGoods());
-		model.addAttribute("stores", storeService.getAllStores());
+		//model.addAttribute("stores", storeService.getAllStores());
 		return catalog + "/tranAdd";
 	}
 

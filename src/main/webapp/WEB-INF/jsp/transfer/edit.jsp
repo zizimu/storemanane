@@ -36,24 +36,29 @@
 	 <tr>
         <td class="tableleft">商品来源</td>
         <td>
-            <input id="sfromid" value="${stores[transfer.storeFromId]}"/>
+        <select id="sid" style="width: 210px;">
+			<c:forEach items="${stores}" var="p">
+				<option value="${p.storeId}">${p.storeName}</option>
+			</c:forEach>
+		</select>
+            <%-- <input id="sfromid" value="${stores[transfer.storeFromId]}"/> --%>
         </td>
     </tr>
      <tr>
         <td class="tableleft">商品去向</td>
         <td>
-            <input id="stoid" value="${stores[transfer.storeToId]}"/>
+            <input id="stoid" readonly="true" value="${transfer.toStore.storeName}" storeid="${transfer.toStore.storeId }"/>
         </td>
     </tr>
     <tr>
         <td class="tableleft">商品名称</td>
         <td>
-            <input id="gname" readonly="true" value="${goods[stock.goodsId]}"/>
+            <input id="gname" readonly="true" value="${transfer.goods.goodsName}" pid="${transfer.goods.goodsId }"/>
         </td>
     </tr>
     <tr>
         <td class="tableleft">商品数量</td>
-        <td><input type="number" id="goodsNum" onblur="checkNum()" value="${transfer.goodsNum}"/>
+        <td><input type="number" id="goodsNum"  value="${transfer.goods_num}"/>
             <span id="stockCheck" style="color: red; font-size: 15px;"></span></td>
     </tr>
    
@@ -65,14 +70,14 @@
 	        </c:forEach>
         </select></td>
     </tr> --%>
-    <tr>
+    <!-- <tr>
         <td class="tableleft">备注</td>
-        <td><input type="text" id="mark" value="${stock.mark}"/></td>
-    </tr>
+        <td><input type="text" id="mark" value=""/></td>
+    </tr> -->
     <tr>
         <td class="tableleft"></td>
         <td>
-            <button id="submit" class="btn btn-primary" type="button">保存</button>&nbsp;&nbsp;
+            <button id="submit" class="btn btn-primary" type="button">调货</button>&nbsp;&nbsp;
             <button type="button" class="btn btn-success" name="backid" id="backid">
                 返回列表
             </button>
@@ -84,12 +89,14 @@
 <script>
     $(function () {
 		$('#backid').click(function(){
-            window.location.href="${pageContext.request.contextPath}/transfer";
+            window.location.href="${pageContext.request.contextPath}/transfer/listAllTransfer";
         });
         $("#submit").click(function () {
-            if(checkNum()){
+        	put();
+        })
+           /*  if(checkNum()){
                 put();
-            }
+            } */
         });  
         function checkNum() {
     		var reg = /^[0-9]\d{0,4}$/;
@@ -105,16 +112,17 @@
     		return false;
     	}
     function put() {
+    	var transfer_id="${transfer.transfer_id}";
+    	console.log(transfer_id)
         var data = {
-            "transferId": ${transfer.transferId},
-            "storeFromId": $("#storeFromId").val(),
-            "storeToId": $("#storeToId").val(),
-            "goodsId": $("#gname").val(),
-            "goodsNum": $("#goodsNum").val(),
-            "createTime": $("#createTime").val()
+            "transfer_id": transfer_id,
+            "store_fromid": $("#sid").val(),
+            "store_toid":$("#stoid").attr("storeid"),
+            "goods_id":$("#gname").attr("pid"),
+            "goods_num": $("#goodsNum").val(),
         };
         $.ajax({
-            url: "${pageContext.request.contextPath}/Stock",
+            url: "${pageContext.request.contextPath}/transfer/checkTransfer",
             type: 'PUT',
             dataType: "json",
             data: JSON.stringify(data),
@@ -124,7 +132,8 @@
             },
             success: function (responseStr) {
                 if (responseStr['stat'] == 200) {
-                    window.location.href = "${pageContext.request.contextPath}/transfer";
+                    window.location.href = "${pageContext.request.contextPath}/transfer/listAllTransfer";
+                    alert(responseStr['message']);
                 } else {
                     alert(responseStr['message']);
                 }

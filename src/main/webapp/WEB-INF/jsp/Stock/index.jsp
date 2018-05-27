@@ -117,7 +117,9 @@ body {
 					<%-- <td style="text-align: center">${p.batchId}</td> --%>
 					<td style="text-align: center">${goods[p.goodsId]}</td>
 					<td style="text-align: center">${p.goodsStock}</td>
-					<td style="text-align: center">${p.goodsSold}</td>
+					<td style="text-align: center">
+					<c:if test="${empty p.goodsSold}">0</c:if>
+					<c:if test="${!empty p.goodsSold}">${p.goodsSold}</c:if></td>
 					<td style="text-align: center">${stores[p.storeId]}</td>
 					<td style="text-align: center">${p.createTime}</td>
 					<%-- <td style="text-align: center">${p.mark}</td> --%>

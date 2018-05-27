@@ -102,6 +102,7 @@ body {
 				<th style="text-align: center">店长</th>
 				<th style="text-align: center">联系方式</th>
 				<th style="text-align: center">注册时间</th>
+				<th style="text-align: center">门店属性</th>
 				<!-- <th style="text-align: center">备注</th> -->
 				<th style="text-align: center">管理操作</th>
 			</tr>
@@ -114,6 +115,7 @@ body {
 					<td style="text-align: center">${s.storeManager}</td>
 					<td style="text-align: center">${s.staffPhone}</td>
 					<td style="text-align: center">${s.createTime}</td>
+					<td style="text-align: center">${s.ishead}</td>
 					<%-- <td style="text-align: center">${s.mark}</td> --%>
 					<td style="text-align: center">
 						<a href="${pageContext.request.contextPath}/Store/edit/${s.storeId}">

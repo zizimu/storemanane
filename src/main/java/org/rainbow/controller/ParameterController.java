@@ -11,13 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * Created with IntelliJ IDEA.
- * Description:
- *
- * @author ross
- * @date 2018-05-06
- */
 @Controller
 @RequestMapping("/param")
 @SessionAttributes("pageSize")

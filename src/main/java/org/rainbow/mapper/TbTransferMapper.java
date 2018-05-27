@@ -1,14 +1,20 @@
 package org.rainbow.mapper;
 
-/*import org.rainbow.pojo.TbTransfer;
+import org.rainbow.pojo.TbTransfer;
 
 import java.util.List;
 
 public interface TbTransferMapper {
 	
-    int insert(TbTransfer transfer);
+    int addTransfer(TbTransfer transfer);
+    
+    List<TbTransfer> findAllCheckTransfer();
+    
+    TbTransfer findCheckTransfer(Long transfer_id);
+    
+    void updateTransfer(TbTransfer transfer);
 
-    int insertSelective(TbTransfer transfer);
+   /* int insertSelective(TbTransfer transfer);
 
     int updateByPrimaryKeySelective(TbTransfer transfer);
 
@@ -18,5 +24,5 @@ public interface TbTransferMapper {
 
     List<TbTransfer> getAllTbTransferName();
 
-	TbTransfer selectByPrimaryKey(long iD);
-}*/
+	TbTransfer selectByPrimaryKey(long iD);*/
+}

@@ -12,6 +12,7 @@
 		<result column="create_time" property="createTime" jdbcType="DATE"/>
 		<result column="status" property="status" jdbcType="INTEGER"/>
 		<result column="mark" property="mark" jdbcType="VARCHAR"/>
+		<!-- <result column="ishead" property="ishead" jdbcType="INTEGER"/> -->
 	</resultMap>
 
 	<sql id="Base_Column_List">
@@ -72,6 +73,7 @@
 			<if test="mark != null">
 				mark,
 			</if>
+		
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="storeId != null">
@@ -101,6 +103,7 @@
 			<if test="mark != null">
 				#{mark,jdbcType=VARCHAR},
 			</if>
+			
 		</trim>
 	</insert>
 
@@ -131,6 +134,7 @@
 			<if test="mark != null">
 				mark = #{mark,jdbcType=VARCHAR},
 			</if>
+			
 		</set>
 		where store_id = #{storeId,jdbcType=BIGINT}
 	</update>
@@ -144,7 +148,8 @@
             staff_phone = #{staffPhone,jdbcType=VARCHAR},
             create_time = #{createTime,jdbcType=DATE},
             status = #{status,jdbcType=INTEGER},
-            mark = #{mark,jdbcType=VARCHAR}
+            mark = #{mark,jdbcType=VARCHAR},
+           
         where store_id = #{storeId,jdbcType=BIGINT}
     </update>
 

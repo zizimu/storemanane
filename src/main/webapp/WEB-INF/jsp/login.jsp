@@ -64,11 +64,9 @@
         };
 	</script>
 </head>
-<body class="bgimg" style="background: url('${BGimage}') no-repeat;background-size:cover;width:100%;height: auto;">
+<body class="bgimg" style="background: url(../../img/back.ico) no-repeat;background-size:cover;width:100%;height: auto;">
 <div id="content">
-	<%--<div class="logoNloginText" style="text-align:center;">
-		<a href="../index.html"><img src="/shopping/images/logo/logoMiddle.png" alt="logo"></a>
-	</div>--%>
+
 	<div class="centerText"></div>
 	<div class="centerText">
 		<input class="textStyle" type="text" id="loginname" placeholder="ID或登录名">

@@ -4,66 +4,72 @@ import java.sql.Date;
 
 public class TbTransfer {
 	
-	private Long transferId;
+	private Long transfer_id;
 	
-	private Long storeFromId;
+	private Long store_fromid;
 	
-	private Long storeToId;
+	private Long store_toid;
 	
-	private Long goodsId;
+	private Long goods_id;
 	
-	private int goodsNum;
+	private int goods_num;
 	
-	private Date createTime;
+	private Date createtime;
 	
 	private int status;
+	
+	private TbStore store;
+	
+	private TbStore toStore;
+	
+	private TbGoods goods;
 
-	public Long getTransferId() {
-		return transferId;
+	public Long getTransfer_id() {
+		return transfer_id;
 	}
 
-	public void setTransferId(Long transferId) {
-		this.transferId = transferId;
+	public void setTransfer_id(Long transfer_id) {
+		this.transfer_id = transfer_id;
 	}
 
-	public Long getStoreFromId() {
-		return storeFromId;
+	public Long getStore_fromid() {
+		return store_fromid;
 	}
 
-	public void setStoreFromId(Long storeFromId) {
-		this.storeFromId = storeFromId;
+	public void setStore_fromid(Long store_fromid) {
+		this.store_fromid = store_fromid;
 	}
 
-	public Long getStoreToId() {
-		return storeToId;
+	public Long getStore_toid() {
+		return store_toid;
 	}
 
-	public void setStoreToId(Long storeToId) {
-		this.storeToId = storeToId;
+	public void setStore_toid(Long store_toid) {
+		this.store_toid = store_toid;
 	}
 
-	public Long getGoodsId() {
-		return goodsId;
+	public Long getGoods_id() {
+		return goods_id;
 	}
 
-	public void setGoodsId(Long goodsId) {
-		this.goodsId = goodsId;
+	public void setGoods_id(Long goods_id) {
+		this.goods_id = goods_id;
 	}
 
-	public int getGoodsNum() {
-		return goodsNum;
+	public int getGoods_num() {
+		return goods_num;
 	}
 
-	public void setGoodsNum(int goodsNum) {
-		this.goodsNum = goodsNum;
+	public void setGoods_num(int goods_num) {
+		this.goods_num = goods_num;
 	}
 
-	public Date getCreateTime() {
-		return createTime;
+	public Date getCreatetime() {
+		return createtime;
 	}
 
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
+	public void setCreatetime(Date createtime) {
+		this.createtime = createtime;
 	}
 
 	public int getStatus() {
@@ -73,6 +79,31 @@ public class TbTransfer {
 	public void setStatus(int status) {
 		this.status = status;
 	}
+
+	public TbStore getStore() {
+		return store;
+	}
+
+	public void setStore(TbStore store) {
+		this.store = store;
+	}
+
+	public TbGoods getGoods() {
+		return goods;
+	}
+
+	public void setGoods(TbGoods goods) {
+		this.goods = goods;
+	}
+
+	public TbStore getToStore() {
+		return toStore;
+	}
+
+	public void setToStore(TbStore toStore) {
+		this.toStore = toStore;
+	}
+
 	
 	
 

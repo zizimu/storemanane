@@ -52,7 +52,7 @@
         function deleteByID(id) {
             layer.load();
             $.ajax({
-                url: "${pageContext.request.contextPath}/transfer/" + id,
+                url: "${pageContext.request.contextPath}/transfer/deleteTransfer/" + id,
                 type: 'DELETE',
                 dataType: "json",
                 async: false,
@@ -103,26 +103,32 @@
 		<th style="text-align: center">商品名称</th>
 		<th style="text-align: center">商品数量</th>
 		<th style="text-align: center">创建时间</th>
+		<th style="text-align: center">状态</th>
 		<th style="text-align: center">管理操作</th>
 	</tr>
 	</thead>
 	<tbody>
 	<c:forEach items="${transferList}" var="p" varStatus="st">
 		<tr>
-			<td style="text-align: center">${p.transferId}</td>
-			<td style="text-align: center">${stores[p.storeFromId]}</td>
-			<td style="text-align: center">${stores[p.storeToId]}</td>
-			<td style="text-align: center">${goods[p.goodsId]}</td>
-			<td style="text-align: center">${goods[p.goodsNum]}</td>
-			<td style="text-align: center">${p.createTime}</td>
+			<td style="text-align: center">${p.transfer_id}</td>
+			<td style="text-align: center">${p.store.storeName}</td>
+			<td style="text-align: center">${p.toStore.storeName}</td>
+			<td style="text-align: center">${p.goods.goodsName}</td>
+			<td style="text-align: center">${p.goods_num}</td>
+			<td style="text-align: center">${p.createtime}</td>
 			<td style="text-align: center">
-				<a href="${pageContext.request.contextPath}/transfer/edit/${p.transferId}">
+			<c:if test="${p.status==1 }">待审核</c:if>
+			<c:if test="${p.status==2 }">通过</c:if>
+			<c:if test="${p.status==3 }">不通过</c:if>
+			</td>
+			<td style="text-align: center">
+				<a href="${pageContext.request.contextPath}/transfer/edit/${p.transfer_id}">
 					<button class="btn btn-primary" style="margin-left: 5px;">
-						编辑
+						审核
 					</button>
 				</a>
-				<button class="btn btn-success" style="margin-left: 5px;" onclick="del(${p.transferId})">
-					删除
+				<button class="btn btn-success" style="margin-left: 5px;" onclick="del(${p.transfer_id})">
+					不通过
 				</button>
 			</td>
 		</tr>

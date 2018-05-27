@@ -182,7 +182,7 @@
             "mark": $("#mark").val()
         };
         $.ajax({
-            url: "${pageContext.request.contextPath}/Stock",
+            url: "${pageContext.request.contextPath}/Stock/addStocks",
             type: 'POST',
             dataType: "json",
             data: JSON.stringify(data),

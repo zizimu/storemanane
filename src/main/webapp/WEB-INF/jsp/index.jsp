@@ -111,11 +111,11 @@
                 id: '9', menu: [
                     {   text: '系统管理', items: [
                             {id: '11', text: '账号审核', href: 'account'},
-                            {id: '12', text: '管理调货', href: 'transfer'}]
+                            {id: '12', text: '管理调货', href: 'transfer/listAllTransfer'}]
                     },
                     {   text: '业务管理', items: [
                         {id: '21', text: '管理门店', href: 'Store'},
-                        /* {id: '22', text: '管理活动', href: 'Activity'}, */
+                        {id: '22', text: '管理活动', href: 'param'},
                         {id: '23', text: '管理角色', href: 'Role'}]
                     }]
             }
