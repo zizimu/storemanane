@@ -44,8 +44,8 @@
         function put() {
             var data = {
                 "sid":${account.sid},
-                "status": $("#goodsType").val(),
-                "storeid": $("#goodsBrand").val(),
+                "status": $("#status").val(),
+                "storeid": $("#storeName").val(),
                 "mark": $("#mark").val()
             };
             $.ajax({
@@ -86,18 +86,18 @@
 		<td><input type="text" disabled value="${account.address}"/>
 	</tr>
 	<tr>
-		<td class="tableleft">账号状态</td>
-		<td><select type="text" id="goodsType" style="width: 210px;">
-			<c:forEach items="${status}" var="p">
+		<td class="tableleft">所属门店</td>
+		<td><select type="text" id="storeName" style="width: 210px;">
+			<c:forEach items="${stores}" var="p">
 				<option value="${p.key}">${p.value}</option>
 			</c:forEach>
 		</select>
 		</td>
 	</tr>
 	<tr>
-		<td class="tableleft">所属门店</td>
-		<td><select type="text" id="goodsBrand" style="width: 210px;">
-			<c:forEach items="${stores}" var="p">
+		<td class="tableleft">账号状态</td>
+		<td><select type="text" id="status" style="width: 210px;">
+			<c:forEach items="${status}" var="p">
 				<option value="${p.key}">${p.value}</option>
 			</c:forEach>
 		</select>

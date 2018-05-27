@@ -36,24 +36,21 @@ public class OrderController {
 	
 	@Autowired
 	private StockService stockService;
-
+//根据门店编号获取到订单信息
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(@RequestParam(value = "page", defaultValue = "1") int page, Model model,HttpServletRequest request) {
 		PageHelper.startPage(page, 8);
 		HttpSession session=request.getSession();
 		TbAccount account=(TbAccount) session.getAttribute("user");
-		System.out.println("account=="+account.getStoreid());
 		List<TbOrder> order =new ArrayList<>();
 		if(account.getStoreid()==8) {
 			order = orderService.getAllOrder();
 		}else {
 			order =orderService.findOrderBystoreid(account.getStoreid());
 		}
-		System.out.println("orqder=="+order.size());
 		for (TbOrder tbOrder : order) {
 			TbGoods goods=goodsService.getGoodsByID(tbOrder.getGoodsId());
 			BigDecimal price=goods.getGoodsPrice().multiply(BigDecimal.valueOf(tbOrder.getGoodsNum()));
-			System.out.println("price=="+price);
 			tbOrder.setTotalPrice(price);
 		}
 		PageInfo<TbOrder> st = new PageInfo<>(order);

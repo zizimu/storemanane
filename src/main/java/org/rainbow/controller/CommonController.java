@@ -12,13 +12,6 @@ import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created with IntelliJ IDEA.
- * Description:
- *
- * @author ross
- * @date 2018-04-08
- */
 @Controller
 @SessionAttributes(value = {"pageSize", "ossUrl","user"})
 public class CommonController {

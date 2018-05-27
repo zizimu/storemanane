@@ -34,7 +34,7 @@ public class GoodsController {
 	private TypeService typeService;
 	@Autowired
 	private BrandService brandService;
-
+//展示全部商品信息
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(@RequestParam(value = "page", defaultValue = "1") int page, Model model, @ModelAttribute("pageSize") int pageSize, @ModelAttribute("user") TbAccount account) {
 		PageHelper.startPage(page, pageSize);

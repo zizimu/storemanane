@@ -213,16 +213,6 @@ public class StockController {
 			result.put("stat", 500);
 			result.put("message", "申请失败，请重试！");
 		}
-		//TbStock rs = stockService.getStockByID(temp);
-		/*if (rs != null) {
-			result.put("stat", 300);
-			result.put("message", "该批次下已存在此商品!");
-		} else if (stockService.addStock(stock) > 0) {
-			
-		} else {
-			result.put("stat", 500);
-			result.put("message", "添加失败，请重试！");
-		}*/
 		return result;
 	}
 	

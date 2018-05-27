@@ -35,7 +35,6 @@ body {
 }
 
 @media ( max-width : 980px) {
-	/* Enable use of floated navbar text */
 	.navbar-text.pull-right {
 		float: none;
 		padding-left: 5px;
@@ -92,8 +91,8 @@ body {
 				<td><input type="text" id="storeName" /></td>
 			</tr>
 			<tr>
-				<td class="tableleft">所属地区</td>
-				<td><input type="text" id="storePhone" /></td>
+				<td class="tableleft">所属省份</td>
+				<td><input type="text" id="storeArea" /></td>
 			</tr>
 			<tr>
 				<td class="tableleft">详细地址</td>
@@ -101,23 +100,24 @@ body {
 			</tr>
 			<tr>
 				<td class="tableleft">店长</td>
-				<td><input type="text" id="storeId" /></td>
+				<td><input type="text" id="storeManager" /></td>
 			</tr>
 			<tr>
 				<td class="tableleft">联系方式</td>
-				<td><input type="text" id="storeId" /></td>
+				<td><input type="text" id="staffPhone" /></td>
 			</tr>
 			<tr>
 				<td class="tableleft">注册时间</td>
 				<td><input type="date" id="createTime" /></td>
 			</tr>
-			<tr>
+			 <tr>
 				<td class="tableleft">门店属性</td>
 				<td><select type="text" id="ishead">
-					<option value="0">分店</option>
-					<option value="1">总店</option>
+						<option value="0">分店</option>
+					<!-- 	<option value="1">总店</option> -->
 				</select></td>
-			</tr>
+			</tr> 
+		
 			<tr>
 				<td class="tableleft">备注</td>
 				<td><input type="text" id="mark" /></td>

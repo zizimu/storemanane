@@ -50,6 +50,7 @@ body {
                     "storeManager" : $("#storeManager").val(),
                     "staffPhone" : $("#staffPhone").val(),
                     "createTime" : $("#createTime").val(),
+                  
                     "mark": $("#mark").val()       
                 };
                 $.ajax({
@@ -104,6 +105,7 @@ body {
 				<td class="tableleft">注册时间</td>
 				<td><input type="date" id="createTime" value="${store.createTime}"/></td>
 			</tr>
+			
 			<tr>
 				<td class="tableleft">备注</td>
 				<td><input type="text" id="mark" value="${store.mark}"/></td>

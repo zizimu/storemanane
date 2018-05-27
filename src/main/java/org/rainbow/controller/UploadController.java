@@ -14,13 +14,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-/**
- * Created with IntelliJ IDEA.
- * Description:
- *
- * @author ross
- * @date 2018-04-08
- */
 @Controller
 @SessionAttributes("ossUrl")
 public class UploadController {

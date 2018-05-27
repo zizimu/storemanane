@@ -1,5 +1,6 @@
 package org.rainbow.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -111,6 +112,11 @@ public class StoreController {
 	@RequestMapping(value = "/s",method = RequestMethod.GET)
 	public String search(@RequestParam("wd")String wd,@RequestParam(value = "page", defaultValue = "1") int page, Model model){
 		PageHelper.startPage(page, 8);
+		try {
+			wd = new String(wd.getBytes("ISO-8859-1"), "utf-8");
+		} catch (UnsupportedEncodingException | NullPointerException e) {
+			e.printStackTrace();
+		}
 		List<TbStore> store = storeService.searchStore(wd);
 		PageInfo<TbStore> p = new PageInfo<>(store);
 		model.addAttribute("storeList", store);
