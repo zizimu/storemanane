@@ -29,12 +29,5 @@ public interface StockService {
 	
 	 void updateStockBygoodsid(TbStock tbStock);
 
-	/**
-	 *
-	 * @param batchId
-	 * @param goodsId
-	 * Description:是否[batchID]下存在[goodsId]
-	 * @return
-	 */
-	//boolean isGoodsByBatch(String batchId ,String goodsId);
+
 }

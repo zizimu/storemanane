@@ -114,7 +114,7 @@ body {
 				<td class="tableleft">门店属性</td>
 				<td><select type="text" id="ishead">
 						<option value="0">分店</option>
-					<!-- 	<option value="1">总店</option> -->
+						<option value="1">总店</option>
 				</select></td>
 			</tr> 
 		
@@ -140,4 +140,11 @@ body {
 			window.location.href = "${pageContext.request.contextPath}/Store";
 		});
 	});
+
+	$(function(){
+		var value=document.getElementById("ishead");	
+		console.log(123);
+		console.log(value);
+	})
+	}
 </script>

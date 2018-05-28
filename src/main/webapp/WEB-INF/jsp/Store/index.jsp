@@ -115,7 +115,14 @@ body {
 					<td style="text-align: center">${s.storeManager}</td>
 					<td style="text-align: center">${s.staffPhone}</td>
 					<td style="text-align: center">${s.createTime}</td>
-					<td style="text-align: center">${s.ishead}</td>
+					<c:if test="${s.ishead eq 1 }">
+					<td style="text-align: center">总店</td>
+					</c:if>
+					<c:if test="${s.ishead eq 0 }">
+					<td style="text-align: center">分店</td>
+					</c:if>
+					
+					
 					<%-- <td style="text-align: center">${s.mark}</td> --%>
 					<td style="text-align: center">
 						<a href="${pageContext.request.contextPath}/Store/edit/${s.storeId}">
@@ -164,5 +171,6 @@ body {
 		</c:otherwise>
 	</c:choose>
 </div>
+
 </body>
 </html>

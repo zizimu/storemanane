@@ -32,6 +32,7 @@ public class StockServiceImpl implements StockService {
 
 	@Override
 	public TbStock getStockByID(Long goodid) {
+
 		return stockMapper.selectByPrimaryKey(goodid);
 	}
 

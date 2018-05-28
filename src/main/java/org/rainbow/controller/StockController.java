@@ -165,11 +165,18 @@ public class StockController {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET, produces = "text/plain")
-	public String edit( @RequestParam("goodsId") long goodsId, Model model) {
+	public String edit( @RequestParam("goodsId") long goodsId, Model model,HttpServletRequest request) {
 		//TbStockKey id = new TbStockKey();
 		//id.setBatchId(batchId);
 		//id.setGoodsId(goodsId);
-		TbStock stock = stockService.getStockByID(goodsId);
+		/*TbStock stock = stockService.getStockByID(goodsId);*/
+		//System.out.println("storeid"+storeid);
+		/*通过当前用户找到店铺*/
+		HttpSession session=request.getSession();
+		TbAccount account=(TbAccount) session.getAttribute("user");
+
+		TbStock stock = stockService.findStockBygoodid(goodsId,account.getStoreid());
+		//System.out.println("stock"+stock);
 		model.addAttribute("stock", stock);
 		model.addAttribute("batchs", stockService.getAllBatch());
 		model.addAttribute("goods", goodsService.getAllGoodsIdName());

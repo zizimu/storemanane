@@ -182,5 +182,5 @@ body {
         $('#addnew').click(function () {
             window.location.href = "${pageContext.request.contextPath}/Stock/add";
         });
-    });
+    })
 </script>
