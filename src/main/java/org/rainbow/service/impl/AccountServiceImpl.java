@@ -2,9 +2,11 @@ package org.rainbow.service.impl;
 
 import org.rainbow.mapper.TbAccountMapper;
 import org.rainbow.mapper.TbStatusMapper;
+import org.rainbow.mapper.TbStoreMapper;
 import org.rainbow.pojo.TbAccount;
 import org.rainbow.pojo.TbGoods;
 import org.rainbow.pojo.TbStatus;
+import org.rainbow.pojo.TbStore;
 import org.rainbow.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +22,8 @@ public class AccountServiceImpl implements AccountService {
 	private TbAccountMapper accountMapper;
 	@Autowired
 	private TbStatusMapper statusMapper;
-
+	@Autowired
+	private TbStoreMapper storeMapper;
 	@Override
 	public TbAccount loginByIdOrName(TbAccount account) {
 		TbAccount rs = null;
@@ -72,7 +75,17 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public int updateAccount(TbAccount account) {
-		return accountMapper.updateByPrimaryKeySelective(account);
+
+		
+		TbStore store = storeMapper.selectByPrimaryKey(account.getStoreid());
+		int isHead = store.getIshead();
+		if(isHead==1)
+			account.setStatus(9);
+		else
+			account.setStatus(2);
+		
+		int rel= accountMapper.updateByPrimaryKeySelective(account);
+		return rel;
 	}
 
 }

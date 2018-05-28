@@ -64,7 +64,7 @@
         };
 	</script>
 </head>
-<body class="bgimg" style="background: url(../../img/back.ico) no-repeat;background-size:cover;width:100%;height: auto;">
+<body class="bgimg" style="background: url(../../img/beijing.ico) no-repeat;background-size:cover;width:100%;height: auto;">
 <div id="content">
 
 	<div class="centerText"></div>

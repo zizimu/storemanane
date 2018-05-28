@@ -85,9 +85,7 @@
 		<td class="tableleft"></td>
 		<td>
 			<button id="submit" class="btn btn-primary" type="button">进货</button>&nbsp;&nbsp;&nbsp;&nbsp;
-	
 			<button type="button" class="btn btn-primary" id="trAdd">调货</button>&nbsp;&nbsp;&nbsp;&nbsp;
-			
 			<button type="button" class="btn btn-success" name="backid" id="backid">
 				返回
 			</button>
@@ -202,6 +200,7 @@
             }
         })
     }
+
     
     $(function () {
         $('#trAdd').click(function () {

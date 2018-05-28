@@ -9,7 +9,7 @@
 	    <result column="address" property="address" jdbcType="VARCHAR" />
 	    <result column="phone" property="phone" jdbcType="VARCHAR" />
 	    <result column="storeID" property="storeid" jdbcType="BIGINT" />
-        <result column="status" property="status" jdbcType="BIGINT" />
+        <result column="status" property="status" jdbcType="INTEGER" />
         <result column="mark" property="mark" jdbcType="VARCHAR" />
     </resultMap>
 

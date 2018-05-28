@@ -162,13 +162,24 @@
 	</select>
 
 	<!-- 搜索的sql语句-->
-	<select id="searchOrder" resultMap="BaseResultMap" parameterType="java.lang.String">
+	<!-- <select id="searchOrder" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List"/>
 		from tb_order
 		where order_id = #{key}
-		<!-- like '%' #{key} '%' -->
+		like '%' #{key} '%'
 		and status = 1
 		ORDER BY create_time DESC
+	</select> -->
+	
+	<select id="searchOrder" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		o.order_id,o.goods_id, o.goods_num, o.total_price, o.create_time
+		from tb_order o join  tb_goods g on o.goods_id=g.goods_id
+		where ( goods_name like '%' #{key,jdbcType=VARCHAR} '%'
+		or o.order_id=#{key}
+		and o.status = 1
+		and store_id=#{store_id})
+		<!-- ORDER BY o.create_time DESC -->
 	</select>
 </mapper>
